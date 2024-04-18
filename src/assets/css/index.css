@@ -1,3 +1,4 @@
+@tailwind base;
 @font-face {
   font-family: "Inter";
   src: url("../fonts/Inter-Regular.ttf");
@@ -24,18 +25,18 @@ body {
 
 ::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
-	background-color: #FBF8EF;
+	background-color: #e6e6e62c;
 	border-radius: 8px;
   height: 4px;
 }
 
 ::-webkit-scrollbar {
-	width: 8px;
+	width: 4px;
 	height: 4px;
 	background-color: #FBF8EF;
 }
 
 ::-webkit-scrollbar-thumb {
-	border-radius: 8px;
-	background-color: #BE9E37;
+	border-radius: 1px;
+	background-color: #9c9c9cc2;
 }

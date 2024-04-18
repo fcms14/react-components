@@ -12,7 +12,8 @@ interface Props {
 
 const Title = styled.h1<Props>`
     font-size: ${props => fontsizes.title[props?.size ?? 'default']};
-    color: ${props => colors[props?.parent ?? 'main'][props?.element ?? 'font']};
+    font-weight: bold;
+    color: ${props => colors[props?.parent ?? 'main'][props?.element ?? 'title']};
 `
 
 export default Title

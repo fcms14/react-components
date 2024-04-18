@@ -12,7 +12,7 @@ interface Props {
 
 const Subtitle = styled.h2<Props>`
     font-size: ${props => fontsizes.subtitle[props?.size ?? 'default']};
-    color: ${props => colors[props?.parent ?? 'main'][props?.element ?? 'font']};
+    color: ${props => colors[props?.parent ?? 'main'][props?.element ?? 'title']};
 `
 
 export default Subtitle
