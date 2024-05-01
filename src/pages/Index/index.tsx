@@ -1,8 +1,10 @@
 import Template from "../../templates/Template"
-import Caption from "../../components/atoms/Caption"
 import Subtitle from "../../components/atoms/Subtitle"
 import Text from "../../components/atoms/Text"
-import Title from "../../components/atoms/Title"
+import { Header } from "../../components/atoms/Header"
+import { theme } from "../../providers/theme"
+// import Title from "../../components/atoms/Title"
+// import Caption from "../../components/atoms/Caption"
 // import Button from "../../components/atoms/Button"
 
 const Index = () => {
@@ -10,9 +12,11 @@ const Index = () => {
 
   return (
     <Template>
-      <header>
-        <Title size="big" parent="header" element="title">Título</Title>
-      </header>
+      <Header.Root>
+        <Header.Icon icon="MdArrowBack" width={16} color={theme.colors.header.icon} onClick={() => console.log(1)} />
+        <Header.Title> Header </Header.Title>
+        <Header.Spacer width="32px"></Header.Spacer>
+      </Header.Root>
       <main>
         {loop.map((i) =>
           <Text
