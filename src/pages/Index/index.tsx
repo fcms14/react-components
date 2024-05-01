@@ -3,6 +3,7 @@ import Caption from "../../components/atoms/Caption"
 import Subtitle from "../../components/atoms/Subtitle"
 import Text from "../../components/atoms/Text"
 import Title from "../../components/atoms/Title"
+import Button from "../../components/Button"
 
 const Index = () => {
   const loop = Array.from({ length: 60 }, (_, i) => i + 1)
@@ -24,6 +25,7 @@ const Index = () => {
           </Text>
         )}
       </main>
+      <Button icon="search" iconColor = "white" flat="true" backgroundColor = "#BE9E37" iconPosition = "right" textColor = "#fff"  >button</Button>
       <footer>
         <Caption size="big">Menu</Caption>
       </footer>

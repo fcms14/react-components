@@ -1,4 +1,4 @@
-// import DefaulTheme from "../../../providers/theme"
+import DefaulTheme from "../../../providers/theme"
 
 type Props = {
     width?: string,
@@ -6,7 +6,7 @@ type Props = {
 }
 
 const Preloader = (props: Props) => {
-    const fill = props.fill
+    const fill = props.fill || DefaulTheme.colors.WHITE
     const width = props.width || 16
 
     return (<svg className="lds-spin" width={width} viewBox="-10 -10 180 180" preserveAspectRatio="xMidYMid" fill={fill}>
