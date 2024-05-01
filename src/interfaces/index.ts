@@ -4,11 +4,11 @@ export interface ColorInterface {
 }
 
 interface ElementsInterface {
-    title: string,
+    fill: string,
     font: string,
     icon: string,
-    fill: string,
     stroke: string,
+    title: string,
 }
 
 export interface FooterInterface {
