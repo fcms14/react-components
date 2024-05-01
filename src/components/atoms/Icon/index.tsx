@@ -1,5 +1,4 @@
 import React from 'react'
-// import DefaulTheme from '../../../providers/theme'
 import { pascalcase } from '../../../helpers/string'
 import IconStyle from './IconStyle'
 
@@ -285,7 +284,6 @@ interface iconInterface {
     className?: string,
 }
 
-// ? props.color || DefaulTheme.colors.GREYS[400] : props.color || DefaulTheme.colors.BLACK_100
 const Icon = (props: iconInterface) => {
     const { width, icon, className } = props
     const color = props?.rounded ? "#FFf1234" : "transparent"

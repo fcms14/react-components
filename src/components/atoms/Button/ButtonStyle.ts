@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {ButtonInterface, ButtonStyleInterface } from './ButtonInterface'
-import DefaulTheme from '../../providers/theme'
+import DefaulTheme from '../../../providers/theme'
 
 const getSizes = (props: ButtonInterface): string => {
     const { size, noText, full, noPadding } = props

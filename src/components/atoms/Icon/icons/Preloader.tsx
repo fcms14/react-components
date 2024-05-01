@@ -1,5 +1,3 @@
-// import DefaulTheme from "../../../providers/theme"
-
 type Props = {
     width?: string,
     fill?: string
