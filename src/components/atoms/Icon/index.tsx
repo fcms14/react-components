@@ -1,4 +1,3 @@
-import { pascalcase } from '../../../helpers/string'
 import IconStyle from './IconStyle'
 
 import {
@@ -92,7 +91,7 @@ import {
     VerticalLogo,
 } from './icons'
 
-import { 
+import {
     MdVpnKey,
     MdAssuredWorkload,
     MdPix,
@@ -275,13 +274,20 @@ const components = [
 ]
 
 interface iconInterface {
-    icon      : string,
-    mr       ?: boolean,
-    rounded  ?: boolean,
-    width    ?: number | any,
-    color    ?: string,
+    icon: string,
+    mr?: boolean,
+    rounded?: boolean,
+    width?: number | any,
+    color?: string,
     className?: string,
 }
+
+const captilize = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1)
+
+const pascalcase = (str: string): string => str.replace('.svg', '')
+    .split('-')
+    .map(str => captilize(str))
+    .join('')
 
 const Icon = (props: iconInterface) => {
     const { width, icon, className } = props
@@ -290,7 +296,7 @@ const Icon = (props: iconInterface) => {
     const Comp = components.filter(comp => comp.name === name)
     const Compo = Comp[0].obj
 
-    return Compo ? <IconStyle {...props}><Compo size={width} width={width} fill={color}/></IconStyle> : <></>
+    return Compo ? <IconStyle {...props}><Compo size={width} width={width} fill={color} /></IconStyle> : <></>
 }
 
 export default Icon

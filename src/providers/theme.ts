@@ -1,6 +1,6 @@
 import { ColorInterface, FontSizeInterface } from "../interfaces"
 
-export interface ThemeInterface {
+interface ThemeInterface {
   fontsizes: FontSizeInterface,
   colors: ColorInterface
 }
