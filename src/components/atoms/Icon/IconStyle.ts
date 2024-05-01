@@ -1,18 +1,18 @@
 
 import styled from "styled-components"
-import theme from "../../../../theme-config"
 
 interface IconStyleInterface {
   rounded?: boolean
 }
 
 const IconStyle = styled.div<IconStyleInterface>`
-${props => props.rounded && `
-    display: flex;
-    background: ${theme.colors.secondary};
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  
+  ${props => props.rounded && `
+    background: ${props.theme.colors.main.stroke};
     border-radius: 50%;
   `}
 `;

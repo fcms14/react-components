@@ -280,23 +280,23 @@ interface iconInterface {
     width?: number | any,
     color?: string,
     className?: string,
+    onClick?: () => void
 }
 
-const captilize = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1)
-
-const pascalcase = (str: string): string => str.replace('.svg', '')
-    .split('-')
-    .map(str => captilize(str))
-    .join('')
-
 const Icon = (props: iconInterface) => {
-    const { width, icon, className } = props
-    const color = props?.rounded ? "#FFf1234" : "transparent"
-    const name = pascalcase(icon)
-    const Comp = components.filter(comp => comp.name === name)
+    const { width, icon, className, color } = props
+    const Comp = components.filter(comp => comp.name === icon)
     const Compo = Comp[0].obj
 
-    return Compo ? <IconStyle {...props}><Compo size={width} width={width} fill={color} /></IconStyle> : <></>
+    return Compo
+        ? <IconStyle
+            {...props}
+            onClick={props?.onClick}
+            style={{ cursor: `${props?.onClick ? 'pointer' : 'default'}` }}
+        >
+            <Compo size={width} width={width} fill={color} />
+        </IconStyle>
+        : <></>
 }
 
 export default Icon
