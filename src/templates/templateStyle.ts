@@ -1,7 +1,4 @@
 import styled from 'styled-components'
-import { ColorInterface, FontSizeInterface } from '../interfaces'
-
-const colors: ColorInterface = JSON.parse(import.meta.env.VITE_COLORS)
 
 interface Props {
     size?: 'smaller' | 'small' | 'default' | 'big' | 'bigger' | 'biggest'
@@ -22,7 +19,7 @@ const TemplateStyle = styled.div<Props>`
         height: 2.75rem;
         position: sticky;
         top: 0;
-        background-color: ${props => colors[props?.parent ?? 'header'][props?.element ?? 'fill']};
+        background-color: ${props =>  props.theme.colors[props?.parent ?? 'header'][props?.element ?? 'fill']};
     }
 
     > main {
@@ -38,7 +35,7 @@ const TemplateStyle = styled.div<Props>`
         height: 5.625rem;
         position: sticky;
         bottom: 0;
-        background-color: ${props => colors[props?.parent ?? 'header'][props?.element ?? 'fill']};
+        background-color: ${props =>  props.theme.colors[props?.parent ?? 'header'][props?.element ?? 'fill']};
     }
 `
 

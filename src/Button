@@ -1,9 +1,0 @@
-import styled from "styled-components";
-
-
-const Button = styled.button`
-    background: #BE9E37; 
-    border-radius: 2px;
-    width: 44px
-    height: 346px
-`

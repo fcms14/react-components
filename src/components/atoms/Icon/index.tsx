@@ -1,4 +1,3 @@
-import React from 'react'
 import { pascalcase } from '../../../helpers/string'
 import IconStyle from './IconStyle'
 

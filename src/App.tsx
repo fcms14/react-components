@@ -1,6 +1,5 @@
 import './assets/css/index.css'
 import { RouterProvider } from 'react-router-dom';
-import React from 'react';
 import { Routes } from './routes'
 import { useEffect } from 'react';
 
