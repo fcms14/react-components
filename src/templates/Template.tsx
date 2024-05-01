@@ -1,11 +1,11 @@
 import { JSX } from "react/jsx-runtime"
-import TemplateStyle from "./templateStyle"
+import TemplateStyle from "./TemplateStyle"
 
-interface TemplateInterface {
+interface Interface {
   children?: JSX.Element | JSX.Element[]
 }
 
-const Template = ({ children }: TemplateInterface) => {
+const Template = ({ children }: Interface) => {
   return (
     <TemplateStyle>
       {children}

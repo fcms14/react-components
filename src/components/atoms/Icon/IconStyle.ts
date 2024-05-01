@@ -1,11 +1,11 @@
 
 import styled from "styled-components"
 
-interface IconStyleInterface {
+interface Props {
   rounded?: boolean
 }
 
-const IconStyle = styled.div<IconStyleInterface>`
+const IconStyle = styled.div<Props>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,4 +16,5 @@ const IconStyle = styled.div<IconStyleInterface>`
     border-radius: 50%;
   `}
 `;
+
 export default IconStyle

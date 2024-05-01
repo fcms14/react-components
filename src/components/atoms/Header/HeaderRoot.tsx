@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import HeaderStyle from "./style"
+import HeaderStyle from "./HeaderStyle"
 
 interface Interface {
   children: ReactNode,

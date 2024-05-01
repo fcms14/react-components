@@ -273,7 +273,7 @@ const components = [
     { name: "MdPersonRemove", obj: MdPersonRemove },
 ]
 
-interface iconInterface {
+interface Interface {
     icon: string,
     mr?: boolean,
     rounded?: boolean,
@@ -283,7 +283,7 @@ interface iconInterface {
     onClick?: () => void
 }
 
-const Icon = (props: iconInterface) => {
+const Icon = (props: Interface) => {
     const { width, icon, className, color } = props
     const Comp = components.filter(comp => comp.name === icon)
     const Compo = Comp[0].obj
