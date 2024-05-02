@@ -14,7 +14,7 @@ const HeaderIcon = (props: Interface) => {
         <Icon
             {...props}
             color={props.color ?? theme.colors.header.icon}
-            applyPadding={props.onClick ? true : false}
+            applyPadding
         />
 
     )

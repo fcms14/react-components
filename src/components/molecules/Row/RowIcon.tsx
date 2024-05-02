@@ -14,7 +14,6 @@ const RowIcon = (props: Interface) => {
         <Icon
             {...props}
             color={props.color ?? theme.colors.main.icon}
-            rounded={props.rounded}
         />
     )
 }
