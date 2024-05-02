@@ -13,20 +13,22 @@ const Index = () => {
   return (
     <Template>
       <Header.Root>
-        <Header.Icon icon="MdArrowBack" width={16} color={theme.colors.header.icon} onClick={() => console.log(1)} />
-        <Header.Title> Header </Header.Title>
-        <Header.Spacer width="32px"></Header.Spacer>
+        <Header.Icon width={"22px"} icon="MdArrowBack" onClick={() => console.log(1)} />
+        <Header.Title > Header </Header.Title>
+        <Header.Icon width={"22px"} icon="MdClose" onClick={() => console.log(1)} />
+        {/* <Header.Spacer /> */}
       </Header.Root>
       <main>
         {loop.map((i) =>
-          <Text
+          <div
             key={i}
-            size="biggest"
             style={i % 3 === 0
-              ? { position: "sticky", top: "2.75rem", backgroundColor: "#FFFFFF", boxShadow: "0 2px 2px rgba(0, 0, 0, 0.25)" }
-              : undefined}>
-            Texto {i}
-          </Text>
+              ? { padding: `0 ${theme.padding.main}`, position: "sticky", top: "3.5rem", backgroundColor: "#FFFFFF", boxShadow: "0 2px 2px rgba(0, 0, 0, 0.25)" }
+              : { padding: `0 ${theme.padding.main}`, }
+            }
+          >
+            <Text key={i} size="biggest"> Texto {i} </Text>
+          </div>
         )}
         {/* <Button
           icon="search"
