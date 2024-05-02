@@ -1,4 +1,4 @@
-import Icon from "../Icon"
+import Icon from "../../atoms/Icon"
 import { theme } from "../../../providers/theme"
 
 interface Interface {
@@ -11,7 +11,12 @@ interface Interface {
 
 const HeaderIcon = (props: Interface) => {
     return (
-        <Icon {...props} color={props.color ?? theme.colors.header.icon} />
+        <Icon
+            {...props}
+            color={props.color ?? theme.colors.header.icon}
+            applyPadding={props.onClick ? true : false}
+        />
+
     )
 }
 

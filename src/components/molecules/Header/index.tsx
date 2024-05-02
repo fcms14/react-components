@@ -1,4 +1,4 @@
-import Title from "../Title";
+import Title from "../../atoms/Title";
 import HeaderIcon from "./HeaderIcon";
 import HeaderRoot from "./HeaderRoot";
 import HeaderSpacer from "./HeaderSpacer";
