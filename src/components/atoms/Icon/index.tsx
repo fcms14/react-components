@@ -275,26 +275,24 @@ const components = [
 
 interface Interface {
     icon: string,
-    mr?: boolean,
-    rounded?: boolean,
-    width?: number | any,
-    color?: string,
-    className?: string,
     onClick?: () => void
+    width?: number,
+    color?: string,
+    rounded?: boolean,
 }
 
 const Icon = (props: Interface) => {
-    const { width, icon, className, color } = props
+    const { icon, onClick, width, color, rounded } = props
     const Comp = components.filter(comp => comp.name === icon)
     const Compo = Comp[0].obj
 
     return Compo
         ? <IconStyle
-            {...props}
-            onClick={props?.onClick}
-            style={{ cursor: `${props?.onClick ? 'pointer' : 'default'}` }}
+            rounded={rounded}
+            cursor={onClick ? 'pointer' : 'default'}
+            onClick={onClick}
         >
-            <Compo size={width} width={width} fill={color} />
+            <Compo size={width} fill={color} />
         </IconStyle>
         : <></>
 }

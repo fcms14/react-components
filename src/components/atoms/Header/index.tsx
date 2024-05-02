@@ -1,11 +1,11 @@
-import Icon from "../Icon";
 import Title from "../Title";
+import HeaderIcon from "./HeaderIcon";
 import HeaderRoot from "./HeaderRoot";
 import HeaderSpacer from "./HeaderSpacer";
 
 export const Header = {
     Root: HeaderRoot,
-    Icon: Icon,
+    Icon: HeaderIcon,
     Title: Title,
     Spacer: HeaderSpacer
 }

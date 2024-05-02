@@ -5,7 +5,7 @@ interface Props {
   }
 
 const HeaderSpacer = styled.div<Props>`
-    width: ${props => props?.width ?? "22px"};
+    width: ${props => props?.width ?? "32px"};
 `
 
 export default HeaderSpacer

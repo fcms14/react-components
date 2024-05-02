@@ -7,7 +7,7 @@ interface Props {
 }
 
 const Title = styled.h1<Props>`
-    font-weight: bold;
+    font-family: "InterBold";
     font-size: ${props => props.theme.fontsizes.title[props?.size ?? 'default']};
     color: ${props => props.theme.colors[props?.parent ?? 'main'][props?.element ?? 'title']};
 `
