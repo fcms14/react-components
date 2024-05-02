@@ -39,3 +39,9 @@ interface SubSizeInterface {
     default: string,
     big: string,
 }
+
+export interface PaddingInterface {
+    header: string,
+    main: string,
+    icon: string,
+}
