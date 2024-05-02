@@ -1,14 +1,21 @@
 import Template from "../../templates/Template"
 import Subtitle from "../../components/atoms/Subtitle"
 import Text from "../../components/atoms/Text"
-import { Header } from "../../components/atoms/Header"
-import { theme } from "../../providers/theme"
-// import Title from "../../components/atoms/Title"
+import { Header } from "../../components/molecules/Header"
+import { Row } from "../../components/molecules/Row"
+import { RowProps } from "../../components/molecules/Row/RowStyle"
+import Title from "../../components/atoms/Title"
 // import Caption from "../../components/atoms/Caption"
 // import Button from "../../components/atoms/Button"
 
 const Index = () => {
   const loop = Array.from({ length: 60 }, (_, i) => i + 1)
+  const rowStyle: RowProps = {
+    position: "sticky",
+    top: "3.5rem",
+    backgroundColor: "#FFFFFF",
+    boxShadow: "rgba(0, 0, 0, 0.25) 0px 2px 2px",
+  }
 
   return (
     <Template>
@@ -20,15 +27,18 @@ const Index = () => {
       </Header.Root>
       <main>
         {loop.map((i) =>
-          <div
-            key={i}
-            style={i % 3 === 0
-              ? { padding: `0 ${theme.padding.main}`, position: "sticky", top: "3.5rem", backgroundColor: "#FFFFFF", boxShadow: "0 2px 2px rgba(0, 0, 0, 0.25)" }
-              : { padding: `0 ${theme.padding.main}`, }
-            }
-          >
-            <Text key={i} size="biggest"> Texto {i} </Text>
-          </div>
+          <Row.Root key={i} rowStyle={i % 3 === 0 ? rowStyle : undefined}>
+            <Row.Icon icon="Pix" />
+            <Row.Section>
+              <Text size="big"> Texto {i} </Text>
+              <Title size="small"> Title {i} </Title>
+            </Row.Section>
+            <Row.Section sectionStyle={{ alignItems: "flex-end" }}>
+              <Text size="big"> Texto {i} </Text>
+              <Title size="small"> Title {i} </Title>
+            </Row.Section>
+            <Row.Icon icon="Pix" onClick={() => console.log(1)} />
+          </Row.Root>
         )}
         {/* <Button
           icon="search"

@@ -5,6 +5,7 @@ interface ThemeInterface {
   colors: ColorInterface,
   footer: FooterInterface
   padding: PaddingInterface
+  gap: string
 }
 
 export const theme: ThemeInterface = {
@@ -12,4 +13,5 @@ export const theme: ThemeInterface = {
   colors: JSON.parse(import.meta.env.VITE_COLORS),
   footer: JSON.parse(import.meta.env.VITE_FOOTER),
   padding: JSON.parse(import.meta.env.VITE_PADDINGS),
+  gap: import.meta.env.VITE_GAP,
 }

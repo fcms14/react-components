@@ -279,16 +279,18 @@ interface Interface {
     width?: number,
     color?: string,
     rounded?: boolean,
+    applyPadding?: boolean
 }
 
 const Icon = (props: Interface) => {
-    const { icon, onClick, width, color, rounded } = props
+    const { icon, onClick, width, color, rounded, applyPadding } = props
     const Comp = components.filter(comp => comp.name === icon)
     const Compo = Comp[0].obj
 
     return Compo
         ? <IconStyle
             rounded={rounded}
+            applyPadding={applyPadding}
             cursor={onClick ? 'pointer' : 'default'}
             onClick={onClick}
         >
