@@ -7,7 +7,7 @@ interface Interface {
   rightIcon: string,
   leftClick: () => void
   rightClick: () => void
-  iconSize?: string,
+  iconSize?: number,
 }
 
 const HeaderWithTwoIcons = ({ text, leftIcon, rightIcon, iconSize, leftClick, rightClick }: Interface) => {

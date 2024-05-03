@@ -6,13 +6,14 @@ interface Interface {
   text: string,
   icon: string,
   onClick: () => void
-  iconSize?: string,
+  iconSize?: number,
   iconBefore?: boolean
 }
 
 const HeaderWithIcon = ({ text, icon, iconSize, onClick, iconBefore }: Interface) => {
-  const size = `${Number((iconSize ?? "16px").match(/\d+/)) + (Number(theme.padding.icon.match(/\d+/)) * 2)}px`;
+  const size = `${(iconSize ?? 16) + (Number(theme.padding.icon.match(/\d+/)) * 2)}px`;
   const headerStyle: HeaderProps | undefined = iconBefore ? { flexDirection: "row-reverse" } : undefined
+
   return (
     <Header.Root headerStyle={{ ...headerStyle }}>
       <Header.Spacer width={size} />
