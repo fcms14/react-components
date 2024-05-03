@@ -12,9 +12,7 @@ const Index = () => {
     <Template>
       <Header.Default text="Index" />
       <main>
-        <Button.Default  loading={false} active={true} secondary={true} text="Teste" onClick={() => navigate('/exchange')} />
-        <Button.WithIcon loading={false} active={true} secondary={true} text="Teste" iconBefore onClick={() => navigate('/exchange')} icon="MdClose" />
-        <Button.OnlyIcon loading={false} active={true} secondary={true} onClick={() => navigate('/exchange')} icon="MdClose" />
+        <Button.Default  loading={false} active={true} secondary={false} text="Negociar" onClick={() => navigate('/exchange')} />
         <List />
       </main>
       <footer>
