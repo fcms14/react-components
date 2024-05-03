@@ -87,6 +87,7 @@ export interface RowProps {
 
 export interface HeaderProps {
     justifyContent?: string
+    flexDirection?: string
 }
 
 export interface ButtonProps {

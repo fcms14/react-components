@@ -12,6 +12,7 @@ const HeaderStyle = styled.header<HeaderProps>`
   background-color: ${({ theme }) => theme.colors.header.fill};
 
   justify-content: ${props => props?.justifyContent ?? "space-between"};
+  flex-direction: ${props => props.flexDirection};
 `
 
 export default HeaderStyle
