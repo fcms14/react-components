@@ -138,6 +138,10 @@ import {
     MdMoreVert,
 } from "react-icons/md";
 
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { IconComponentInterface } from '../../../interfaces';
+
+
 const components = [
     { name: "ActivityCircle", obj: ActivityCircle },
     { name: "AngleDownCircle", obj: AngleDownCircle },
@@ -271,19 +275,11 @@ const components = [
     { name: "MdMoreVert", obj: MdMoreVert },
     { name: "MdModeEdit", obj: MdModeEdit },
     { name: "MdPersonRemove", obj: MdPersonRemove },
+    { name: "Loading3Quarters", obj: AiOutlineLoading3Quarters },
 ]
 
-interface Interface {
-    icon: string,
-    onClick?: () => void
-    width?: number,
-    color?: string,
-    rounded?: boolean,
-    applyPadding?: boolean
-}
-
-const Icon = (props: Interface) => {
-    const { icon, onClick, width, color, rounded, applyPadding } = props
+const Icon = (props: IconComponentInterface) => {
+    const { icon, onClick, width, color, rounded, applyPadding, loading } = props
     const Comp = components.filter(comp => comp.name === icon)
     const Compo = Comp[0].obj
 
@@ -291,6 +287,7 @@ const Icon = (props: Interface) => {
         ? <IconStyle
             rounded={rounded}
             applyPadding={applyPadding}
+            loading={loading}
             cursor={onClick ? 'pointer' : 'default'}
             onClick={onClick}
         >

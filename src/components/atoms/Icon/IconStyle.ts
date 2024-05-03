@@ -1,6 +1,15 @@
 
-import styled from "styled-components"
+import styled, { css, keyframes } from "styled-components"
 import { IconProps } from "../../../interfaces";
+
+const animation = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`
 
 const IconStyle = styled.div<IconProps>`
   display: flex;
@@ -9,6 +18,10 @@ const IconStyle = styled.div<IconProps>`
   padding: ${props => props.applyPadding ? props.theme.padding.icon : undefined};
   cursor: ${props => props.cursor};
   
+  ${props => props.loading && css`
+    animation: ${animation} 1s linear infinite;
+  `}
+
   ${props => props.rounded && `
     background: ${props.theme.colors.main.stroke};
     padding: ${props.theme.padding.icon};
