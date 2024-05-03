@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const TemplateStyle = styled.div`
+const ViewPortStyle = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 100dvh;
@@ -23,4 +23,4 @@ const TemplateStyle = styled.div`
     }
 `
 
-export default TemplateStyle
+export default ViewPortStyle

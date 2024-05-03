@@ -1,4 +1,4 @@
-import Template from "../../templates/Template"
+import ViewPort from "../../templates/ViewPort"
 import Subtitle from "../../components/atoms/Subtitle"
 import List from "./list"
 import { Button } from "../../components/organisms/Button"
@@ -9,7 +9,7 @@ const Index = () => {
   const navigate = useNavigate()
 
   return (
-    <Template>
+    <ViewPort>
       <Header.Default text="Index" />
       <main>
         <Button.Default  loading={false} active={true} secondary={false} text="Negociar" onClick={() => navigate('/exchange')} />
@@ -18,7 +18,7 @@ const Index = () => {
       <footer>
         <Subtitle size="big">Menu</Subtitle>
       </footer>
-    </Template>
+    </ViewPort>
   )
 }
 

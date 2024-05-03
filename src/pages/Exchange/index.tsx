@@ -1,4 +1,4 @@
-import Template from "../../templates/Template"
+import ViewPort from "../../templates/ViewPort"
 import Subtitle from "../../components/atoms/Subtitle"
 import { Header } from "../../components/organisms/Header"
 import ExchangeBalances from "./balances"
@@ -10,7 +10,7 @@ const Exchange = () => {
   const navigate = useNavigate()
 
   return (
-    <Template>
+    <ViewPort>
       <Header.WithTwoIcons
         text="Negociar - Tether"
         leftIcon="MdArrowBack"
@@ -27,7 +27,7 @@ const Exchange = () => {
       <footer>
         <Subtitle size="big">Menu</Subtitle>
       </footer>
-    </Template>
+    </ViewPort>
   )
 }
 
