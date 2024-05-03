@@ -75,14 +75,17 @@ export interface IconProps {
     cursor: string,
     rounded?: boolean,
     applyPadding?: boolean
+    loading?: boolean
 }
 
 export interface IconComponentInterface {
     icon: string,
     onClick?: () => void
-    width?: number | any,
+    width?: number,
     color?: string,
     rounded?: boolean,
+    applyPadding?: boolean
+    loading?: boolean
 }
 
 export interface RowProps {
@@ -103,7 +106,7 @@ export interface ButtonProps {
     flexDirection?: string
     width?: string
     active?: boolean
-    primary?: boolean
+    secondary?: boolean
 }
 
 export interface ToggleSpanProps {
