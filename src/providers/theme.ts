@@ -10,10 +10,10 @@ interface ThemeInterface {
 }
 
 export const theme: ThemeInterface = {
-  fontsizes: JSON.parse(import.meta.env.VITE_FONTSIZES),
-  colors: JSON.parse(import.meta.env.VITE_COLORS),
-  footer: JSON.parse(import.meta.env.VITE_FOOTER),
-  padding: JSON.parse(import.meta.env.VITE_PADDINGS),
+  fontsizes: JSON.parse((import.meta.env.VITE_FONTSIZES).slice(1, -1).replace(/\*/g, '"')),
+  colors: JSON.parse((import.meta.env.VITE_COLORS).slice(1, -1).replace(/\*/g, '"')),
+  footer: JSON.parse((import.meta.env.VITE_FOOTER).slice(1, -1).replace(/\*/g, '"')),
+  padding: JSON.parse((import.meta.env.VITE_PADDINGS).slice(1, -1).replace(/\*/g, '"')),
   gap: import.meta.env.VITE_GAP,
   radius: import.meta.env.VITE_RADIUS,
 }
