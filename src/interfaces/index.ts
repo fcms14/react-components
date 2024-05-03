@@ -1,6 +1,7 @@
 export interface ColorInterface {
     header: ElementsInterface,
     main: ElementsInterface,
+    button: ButtonInterface,
 }
 
 interface ElementsInterface {
@@ -9,6 +10,12 @@ interface ElementsInterface {
     icon: string,
     stroke: string,
     title: string,
+}
+
+interface ButtonInterface {
+    active: string,
+    inactive: string,
+    font: string,
 }
 
 export interface FooterInterface {
@@ -54,12 +61,14 @@ export interface FontProps {
     size?: 'smaller' | 'small' | 'default' | 'big' | 'bigger' | 'biggest'
     parent?: 'header' | 'main'
     element?: 'title' | 'font'
+    color?: string
 }
 
 export interface CaptionProps {
     size?: 'small' | 'default' | 'big'
     parent?: 'header' | 'main'
     element?: 'title' | 'font'
+    color?: string
 }
 
 export interface IconProps {
@@ -94,6 +103,7 @@ export interface ButtonProps {
     flexDirection?: string
     width?: string
     active?: boolean
+    primary?: boolean
 }
 
 export interface ToggleSpanProps {
