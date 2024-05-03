@@ -1,8 +1,5 @@
 import styled from 'styled-components'
-
-export interface SectionProps {
-    alignItems?: string
-}
+import { SectionProps } from '../../../interfaces'
 
 const Section = styled.section<SectionProps>`
     display: flex;

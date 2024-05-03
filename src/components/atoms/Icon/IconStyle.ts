@@ -1,13 +1,8 @@
 
 import styled from "styled-components"
+import { IconProps } from "../../../interfaces";
 
-interface Props {
-  cursor: string,
-  rounded?: boolean,
-  applyPadding?: boolean
-}
-
-const IconStyle = styled.div<Props>`
+const IconStyle = styled.div<IconProps>`
   display: flex;
   align-items: center;
   justify-content: center;

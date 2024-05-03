@@ -4,8 +4,8 @@ import HeaderRoot from "./HeaderRoot";
 import HeaderSpacer from "./HeaderSpacer";
 
 export const Header = {
-    Root: HeaderRoot,
-    Icon: HeaderIcon,
-    Title: Title,
-    Spacer: HeaderSpacer
+  Root: HeaderRoot,
+  Icon: HeaderIcon,
+  Title: Title,
+  Spacer: HeaderSpacer
 }

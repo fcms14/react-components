@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
 interface Props {
-    width?: string
-  }
+  width?: string
+}
 
 const HeaderSpacer = styled.div<Props>`
-    width: ${props => props?.width ?? "32px"};
+  width: ${props => props?.width ?? props.theme.padding.header};
 `
 
 export default HeaderSpacer

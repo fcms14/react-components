@@ -1,16 +1,17 @@
 import { ReactNode } from "react"
 import HeaderStyle from "./HeaderStyle"
+import { HeaderProps } from "../../../interfaces"
 
 interface Interface {
   children: ReactNode,
-  justifyContent?: string
+  headerStyle?: HeaderProps
 }
 
-const HeaderRoot = ({ children, justifyContent }: Interface) => {
+const HeaderRoot = ({ children, headerStyle }: Interface) => {
   return (
-    <HeaderStyle justifyContent={justifyContent}>
+    <HeaderStyle {...headerStyle}>
       {children}
-    </HeaderStyle>
+    </HeaderStyle >
   )
 }
 

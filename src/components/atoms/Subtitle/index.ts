@@ -1,12 +1,7 @@
 import styled from 'styled-components'
+import { FontProps } from '../../../interfaces'
 
-interface Props {
-    size?: 'smaller' | 'small' | 'default' | 'big' | 'bigger' | 'biggest'
-    parent?: 'header' | 'main'
-    element?: 'title' | 'font'
-}
-
-const Subtitle = styled.h2<Props>`
+const Subtitle = styled.h2<FontProps>`
     font-size: ${props => props.theme.fontsizes.subtitle[props?.size ?? 'default']};
     color: ${props => props.theme.colors[props?.parent ?? 'main'][props?.element ?? 'title']};
 `

@@ -1,15 +1,10 @@
 import styled from 'styled-components'
+import { FontProps } from '../../../interfaces'
 
-interface Props {
-    size?: 'smaller' | 'small' | 'default' | 'big' | 'bigger' | 'biggest'
-    parent?: 'header' | 'main'
-    element?: 'title' | 'font'
-}
-
-const Title = styled.h1<Props>`
+const Title = styled.h1<FontProps>`
     font-family: "InterBold";
     font-size: ${props => props.theme.fontsizes.title[props?.size ?? 'default']};
-    color: ${props => props.theme.colors[props?.parent ?? 'main'][props?.element ?? 'title']};
+    color: ${props => props.color ?? props.theme.colors[props?.parent ?? 'main'][props?.element ?? 'title']};
 `
 
 export default Title

@@ -1,21 +1,14 @@
 import Icon from "../../atoms/Icon"
 import { theme } from "../../../providers/theme"
+import { IconComponentInterface } from "../../../interfaces"
 
-interface Interface {
-    icon: string,
-    onClick?: () => void
-    width?: number | any,
-    color?: string,
-    rounded?: boolean,
-}
-
-const RowIcon = (props: Interface) => {
-    return (
-        <Icon
-            {...props}
-            color={props.color ?? theme.colors.main.icon}
-        />
-    )
+const RowIcon = (props: IconComponentInterface) => {
+  return (
+    <Icon
+      {...props}
+      color={props.color ?? theme.colors.main.icon}
+    />
+  )
 }
 
 export default RowIcon

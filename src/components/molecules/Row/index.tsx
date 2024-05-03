@@ -5,9 +5,9 @@ import RowRoot from "./RowRoot";
 import RowSection from "./RowSection";
 
 export const Row = {
-    Root: RowRoot,
-    Icon: RowIcon,
-    Section: RowSection,
-    Title: Title,
-    Text: Text
+  Root: RowRoot,
+  Icon: RowIcon,
+  Section: RowSection,
+  Title: Title,
+  Text: Text
 }
