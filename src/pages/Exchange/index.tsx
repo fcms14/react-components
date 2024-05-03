@@ -4,6 +4,7 @@ import { Header } from "../../components/organisms/Header"
 import ExchangeBalances from "./balances"
 import OrderSelectorType from "./orderSelectorType"
 import { useNavigate } from "react-router-dom"
+import ExchangeForm from "./form"
 
 const Exchange = () => {
   const navigate = useNavigate()
@@ -21,6 +22,7 @@ const Exchange = () => {
       <main>
         <ExchangeBalances />
         <OrderSelectorType />
+        <ExchangeForm />
       </main>
       <footer>
         <Subtitle size="big">Menu</Subtitle>

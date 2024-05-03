@@ -17,7 +17,7 @@ const HeaderWithIcon = ({ text, icon, iconSize, onClick, iconBefore }: Interface
   return (
     <Header.Root headerStyle={{ ...headerStyle }}>
       <Header.Spacer width={size} />
-      <Header.Title > {text} </Header.Title>
+      <Header.Title parent="header"> {text} </Header.Title>
       <Header.Icon width={iconSize} icon={icon} onClick={onClick} />
     </Header.Root>
   )

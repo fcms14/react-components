@@ -107,9 +107,15 @@ export interface ButtonProps {
     width?: string
     active?: boolean
     secondary?: boolean
+    color?: string,
 }
 
 export interface ToggleSpanProps {
     justifyContent?: string
     flexDirection?: string
+}
+
+export interface InputProps {
+    type: string
+    name: string
 }
