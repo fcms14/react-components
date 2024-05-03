@@ -14,7 +14,7 @@ const HeaderWithTwoIcons = ({ text, leftIcon, rightIcon, iconSize, leftClick, ri
   return (
     <Header.Root>
       <Header.Icon width={iconSize} icon={leftIcon} onClick={leftClick} />
-      <Header.Title> {text} </Header.Title>
+      <Header.Title parent="header"> {text} </Header.Title>
       <Header.Icon width={iconSize} icon={rightIcon} onClick={rightClick} />
     </Header.Root>
   )

@@ -7,7 +7,7 @@ interface Interface {
 const HeaderDefault = ({ text }: Interface) => {
   return (
     <Header.Root headerStyle={{ justifyContent: "center" }}>
-      <Header.Title> {text} </Header.Title>
+      <Header.Title parent="header"> {text} </Header.Title>
     </Header.Root>
   )
 }
