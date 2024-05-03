@@ -6,6 +6,7 @@ interface ThemeInterface {
   footer: FooterInterface
   padding: PaddingInterface
   gap: string
+  radius: string
 }
 
 export const theme: ThemeInterface = {
@@ -14,4 +15,5 @@ export const theme: ThemeInterface = {
   footer: JSON.parse(import.meta.env.VITE_FOOTER),
   padding: JSON.parse(import.meta.env.VITE_PADDINGS),
   gap: import.meta.env.VITE_GAP,
+  radius: import.meta.env.VITE_RADIUS,
 }

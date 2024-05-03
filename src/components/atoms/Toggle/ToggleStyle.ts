@@ -8,6 +8,7 @@ export const ToggleSpanStyle = styled.span<ToggleSpanProps>`
     gap: ${({ theme }) => theme.gap};
     flex-direction: ${props => props.flexDirection};
     justify-content: ${props => props.justifyContent};
+    padding: ${({ theme }) => `${theme.padding.main} 0`};
 `
 
 const ToggleStyle = styled.label`
