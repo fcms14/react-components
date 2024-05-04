@@ -12,7 +12,7 @@ const Index = () => {
     <ViewPort>
       <Header.Default text="Index" />
       <main>
-        <Button.Default  loading={false} active={true} secondary={false} text="Negociar" onClick={() => navigate('/exchange')} />
+        <Button.Default text="Negociar" onClick={() => navigate('/exchange')} buttonStyle={{ active: true }}  />
         <List />
       </main>
       <footer>

@@ -11,10 +11,13 @@ const ExchangeForm = () => {
       </form>
       <Button.Default
         text="Comprar"
-        buttonColor="#0d9e00"
         onClick={() => alert("ordem enviada")}
-        loading={false}
-        active
+        buttonStyle={{
+          active: true,
+          color: "#0d9e00",
+          // secondary: false,
+          loading: false
+        }}
       />
     </>
   )
