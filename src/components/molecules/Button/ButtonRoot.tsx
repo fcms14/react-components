@@ -9,8 +9,11 @@ interface Interface {
 }
 
 const ButtonRoot = ({ children, buttonStyle, onClick }: Interface) => {
+  const isActive = buttonStyle?.active && !buttonStyle.loading
+  const _onClick = isActive ? onClick : undefined
+  
   return (
-    <ButtonStyle {...buttonStyle} onClick={onClick}>
+    <ButtonStyle {...buttonStyle} onClick={_onClick}>
       {children}
     </ButtonStyle >
   )

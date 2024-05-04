@@ -106,6 +106,7 @@ export interface ButtonProps {
     flexDirection?: string
     width?: string
     active?: boolean
+    loading?: boolean
     secondary?: boolean
     color?: string,
 }
