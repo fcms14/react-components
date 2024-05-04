@@ -1,3 +1,5 @@
+import { IconType } from "react-icons"
+
 export interface ColorInterface {
     header: ElementsInterface,
     main: ElementsInterface,
@@ -79,7 +81,7 @@ export interface IconProps {
 }
 
 export interface IconComponentInterface {
-    icon: string,
+    icon: IconType,
     onClick?: () => void
     width?: number,
     color?: string,

@@ -1,10 +1,12 @@
+import { IconType } from "react-icons";
 import { ButtonProps } from "../../../interfaces"
 import { Button } from "../../molecules/Button"
 import { getColor, getIconSize } from "./helper"
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface Interface {
   text: string,
-  icon: string,
+  icon: IconType,
   iconSize?: number,
   onClick: () => void
   buttonStyle?: ButtonProps
@@ -19,7 +21,7 @@ const ButtonWithIcon = ({ text, icon, iconSize, onClick, iconBefore, buttonStyle
   return (
     <Button.Root buttonStyle={_buttonStyle} onClick={onClick}>
       <Button.Title titleStyle={{ color: color }} > {text} </Button.Title>
-      <Button.Icon color={color} loading={buttonStyle?.loading} width={_iconSize} icon={buttonStyle?.loading ? "Loading3Quarters" : icon} />
+      <Button.Icon color={color} loading={buttonStyle?.loading} width={_iconSize} icon={buttonStyle?.loading ? AiOutlineLoading3Quarters : icon} />
     </Button.Root>
   )
 }

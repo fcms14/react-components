@@ -1,6 +1,7 @@
 import { ButtonProps } from "../../../interfaces"
 import { Button } from "../../molecules/Button"
 import { getColor, getIconSize } from "./helper"
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface Interface {
   text: string,
@@ -16,7 +17,7 @@ const ButtonDefault = ({ text, onClick, iconSize, buttonStyle }: Interface) => {
   return (
     <Button.Root buttonStyle={{ ...buttonStyle }} onClick={onClick}>
       <Button.Title titleStyle={{ color: color }}> {text} </Button.Title>
-      {buttonStyle?.loading && <Button.Icon color={color} loading={buttonStyle.loading} width={_iconSize} icon="Loading3Quarters" />}
+      {buttonStyle?.loading && <Button.Icon color={color} loading={buttonStyle.loading} width={_iconSize} icon={AiOutlineLoading3Quarters} />}
     </Button.Root>
   )
 }

@@ -1,10 +1,11 @@
+import { IconType } from "react-icons";
 import { HeaderProps } from "../../../interfaces";
 import { theme } from "../../../providers/theme";
 import { Header } from "../../molecules/Header"
 
 interface Interface {
   text: string,
-  icon: string,
+  icon: IconType,
   onClick: () => void
   iconSize?: number,
   iconBefore?: boolean

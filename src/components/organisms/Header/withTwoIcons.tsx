@@ -1,10 +1,10 @@
-import { theme } from "../../../providers/theme";
+import { IconType } from "react-icons";
 import { Header } from "../../molecules/Header"
 
 interface Interface {
   text: string,
-  leftIcon: string,
-  rightIcon: string,
+  leftIcon: IconType,
+  rightIcon: IconType,
   leftClick: () => void
   rightClick: () => void
   iconSize?: number,

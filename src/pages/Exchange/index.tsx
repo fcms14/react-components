@@ -5,6 +5,7 @@ import ExchangeBalances from "./balances"
 import OrderSelectorType from "./orderSelectorType"
 import { useNavigate } from "react-router-dom"
 import ExchangeForm from "./form"
+import { MdArrowBack, MdClose } from "react-icons/md"
 
 const Exchange = () => {
   const navigate = useNavigate()
@@ -13,9 +14,9 @@ const Exchange = () => {
     <ViewPort>
       <Header.WithTwoIcons
         text="Negociar - Tether"
-        leftIcon="MdArrowBack"
-        rightIcon="MdClose"
-        iconSize={22}
+        leftIcon={MdArrowBack}
+        rightIcon={MdClose}
+        iconSize={24}
         leftClick={() => navigate('/')}
         rightClick={() => navigate('/')}
       />
