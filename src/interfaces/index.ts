@@ -29,6 +29,7 @@ export interface FontSizeInterface {
     title: SizeInterface,
     subtitle: SizeInterface,
     text: SizeInterface,
+    subtext:  SizeInterface,
     caption: SubSizeInterface
 }
 
@@ -76,6 +77,7 @@ export interface IconProps {
     rounded?: boolean,
     applyPadding?: boolean
     loading?: boolean
+    topRight?: boolean
 }
 
 export interface IconComponentInterface {
@@ -85,7 +87,8 @@ export interface IconComponentInterface {
     color?: string,
     rounded?: boolean,
     applyPadding?: boolean
-    loading?: boolean
+    loading?: boolean,
+    topRight?: boolean
 }
 
 export interface RowProps {
@@ -112,4 +115,14 @@ export interface ButtonProps {
 export interface ToggleSpanProps {
     justifyContent?: string
     flexDirection?: string
+}
+
+export interface ToasterProps {
+    type: "success" | "alert" | "error"    
+}
+
+export interface ColorByType {
+    success: string,
+    error: string,
+    alert: string     
 }

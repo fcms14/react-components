@@ -279,7 +279,7 @@ const components = [
 ]
 
 const Icon = (props: IconComponentInterface) => {
-    const { icon, onClick, width, color, rounded, applyPadding, loading } = props
+    const { icon, onClick, width, color, rounded, applyPadding, loading, topRight } = props
     const Comp = components.filter(comp => comp.name === icon)
     const Compo = Comp[0].obj
 
@@ -287,6 +287,7 @@ const Icon = (props: IconComponentInterface) => {
         ? <IconStyle
             rounded={rounded}
             applyPadding={applyPadding}
+            topRight={topRight}
             loading={loading}
             cursor={onClick ? 'pointer' : 'default'}
             onClick={onClick}
