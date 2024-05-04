@@ -288,7 +288,7 @@ const Icon = (props: IconComponentInterface) => {
             rounded={rounded}
             applyPadding={applyPadding}
             loading={loading}
-            cursor={onClick ? 'pointer' : 'default'}
+            cursor={onClick ? 'pointer' : 'inherit'}
             onClick={onClick}
         >
             <Compo size={width} fill={color} />
