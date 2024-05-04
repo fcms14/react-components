@@ -5,9 +5,9 @@ const ExchangeForm = () => {
   return (
     <>
       <form>
-        <Input label="Valor Limite" inputStyle={{ name: "Teste", type: "text" }} />
-        <Input label="Quantidade" inputStyle={{ name: "Teste", type: "text" }} />
-        <Input label="Volume" inputStyle={{ name: "Teste", type: "text" }} />
+        <Input label="Valor Limite" inputStyle={{ name: "Teste1", type: "text" }} />
+        <Input label="Quantidade" inputStyle={{ name: "Teste2", type: "text" }} />
+        <Input label="Volume" inputStyle={{ name: "Teste3", type: "text" }} />
       </form>
       <Button.Default
         text="Comprar"

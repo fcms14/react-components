@@ -1,6 +1,21 @@
 import styled, { css, keyframes } from "styled-components";
 import { InputProps } from "../../../interfaces";
 
+const focusOn = keyframes`
+  from {transform: translateY(-60%) translateX(-10%) scale(0.8);}
+  to {transform: translateY(-80%) translateX(0) scale(1);}
+`;
+
+const focusOut = keyframes`
+  from {transform: translateY(-80%);}
+  to {transform: translateY(0);}
+`
+
+const reduce = keyframes`
+  from {transform: translateY(-80%) translateX(0) scale(1);}
+  to {transform: translateY(-80%) translateX(-10%) scale(0.8);}
+`;
+
 export const InputSpanStyle = styled.span`
   display: flex;
   position: relative;
@@ -8,40 +23,45 @@ export const InputSpanStyle = styled.span`
   padding: ${({ theme }) => theme.padding.main};
 `
 
-interface Props {
-  filled: boolean
-}
-
-const animation = keyframes`
-  from {transform: translateY(0);}
-  to {transform: translateY(-80%);}
-`
-
-export const LabelStyle = styled.label<Props>`
+export const LabelStyle = styled.label`
   position: absolute;
   
-  ${({ filled, theme }) => css`
+  ${({ theme }) => css`
     bottom: ${theme.padding.main};
     padding-left: ${theme.padding.header};
     padding-bottom: ${theme.padding.header};
-
-    animation: ${filled ? animation : 'none'} 0.3s ease forwards;
-    font-size: ${filled ? theme.fontsizes.text.small : theme.fontsizes.text.default};
   `}
 `
-
 const InputStyle = styled.input<InputProps>`
   font-family: 'InterSemiBold';
 
+  &::placeholder {
+    opacity:0;
+  }
+
   ${({ theme }) => css`
-    border-bottom: 1px solid ${theme.colors.main.stroke};
+    border-bottom: 1px solid ${theme.colors.button.inactive};
     line-height: ${theme.fontsizes.title.bigger};
     padding: ${`${theme.padding.main} 0 0 ${theme.padding.header}`};
-  `}
 
-  &:focus {
-    outline: none;
-}
+    &:focus, &:active {
+      outline: none;
+      border-bottom: 1px solid ${theme.colors.button.active};
+      padding-bottom: 0.125rem;
+    }
+    
+    &:focus:placeholder-shown + label {
+      animation: ${focusOn} 0.3s ease forwards;
+    }
+
+    &:not(:focus):placeholder-shown + label {
+      animation: ${focusOut} 0.3s ease forwards; 
+    }
+
+    &:not(:placeholder-shown) + label{
+      animation: ${reduce} 0.3s ease forwards;
+    }
+  `}
 `
 
 export default InputStyle

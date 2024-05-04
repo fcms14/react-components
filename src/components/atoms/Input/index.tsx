@@ -8,12 +8,10 @@ interface Interface {
 }
 
 const Input = ({ label, inputStyle }: Interface) => {
-    const [filled, setFilled] = useState(false);
-
     return (
         <InputSpanStyle>
-            <LabelStyle filled={filled}> {label} </LabelStyle>
-            <InputStyle {...inputStyle} onChange={(e) => setFilled(!!e.target.value)} />
+            <InputStyle placeholder={label} id={inputStyle.name} {...inputStyle} />
+            <LabelStyle htmlFor={inputStyle.name}> {label} </LabelStyle>
         </InputSpanStyle>
     )
 }
