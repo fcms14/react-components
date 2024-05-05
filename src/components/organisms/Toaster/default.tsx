@@ -1,11 +1,12 @@
 import { Toaster } from "../../molecules/Toaster"
 import { ToasterProps } from '../../../interfaces'
+import { IconType } from "react-icons"
 
 interface Interface {
   text: string,
   subtitle: string,
   caption: string
-  icon: string,
+  icon: IconType,
   toasterStyle: ToasterProps,
 }
 

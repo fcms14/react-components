@@ -2,18 +2,20 @@ import { ColorByType, ColorInterface, FontSizeInterface, FooterInterface, Paddin
 
 interface ThemeInterface {
   fontsizes: FontSizeInterface,
-  colorByType: ColorByType,
   colors: ColorInterface,
+  colorByType: ColorByType,
   footer: FooterInterface
   padding: PaddingInterface
   gap: string
+  radius: string
 }
 
 export const theme: ThemeInterface = {
-  fontsizes: JSON.parse(import.meta.env.VITE_FONTSIZES),
-  colorByType: JSON.parse(import.meta.env.VITE_COLOR_BY_TYPE),
-  colors: JSON.parse(import.meta.env.VITE_COLORS),
-  footer: JSON.parse(import.meta.env.VITE_FOOTER),
-  padding: JSON.parse(import.meta.env.VITE_PADDINGS),
+  fontsizes: JSON.parse((import.meta.env.VITE_FONTSIZES).slice(1, -1).replace(/\*/g, '"')),
+  colors: JSON.parse((import.meta.env.VITE_COLORS).slice(1, -1).replace(/\*/g, '"')),
+  colorByType: JSON.parse((import.meta.env.VITE_COLOR_BY_TYPE).slice(1, -1).replace(/\*/g, '"')),
+  footer: JSON.parse((import.meta.env.VITE_FOOTER).slice(1, -1).replace(/\*/g, '"')),
+  padding: JSON.parse((import.meta.env.VITE_PADDINGS).slice(1, -1).replace(/\*/g, '"')),
   gap: import.meta.env.VITE_GAP,
+  radius: import.meta.env.VITE_RADIUS,
 }

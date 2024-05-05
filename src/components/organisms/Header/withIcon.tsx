@@ -1,10 +1,11 @@
+import { IconType } from "react-icons";
 import { HeaderProps } from "../../../interfaces";
 import { theme } from "../../../providers/theme";
 import { Header } from "../../molecules/Header"
 
 interface Interface {
   text: string,
-  icon: string,
+  icon: IconType,
   onClick: () => void
   iconSize?: number,
   iconBefore?: boolean
@@ -17,7 +18,7 @@ const HeaderWithIcon = ({ text, icon, iconSize, onClick, iconBefore }: Interface
   return (
     <Header.Root headerStyle={{ ...headerStyle }}>
       <Header.Spacer width={size} />
-      <Header.Title > {text} </Header.Title>
+      <Header.Title parent="header"> {text} </Header.Title>
       <Header.Icon width={iconSize} icon={icon} onClick={onClick} />
     </Header.Root>
   )

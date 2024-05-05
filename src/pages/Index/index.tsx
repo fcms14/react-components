@@ -1,28 +1,27 @@
-import Template from "../../templates/Template"
+import ViewPort from "../../templates/ViewPort"
 import Subtitle from "../../components/atoms/Subtitle"
 import List from "./list"
 import { Button } from "../../components/organisms/Button"
 import { Header } from "../../components/organisms/Header"
 import { Toaster } from "../../components/organisms/Toaster"
 import { useNavigate } from "react-router-dom"
+import { MdClose } from "react-icons/md"
 
 const Index = () => {
   const navigate = useNavigate()
 
   return (
-    <Template>
+    <ViewPort>
       <Header.Default text="Index" />
       <main>
-        <Toaster.Default text="Erro no PIX!" subtitle="Atenção" caption="Problemas na hora de logar, bla bla bla" icon='MdClose' toasterStyle={{ type: 'error' }} />
-        <Button.Default loading={false} active={true} secondary={true} text="Teste" onClick={() => navigate('/exchange')} />
-        <Button.WithIcon loading={false} active={true} secondary={true} text="Teste" iconBefore onClick={() => navigate('/exchange')} icon="MdClose" />
-        <Button.OnlyIcon loading={false} active={true} secondary={true} onClick={() => navigate('/exchange')} icon="MdClose" />
+        <Toaster.Default subtitle="Ordem enviada" text="Aguarde o processamento de sua ordem" caption="Acompanhe em sua lista de ordens abertas" icon={MdClose} toasterStyle={{ type: 'success' }} />
+        <Button.Default text="Negociar" onClick={() => navigate('/exchange')} buttonStyle={{ active: true }} />
         <List />
       </main>
       <footer>
         <Subtitle size="big">Menu</Subtitle>
       </footer>
-    </Template>
+    </ViewPort>
   )
 }
 

@@ -1,3 +1,5 @@
+import { IconType } from "react-icons"
+
 export interface ColorInterface {
     header: ElementsInterface,
     main: ElementsInterface,
@@ -29,7 +31,7 @@ export interface FontSizeInterface {
     title: SizeInterface,
     subtitle: SizeInterface,
     text: SizeInterface,
-    caption: SubSizeInterface
+    caption: SubSizeInterface,
 }
 
 interface SizeInterface {
@@ -54,74 +56,79 @@ export interface PaddingInterface {
 }
 
 export interface SectionProps {
-    alignItems?: string
+    alignItems?: string,
 }
 
 export interface FontProps {
-    size?: 'smaller' | 'small' | 'default' | 'big' | 'bigger' | 'biggest'
-    parent?: 'header' | 'main'
-    element?: 'title' | 'font'
-    color?: string
+    size?: 'smaller' | 'small' | 'default' | 'big' | 'bigger' | 'biggest',
+    parent?: 'header' | 'main',
+    element?: 'title' | 'font',
+    color?: string,
+    cursor?: string,
 }
 
 export interface CaptionProps {
-    size?: 'small' | 'default' | 'big'
-    parent?: 'header' | 'main'
-    element?: 'title' | 'font'
-    color?: string
+    size?: 'small' | 'default' | 'big',
+    parent?: 'header' | 'main',
+    element?: 'title' | 'font',
+    color?: string,
 }
 
 export interface IconProps {
     cursor: string,
     rounded?: boolean,
-    applyPadding?: boolean
-    loading?: boolean
-    topRight?: boolean
+    applyPadding?: boolean,
+    loading?: boolean,
+    topRight?: boolean,
 }
 
 export interface IconComponentInterface {
-    icon: string,
-    onClick?: () => void
+    icon: IconType,
+    onClick?: () => void,
     width?: number,
     color?: string,
     rounded?: boolean,
-    applyPadding?: boolean
+    applyPadding?: boolean,
     loading?: boolean,
-    topRight?: boolean
+    topRight?: boolean,
 }
 
 export interface RowProps {
-    justifyContent?: string
-    position?: string
-    top?: string
-    backgroundColor?: string
-    borderBottom?: string
-    boxShadow?: string
+    justifyContent?: string,
+    position?: string,
+    top?: string,
+    backgroundColor?: string,
+    borderBottom?: string,
+    boxShadow?: string,
 }
 
 export interface HeaderProps {
-    justifyContent?: string
-    flexDirection?: string
+    justifyContent?: string,
+    flexDirection?: string,
 }
 
 export interface ButtonProps {
-    flexDirection?: string
-    width?: string
-    active?: boolean
-    secondary?: boolean
+    flexDirection?: string,
+    width?: string,
+    active?: boolean,
+    isLoading?: boolean,
+    secondary?: boolean,
+    color?: string,
 }
 
 export interface ToggleSpanProps {
-    justifyContent?: string
-    flexDirection?: string
+    justifyContent?: string,
+    flexDirection?: string,
 }
 
 export interface ToasterProps {
-    type: "success" | "alert" | "error"    
+    type: "success" | "alert" | "error",
 }
 
 export interface ColorByType {
     success: string,
     error: string,
-    alert: string     
+    alert: string,
+}
+export interface InputProps {
 }

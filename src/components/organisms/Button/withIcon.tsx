@@ -1,27 +1,27 @@
+import { IconType } from "react-icons";
 import { ButtonProps } from "../../../interfaces"
 import { Button } from "../../molecules/Button"
 import { getColor, getIconSize } from "./helper"
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface Interface {
   text: string,
-  onClick: () => void
-  loading: boolean
-  active?: boolean,
-  secondary?: boolean,
+  icon: IconType,
   iconSize?: number,
-  icon: string,
+  onClick: () => void
+  buttonStyle?: ButtonProps
   iconBefore?: boolean
 }
 
-const ButtonWithIcon = ({ text, icon, iconSize, onClick, iconBefore, active, secondary, loading }: Interface) => {
+const ButtonWithIcon = ({ text, icon, iconSize, onClick, iconBefore, buttonStyle }: Interface) => {
   const _iconSize = getIconSize(iconSize)
-  const color = getColor(secondary, active)
-  const buttonStyle: ButtonProps | undefined = iconBefore ? { flexDirection: "row-reverse", active: active, secondary: secondary } : { active: active, secondary: secondary }
+  const color = getColor(buttonStyle?.secondary, buttonStyle?.active)
+  const _buttonStyle: ButtonProps = { flexDirection: `${iconBefore ? "row-reverse" : undefined}`, ...buttonStyle }
 
   return (
-    <Button.Root buttonStyle={{ ...buttonStyle }} onClick={onClick}>
+    <Button.Root buttonStyle={_buttonStyle} onClick={onClick}>
       <Button.Title titleStyle={{ color: color }} > {text} </Button.Title>
-      <Button.Icon color={color} loading={loading} width={_iconSize} icon={loading ? "Loading3Quarters" : icon} />
+      <Button.Icon color={color} loading={buttonStyle?.isLoading} width={_iconSize} icon={buttonStyle?.isLoading ? AiOutlineLoading3Quarters : icon} />
     </Button.Root>
   )
 }

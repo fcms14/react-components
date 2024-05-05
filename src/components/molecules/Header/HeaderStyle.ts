@@ -7,6 +7,7 @@ const HeaderStyle = styled.header<HeaderProps>`
   height: 3.5rem;
   position: sticky;
   top: 0;
+  z-index: 1;
 
   padding: ${({ theme }) => `0 ${theme.padding.header}`};
   background-color: ${({ theme }) => theme.colors.header.fill};
