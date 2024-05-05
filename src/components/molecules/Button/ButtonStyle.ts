@@ -15,7 +15,7 @@ const ButtonStyle = styled.button<ButtonProps>`
     : css`background-color: ${props.color ? props.color : props.active ? props.theme.colors.button.active : props.theme.colors.button.inactive};`
   }
 
-  cursor: ${props => props.loading ? 'wait' : props.active ? "pointer" : "not-allowed"};
+  cursor: ${props => props.isLoading ? 'wait' : props.active ? "pointer" : "not-allowed"};
   flex-direction: ${props => props.flexDirection};
   width: ${props => props.width};
 `

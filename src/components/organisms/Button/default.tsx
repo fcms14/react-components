@@ -17,7 +17,7 @@ const ButtonDefault = ({ text, onClick, iconSize, buttonStyle }: Interface) => {
   return (
     <Button.Root buttonStyle={{ ...buttonStyle }} onClick={onClick}>
       <Button.Title titleStyle={{ color: color }}> {text} </Button.Title>
-      {buttonStyle?.loading && <Button.Icon color={color} loading={buttonStyle.loading} width={_iconSize} icon={AiOutlineLoading3Quarters} />}
+      {buttonStyle?.isLoading && <Button.Icon color={color} loading={buttonStyle.isLoading} width={_iconSize} icon={AiOutlineLoading3Quarters} />}
     </Button.Root>
   )
 }
