@@ -9,8 +9,8 @@ interface Interface {
 const ToasterList = ({ data }: Interface) => {
   return (
     <ToasterListStyle>
-      {data.map((data: ToasterInterface) =>
-        <Toaster.Default {...data} />
+      {data.map((data: ToasterInterface, index: number) =>
+        <Toaster.Default {...data} key={index} />
       )}
     </ToasterListStyle>
   )
