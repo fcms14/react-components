@@ -9,7 +9,6 @@ const HeaderIcon = (props: IconComponentInterface) => {
       color={props.color ?? theme.colors.header.icon}
       applyPadding
     />
-
   )
 }
 

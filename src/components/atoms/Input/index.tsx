@@ -1,17 +1,18 @@
 import InputStyle, { InputSpanStyle, LabelStyle } from "./InputStyle"
 import { InputProps } from "../../../interfaces"
-import { useState } from "react"
 
 interface Interface {
     label: string
+    type: string
+    name: string
     inputStyle: InputProps
 }
 
-const Input = ({ label, inputStyle }: Interface) => {
+const Input = ({ label, type, name, inputStyle }: Interface) => {
     return (
         <InputSpanStyle>
-            <InputStyle placeholder={label} id={inputStyle.name} {...inputStyle} />
-            <LabelStyle htmlFor={inputStyle.name}> {label} </LabelStyle>
+            <InputStyle {...inputStyle} placeholder={label} id={name} name={name} type={type}  />
+            <LabelStyle htmlFor={name}> {label} </LabelStyle>
         </InputSpanStyle>
     )
 }

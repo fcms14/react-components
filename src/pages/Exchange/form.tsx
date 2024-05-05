@@ -29,9 +29,9 @@ const ExchangeForm = ({ children }: Interface) => {
             {children}
             <main>
               <section>
-                {values.isLimitOrder && <Input label="Valor Limite" inputStyle={{ name: "limit", type: "text" }} />}
-                <Input label="Valor Total" inputStyle={{ name: "quantity", type: "text" }} />
-                <Input label="Volume" inputStyle={{ name: "volume", type: "text" }} />
+                {values.isLimitOrder && <Input label="Valor Limite" name={"limit"} type={"text"} inputStyle={{}} />}
+                <Input label="Valor Total" name={"quantity"} type={"text"} inputStyle={{}} />
+                <Input label="Volume" name={"volume"} type={"text"} inputStyle={{}} />
               </section>
               <Button.Default
                 text="Comprar"
