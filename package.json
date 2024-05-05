@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "formik": "^2.4.6",
     "i18next": "^22.4.13",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.3",
