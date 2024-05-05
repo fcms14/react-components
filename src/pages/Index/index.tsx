@@ -6,12 +6,14 @@ import { Header } from "../../components/organisms/Header"
 import { Toaster } from "../../components/organisms/Toaster"
 import { useNavigate } from "react-router-dom"
 import { MdClose } from "react-icons/md"
+import Notification from "../../components/atoms/Notification"
 
 const Index = () => {
   const navigate = useNavigate()
 
   return (
     <ViewPort>
+      <Notification />
       <Header.Default text="Index" />
       <main>
         <Toaster.Default subtitle="Ordem enviada" text="Aguarde o processamento de sua ordem" caption="Acompanhe em sua lista de ordens abertas" icon={MdClose} toasterStyle={{ type: 'success' }} />
