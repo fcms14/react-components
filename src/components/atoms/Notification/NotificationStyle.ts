@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
 
 const NotificationStyle = styled.div`
-    position: fixed;
-    z-index: 2;
-    ${({theme}) => css`
-        top: ${theme.padding.main};
-        right: ${theme.padding.main};
-    `}
+  position: fixed;
+  z-index: 2;
+  ${({ theme }) => css`
+    top: ${theme.padding.main};
+    right: ${theme.padding.main};
+  `}
 `
 
 export default NotificationStyle

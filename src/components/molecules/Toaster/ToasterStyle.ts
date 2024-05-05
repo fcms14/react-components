@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { ToasterProps } from '../../../interfaces'
 
-const ToasterStyle = styled.div<ToasterProps >`
+const ToasterStyle = styled.div<ToasterProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -12,6 +12,7 @@ const ToasterStyle = styled.div<ToasterProps >`
   ${({ theme, type }) => css`
     padding: ${theme.gap};
     background: ${theme.colorByType[type]};
+    border-radius: ${theme.radius};
   `}
 `
 

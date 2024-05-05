@@ -125,6 +125,13 @@ export interface ToasterProps {
     type: "success" | "alert" | "error",
 }
 
+export interface ToasterInterface {
+    text: string,
+    subtitle: string,
+    caption: string
+    toasterStyle: ToasterProps,
+}
+
 export interface ColorByType {
     success: string,
     error: string,
