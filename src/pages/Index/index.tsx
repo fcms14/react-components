@@ -13,8 +13,8 @@ const Index = () => {
     <Template>
       <Header.Default text="Index" />
       <main>
-        <Toaster.Default text="Erro no PIX!"  subtitle="Atenção" caption="Problemas na hora de logar, bla bla bla"  icon='MdClose' toasterStyle={{type: 'error'}}></Toaster.Default >
-        <Button.Default  loading={false} active={true} secondary={true} text="Teste" onClick={() => navigate('/exchange')} />
+        <Toaster.Default text="Erro no PIX!" subtitle="Atenção" caption="Problemas na hora de logar, bla bla bla" icon='MdClose' toasterStyle={{ type: 'error' }} />
+        <Button.Default loading={false} active={true} secondary={true} text="Teste" onClick={() => navigate('/exchange')} />
         <Button.WithIcon loading={false} active={true} secondary={true} text="Teste" iconBefore onClick={() => navigate('/exchange')} icon="MdClose" />
         <Button.OnlyIcon loading={false} active={true} secondary={true} onClick={() => navigate('/exchange')} icon="MdClose" />
         <List />

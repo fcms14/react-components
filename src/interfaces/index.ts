@@ -29,7 +29,6 @@ export interface FontSizeInterface {
     title: SizeInterface,
     subtitle: SizeInterface,
     text: SizeInterface,
-    subtext:  SizeInterface,
     caption: SubSizeInterface
 }
 

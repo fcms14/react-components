@@ -7,7 +7,6 @@ interface Interface {
   toasterStyle: ToasterProps
 }
 
-
 const ToasterRoot = ({ children, toasterStyle }: Interface) => {
   return (
     <ToasterStyle {...toasterStyle}>

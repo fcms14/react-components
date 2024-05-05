@@ -4,7 +4,6 @@ import Caption from "../../atoms/Caption";
 import ToasterIcon from "./ToasterIcon";
 import ToasterRoot from "./ToasterRoot";
 
-
 export const Toaster = {
   Root: ToasterRoot,
   Icon: ToasterIcon,

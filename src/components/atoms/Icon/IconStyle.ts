@@ -19,10 +19,10 @@ const IconStyle = styled.div<IconProps>`
   cursor: ${props => props.cursor};
 
   ${props => props.topRight && css`
-  position: absolute;
-  top: ${props.theme.gap};
-  right: 8px;
-`}
+    position: absolute;
+    top: ${props.theme.gap};
+    right: 8px;
+  `}
   
   ${props => props.loading && css`
     animation: ${animation} 1s linear infinite;

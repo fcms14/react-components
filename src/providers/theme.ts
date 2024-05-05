@@ -11,7 +11,7 @@ interface ThemeInterface {
 
 export const theme: ThemeInterface = {
   fontsizes: JSON.parse(import.meta.env.VITE_FONTSIZES),
-  colorByType : JSON.parse(import.meta.env.VITE_COLOR_BY_TYPE),
+  colorByType: JSON.parse(import.meta.env.VITE_COLOR_BY_TYPE),
   colors: JSON.parse(import.meta.env.VITE_COLORS),
   footer: JSON.parse(import.meta.env.VITE_FOOTER),
   padding: JSON.parse(import.meta.env.VITE_PADDINGS),

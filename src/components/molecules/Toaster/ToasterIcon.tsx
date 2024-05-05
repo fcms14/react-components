@@ -4,10 +4,10 @@ import { IconComponentInterface } from "../../../interfaces"
 const ToasterIcon = (props: IconComponentInterface) => {
   return (
     <Icon
-      {...props} 
-      topRight 
+      {...props}
+      topRight
     />
   )
-}       
+}
 
 export default ToasterIcon
