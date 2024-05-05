@@ -64,6 +64,7 @@ export interface FontProps {
     parent?: 'header' | 'main'
     element?: 'title' | 'font'
     color?: string
+    cursor?: string
 }
 
 export interface CaptionProps {
@@ -108,7 +109,7 @@ export interface ButtonProps {
     flexDirection?: string
     width?: string
     active?: boolean
-    loading?: boolean
+    isLoading?: boolean
     secondary?: boolean
     color?: string,
 }
