@@ -114,6 +114,7 @@ export interface ButtonProps {
     isLoading?: boolean,
     secondary?: boolean,
     color?: string,
+    type?: "button" | "submit" | "reset" | undefined,
 }
 
 export interface ToggleSpanProps {
@@ -123,6 +124,21 @@ export interface ToggleSpanProps {
 
 export interface ToasterProps {
     type: "success" | "alert" | "error",
+}
+
+export interface NotificationInterface {
+    active?: boolean,
+    index?: number,
+    text: string,
+    subtitle: string,
+    caption: string
+    toasterStyle: ToasterProps,
+}
+
+export interface ToasterInterface {
+    show: boolean,
+    timeoutId: number,
+    notifications: NotificationInterface[]
 }
 
 export interface ColorByType {
