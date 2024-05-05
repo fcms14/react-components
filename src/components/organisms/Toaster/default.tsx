@@ -1,11 +1,12 @@
 import { Toaster } from "../../molecules/Toaster"
-import { ToasterInterface } from '../../../interfaces'
+import { NotificationInterface } from '../../../interfaces'
 import { MdClose } from "react-icons/md"
+import { dispatchRemoveNotification } from "../../../features/toaster/toasterDispatcher"
 
-const ToasterDefault = ({ text, subtitle, caption, toasterStyle }: ToasterInterface) => {
+const ToasterDefault = ({ index, text, subtitle, caption, toasterStyle }: NotificationInterface) => {
   return (
     <Toaster.Root toasterStyle={{ ...toasterStyle }}>
-      <Toaster.Icon icon={MdClose} />
+      <Toaster.Icon icon={MdClose} onClick={() => index ? dispatchRemoveNotification(index) : undefined} />
       <Toaster.Subtitle> {subtitle} </Toaster.Subtitle>
       <Toaster.Text> {text} </Toaster.Text>
       <Toaster.Caption> {caption} </Toaster.Caption>
