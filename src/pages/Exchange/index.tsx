@@ -21,9 +21,10 @@ const Exchange = () => {
         rightClick={() => navigate('/')}
       />
       <main>
-        <ExchangeBalances />
-        <OrderSelectorType />
-        <ExchangeForm />
+        <ExchangeForm>
+          <ExchangeBalances />
+          <OrderSelectorType />
+        </ExchangeForm>
       </main>
       <footer>
         <Subtitle size="big">Menu</Subtitle>

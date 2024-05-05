@@ -6,10 +6,16 @@ const ViewPortStyle = styled.div`
     min-height: 100dvh;
     position: relative;
 
-    > main {
+    > main,
+    > main > form, 
+    > main > form > main {
         display: flex;
         flex-grow: 1;
         flex-direction: column;
+    }
+
+    > main > form > main {
+        justify-content: space-between;
     }
 
     > footer {

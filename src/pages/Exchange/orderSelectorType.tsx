@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Toggle from "../../components/atoms/Toggle"
 import { Row } from "../../components/molecules/Row"
+import { useFormikContext } from "formik";
 
 const OrderSelectorType = () => {
+    const { setFieldValue, values } = useFormikContext()
     const [isBuyOrder, setBuyOrder] = useState(true);
     const [isLimitOrder, setLimitOrder] = useState(true);
 
@@ -11,7 +13,10 @@ const OrderSelectorType = () => {
             <Row.Section>
                 <Toggle
                     text={isLimitOrder ? "Ordem Limite" : "Ordem a Mercado"}
-                    onToggleChange={(checked: boolean) => setLimitOrder(checked)}
+                    onToggleChange={(checked: boolean) => {
+                        setLimitOrder(checked)
+                        setFieldValue("isLimitOrder", checked)
+                    }}
                     toggleStyle={{ flexDirection: "row-reverse", justifyContent: "flex-end" }}
                 />
             </Row.Section>
