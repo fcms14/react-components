@@ -22,7 +22,7 @@ Molecules are components that can be created from atoms or elements themselves, 
 Organisms are the most used compositions of molecules. Every molecule is eligible to become an organism, as soon as a molecule is composed and applied in the same way more than once. For example, the "header" molecule composed only of text is used on several pages, so it is a simple example of an organism, like Header.Default. The "header" molecule, composed of text and icon on the right, is used on pages, sidepanels, widgets and other places, so it also becomes an organism, like Header.WithIcon.
 * **IT IS a organism:** the variations of common compositions of a molecule.
 
-# Templates
+# Templates:
 We define styles in our templates for the header, main, aside and footer elements. On our pages, we select the desired template and apply the organisms semantically, this way the styling present in the template for header, main, aside and footer will be applied to the components. Styling only covers what refers to the positioning of these 3 elements in the body of the screen, for example, applying position: sticky top: 0 to the header, and bottom: 0 to the footer, and flex-grow: 1 to the main, thus ensuring that each element uses its due space. There are templates that do the same using grid instead of flex, the application will be according to preference.
 
 # Pages / Usage:
@@ -32,7 +32,7 @@ With these principles, we seek to create a flexible, modular and easy-to-maintai
 
 This is our manifesto, guiding us on our development journey based on atomic design and component composition.
 
-# State Management
+# State Management:
 ### Local State: useState 
 To manage variable state in the context of the component or page to which it is applied. 
 **Avoid sharing between components.**
@@ -51,14 +51,14 @@ To manage state of variables in the global context of the application. Any varia
 ### Http State: useQuery
 To manage state of data received via API, define cache time, reuse data with state sharing by global context and update simultaneously in all components that use the same data.
 
-# Form Management
+# Form Management:
 We use Formik to manage forms, together with Yup to validate the data filled in by the user. And mutation(useQuery) to post form to API.
 
-# Install
+# Install:
 npm install / yarn
 
-# Run
-npm run dev / yarn dev
-
-# Run
+# Build:
 npm run build / yarn build
+
+# Run:
+npm run dev / yarn dev
