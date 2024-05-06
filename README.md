@@ -28,9 +28,13 @@ We define styles in our templates for the header, main, aside and footer element
 # Pages / Usage:
 Pages can implement organisms directly, or compose specific components using individual molecules, as well as atoms. If we see that a molecule is frequently used in different locations with the same composition, we can promote it to a variation of the organism for better code reuse.
 
+# Schema 
+![draw](https://github.com/fcms14/react-components/assets/116290726/0308afc3-5ab9-4e77-b75f-5bc58e7ff1df)
+
 With these principles, we seek to create a flexible, modular and easy-to-maintain component architecture, allowing rapid iteration in the development of our applications.
 
 This is our manifesto, guiding us on our development journey based on atomic design and component composition.
+
 
 # State Management:
 ### Local State: useState 
