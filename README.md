@@ -14,7 +14,7 @@ They can be React components, such as inputs or icons.
 
 # Definition of Molecules:
 Molecules are components that can be created from atoms or elements themselves, for example: buttons (which includes a root element, optionally accompanied by an icon and/or text for its composition), or a header (which includes a root element, a text and optionally icons on the right and left, or both).
-* **It is a molecule:** component that, in order to be used, must be composed according to the design/layout definition.
+* **IT IS a molecule:** component that, in order to be used, must be composed according to the design/layout definition.
 * **IT IS NOT a molecule:** any component that cannot be composed.
 
 
