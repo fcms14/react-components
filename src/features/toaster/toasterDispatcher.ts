@@ -39,8 +39,8 @@ const dispatchHideNotifications = () => {
     store.dispatch(setTimeoutId(timeout))
 }
 
-const dispatchHideNotificationsNow = () => {
+const dispatchCloseNotifications = () => {
     store.dispatch(hideNotifications())
 }
 
-export { dispatchAddNotification, dispatchRemoveNotification, dispatchShowNotifications, dispatchHideNotifications, dispatchHideNotificationsNow }
+export { dispatchAddNotification, dispatchRemoveNotification, dispatchShowNotifications, dispatchHideNotifications, dispatchCloseNotifications }

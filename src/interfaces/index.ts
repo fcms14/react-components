@@ -127,12 +127,15 @@ export interface ToasterProps {
 }
 
 export interface NotificationInterface {
-    active?: boolean,
-    index?: number,
+    active: boolean,
     text: string,
     subtitle: string,
-    caption: string
+    caption?: string
     toasterStyle: ToasterProps,
+}
+
+export interface NotificationCardInterface extends NotificationInterface {
+    index: number,
 }
 
 export interface ToasterInterface {

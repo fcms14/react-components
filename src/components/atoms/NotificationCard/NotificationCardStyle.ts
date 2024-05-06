@@ -6,7 +6,7 @@ const animation = keyframes`
   100% {transform: translateX(0);}
 `
 
-const ToasterStyle = styled.div<ToasterProps>`
+const NotificationCardStyle = styled.div<ToasterProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -22,4 +22,4 @@ const ToasterStyle = styled.div<ToasterProps>`
   `}
 `
 
-export default ToasterStyle
+export default NotificationCardStyle

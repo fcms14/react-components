@@ -80,7 +80,7 @@ const ExchangeForm = ({ children }: Interface) => {
                     text: "Aguarde o processamento de sua ordem",
                     caption: "Acompanhe em sua lista de ordens abertas",
                     toasterStyle: { type: "success" },
-                    active: true
+                    active: true,
                   }
                 )}
                 buttonStyle={{
