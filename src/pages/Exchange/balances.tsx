@@ -2,19 +2,16 @@ import { useFormikContext } from "formik"
 import { Row } from "../../components/molecules/Row"
 import { RowProps } from "../../interfaces"
 import { theme } from "../../providers/theme"
-
-interface FormIntercace {
-    isLimitOrder: boolean
-    limit: string
-    quantity: string
-    volume: string
-}
+import { ExchangeFormIntercace } from "./form"
+import { Mask } from "../../helpers/Mask"
 
 const ExchangeBalances = () => {
     const { setFieldValue, values } = useFormikContext()
     const rowStyle: RowProps = { borderBottom: `1px solid ${theme.colors.main.stroke}` }
-    const _values = values as FormIntercace
-    const quote = Number(((_values?.limit ?? "").replace(/\D+/g, ''))) / 100
+    const _values = values as ExchangeFormIntercace
+    const quote = Mask.unmaskAmount(_values.limit)
+    const brl = 50000
+    const tether = 50000
 
     return (
         <>
@@ -25,10 +22,14 @@ const ExchangeBalances = () => {
                 </Row.Section>
                 <Row.Section sectionStyle={{ alignItems: "flex-end" }}>
                     <Row.Text>Saldo</Row.Text>
-                    <Row.Title size="smaller" cursor="pointer" onClick={() => {
-                        setFieldValue("volume", quote ? `$ ${(500 / quote).toFixed(2)}` : '')
-                        setFieldValue("quantity", "R$ 500,00")
-                    }}>R$ 500,00</Row.Title>
+                    <Row.Title size="smaller" cursor="pointer"
+                        onClick={() => {
+                            setFieldValue("quantity", Mask.currencyBrl(brl.toString()))
+                            setFieldValue("volume", quote ? Mask.currencyTether(((brl / quote) * 100).toFixed(0)) : '')
+                        }}
+                    >
+                        {Mask.currencyBrl(brl.toString())}
+                    </Row.Title>
                 </Row.Section>
             </Row.Root>
             <Row.Root rowStyle={rowStyle}>
@@ -38,10 +39,14 @@ const ExchangeBalances = () => {
                 </Row.Section>
                 <Row.Section sectionStyle={{ alignItems: "flex-end" }}>
                     <Row.Text>Saldo</Row.Text>
-                    <Row.Title size="smaller" cursor="pointer" onClick={() => {
-                        setFieldValue("quantity", quote ? `R$ ${(500 * quote).toFixed(2)}` : '')
-                        setFieldValue("volume", "$ 500,00")
-                    }}>$ 500,00</Row.Title>
+                    <Row.Title size="smaller" cursor="pointer"
+                        onClick={() => {
+                            setFieldValue("quantity", quote ? Mask.currencyBrl(((tether * quote) / 100).toString()) : '')
+                            setFieldValue("volume", Mask.currencyTether(tether.toString()))
+                        }}
+                    >
+                        {Mask.currencyTether(tether.toString())}
+                    </Row.Title>
                 </Row.Section>
             </Row.Root>
         </>

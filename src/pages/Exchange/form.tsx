@@ -2,41 +2,78 @@ import { Form, Formik } from "formik"
 import Input from "../../components/atoms/Input"
 import { Button } from "../../components/organisms/Button"
 import { dispatchAddNotification } from "../../features/toaster/toasterDispatcher"
+import { Mask } from "../../helpers/Mask"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
 }
 
-interface FormIntercace {
+export interface ExchangeFormIntercace {
   isLimitOrder: boolean
+  isBuyOrder: boolean
   limit: string
   quantity: string
   volume: string
 }
 
 const ExchangeForm = ({ children }: Interface) => {
-  const initialValues: FormIntercace = {
+  const initialValues: ExchangeFormIntercace = {
     isLimitOrder: true,
+    isBuyOrder: true,
     limit: "",
     quantity: "",
     volume: "",
   }
 
+  function handleBase(values: ExchangeFormIntercace) {
+    return Mask.currencyTether((
+      (Mask.unmaskAmount(values.quantity) / Mask.unmaskAmount(values.limit)) * 100
+    ).toFixed(0))
+  }
+
+  function handleTotal(values: ExchangeFormIntercace) {
+    return Mask.currencyBrl((
+      (Mask.unmaskAmountTether(values.volume) * Mask.unmaskAmount(values.limit)) / 100
+    ).toFixed(0))
+  }
+
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={(values) => {}} >
+      <Formik initialValues={initialValues} onSubmit={(values) => { }} >
         {({ values, errors, touched, setFieldValue }) => (
           <Form>
             {children}
             <main>
               <section>
-                {values.isLimitOrder && <Input label="Valor Limite" name={"limit"} type={"text"} inputStyle={{}} />}
-                <Input label="Valor Total" name={"quantity"} type={"text"} inputStyle={{}} />
-                <Input label="Volume" name={"volume"} type={"text"} inputStyle={{}} />
+                {values.isLimitOrder &&
+                  <Input
+                    onChange={() => setFieldValue("volume", handleBase(values))}
+                    mask={"currencyBrl"}
+                    label="Preço Limite"
+                    name={"limit"}
+                    type={"text"}
+                    inputMode={"numeric"}
+                  />
+                }
+                <Input
+                  onChange={() => setFieldValue("volume", handleBase(values))}
+                  mask={"currencyBrl"}
+                  label="Quantidade: Reais"
+                  name={"quantity"}
+                  type={"text"}
+                  inputMode={"numeric"}
+                />
+                <Input
+                  onChange={() => setFieldValue("quantity", handleTotal(values))}
+                  mask={"currencyTether"}
+                  label="Quantidade: Tether"
+                  name={"volume"}
+                  type={"text"}
+                  inputMode={"numeric"}
+                />
               </section>
               <Button.Default
-
-                text="Comprar"
+                text={values.isBuyOrder ? "Comprar" : "Vender"}
                 onClick={() => dispatchAddNotification(
                   {
                     subtitle: `Ordem enviada ${Math.random().toFixed(2)}`,
@@ -48,7 +85,7 @@ const ExchangeForm = ({ children }: Interface) => {
                 )}
                 buttonStyle={{
                   active: true,
-                  color: "#0d9e00",
+                  color: values.isBuyOrder ? "#0D9E00" : "#FF2F21",
                   isLoading: false,
                   secondary: false,
                   type: "submit",
