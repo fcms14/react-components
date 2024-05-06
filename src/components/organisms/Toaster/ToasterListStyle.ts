@@ -16,22 +16,32 @@ const ToasterListStyle = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 80dvh;
+  width: clamp(220px, calc(220px + 20vw), 480px);
+
+  > header {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: rgb(255 255 255 / 90%);
+    justify-content: flex-end;
+    padding: ${({ theme }) => `${theme.padding.main}`};
+  }
+
+  > main {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    ${({ theme }) => css`
+      padding: ${theme.gap};
+      gap: ${theme.gap};
+    `}
+  }
  
   ${({ theme }) => css`
     top: ${Number(theme.padding.main.match(/\d+/)) * 2}px;
     right: ${Number(theme.padding.main.match(/\d+/)) * 2}px;
-    padding: ${theme.gap};
-    gap: ${theme.gap};
     border-radius: ${theme.radius};
-
-    > div:first-child {
-      display: flex;
-      position: sticky;
-      top: -${theme.gap};
-      z-index: 1;
-      background-color: #FFFFFF;
-      padding: ${theme.padding.main};
-    }
   `}
 `
 

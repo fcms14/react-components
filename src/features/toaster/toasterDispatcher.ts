@@ -3,18 +3,20 @@ import { addNotification, hideNotifications, removeNotification, setTimeoutId, s
 import store from '../../store';
 
 const dispatchAddNotification = (payload: NotificationInterface, delay?: number) => {
-    const state = store.getState().toaster
-    console.log(state)
-    if (!state.show) {
+    const { show, timeoutId } = store.getState().toaster
+
+    if (!show) {
         const timeout = setTimeout(() => {
             store.dispatch(hideNotifications())
         }, delay || 3000)
 
         store.dispatch(setTimeoutId(timeout))
     }
-    if (state.show) {
-        clearTimeout(state.timeoutId);
+
+    if (show) {
+        clearTimeout(timeoutId);
     }
+
     store.dispatch(addNotification(payload))
 }
 
@@ -23,11 +25,22 @@ const dispatchRemoveNotification = (index: number) => {
 }
 
 const dispatchShowNotifications = () => {
+    const { timeoutId } = store.getState().toaster
+
+    clearTimeout(timeoutId);
     store.dispatch(showNotifications())
 }
 
 const dispatchHideNotifications = () => {
+    const timeout = setTimeout(() => {
+        store.dispatch(hideNotifications())
+    }, 1000)
+
+    store.dispatch(setTimeoutId(timeout))
+}
+
+const dispatchHideNotificationsNow = () => {
     store.dispatch(hideNotifications())
 }
 
-export { dispatchAddNotification, dispatchRemoveNotification, dispatchShowNotifications, dispatchHideNotifications }
+export { dispatchAddNotification, dispatchRemoveNotification, dispatchShowNotifications, dispatchHideNotifications, dispatchHideNotificationsNow }

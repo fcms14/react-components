@@ -25,6 +25,7 @@ export const toasterSlice = createSlice({
         },
         addNotification: (state, action) => {
             state.show = true;
+
             state.notifications.push(
                 {
                     active: action.payload.active,
@@ -37,7 +38,9 @@ export const toasterSlice = createSlice({
         },
         removeNotification(state, action) {
             const indexToRemove = action.payload;
+
             state.notifications.splice(indexToRemove, 1);
+
             if (state.notifications.length === 1) {
                 state.show = false
             }
