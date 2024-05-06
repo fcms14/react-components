@@ -4,7 +4,7 @@ import { Routes } from './routes'
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import Notification from './components/atoms/Notification';
-import { Toaster } from './components/organisms/Toaster';
+import Toaster from './components/atoms/Toaster';
 import { RootState } from './store';
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
     return (
         <>
             {notifications.length > 0 && <Notification />}
-            {toaster.show && <Toaster.List data={notifications} />}
+            {toaster.show && <Toaster data={notifications} />}
             <RouterProvider router={Routes} />
         </>
     )

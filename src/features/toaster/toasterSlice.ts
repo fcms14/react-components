@@ -7,10 +7,10 @@ export const toasterSlice = createSlice({
         timeoutId: 0,
         notifications: [{
             active: false,
-            toasterStyle: { type: '' },
-            subtitle: '',
             text: '',
+            subtitle: '',
             caption: '',
+            toasterStyle: { type: '' },
         }]
     },
     reducers: {

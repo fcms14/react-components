@@ -5,7 +5,7 @@ const animation = keyframes`
   100% {transform: translateX(0);}
 `
 
-const ToasterListStyle = styled.div`
+const ToasterStyle = styled.div`
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -45,4 +45,4 @@ const ToasterListStyle = styled.div`
   `}
 `
 
-export default ToasterListStyle
+export default ToasterStyle
