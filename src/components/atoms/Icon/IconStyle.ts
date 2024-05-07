@@ -14,6 +14,12 @@ const IconStyle = styled.div<IconProps>`
   padding: ${props => props.applyPadding ? props.theme.padding.icon : undefined};
   cursor: ${props => props.cursor};
 
+  ${props => props.topDown && css`
+   position: absolute;
+   right: ${props.theme.gap};
+   bottom: 8px;
+  `}
+  
   ${props => props.topRight && css`
     position: absolute;
     top: ${props.theme.gap};

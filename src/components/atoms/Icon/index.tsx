@@ -2,10 +2,11 @@ import { IconComponentInterface } from "../../../interfaces"
 import IconStyle from "./IconStyle"
 
 const Icon = (props: IconComponentInterface) => {
-    const { icon: Icon, onClick, width, color, rounded, applyPadding, loading, topRight } = props
+    const { icon: Icon, onClick, width, color, rounded, applyPadding, loading, topRight, topDown } = props
 
     return <IconStyle
             rounded={rounded}
+            topDown={topDown}
             applyPadding={applyPadding}
             topRight={topRight}
             loading={loading}
