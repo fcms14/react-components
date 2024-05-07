@@ -9,18 +9,18 @@ This organization allows us to categorize and group our components based on thei
 # Definition of Atoms:
 Atoms are components, often implemented only with styled components.
 They can be React components, such as inputs or icons.
-* **IT IS an atom:** any component whose composition depends only on state control, for example: an input that displays the error icon in case of incorrect completion by the user.
+* **IT IS an atom:** any component that does not have design variation in its design system and its composition depends only on internal state control, for example: an input that displays the error icon in case of an error completed by the user.
 * **IT IS NOT an atom:** any component whose composition is optional, for example: a button, which displays only text, or only an icon, according to the page design.
 
 # Definition of Molecules:
 Molecules are components that can be created from atoms or elements themselves, for example: buttons (which includes a root element, optionally accompanied by an icon and/or text for its composition), or a header (which includes a root element, a text and optionally icons on the right and left, or both).
-* **IT IS a molecule:** component that, in order to be used, must be composed according to the design/layout definition.
-* **IT IS NOT a molecule:** any component that cannot be composed.
+* **IT IS a molecule:** any component that does have design variations in its design system and, in order to be used in a page, must be composed according to the design/layout definition.
+* **IT IS NOT a molecule:** any component that cannot be composed and does not have design variation in its design system.
 
 
 # Definition of Organisms:
 Organisms are the most used compositions of molecules. Every molecule is eligible to become an organism, as soon as a molecule is composed and applied in the same way more than once. For example, the "header" molecule composed only of text is used on several pages, so it is a simple example of an organism, like Header.Default. The "header" molecule, composed of text and icon on the right, is used on pages, sidepanels, widgets and other places, so it also becomes an organism, like Header.WithIcon.
-* **IT IS a organism:** the variations of common compositions of a molecule.
+* **IT IS a organism:** any molecule that has been constructed with the same composition more than once, can be a default organism or a variation of it
 
 # Templates:
 We define styles in our templates for the header, main, aside and footer elements. On our pages, we select the desired template and apply the organisms semantically, this way the styling present in the template for header, main, aside and footer will be applied to the components. Styling only covers what refers to the positioning of these 3 elements in the body of the screen, for example, applying position: sticky top: 0 to the header, and bottom: 0 to the footer, and flex-grow: 1 to the main, thus ensuring that each element uses its due space. There are templates that do the same using grid instead of flex, the application will be according to preference.
