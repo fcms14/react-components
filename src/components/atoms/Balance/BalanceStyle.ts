@@ -1,22 +1,24 @@
-import styled, { css, keyframes } from "styled-components"
-import { BalanceProps } from '../../../interfaces'
+import styled, { css } from "styled-components"
 
-export const BalanceStyle = styled.div<BalanceProps> `
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: flex-start;
-position: relative;
+export const BalanceStyle = styled.div`
+    display: flex;
+    flex-direction: column;
 
-width: 175px;
-height: 62px;
+    > h2 {
+        display: flex;
+        justify-content: space-between;
+    }
 
-${({ theme, type }) => css`
-    padding : ${theme.padding.main};
-    background: ${theme.colorByType[type]};
-    border: ${type === 'balanceOne' ? '2px solid' : 'none'};
-    border-color: ${type === 'balanceOne' ? theme.colorByType['balanceTwo'] : ''};   
-    border-radius: ${theme.radius};
-`}
+    ${({ theme }) => css`
+        gap: ${theme.gap};
+        padding : ${theme.padding.main};
+        background-color: ${theme.colorByType.info};
+        border-radius: ${theme.radius};
+
+        > p, > h2, > div > svg { 
+            color: ${theme.colors.button.font};
+            fill: ${theme.colors.button.font};
+        }
+    `}
 `
 export default BalanceStyle

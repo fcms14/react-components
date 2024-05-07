@@ -1,19 +1,24 @@
-import styled from 'styled-components'
 import BalanceStyle from "./BalanceStyle"
 import Text from "../Text"
 import Subtitle from "../Subtitle"
 import Icon from "../Icon"
-import { MdRemoveRedEye} from "react-icons/md"
-import { BalanceInterface } from "../../../interfaces"
+import { IconType } from "react-icons"
 
+interface Interface {
+    text: string,
+    subtitle: string,
+    icon: IconType
+}
 
-const Balance = ({ text, subtitle, color, balanceStyle}: BalanceInterface) => {
-   
+const Balance = ({ text, subtitle, icon }: Interface) => {
+
     return (
-        <BalanceStyle {...balanceStyle}>
-            <Icon  icon={MdRemoveRedEye} topDown color={color}/>
-            <Text color={color}>{text}</Text>
-            <Subtitle color={color}>{subtitle}</Subtitle>
+        <BalanceStyle>
+            <Text>{text}</Text>
+            <Subtitle>
+                {subtitle}
+                <Icon icon={icon} width={22} />
+            </Subtitle>            
         </BalanceStyle>
     )
 }

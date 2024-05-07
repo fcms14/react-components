@@ -80,7 +80,6 @@ export interface IconProps {
     applyPadding?: boolean,
     loading?: boolean,
     topRight?: boolean,
-    topDown?: boolean,
 }
 
 export interface IconComponentInterface {
@@ -92,7 +91,6 @@ export interface IconComponentInterface {
     applyPadding?: boolean,
     loading?: boolean,
     topRight?: boolean,
-    topDown?: boolean,
 }
 
 export interface RowProps {
@@ -129,11 +127,6 @@ export interface ToasterProps {
 
 }
 
-export interface BalanceProps {
-    type: "balanceOne" | "balanceTwo",
-    
-}
-
 export interface NotificationInterface {
     active: boolean,
     text: string,
@@ -149,22 +142,14 @@ export interface NotificationCardInterface extends NotificationInterface {
 export interface ToasterInterface {
     show: boolean,
     timeoutId: number,
-    notifications: NotificationInterface[]
+    notifications: NotificationInterface[],
 }
 
 export interface ColorByType {
     success: string,
     error: string,
     alert: string,
-    balanceOne: string,
-    balanceTwo: string,
+    info: string,
 }
 export interface InputProps {
-}
-
-export interface BalanceInterface{
-    text: string,
-    subtitle: string,
-    color : string
-    balanceStyle : BalanceProps,
 }
