@@ -4,6 +4,7 @@ import { RowProps } from "../../interfaces"
 import { theme } from "../../providers/theme"
 import { ExchangeFormIntercace } from "./form"
 import { Mask } from "../../helpers/Mask"
+import { calc } from "../../helpers/Converter"
 
 const ExchangeBalances = () => {
     const { setFieldValue, values } = useFormikContext()
@@ -12,6 +13,11 @@ const ExchangeBalances = () => {
     const quote = Mask.unmaskAmount(_values.limit)
     const brl = 50000
     const tether = 50000
+
+    function handle(quantity: number, volume: number) {
+        setFieldValue("quantity", Mask.currencyBrl(quantity.toString()))
+        setFieldValue("volume", Mask.currencyTether(volume.toFixed(0)))
+    }
 
     return (
         <>
@@ -22,12 +28,7 @@ const ExchangeBalances = () => {
                 </Row.Section>
                 <Row.Section sectionStyle={{ alignItems: "flex-end" }}>
                     <Row.Text>Saldo</Row.Text>
-                    <Row.Title size="smaller" cursor="pointer"
-                        onClick={() => {
-                            setFieldValue("quantity", Mask.currencyBrl(brl.toString()))
-                            setFieldValue("volume", quote ? Mask.currencyTether(((brl / quote) * 100).toFixed(0)) : '')
-                        }}
-                    >
+                    <Row.Title size="smaller" cursor="pointer" onClick={() => handle(brl, calc("multiply", brl, quote))}                    >
                         {Mask.currencyBrl(brl.toString())}
                     </Row.Title>
                 </Row.Section>
@@ -39,12 +40,7 @@ const ExchangeBalances = () => {
                 </Row.Section>
                 <Row.Section sectionStyle={{ alignItems: "flex-end" }}>
                     <Row.Text>Saldo</Row.Text>
-                    <Row.Title size="smaller" cursor="pointer"
-                        onClick={() => {
-                            setFieldValue("quantity", quote ? Mask.currencyBrl(((tether * quote) / 100).toString()) : '')
-                            setFieldValue("volume", Mask.currencyTether(tether.toString()))
-                        }}
-                    >
+                    <Row.Title size="smaller" cursor="pointer" onClick={() => handle(calc("divide", tether, quote), tether)}                    >
                         {Mask.currencyTether(tether.toString())}
                     </Row.Title>
                 </Row.Section>
