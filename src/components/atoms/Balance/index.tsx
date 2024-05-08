@@ -7,18 +7,19 @@ import { IconType } from "react-icons"
 interface Interface {
     text: string,
     subtitle: string,
-    icon: IconType
+    icon?: IconType
+    onClick?: () => void,
 }
 
-const Balance = ({ text, subtitle, icon }: Interface) => {
+const Balance = ({ text, subtitle, icon, onClick }: Interface) => {
 
     return (
         <BalanceStyle>
             <Text>{text}</Text>
             <Subtitle>
                 {subtitle}
-                <Icon icon={icon} width={22} />
-            </Subtitle>            
+                {icon && <Icon icon={icon} width={22} onClick={onClick} />}
+            </Subtitle>
         </BalanceStyle>
     )
 }
