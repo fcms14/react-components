@@ -4,6 +4,7 @@ import List from "./list"
 import { Button } from "../../components/organisms/Button"
 import { Header } from "../../components/organisms/Header"
 import { useNavigate } from "react-router-dom"
+import BreadcrumbRoot from "../../components/atoms/Breadcrumb/BreadcrumbRoot"
 
 const Index = () => {
   const navigate = useNavigate()
@@ -12,7 +13,8 @@ const Index = () => {
     <Template>
       <Header.Default text="Index" />
       <main>
-        <Button.Default  loading={false} active={true} secondary={true} text="Teste" onClick={() => navigate('/exchange')} />
+        <BreadcrumbRoot paths={["Um", "Dois", "Tres", "Quatro"]} />
+        <Button.Default loading={false} active={true} secondary={true} text="Teste" onClick={() => navigate('/exchange')} />
         <Button.WithIcon loading={false} active={true} secondary={true} text="Teste" iconBefore onClick={() => navigate('/exchange')} icon="MdClose" />
         <Button.OnlyIcon loading={false} active={true} secondary={true} onClick={() => navigate('/exchange')} icon="MdClose" />
         <List />
