@@ -60,6 +60,8 @@ export interface SectionProps {
     gap?: string,
     flexDirection?: string,
     justifyContent?: string,
+    textalign?: string
+    border?: boolean
 }
 
 export interface FontProps {
