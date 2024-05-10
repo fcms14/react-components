@@ -1,30 +1,30 @@
 import { Row } from "../../molecules/Row"
-import { theme } from "../../../providers/theme"
 import RowSection from "../../molecules/Row/RowSection"
 
 interface Interface {
-    subtitle: [string, string, string, string]
-    border: boolean   
-   
+    text: [string, string, string, string]
+    color: [string, string, string, string]
+    borderBotom: boolean         
   }
   
-  const FourColumnRow = ({ subtitle, border}: Interface) => {
+  const FourColumnRow = ({ text , borderBotom, color}: Interface) => {
+        
     return (
       <Row.Root >
-        <RowSection sectionStyle={{ flexDirection: "row",  textalign: "right", border}}>        
+        <RowSection sectionStyle={{ flexDirection: "row",  textalign: "right", borderBotom}}>        
            <RowSection> 
-                <Row.Text>{subtitle[0]}</Row.Text>  
+                <Row.Title color={color[0]} size="smaller">{text[0]}</Row.Title>
             </RowSection>
-           <RowSection>         
-                <Row.Text>{subtitle[1]}</Row.Text>   
+           <RowSection >         
+                <Row.Title color={color[1]} size="smaller">{text[1]}</Row.Title>
             </RowSection>         
         </RowSection>
-        <RowSection sectionStyle={{ flexDirection: "row",  textalign: "left", border}}>       
-            <RowSection> 
-                <Row.Text >{subtitle[2]}</Row.Text>  
+        <RowSection sectionStyle={{ flexDirection: "row",  textalign: "left", borderBotom}}>       
+            <RowSection > 
+                <Row.Title color={color[2]} size="smaller">{text[2]}</Row.Title>
             </RowSection>
            <RowSection>         
-                <Row.Text >{subtitle[3]}</Row.Text>   
+                <Row.Title color={color[3]} size="smaller">{text[3]}</Row.Title>
             </RowSection>           
          </RowSection>
       </Row.Root>         

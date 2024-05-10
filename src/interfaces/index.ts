@@ -61,7 +61,7 @@ export interface SectionProps {
     flexDirection?: string,
     justifyContent?: string,
     textalign?: string
-    border?: boolean
+    borderBotom?: boolean
 }
 
 export interface FontProps {

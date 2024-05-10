@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom"
 import { Row } from "../../components/organisms/Row"
 import { MdRemoveRedEye } from "react-icons/md"
 import { Mask } from "../../helpers/Mask"
-import FourColumnRow from "../../components/organisms/Row/FourColumnRow"
+
+
 
 const Index = () => {
   const navigate = useNavigate()
@@ -18,8 +19,8 @@ const Index = () => {
     <ViewPort>
       <Header.Default text="Index" />
       <main>
-        <FourColumnRow border ={true} subtitle = {["Total","Preço", "Preço", "Total"]} />  
-        <FourColumnRow border ={true} subtitle = {["Total","Preço", "Preço", "Total"]} />       
+        <Row.FourColumnRow borderBotom text = {["Total","Preço", "Preço", "Total"]} color ={["","","",""]} />  
+        <Row.FourColumnRow borderBotom text = {["R$ 5000","R$5.15", "5.20", "R$ 300"]} color ={["red","red","green","green"]} />       
         <Button.Default text="Negociar" onClick={() => navigate('/exchange')} buttonStyle={{ active: true }} />
         <List />
       </main>
