@@ -1,21 +1,10 @@
 import styled from 'styled-components'
-import { theme } from '../../../providers/theme'
+import { FontProps } from '../../../interfaces'
 
-interface Props {
-  size?: string,
-  noMargin?: boolean,
-  noHeader?: boolean,
-  theme: any
-}
-
-const Title = styled.h1<Props>`
-    ${(props) => !props.noHeader && 'display: flex;'};
-    ${(props) => !props.noHeader && 'align-items: center;'};
-    ${(props) => !props.noHeader && 'gap: 0.5rem;'};
-    font-family: InterBold;
-    font-size: 1 rem;
-    color: ${props => props.color || '#000' };
-    ${(props) => props.noMargin && 'margin: 0;'};
+const Title = styled.h1<FontProps>`
+    font-family: "InterBold";
+    font-size: ${props => props.theme.fontsizes.title[props?.size ?? 'default']};
+    color: ${props => props.color ?? props.theme.colors[props?.parent ?? 'main'][props?.element ?? 'title']};
 `
 
 export default Title
