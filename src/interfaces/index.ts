@@ -60,8 +60,10 @@ export interface SectionProps {
     gap?: string,
     flexDirection?: string,
     justifyContent?: string,
-    textalign?: string
-    borderBotom?: boolean
+    textalign?: string,
+    borderBotom?: boolean,
+    overflow?: boolean,
+    padding?: boolean,
 }
 
 export interface FontProps {
@@ -138,7 +140,7 @@ export interface NotificationInterface {
     active: boolean,
     text: string,
     subtitle: string,
-    caption?: string
+    caption?: string,
     toasterStyle: ToasterProps,
 }
 

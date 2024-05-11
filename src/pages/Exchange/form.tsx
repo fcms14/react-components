@@ -72,7 +72,7 @@ const ExchangeForm = ({ children }: Interface) => {
                   inputMode={"numeric"}
                 />
               </section>
-              <Button.Default
+              <Button.Primary
                 text={values.isBuyOrder ? "Comprar" : "Vender"}
                 onClick={() => dispatchAddNotification(
                   {
