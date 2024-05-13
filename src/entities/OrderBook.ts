@@ -10,7 +10,7 @@ class OrderBook extends Entity {
         super(endpoint)
     }
 
-    getBook = (data: DepthInterface) => this.get(`/depth?symbol=${data.symbol}&limit=1000`)
+    getBook = (data: DepthInterface) => this.get(`/depth?symbol=${data.symbol}&limit=50`)
 
 }
 

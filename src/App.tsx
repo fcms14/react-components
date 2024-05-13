@@ -6,6 +6,9 @@ import { useSelector } from 'react-redux'
 import Notification from './components/atoms/Notification';
 import Toaster from './components/atoms/Toaster';
 import { RootState } from './store';
+import { QueryClient, QueryClientProvider } from 'react-query'
+
+const queryClient = new QueryClient()
 
 const App = () => {
     const toaster = useSelector((state: RootState) => state.toaster);
@@ -18,11 +21,11 @@ const App = () => {
     }, [])
 
     return (
-        <>
+        <QueryClientProvider client={queryClient}>
             {notifications.length > 0 && <Notification />}
             {toaster.show && <Toaster data={notifications} />}
             <RouterProvider router={Routes} />
-        </>
+        </QueryClientProvider>
     )
 }
 
