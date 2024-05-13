@@ -57,6 +57,11 @@ export interface PaddingInterface {
 
 export interface SectionProps {
     alignItems?: string,
+    gap?: string,
+    flexDirection?: string,
+    justifyContent?: string,
+    textalign?: string
+    borderBotom?: boolean
 }
 
 export interface FontProps {
@@ -95,10 +100,13 @@ export interface IconComponentInterface {
 
 export interface RowProps {
     justifyContent?: string,
+    flexDirection?: string,
+    alignItems?: string,
     position?: string,
     top?: string,
     backgroundColor?: string,
     borderBottom?: string,
+    borderRadius?: string,
     boxShadow?: string,
 }
 
@@ -148,6 +156,7 @@ export interface ColorByType {
     success: string,
     error: string,
     alert: string,
+    info: string,
 }
 export interface InputProps {
 }
