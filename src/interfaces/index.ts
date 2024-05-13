@@ -95,6 +95,7 @@ export interface RowProps {
     backgroundColor?: string
     borderBottom?: string
     boxShadow?: string
+    marginBottom?: string
 }
 
 export interface HeaderProps {
