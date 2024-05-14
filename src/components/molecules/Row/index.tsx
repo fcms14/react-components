@@ -1,6 +1,6 @@
 import Text from "../../atoms/Text";
 import Title from "../../atoms/Title";
-import Subtext from "../../atoms/Caption";
+import Subtext from "../../atoms/SubText";
 import RowIcon from "./RowIcon";
 import RowRoot from "./RowRoot";
 import RowSection from "./RowSection";

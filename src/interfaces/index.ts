@@ -31,7 +31,7 @@ export interface FontSizeInterface {
     title: SizeInterface,
     subtitle: SizeInterface,
     text: SizeInterface,
-    caption: SubSizeInterface,
+    subText: SubSizeInterface,
 }
 
 interface SizeInterface {
@@ -72,7 +72,7 @@ export interface FontProps {
     cursor?: string,
 }
 
-export interface CaptionProps {
+export interface SubTextProps {
     size?: 'small' | 'default' | 'big',
     parent?: 'header' | 'main',
     element?: 'title' | 'font',
@@ -138,7 +138,7 @@ export interface NotificationInterface {
     active: boolean,
     text: string,
     subtitle: string,
-    caption?: string
+    subText?: string
     toasterStyle: ToasterProps,
 }
 
