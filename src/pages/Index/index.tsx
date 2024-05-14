@@ -18,9 +18,7 @@ const Index = () => {
     
     <ViewPort>
       <Header.Default text="Index" />
-      <main>
-        <Row.FourColumnRow borderBotom text = {["Total","Preço", "Preço", "Total"]} color ={["","","",""]} />  
-        <Row.FourColumnRow borderBotom text = {["R$ 5000","R$5.15", "5.20", "R$ 300"]} color ={["red","red","green","green"]} />       
+      <main> 
         <Button.Default text="Negociar" onClick={() => navigate('/exchange')} buttonStyle={{ active: true }} />
         <List />
       </main>

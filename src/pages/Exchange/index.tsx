@@ -9,64 +9,40 @@ import { MdArrowBack, MdClose } from "react-icons/md"
 import { useQuery } from "react-query"
 import { newOrderBook } from "../../entities/OrderBook"
 import { useEffect, useState } from "react"
-
+import { Row } from "../../components/organisms/Row"
 const Exchange = () => {
+  const { data, isLoading, refetch } = useQuery("orderBook", () => newOrderBook.getBook({ symbol: "BTCUSDT" }), { cacheTime: 1000, staleTime: 1000 })
   const navigate = useNavigate()
+  const loop = Array.from({ length: 10 }, (_, i) => i )
   const ticker = "btcusdt"
-  const { data, isLoading, refetch } = useQuery(["orderBook"], () => newOrderBook.getBook({ symbol: "BTCUSDT" }), { cacheTime: 30000, staleTime: 30000 })
+  const [bids,setBids] = useState()
+  const [asks,setAsks] = useState()
+  
 
-  const [ws, setWs] = useState<any>();
-  const [message, setMessage] = useState('');
-  const [orderBook, setOrderbook] = useState<any>()
 
   useEffect(() => {
-    if (data) {
-      setOrderbook(data)
+    if(!data){
+      return   
     }
-  }, [data])
 
-  useEffect(() => {
-    const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${ticker}@ticker`);
-    setWs(socket);
+    const topVendas = data?.data.asks.slice(0, 10)
+    const topCompras = data?.data.bids.slice(0, 10)
+  
+    //Converter em float
+    for (let i = 0; i < topVendas.length; i++) {
+      for (let j = 0; j < topVendas[i].length; j++) {
+          topVendas[i][j] = parseFloat(topVendas[i][j]).toFixed(2);
+          topCompras[i][j] = parseFloat(topCompras[i][j]).toFixed(2);
+      }
+    } 
 
-    return () => {
-      socket.close();
-    };
-  }, []);
+      //Top 10
+      setBids(topCompras);
+      setAsks(topVendas);
 
-
-  useEffect(() => {
-    if (!ws) return;
-
-    ws.onopen = () => { console.log('WebSocket connected'); };
-    ws.onmessage = (event: any) => {
-      if (!orderBook) return
-      console.log('Message received:', event.data);
-
-      // const newOrderBook = 
-      // setOrderbook(newOrderBook)
-
-      // Handle received message here
-    };
-
-    ws.onerror = (error: any) => {
-      console.error('WebSocket error:', error);
-      refetch()
-    };
-
-    ws.onclose = () => {
-      console.log('WebSocket disconnected');
-    };
-
-    return () => {
-      ws.onopen = null;
-      ws.onmessage = null;
-      ws.onerror = null;
-      ws.onclose = null;
-    };
-  }, [ws]);
-
-  // console.log(orderBook)
+  },[data]) 
+  
+  
 
   return (
     <ViewPort>
@@ -79,6 +55,13 @@ const Exchange = () => {
         rightClick={() => navigate('/')}
       />
       <main>
+        <Row.FourColumnRow borderBotom text = {["Total","Preço", "Preço", "Total"]} color ={["","","",""]} />      
+        <>
+        { 
+          asks && bids &&    
+          loop.map((i) =>   <Row.FourColumnRow key={i} borderBotom text = {[asks[i][1],asks[i][0], bids[i][0], bids[i][1]]} color ={["red","red","green","green"]} />    )
+        }
+        </>        
         <ExchangeForm>
           <ExchangeBalances />
           <OrderSelectorType />

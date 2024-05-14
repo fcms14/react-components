@@ -1,5 +1,6 @@
 import Text from "../../atoms/Text";
 import Title from "../../atoms/Title";
+import Subtext from "../../atoms/Caption";
 import RowIcon from "./RowIcon";
 import RowRoot from "./RowRoot";
 import RowSection from "./RowSection";
@@ -9,5 +10,6 @@ export const Row = {
   Icon: RowIcon,
   Section: RowSection,
   Title: Title,
+  Subtext: Subtext,
   Text: Text
 }
