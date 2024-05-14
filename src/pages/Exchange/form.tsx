@@ -3,6 +3,7 @@ import Input from "../../components/atoms/Input"
 import { Button } from "../../components/organisms/Button"
 import { dispatchAddNotification } from "../../features/toaster/toasterDispatcher"
 import { Mask } from "../../helpers/Mask"
+import OrderBook from "./orderBook"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
@@ -91,6 +92,7 @@ const ExchangeForm = ({ children }: Interface) => {
                   type: "submit",
                 }}
               />
+              <OrderBook />
             </main>
           </Form>
         )}

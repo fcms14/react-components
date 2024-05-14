@@ -28,7 +28,7 @@ const ExchangeBalances = () => {
                 </Row.Section>
                 <Row.Section sectionStyle={{ alignItems: "flex-end" }}>
                     <Row.Text>Saldo</Row.Text>
-                    <Row.Title size="smaller" cursor="pointer" onClick={() => handle(brl, calc("multiply", brl, quote))}                    >
+                    <Row.Title size="smaller" cursor="pointer" onClick={() => handle(brl, calc("multiply", brl, quote))}>
                         {Mask.currencyBrl(brl.toString())}
                     </Row.Title>
                 </Row.Section>
@@ -40,7 +40,7 @@ const ExchangeBalances = () => {
                 </Row.Section>
                 <Row.Section sectionStyle={{ alignItems: "flex-end" }}>
                     <Row.Text>Saldo</Row.Text>
-                    <Row.Title size="smaller" cursor="pointer" onClick={() => handle(calc("divide", tether, quote), tether)}                    >
+                    <Row.Title size="smaller" cursor="pointer" onClick={() => handle(calc("divide", tether, quote), tether)}>
                         {Mask.currencyTether(tether.toString())}
                     </Row.Title>
                 </Row.Section>
