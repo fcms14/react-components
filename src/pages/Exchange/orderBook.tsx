@@ -1,7 +1,7 @@
 import { useQuery } from "react-query"
 import { newOrderBook } from "../../entities/OrderBook"
 import { Row } from "../../components/organisms/Row"
-import { Mask } from "../../helpers/Mask"
+import { Mask, Parser } from "../../helpers/Mask"
 import Icon from "../../components/atoms/Icon"
 import { AiOutlineLoading3Quarters } from "react-icons/ai"
 import { useFormikContext } from "formik"
@@ -28,10 +28,10 @@ const OrderBook = () => {
                         borderBotom
                         onClick={() => handle(Number(ask[1]), Number(ask[0]))}
                         text={[
-                            Mask.parser[ticker].quantity(ask[1]),
-                            Mask.parser[ticker].currency(ask[0]),
-                            Mask.parser[ticker].currency(data?.bids[i][0]),
-                            Mask.parser[ticker].quantity(data?.bids[i][1])
+                            Parser[ticker].quantity(ask[1]),
+                            Parser[ticker].currency(ask[0]),
+                            Parser[ticker].currency(data?.bids[i][0]),
+                            Parser[ticker].quantity(data?.bids[i][1])
                         ]}
                         color={["red", "red", "green", "green"]}
                     />
