@@ -2,6 +2,13 @@ import Entity from "./Entity";
 
 interface DepthInterface {
     symbol: string
+    limit?: number
+}
+
+interface OrderBookResponse {
+    lastUpdateId: number
+    bids: string[][]
+    asks: string[][]
 }
 
 class OrderBook extends Entity {
@@ -10,7 +17,7 @@ class OrderBook extends Entity {
         super(endpoint)
     }
 
-    getBook = (data: DepthInterface) => this.get(`/depth?symbol=${data.symbol}&limit=50`)
+    getBook = ({ symbol, limit }: DepthInterface) => this.get<OrderBookResponse>(`/depth?symbol=${symbol}&limit=${limit ?? 50}`)
 
 }
 

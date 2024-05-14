@@ -7,40 +7,46 @@ abstract class Entity {
         this.endpoint = endpoint
     }
 
-    async get(url?: string, params?: any) {
+    async get<T>(url?: string, params?: any) {
         const endpoint = `${this.endpoint}${url && url}`
+        const { data } = await $http.get<T>(endpoint, params)
 
-        return await $http.get(endpoint, params)
+        return data
     }
 
-    async find(url?: string, id?: string) {
+    async find<T>(url?: string, id?: string) {
         const endpoint = `${this.endpoint}${url && url}${id && `/${id}`}`
-        
-        return await $http.get(endpoint)
+        const { data } = await $http.get<T>(endpoint)
+
+        return data
     }
 
-    async post(url?: string, params?: any) {
+    async post<T>(url?: string, params?: any) {
         const endpoint = `${this.endpoint}${url && url}`
+        const { data } = await $http.post<T>(endpoint, params)
 
-        return await $http.post(endpoint, params)
+        return data
     }
 
-    async download(url: string, params: any) {
+    async download<T>(url: string, params: any) {
         const endpoint = `${this.endpoint}${url}`
+        const { data } = await $http.download<T>(endpoint, params)
 
-        return await $http.download(endpoint, params)
+        return data
     }
 
-    async update(url?: string, params?: any, id?: string) {
+    async update<T>(url?: string, params?: any, id?: string) {
         const endpoint = `${this.endpoint}${url && url}${id ? `/${id}` : ''}`
+        const { data } = await $http.update<T>(endpoint, params)
 
-        return await $http.update(endpoint, params)
+        return data
     }
 
-    async delete(url?: string, id?: string, params?: any) {
+    async delete<T>(url?: string, id?: string, params?: any) {
         const endpoint = `${this.endpoint}${url && url}${id ? `/${id}` : ''}`
+        const { data } = await $http.delete<T>(endpoint, params)
 
-        return await $http.delete(endpoint, params)
+        return data
     }
 }
 
