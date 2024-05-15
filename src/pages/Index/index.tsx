@@ -35,11 +35,8 @@ const Index = () => {
         <Row.Card icon={MdRemoveRedEye} onClick={() => console.log(1)} text="Saldo Disponível" title={balance} />
         <Breadcrumb paths={["Um", "Dois", "Tres", "Quatro", "Um", "Dois", "Tres", "Quatro"]} />
         <Row.Menu items={items} />
-        <List />
-        {/* <Button.Default loading={false} active={true} secondary={true} text="Teste" onClick={() => navigate('/exchange')} /> */}
-        {/* <Button.WithIcon loading={false} active={true} secondary={true} text="Teste" iconBefore onClick={() => navigate('/exchange')} icon="MdClose" />
-        <Button.OnlyIcon loading={false} active={true} secondary={true} onClick={() => navigate('/exchange')} icon="MdClose" /> */}
         <Button.Default text="Negociar" onClick={() => navigate('/exchange')} buttonStyle={{ active: true }} />
+        <List />
       </main>
       <footer>
         <Subtitle size="big">Menu</Subtitle>
