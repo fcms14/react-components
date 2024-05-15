@@ -97,13 +97,13 @@ export interface IconComponentInterface {
 }
 
 export interface RowProps {
-    justifyContent?: string
-    position?: string
-    top?: string
-    backgroundColor?: string
-    borderBottom?: string
-    boxShadow?: string
-    marginBottom?: string
+    justifyContent?: string,
+    position?: string,
+    top?: string,
+    backgroundColor?: string,
+    borderBottom?: string,
+    boxShadow?: string,
+    marginBottom?: string,
     flexDirection?: string,
     alignItems?: string,
     borderRadius?: string,
