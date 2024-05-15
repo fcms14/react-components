@@ -24,4 +24,4 @@ const RowStyle = styled.div<RowProps>`
   `}
 `
 
-export default RowStyle;
+export default RowStyle

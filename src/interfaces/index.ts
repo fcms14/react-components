@@ -151,6 +151,13 @@ export interface ToasterInterface {
     notifications: NotificationInterface[]
 }
 
+export interface MenuRowInterface {
+    title: string,
+    text: string,
+    iconSize?: number,
+    icon: IconType,
+}
+
 export interface ColorByType {
     success: string,
     error: string,
