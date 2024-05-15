@@ -1,9 +1,10 @@
 import { Row } from "../molecules/Row"
 import { RowProps } from "../../interfaces"
+import { IconType } from "react-icons"
 
 interface Item {
   title: string,
-  icon: string,
+  icon: IconType,
   text: string
 }
 
@@ -21,19 +22,15 @@ const Menurows = ({ items }: Interface) => {
   }
 
   return (
-    <>
-      {
-        items.map((i) =>
-          <Row.Root rowStyle={rowStyle}>
-            <Row.Icon icon={i.icon} />
-            <Row.Section>
-              <Row.Title size="small"> {i.title} </Row.Title>
-              <Row.Text size="big"> {i.text} </Row.Text>
-            </Row.Section>
-          </Row.Root>
-        )
-      }
-    </>
+    <>{items.map((i) =>
+      <Row.Root rowStyle={rowStyle}>
+        <Row.Icon icon={i.icon} />
+        <Row.Section>
+          <Row.Title size="small"> {i.title} </Row.Title>
+          <Row.Text size="big"> {i.text} </Row.Text>
+        </Row.Section>
+      </Row.Root>
+    )}</>
   )
 }
 

@@ -8,22 +8,25 @@ import Menurows from "../../components/organisms/Menurows"
 import { Row } from "../../components/organisms/Row"
 import { MdRemoveRedEye } from "react-icons/md"
 import { Mask } from "../../helpers/Mask"
+import { MdCardGiftcard } from "react-icons/md"
 
 const Index = () => {
   const navigate = useNavigate()
   const balance = Mask.currencyBrl("9534278012")
+
   const items = [
     {
       title: "Pagar",
-      icon: "CreditCard",
-      text: "Com cartão"
+      text: "Com cartão",
+      icon: MdCardGiftcard,
     },
     {
       title: "Pagar",
-      icon: "Currency",
-      text: "Em dinheiro"
+      text: "Em dinheiro",
+      icon: MdCardGiftcard,
     },
   ];
+
   return (
     <ViewPort>
       <Header.Default text="Index" />
