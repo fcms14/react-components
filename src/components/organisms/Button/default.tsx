@@ -1,23 +1,23 @@
+import { ButtonProps } from "../../../interfaces"
 import { Button } from "../../molecules/Button"
 import { getColor, getIconSize } from "./helper"
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface Interface {
   text: string,
   onClick: () => void,
-  loading: boolean
-  active?: boolean,
-  secondary?: boolean,
   iconSize?: number,
+  buttonStyle?: ButtonProps
 }
 
-const ButtonDefault = ({ text, onClick, active, loading, secondary, iconSize }: Interface) => {
+const ButtonDefault = ({ text, onClick, iconSize, buttonStyle }: Interface) => {
   const _iconSize = getIconSize(iconSize)
-  const color = getColor(secondary, active)
+  const color = getColor(buttonStyle?.secondary, buttonStyle?.active)
 
   return (
-    <Button.Root buttonStyle={{ active: active, secondary: secondary }} onClick={onClick}>
+    <Button.Root buttonStyle={{ ...buttonStyle }} onClick={onClick}>
       <Button.Title titleStyle={{ color: color }}> {text} </Button.Title>
-      {loading && <Button.Icon color={color} loading={loading} width={_iconSize} icon="Loading3Quarters" />}
+      {buttonStyle?.isLoading && <Button.Icon color={color} loading={buttonStyle.isLoading} width={_iconSize} icon={AiOutlineLoading3Quarters} />}
     </Button.Root>
   )
 }

@@ -5,9 +5,11 @@ import { ToggleSpanProps } from '../../../interfaces'
 export const ToggleSpanStyle = styled.span<ToggleSpanProps>`
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: ${({ theme }) => theme.gap};
     flex-direction: ${props => props.flexDirection};
-    justify-content: ${props => props.justifyContent};
+    justify-content: ${props => props.justifyContent ?? "flex-end"};
+    padding: ${({ theme }) => `${theme.padding.main} 0`};
 `
 
 const ToggleStyle = styled.label`
@@ -25,6 +27,7 @@ const ToggleStyle = styled.label`
     > span {
         position: absolute;
         cursor: pointer;
+        width: 60px;
         top: 0;
         left: 0;
         right: 0;

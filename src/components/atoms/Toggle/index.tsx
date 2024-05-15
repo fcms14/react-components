@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Title from "../Title"
+import Subtitle from "../Subtitle"
 import ToggleStyle, { ToggleSpanStyle } from "./ToggleStyle"
 import { ToggleSpanProps } from "../../../interfaces"
 
@@ -20,7 +20,7 @@ const Toggle = ({ text, color, onToggleChange, toggleStyle }: Interface) => {
 
     return (
         <ToggleSpanStyle {...toggleStyle}>
-            <Title color={color}> {text} </Title>
+            <Subtitle color={color}> {text} </Subtitle>
             <ToggleStyle color={color}> <input type="checkbox" checked={checked} onChange={handleCheckboxChange} /> <span /> </ToggleStyle>
         </ToggleSpanStyle>
     )

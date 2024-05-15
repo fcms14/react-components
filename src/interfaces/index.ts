@@ -1,3 +1,5 @@
+import { IconType } from "react-icons"
+
 export interface ColorInterface {
     header: ElementsInterface,
     main: ElementsInterface,
@@ -29,7 +31,7 @@ export interface FontSizeInterface {
     title: SizeInterface,
     subtitle: SizeInterface,
     text: SizeInterface,
-    caption: SubSizeInterface
+    caption: SubSizeInterface,
 }
 
 interface SizeInterface {
@@ -54,38 +56,44 @@ export interface PaddingInterface {
 }
 
 export interface SectionProps {
-    alignItems?: string
+    alignItems?: string,
+    gap?: string,
+    flexDirection?: string,
+    justifyContent?: string,
 }
 
 export interface FontProps {
-    size?: 'smaller' | 'small' | 'default' | 'big' | 'bigger' | 'biggest'
-    parent?: 'header' | 'main'
-    element?: 'title' | 'font'
-    color?: string
+    size?: 'smaller' | 'small' | 'default' | 'big' | 'bigger' | 'biggest',
+    parent?: 'header' | 'main',
+    element?: 'title' | 'font',
+    color?: string,
+    cursor?: string,
 }
 
 export interface CaptionProps {
-    size?: 'small' | 'default' | 'big'
-    parent?: 'header' | 'main'
-    element?: 'title' | 'font'
-    color?: string
+    size?: 'small' | 'default' | 'big',
+    parent?: 'header' | 'main',
+    element?: 'title' | 'font',
+    color?: string,
 }
 
 export interface IconProps {
     cursor: string,
     rounded?: boolean,
-    applyPadding?: boolean
-    loading?: boolean
+    applyPadding?: boolean,
+    loading?: boolean,
+    topRight?: boolean,
 }
 
 export interface IconComponentInterface {
-    icon: string,
-    onClick?: () => void
+    icon: IconType,
+    onClick?: () => void,
     width?: number,
     color?: string,
     rounded?: boolean,
-    applyPadding?: boolean
-    loading?: boolean
+    applyPadding?: boolean,
+    loading?: boolean,
+    topRight?: boolean,
 }
 
 export interface RowProps {
@@ -96,21 +104,58 @@ export interface RowProps {
     borderBottom?: string
     boxShadow?: string
     marginBottom?: string
+    flexDirection?: string,
+    alignItems?: string,
+    borderRadius?: string,
 }
 
 export interface HeaderProps {
-    justifyContent?: string
-    flexDirection?: string
+    justifyContent?: string,
+    flexDirection?: string,
 }
 
 export interface ButtonProps {
-    flexDirection?: string
-    width?: string
-    active?: boolean
-    secondary?: boolean
+    flexDirection?: string,
+    width?: string,
+    active?: boolean,
+    isLoading?: boolean,
+    secondary?: boolean,
+    color?: string,
+    type?: "button" | "submit" | "reset" | undefined,
 }
 
 export interface ToggleSpanProps {
-    justifyContent?: string
-    flexDirection?: string
+    justifyContent?: string,
+    flexDirection?: string,
+}
+
+export interface ToasterProps {
+    type: "success" | "alert" | "error",
+}
+
+export interface NotificationInterface {
+    active: boolean,
+    text: string,
+    subtitle: string,
+    caption?: string
+    toasterStyle: ToasterProps,
+}
+
+export interface NotificationCardInterface extends NotificationInterface {
+    index: number,
+}
+
+export interface ToasterInterface {
+    show: boolean,
+    timeoutId: number,
+    notifications: NotificationInterface[]
+}
+
+export interface ColorByType {
+    success: string,
+    error: string,
+    alert: string,
+    info: string,
+}
+export interface InputProps {
 }

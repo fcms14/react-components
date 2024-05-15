@@ -1,5 +1,6 @@
 import { Row } from "../../components/molecules/Row"
 import { RowProps } from "../../interfaces"
+import { MdPix } from "react-icons/md";
 
 const List = () => {
   const loop = Array.from({ length: 60 }, (_, i) => i + 1)
@@ -15,7 +16,7 @@ const List = () => {
       {
         loop.map((i) =>
           <Row.Root key={i} rowStyle={i % 3 === 0 ? rowStyle : undefined}>
-            <Row.Icon icon="Pix" />
+            <Row.Icon icon={MdPix} width={24} />
             <Row.Section>
               <Row.Text size="big"> Texto {i} </Row.Text>
               <Row.Title size="small"> Title {i} </Row.Title>
@@ -24,7 +25,7 @@ const List = () => {
               <Row.Text size="big"> Texto {i} </Row.Text>
               <Row.Title size="small"> Title {i} </Row.Title>
             </Row.Section>
-            <Row.Icon icon="Pix" onClick={() => console.log(1)} />
+            <Row.Icon icon={MdPix} width={24} onClick={() => console.log(1)} />
           </Row.Root>
         )
       }

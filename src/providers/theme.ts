@@ -1,17 +1,21 @@
-import { ColorInterface, FontSizeInterface, FooterInterface, PaddingInterface } from "../interfaces"
+import { ColorByType, ColorInterface, FontSizeInterface, FooterInterface, PaddingInterface } from "../interfaces"
 
 interface ThemeInterface {
-  fontsizes: FontSizeInterface,
+  colorByType: ColorByType,
   colors: ColorInterface,
+  fontsizes: FontSizeInterface,
   footer: FooterInterface
-  padding: PaddingInterface
   gap: string
+  padding: PaddingInterface
+  radius: string
 }
 
 export const theme: ThemeInterface = {
-  fontsizes: JSON.parse(import.meta.env.VITE_FONTSIZES),
-  colors: JSON.parse(import.meta.env.VITE_COLORS),
-  footer: JSON.parse(import.meta.env.VITE_FOOTER),
-  padding: JSON.parse(import.meta.env.VITE_PADDINGS),
+  colorByType: JSON.parse((import.meta.env.VITE_COLOR_BY_TYPE).slice(1, -1).replace(/\*/g, '"')),
+  colors: JSON.parse((import.meta.env.VITE_COLORS).slice(1, -1).replace(/\*/g, '"')),
+  fontsizes: JSON.parse((import.meta.env.VITE_FONTSIZES).slice(1, -1).replace(/\*/g, '"')),
+  footer: JSON.parse((import.meta.env.VITE_FOOTER).slice(1, -1).replace(/\*/g, '"')),
   gap: import.meta.env.VITE_GAP,
+  padding: JSON.parse((import.meta.env.VITE_PADDINGS).slice(1, -1).replace(/\*/g, '"')),
+  radius: import.meta.env.VITE_RADIUS,
 }
