@@ -79,7 +79,7 @@ const ExchangeForm = ({ children }: Interface) => {
                   {
                     subtitle: `Ordem enviada ${Math.random().toFixed(2)}`,
                     text: "Aguarde o processamento de sua ordem",
-                    subText: "Acompanhe em sua lista de ordens abertas",
+                    subtext: "Acompanhe em sua lista de ordens abertas",
                     toasterStyle: { type: "success" },
                     active: true,
                   }

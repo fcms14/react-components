@@ -4,16 +4,16 @@ import { MdClose } from "react-icons/md"
 import Icon from "../Icon"
 import Subtitle from "../Subtitle"
 import Text from "../Text"
-import SubText from "../SubText"
+import Subtext from "../Subtext"
 import { NotificationCardInterface } from "../../../interfaces"
 
-const NotificationCard = ({ index, text, subtitle, subText, toasterStyle }: NotificationCardInterface) => {
+const NotificationCard = ({ index, text, subtitle, subtext, toasterStyle }: NotificationCardInterface) => {
   return (
     <NotificationCardStyle {...toasterStyle}>
       <Icon icon={MdClose} onClick={() => dispatchRemoveNotification(index)} topRight />
       <Subtitle> {subtitle} </Subtitle>
       <Text> {text} </Text>
-      {subText && <SubText> {subText} </SubText>}
+      {subtext && <Subtext> {subtext} </Subtext>}
     </NotificationCardStyle>
   )
 }

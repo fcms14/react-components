@@ -9,7 +9,7 @@ export const toasterSlice = createSlice({
             active: false,
             text: '',
             subtitle: '',
-            subText: '',
+            subtext: '',
             toasterStyle: { type: '' },
         }]
     },
@@ -32,7 +32,7 @@ export const toasterSlice = createSlice({
                     toasterStyle: { type: action.payload.toasterStyle.type },
                     subtitle: action.payload.subtitle,
                     text: action.payload.text,
-                    subText: action.payload.subText,
+                    subtext: action.payload.subtext,
                 }
             )
         },

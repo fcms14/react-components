@@ -18,7 +18,7 @@ api.interceptors.response.use(
         dispatchAddNotification({
             subtitle: message ?? "",
             text: shortMessage ?? "",
-            subText: code ?? "",
+            subtext: code ?? "",
             toasterStyle: { type: "success" },
             active: true,
         })
