@@ -1,14 +1,12 @@
 import ButtonOnlyIcon from "./onlyIcon";
 import ButtonWithIcon from "./withIcon";
-import ButtonPrimary from "./ButtonPrimary";
-import ButtonSecondary from "./ButtonSecondary";
-import PanelsButon from "./PanelsButon";
+import ButtonDefault from "./default";
+import ButtonPanel from "./panel";
 
 export const Button = {
-  Primary: ButtonPrimary,
-  Secondary: ButtonSecondary,
+  Default: ButtonDefault,
   WithIcon: ButtonWithIcon,
   OnlyIcon: ButtonOnlyIcon,
-  Panels: PanelsButon 
+  Panel: ButtonPanel
 
 }

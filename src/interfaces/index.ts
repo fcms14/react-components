@@ -62,7 +62,6 @@ export interface SectionProps {
     justifyContent?: string,
     textalign?: string,
     borderBotom?: boolean,
-    overflow?: boolean,
     padding?: boolean,
 }
 
@@ -126,6 +125,7 @@ export interface ButtonProps {
     secondary?: boolean,
     color?: string,
     type?: "button" | "submit" | "reset" | undefined,
+    whiteSpace?: string;
 }
 
 export interface ToggleSpanProps {
@@ -141,7 +141,7 @@ export interface NotificationInterface {
     active: boolean,
     text: string,
     subtitle: string,
-    subtext?: string
+    subtext?: string,
     toasterStyle: ToasterProps,
 }
 
@@ -160,6 +160,13 @@ export interface MenuRowInterface {
     text: string,
     iconSize?: number,
     icon: IconType,
+}
+
+export interface ButtonDefaultInterface {
+    text: string,
+    onClick: () => void,
+    iconSize?: number,
+    buttonStyle?: ButtonProps
 }
 
 export interface ColorByType {

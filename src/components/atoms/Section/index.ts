@@ -10,12 +10,10 @@ const Section = styled.section<SectionProps>`
 
     justify-content: ${props?.justifyContent};
     align-items: ${props.alignItems};
-    text-align: ${props.textalign};
     gap: ${props.gap};
+    text-align: ${props.textalign};
 
     border-bottom: ${props.borderBotom ? `1px solid ${props.theme.colors.main.stroke}` : "undefined"};
-    overflow-x: ${props.overflow ? "auto" : "undefined"};
-    padding: ${props.padding ? `${props.theme.gap} ${props.theme.gap} 0` : undefined};
   `}
 `
 

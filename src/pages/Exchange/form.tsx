@@ -73,7 +73,7 @@ const ExchangeForm = ({ children }: Interface) => {
                   inputMode={"numeric"}
                 />
               </section>
-              <Button.Primary
+              <Button.Default
                 text={values.isBuyOrder ? "Comprar" : "Vender"}
                 onClick={() => dispatchAddNotification(
                   {
@@ -91,6 +91,14 @@ const ExchangeForm = ({ children }: Interface) => {
                   secondary: false,
                   type: "submit",
                 }}
+              />
+              <Button.Panel
+                buttons={[
+                  { text: "Livro de Ofertas", buttonStyle: { active: true }, onClick: () => { console.log(1) } },
+                  { text: "Ordens Abertas", buttonStyle: { active: true }, onClick: () => { console.log(1) } },
+                  { text: "Ordens Executadas", buttonStyle: { active: true }, onClick: () => { console.log(1) } },
+                  { text: "Teste Teste asd AS", buttonStyle: { active: true }, onClick: () => { console.log(1) } },
+                ]}
               />
               <OrderBook />
             </main>

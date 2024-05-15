@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import ExchangeForm from "./form"
 import { MdArrowBack, MdClose } from "react-icons/md"
 
-const Exchange = () => {  
+const Exchange = () => {
   const navigate = useNavigate()
 
   return (

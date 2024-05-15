@@ -18,7 +18,7 @@ const OrderBook = () => {
 
     return (
         <>
-            {(isLoading || isRefetching) && <Icon icon={AiOutlineLoading3Quarters} loading width={30} />}
+            {/* {(isLoading || isRefetching) && <Icon icon={AiOutlineLoading3Quarters} loading width={30} />} */}
 
             <Row.FourColumnRow borderBotom text={["Total", "Preço", "Preço", "Total"]} color={["", "", "", ""]} />
             <div style={{ overflowY: "auto", height: "300px" }}>
