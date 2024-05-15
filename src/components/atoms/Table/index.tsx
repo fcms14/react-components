@@ -19,8 +19,8 @@ interface TableInterface {
 
 const Table = ({ headers, rows, tableStyle }: TableInterface) => {
   return (
-    <TableWrapper>
-      <TableStyle {...tableStyle}>
+    <TableWrapper {...tableStyle}>
+      <TableStyle>
         <thead>
           <tr>
             {headers.map((header: CellInterface, index: number) =>

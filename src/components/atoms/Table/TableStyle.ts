@@ -2,11 +2,10 @@ import styled, { css } from 'styled-components'
 import { CellProps, TableProps } from '../../../interfaces'
 
 
-const TableStyle = styled.table<TableProps>`
+const TableStyle = styled.table`
     width: 100%;
     border-collapse: separate;
     border-spacing: ${({ theme }) => theme.gap} 0;
-
 
     > thead {
         position: sticky;
@@ -30,8 +29,8 @@ const TableStyle = styled.table<TableProps>`
     }
 `
 
-export const TableWrapper = styled.div`
-    max-height: 300px;
+export const TableWrapper = styled.div<TableProps>`
+    max-height: ${({ height }) => height};
     overflow-y: auto;
 `
 
