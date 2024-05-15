@@ -137,7 +137,7 @@ export interface NotificationInterface {
     active: boolean,
     text: string,
     subtitle: string,
-    caption?: string
+    caption?: string,
     toasterStyle: ToasterProps,
 }
 

@@ -8,7 +8,6 @@ import { Row } from "../../components/organisms/Row"
 import { MdRemoveRedEye } from "react-icons/md"
 import { Mask } from "../../helpers/Mask"
 import { MdCardGiftcard } from "react-icons/md"
-import Menurows from "../../components/organisms/Row/Menurows"
 import List from "./list"
 import { MenuRowInterface } from "../../interfaces"
 
@@ -35,7 +34,7 @@ const Index = () => {
       <main>
         <Row.Card icon={MdRemoveRedEye} onClick={() => console.log(1)} text="Saldo Disponível" title={balance} />
         <Breadcrumb paths={["Um", "Dois", "Tres", "Quatro", "Um", "Dois", "Tres", "Quatro"]} />
-        <Menurows items={items} />
+        <Row.Menu items={items} />
         <List />
         {/* <Button.Default loading={false} active={true} secondary={true} text="Teste" onClick={() => navigate('/exchange')} /> */}
         {/* <Button.WithIcon loading={false} active={true} secondary={true} text="Teste" iconBefore onClick={() => navigate('/exchange')} icon="MdClose" />
