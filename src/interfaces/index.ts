@@ -100,14 +100,15 @@ export interface IconComponentInterface {
 
 export interface RowProps {
     justifyContent?: string,
-    flexDirection?: string,
-    alignItems?: string,
     position?: string,
     top?: string,
     backgroundColor?: string,
     borderBottom?: string,
-    borderRadius?: string,
     boxShadow?: string,
+    marginBottom?: string,
+    flexDirection?: string,
+    alignItems?: string,
+    borderRadius?: string,
 }
 
 export interface HeaderProps {
@@ -150,6 +151,13 @@ export interface ToasterInterface {
     show: boolean,
     timeoutId: number,
     notifications: NotificationInterface[]
+}
+
+export interface MenuRowInterface {
+    title: string,
+    text: string,
+    iconSize?: number,
+    icon: IconType,
 }
 
 export interface ColorByType {

@@ -13,9 +13,9 @@ const RowStyle = styled.div<RowProps>`
     border-bottom: ${props?.borderBottom};
     border-radius: ${props?.borderRadius};
     box-shadow: ${props?.boxShadow};
-
     position: ${props?.position};
     top: ${props?.top};
+    margin-bottom: ${props?.marginBottom};
   `}
 
   ${({ theme }) => css`
