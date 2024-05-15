@@ -32,7 +32,14 @@ const Table = ({ headers, rows, tableStyle }: TableInterface) => {
           {rows.map((row: RowInterface, index: number) =>
             <tr key={index}>
               {row.cell.map((cell: CellInterface, index: number) =>
-                <TdStyle key={index} {...cell.cellStyle}> {cell.text} </TdStyle>
+                <TdStyle
+                  key={index}
+                  {...cell.cellStyle}
+                  cursor={cell.onClick ? "pointer" : undefined}
+                  onClick={cell.onClick}
+                >
+                  {cell.text}
+                </TdStyle>
               )}
             </tr>
           )}

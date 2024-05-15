@@ -1,8 +1,8 @@
 export const Mask = {
-    currencyBrl: (value: string): string => {
+    currencyBrl: (value: string, decimals?: number, divisor?: number): string => {
         const cleanValue = +value.replace(/\D+/g, '')
-        const options = { style: 'currency', currency: 'BRL' }
-        return new Intl.NumberFormat('pt-br', options).format(cleanValue / 100)
+        const options = { style: 'currency', currency: 'BRL', minimumFractionDigits: decimals ?? 2 }
+        return new Intl.NumberFormat('pt-br', options).format(cleanValue / (divisor ?? 100))
     },
     currencyTether: (value: string): string => {
         const cleanValue = +value.replace(/\D+/g, '')
@@ -23,9 +23,11 @@ export const Parser = {
         quantity: (value: string) => Number(value).toFixed(6)
     },
     USDTBRL: {
-        currency: (value: string) => Mask.currencyBrl(Number(value).toFixed(2)),
+        currency: (value: string) => Mask.currencyBrl(Number(value).toFixed(4), 4, 10000),
         quantity: (value: string) => Mask.currencyTether(Number(value).toFixed(2))
     },
 }
 
 export type MaskType = keyof typeof Mask;
+
+export type ParserType = keyof typeof Parser;

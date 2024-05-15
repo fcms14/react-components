@@ -67,18 +67,18 @@ const ExchangeForm = ({ children }: Interface) => {
                   />
                 }
                 <Input
-                  onChange={() => setFieldValue("volume", handleBase(values))}
-                  mask={"currencyBrl"}
-                  label="Quantidade: Reais"
-                  name={"quantity"}
-                  type={"text"}
-                  inputMode={"numeric"}
-                />
-                <Input
                   onChange={() => setFieldValue("quantity", handleTotal(values))}
                   mask={"currencyTether"}
                   label="Quantidade: Tether"
                   name={"volume"}
+                  type={"text"}
+                  inputMode={"numeric"}
+                />
+                <Input
+                  onChange={() => setFieldValue("volume", handleBase(values))}
+                  mask={"currencyBrl"}
+                  label="Quantidade: Reais"
+                  name={"quantity"}
                   type={"text"}
                   inputMode={"numeric"}
                 />

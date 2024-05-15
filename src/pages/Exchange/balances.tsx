@@ -10,7 +10,7 @@ const ExchangeBalances = () => {
     const { setFieldValue, values } = useFormikContext()
     const rowStyle: RowProps = { borderBottom: `1px solid ${theme.colors.main.stroke}` }
     const _values = values as ExchangeFormIntercace
-    const quote = Mask.unmaskAmount(_values.limit)
+    const quote = Mask.unmaskAmount(_values.limit) / 100
     const brl = 50000
     const tether = 50000
 
@@ -28,7 +28,7 @@ const ExchangeBalances = () => {
                 </Row.Section>
                 <Row.Section sectionStyle={{ alignItems: "flex-end" }}>
                     <Row.Text>Saldo</Row.Text>
-                    <Row.Title size="smaller" cursor="pointer" onClick={() => handle(brl, calc("multiply", brl, quote))}>
+                    <Row.Title size="smaller" cursor="pointer" onClick={() => handle(brl, calc("multiply", brl, Number(quote.toFixed())))}>
                         {Mask.currencyBrl(brl.toString())}
                     </Row.Title>
                 </Row.Section>
@@ -40,7 +40,7 @@ const ExchangeBalances = () => {
                 </Row.Section>
                 <Row.Section sectionStyle={{ alignItems: "flex-end" }}>
                     <Row.Text>Saldo</Row.Text>
-                    <Row.Title size="smaller" cursor="pointer" onClick={() => handle(calc("divide", tether, quote), tether)}>
+                    <Row.Title size="smaller" cursor="pointer" onClick={() => handle(calc("divide", tether, Number(quote.toFixed())), tether)}>
                         {Mask.currencyTether(tether.toString())}
                     </Row.Title>
                 </Row.Section>

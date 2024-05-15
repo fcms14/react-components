@@ -43,6 +43,7 @@ export const ThStyle = styled.th<CellProps>`
 export const TdStyle = styled.td<CellProps>`
     text-align: ${props => props.textAlign};
     color: ${props => props.color};
+    cursor: ${props => props.cursor};
 `
 
 export default TableStyle

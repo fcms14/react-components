@@ -132,6 +132,7 @@ export interface ButtonProps {
 export interface CellProps {
     textAlign?: "center" | "right" | "left"
     color?: string
+    cursor?: string
 }
 
 export interface TableProps {
