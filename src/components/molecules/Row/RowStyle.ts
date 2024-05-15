@@ -15,7 +15,7 @@ const RowStyle = styled.div<RowProps>`
     box-shadow: ${props?.boxShadow};
     position: ${props?.position};
     top: ${props?.top};
-    margin-bottom: ${props => props?.marginBottom};
+    margin-bottom: ${props?.marginBottom};
   `}
 
   ${({ theme }) => css`
