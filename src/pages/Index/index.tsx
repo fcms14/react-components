@@ -31,7 +31,7 @@ const Index = () => {
     <ViewPort>
       <Header.Default text="Index" />
       <main>
-        <Breadcrumb paths={["Um", "dois", "tres", "quatro", "Um", "dois", "tres", "quatro"]} />
+        <Breadcrumb paths={["Um", "Dois", "Tres", "Quatro", "Um", "Dois", "Tres", "Quatro"]} />
         <Menurows items={items} />
         {/* <Button.Default loading={false} active={true} secondary={true} text="Teste" onClick={() => navigate('/exchange')} /> */}
         {/* <Button.WithIcon loading={false} active={true} secondary={true} text="Teste" iconBefore onClick={() => navigate('/exchange')} icon="MdClose" />
