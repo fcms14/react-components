@@ -4,6 +4,8 @@ import { Button } from "../../components/organisms/Button"
 import { dispatchAddNotification } from "../../features/toaster/toasterDispatcher"
 import { Mask } from "../../helpers/Mask"
 import OrderBook from "./orderBook"
+import { ButtonDefaultInterface } from "../../interfaces"
+import { useState } from "react"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
@@ -18,6 +20,8 @@ export interface ExchangeFormIntercace {
 }
 
 const ExchangeForm = ({ children }: Interface) => {
+  const [showPanel, setShowPanel] = useState<"OrderBook" | "OrderOpen" | "OrderHistory">("OrderBook")
+
   const initialValues: ExchangeFormIntercace = {
     isLimitOrder: true,
     isBuyOrder: true,
@@ -25,6 +29,12 @@ const ExchangeForm = ({ children }: Interface) => {
     quantity: "",
     volume: "",
   }
+
+  const buttons: ButtonDefaultInterface[] = [
+    { text: "Livro de Ofertas", buttonStyle: { active: true }, onClick: () => { setShowPanel("OrderBook") } },
+    { text: "Ordens Abertas", buttonStyle: { active: true }, onClick: () => { setShowPanel("OrderOpen") } },
+    { text: "Ordens Executadas", buttonStyle: { active: true }, onClick: () => { setShowPanel("OrderHistory") } },
+  ]
 
   function handleBase(values: ExchangeFormIntercace) {
     return Mask.currencyTether((
@@ -92,16 +102,11 @@ const ExchangeForm = ({ children }: Interface) => {
                   type: "submit",
                 }}
               />
-              <Button.Panel
-                buttons={[
-                  { text: "Livro de Ofertas", buttonStyle: { active: true }, onClick: () => { console.log(1) } },
-                  { text: "Ordens Abertas", buttonStyle: { active: true }, onClick: () => { console.log(1) } },
-                  { text: "Ordens Executadas", buttonStyle: { active: true }, onClick: () => { console.log(1) } },
-                  { text: "Teste Teste asd AS", buttonStyle: { active: true }, onClick: () => { console.log(1) } },
-                ]}
-              />
-              <OrderBook />
             </main>
+            <aside>
+              <Button.Panel buttons={buttons} />
+              {showPanel === "OrderBook" && <OrderBook />}
+            </aside>
           </Form>
         )}
       </Formik>

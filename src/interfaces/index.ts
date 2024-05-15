@@ -123,6 +123,7 @@ export interface ButtonProps {
     active?: boolean,
     isLoading?: boolean,
     secondary?: boolean,
+    small?: boolean,
     color?: string,
     type?: "button" | "submit" | "reset" | undefined,
     whiteSpace?: string;
