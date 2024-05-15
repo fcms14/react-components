@@ -16,9 +16,10 @@ const ButtonStyle = styled.button<ButtonProps>`
   ${({ theme, small }) => css`
     ${small
       ? `
-        margin: ${getSize(theme.padding.main) / 2}px;
-        padding: ${getSize(theme.padding.header) / 2}px ${getSize(theme.padding.main)}px;
-      ` : `
+        margin: 0 ${theme.padding.main} ${theme.padding.header};
+        padding: ${getSize(theme.padding.header) / 4}px ${theme.padding.header};
+      `
+      : `
         margin: ${theme.padding.main};
         padding: ${theme.padding.header} ${theme.padding.main};
       `}

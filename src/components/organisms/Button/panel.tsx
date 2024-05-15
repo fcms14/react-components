@@ -10,7 +10,7 @@ const ButtonPanel = ({ buttons }: Interface) => {
   return (
     <Nav>
       {buttons.map((button, index: number) =>
-        <Button.Small key={index} {...button} buttonStyle={{ ...button.buttonStyle, secondary: true, whiteSpace: "nowrap" }} />
+        <Button.Small key={index} {...button} buttonStyle={{ ...button.buttonStyle, secondary: button.buttonStyle?.secondary ?? true, whiteSpace: "nowrap" }} />
       )}
     </Nav>
   )

@@ -31,9 +31,9 @@ const ExchangeForm = ({ children }: Interface) => {
   }
 
   const buttons: ButtonDefaultInterface[] = [
-    { text: "Livro de Ofertas", buttonStyle: { active: true }, onClick: () => { setShowPanel("OrderBook") } },
-    { text: "Ordens Abertas", buttonStyle: { active: true }, onClick: () => { setShowPanel("OrderOpen") } },
-    { text: "Ordens Executadas", buttonStyle: { active: true }, onClick: () => { setShowPanel("OrderHistory") } },
+    { text: "Livro de Ofertas", buttonStyle: { active: true, secondary: !(showPanel === "OrderBook") }, onClick: () => { setShowPanel("OrderBook") } },
+    { text: "Ordens Abertas", buttonStyle: { active: true, secondary: !(showPanel === "OrderOpen") }, onClick: () => { setShowPanel("OrderOpen") } },
+    { text: "Ordens Executadas", buttonStyle: { active: true, secondary: !(showPanel === "OrderHistory") }, onClick: () => { setShowPanel("OrderHistory") } },
   ]
 
   function handleBase(values: ExchangeFormIntercace) {

@@ -129,6 +129,15 @@ export interface ButtonProps {
     whiteSpace?: string;
 }
 
+export interface CellProps {
+    textAlign?: "center" | "right" | "left"
+    color?: string
+}
+
+export interface TableProps {
+    height?: string
+}
+
 export interface ToggleSpanProps {
     justifyContent?: string,
     flexDirection?: string,
