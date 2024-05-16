@@ -6,7 +6,7 @@ import Subtitle from "../Subtitle"
 import Text from "../Text"
 import { NotificationCardInterface } from "../../../interfaces"
 import Section from "../Section"
-import Subtext2 from "../Subtext2"
+import Subtext from "../Subtext"
 
 const NotificationCard = ({ index, text, subtitle, subtext, toasterStyle }: NotificationCardInterface) => {
   return (
@@ -16,7 +16,7 @@ const NotificationCard = ({ index, text, subtitle, subtext, toasterStyle }: Noti
         <Icon icon={MdClose} onClick={() => dispatchRemoveNotification(index)} />
       </Section>
       <Text> {text} </Text>
-      {subtext && <Subtext2> {subtext} </Subtext2>}
+      {subtext && <Subtext> {subtext} </Subtext>}
     </NotificationCardStyle>
   )
 }
