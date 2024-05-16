@@ -5,6 +5,7 @@ interface CellInterface {
   text: string
   cellStyle?: CellProps
   onClick?: () => void
+  width?: string
 }
 
 interface RowInterface {
@@ -37,6 +38,7 @@ const Table = ({ headers, rows, tableStyle }: TableInterface) => {
                   {...cell.cellStyle}
                   cursor={cell.onClick ? "pointer" : undefined}
                   onClick={cell.onClick}
+                  width={cell.width}
                 >
                   {cell.text}
                 </TdStyle>

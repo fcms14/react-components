@@ -1,12 +1,10 @@
 import { useQuery } from "react-query"
 import { newOrderBook } from "../../entities/OrderBook"
-import { Mask, Parser, ParserType } from "../../helpers/Mask"
-import Icon from "../../components/atoms/Icon"
-import { AiOutlineLoading3Quarters } from "react-icons/ai"
 import { useFormikContext } from "formik"
 import Table from "../../components/atoms/Table"
 import { CellProps } from "../../interfaces"
 import { ExchangeFormIntercace } from "./form"
+import { Decimal, Mask, Parser } from "../../helpers/Mask"
 
 const OrderBook = () => {
   const ticker = "USDTBRL"
@@ -14,65 +12,73 @@ const OrderBook = () => {
   const sellStyle: CellProps = { color: "#FF2F21", textAlign: "left" }
   const { setFieldValue, values } = useFormikContext()
   const _values = values as ExchangeFormIntercace
-  const { data, isLoading, isRefetching } = useQuery("orderBook", () => newOrderBook.getBook({ symbol: ticker, limit: 10 }), { refetchInterval: 1000 })
+  const { data } = useQuery("orderBook", () => newOrderBook.getBook({ symbol: ticker, limit: 10 }), { refetchInterval: 1000 })
 
-  function handleQuantity(volume: string, limit: string) {
-    const quantity = Number(volume) * Number(limit)
+  function handleQuantity(quantity: string, limit: string) {
+    console.log(quantity, limit)
+    const total = Number(quantity) * Number(limit)
 
-    setFieldValue("limit", Parser[ticker].currency(limit))
-    setFieldValue("volume", Parser[ticker].quantity(volume))
-    setFieldValue("quantity", Parser[ticker].currency(quantity.toString()))
+    setFieldValue("limit", Mask.currency(Number(limit), Decimal.USDT))
+    setFieldValue("quantity", Mask.currency(Number(quantity), Decimal.USD, "USD"))
+    setFieldValue("total", Mask.currency(Number(total)))
   }
 
   function handleLimit(limit: string) {
-    const quantity = Mask.unmaskAmountTether(_values.volume) / 100 * Number(limit)  
-    
-    setFieldValue("limit", Parser[ticker].currency(limit))
-    setFieldValue("quantity", Parser[ticker].currency(quantity.toString()))
+    const total = Parser.unmasker(_values.quantity, "US$") * Number(limit)
+
+    setFieldValue("limit", Mask.currency(Number(limit), Decimal.USDT))
+    setFieldValue("total", Mask.currency(Number(total)))
   }
 
+  let accBid = 0
+  let accAsk = 0
+  const bids: number[] = []
+  const asks: number[] = []
+
   return (
-    <>
-      {/* {(isLoading || isRefetching) && <Icon icon={AiOutlineLoading3Quarters} loading width={30} />} */}
-      <Table
-        tableStyle={{ height: "300px" }}
-        headers={[
-          { text: "Total", cellStyle: { textAlign: "right" } },
-          { text: "Preço", cellStyle: { textAlign: "right" } },
-          { text: "Preço", cellStyle: { textAlign: "left" } },
-          { text: "Total", cellStyle: { textAlign: "left" } }
-        ]}
-        rows={
-          data?.asks.map((ask, i) => {
-            return {
-              cell: [
-                {
-                  text: Parser[ticker].quantity(data?.bids[i][1] ?? ""),
-                  onClick: () => handleQuantity(data?.bids[i][1], data?.bids[i][0]),
-                  cellStyle: buyStyle,
-                },
-                {
-                  text: Parser[ticker].currency(data?.bids[i][0] ?? ""),
-                  onClick: () => handleLimit(data?.bids[i][0]),
-                  cellStyle: buyStyle,
-                },
-                {
-                  text: Parser[ticker].currency(ask[0]),
-                  onClick: () => handleLimit(ask[0]),
-                  cellStyle: sellStyle,
-                },
-                {
-                  text: Parser[ticker].quantity(ask[1]),
-                  onClick: () => handleQuantity(ask[1], ask[0]),
-                  cellStyle: sellStyle,
-                },
-              ]
-            }
-          })
-          ?? [{ cell: [{ text: "Carregando" }] }]
-        }
-      />
-    </>
+    <Table
+      tableStyle={{ height: "300px" }}
+      headers={[
+        { text: "Total", cellStyle: { textAlign: "right" } },
+        { text: "Preço", cellStyle: { textAlign: "right" } },
+        { text: "Preço", cellStyle: { textAlign: "left" } },
+        { text: "Total", cellStyle: { textAlign: "left" } }
+      ]}
+      rows={
+        data?.asks.map((ask, i) => {
+          accBid += Number(data?.bids[i][1])
+          accAsk += Number(ask[1])
+          bids.push(accBid)
+          asks.push(accAsk)
+
+          return {
+            cell: [
+              {
+                text: Mask.currency(bids[i], Decimal.USD, "USD"),
+                onClick: () => handleQuantity(bids[i].toString(), data?.bids[i][0]),
+                cellStyle: buyStyle,
+              },
+              {
+                text: Mask.currency(Number(data?.bids[i][0]), Decimal.USDT),
+                onClick: () => handleLimit(data?.bids[i][0]),
+                cellStyle: buyStyle,
+              },
+              {
+                text: Mask.currency(Number(ask[0]), Decimal.USDT),
+                onClick: () => handleLimit(ask[0]),
+                cellStyle: sellStyle,
+              },
+              {
+                text: Mask.currency(asks[i], Decimal.USD, "USD"),
+                onClick: () => handleQuantity(asks[i].toString(), ask[0]),
+                cellStyle: sellStyle,
+              },
+            ]
+          }
+        })
+        ?? [{ cell: [{ text: "Carregando" }] }]
+      }
+    />
   )
 }
 

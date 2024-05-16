@@ -6,12 +6,15 @@ import Subtitle from "../Subtitle"
 import Text from "../Text"
 import Subtext from "../Subtext"
 import { NotificationCardInterface } from "../../../interfaces"
+import Section from "../Section"
 
 const NotificationCard = ({ index, text, subtitle, subtext, toasterStyle }: NotificationCardInterface) => {
   return (
     <NotificationCardStyle {...toasterStyle}>
-      <Icon icon={MdClose} onClick={() => dispatchRemoveNotification(index)} topRight />
-      <Subtitle> {subtitle} </Subtitle>
+      <Section flexDirection="row" justifyContent="space-between">
+        <Subtitle> {subtitle} </Subtitle>
+        <Icon icon={MdClose} onClick={() => dispatchRemoveNotification(index)} />
+      </Section>
       <Text> {text} </Text>
       {subtext && <Subtext> {subtext} </Subtext>}
     </NotificationCardStyle>

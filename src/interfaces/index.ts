@@ -85,7 +85,6 @@ export interface IconProps {
     rounded?: boolean,
     applyPadding?: boolean,
     loading?: boolean,
-    topRight?: boolean,
 }
 
 export interface IconComponentInterface {
@@ -96,7 +95,6 @@ export interface IconComponentInterface {
     rounded?: boolean,
     applyPadding?: boolean,
     loading?: boolean,
-    topRight?: boolean,
 }
 
 export interface RowProps {

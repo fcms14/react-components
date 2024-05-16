@@ -2,10 +2,10 @@ import { Form, Formik } from "formik"
 import Input from "../../components/atoms/Input"
 import { Button } from "../../components/organisms/Button"
 import { dispatchAddNotification } from "../../features/toaster/toasterDispatcher"
-import { Mask } from "../../helpers/Mask"
 import OrderBook from "./orderBook"
 import { ButtonDefaultInterface } from "../../interfaces"
 import { useState } from "react"
+import { Decimal, Mask, Parser } from "../../helpers/Mask"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
@@ -15,8 +15,8 @@ export interface ExchangeFormIntercace {
   isLimitOrder: boolean
   isBuyOrder: boolean
   limit: string
+  total: string
   quantity: string
-  volume: string
 }
 
 const ExchangeForm = ({ children }: Interface) => {
@@ -26,8 +26,8 @@ const ExchangeForm = ({ children }: Interface) => {
     isLimitOrder: true,
     isBuyOrder: true,
     limit: "",
+    total: "",
     quantity: "",
-    volume: "",
   }
 
   const buttons: ButtonDefaultInterface[] = [
@@ -36,16 +36,12 @@ const ExchangeForm = ({ children }: Interface) => {
     { text: "Ordens Executadas", buttonStyle: { active: true, secondary: !(showPanel === "OrderHistory") }, onClick: () => { setShowPanel("OrderHistory") } },
   ]
 
-  function handleBase(values: ExchangeFormIntercace) {
-    return Mask.currencyTether((
-      (Mask.unmaskAmount(values.quantity) / Mask.unmaskAmount(values.limit)) * 100
-    ).toFixed(0))
+  function handleQuantity(total: string, limit: string) {
+    return Mask.currency(Parser.unmasker(total) / Parser.unmasker(limit), Decimal.BRL, "USD")
   }
 
-  function handleTotal(values: ExchangeFormIntercace) {
-    return Mask.currencyBrl((
-      (Mask.unmaskAmountTether(values.volume) * Mask.unmaskAmount(values.limit)) / 100
-    ).toFixed(0))
+  function handleTotal(quantity: string, limit: string) {
+    return Mask.currency(Parser.unmasker(quantity, "US$") * Parser.unmasker(limit))
   }
 
   return (
@@ -58,8 +54,9 @@ const ExchangeForm = ({ children }: Interface) => {
               <section>
                 {values.isLimitOrder &&
                   <Input
-                    onChange={() => setFieldValue("volume", handleBase(values))}
-                    mask={"currencyBrl"}
+                    onChange={(value: string) => setFieldValue("total", handleTotal(values.quantity, value))}
+                    mask={"currency"}
+                    maskConfig="usdQuote"
                     label="Preço Limite"
                     name={"limit"}
                     type={"text"}
@@ -67,18 +64,19 @@ const ExchangeForm = ({ children }: Interface) => {
                   />
                 }
                 <Input
-                  onChange={() => setFieldValue("quantity", handleTotal(values))}
-                  mask={"currencyTether"}
+                  onChange={(value: string) => setFieldValue("total", handleTotal(value, values.limit))}
+                  mask={"currency"}
+                  maskConfig="usdCurrency"
                   label="Quantidade: Tether"
-                  name={"volume"}
+                  name={"quantity"}
                   type={"text"}
                   inputMode={"numeric"}
                 />
                 <Input
-                  onChange={() => setFieldValue("volume", handleBase(values))}
-                  mask={"currencyBrl"}
+                  onChange={(value: string) => setFieldValue("quantity", handleQuantity(value, values.limit))}
+                  mask={"currency"}
                   label="Quantidade: Reais"
-                  name={"quantity"}
+                  name={"total"}
                   type={"text"}
                   inputMode={"numeric"}
                 />

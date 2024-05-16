@@ -13,7 +13,7 @@ import { MenuRowInterface } from "../../interfaces"
 
 const Index = () => {
   const navigate = useNavigate()
-  const balance = Mask.currencyBrl("9534278012")
+  const balance = Mask.currency(95342780.12)
 
   const items: MenuRowInterface[] = [
     {
