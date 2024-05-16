@@ -6,8 +6,15 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(
-    (config) => config,
-    (error) => console.log(error)
+    (config) => {
+        const token = localStorage.getItem('token')
+        if (!config.url?.includes("binance") && token) {
+            config.headers.Authorization = `Bearer ${token}`
+        }
+
+        return config
+    },
+    (error) => { }
 );
 
 api.interceptors.response.use(
@@ -19,12 +26,20 @@ api.interceptors.response.use(
             subtitle: message ?? "",
             text: shortMessage ?? "",
             subtext: code ?? "",
-            toasterStyle: { type: "success" },
+            toasterStyle: { type: "error" },
             active: true,
         })
 
+        if (message === 'Unauthorized' && !response.config.url.includes("/auth/login")) {
+            const language = localStorage.getItem('language') || 'ptbr'
+            localStorage.clear()
+            localStorage.setItem("language", language)
+            window.location.replace('/');
+            return ('/')
+        }
+
         return Promise.reject(response)
-    }    
+    }
 );
 
 export default api;

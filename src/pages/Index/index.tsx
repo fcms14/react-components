@@ -29,7 +29,6 @@ const Index = () => {
   ];
 
   return (
-
     <ViewPort>
       <Header.Default text="Index" />
       <main>

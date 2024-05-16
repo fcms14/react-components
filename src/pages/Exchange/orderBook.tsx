@@ -12,10 +12,9 @@ const OrderBook = () => {
   const sellStyle: CellProps = { color: "#FF2F21", textAlign: "left" }
   const { setFieldValue, values } = useFormikContext()
   const _values = values as ExchangeFormIntercace
-  const { data } = useQuery("orderBook", () => newOrderBook.getBook({ symbol: ticker, limit: 10 }), { refetchInterval: 1000 })
+  const { data } = useQuery("orderBook", () => newOrderBook.getBook({ symbol: ticker, limit: 10 }), { refetchInterval: 5000 })
 
   function handleQuantity(quantity: string, limit: string) {
-    console.log(quantity, limit)
     const total = Number(quantity) * Number(limit)
 
     setFieldValue("limit", Mask.currency(Number(limit), Decimal.USDT))

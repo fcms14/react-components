@@ -11,7 +11,7 @@ import Section from "../Section"
 const NotificationCard = ({ index, text, subtitle, subtext, toasterStyle }: NotificationCardInterface) => {
   return (
     <NotificationCardStyle {...toasterStyle}>
-      <Section flexDirection="row" justifyContent="space-between">
+      <Section flexDirection="row" justifyContent="space-between" alignItems="flex-start">
         <Subtitle> {subtitle} </Subtitle>
         <Icon icon={MdClose} onClick={() => dispatchRemoveNotification(index)} />
       </Section>

@@ -7,7 +7,7 @@ import { InputMask, MaskType, MaskConfigTypes, configOptions } from "../../../he
 interface Interface {
     label: string
     type: string
-    mask: MaskType
+    mask?: MaskType
     maskConfig?: MaskConfigTypes
     inputMode?: string
     onChange?: (value: string) => void
@@ -18,7 +18,9 @@ interface Interface {
 const Input = ({ label, type, mask, maskConfig, name, inputStyle, onChange, inputMode }: Interface) => {
     const { setFieldValue } = useFormikContext()
 
-    function handleChange(e: BaseSyntheticEvent) {
+    function handleChange(e: BaseSyntheticEvent, mask: MaskType) {
+        if (!mask) return
+
         const config = configOptions[maskConfig ?? "default"]
         const value = InputMask[mask](e.currentTarget.value, config)
         setFieldValue(e.currentTarget.name, value)
@@ -35,10 +37,10 @@ const Input = ({ label, type, mask, maskConfig, name, inputStyle, onChange, inpu
                 type={type}
                 inputMode={inputMode}
                 onKeyUp={(e: BaseSyntheticEvent) => {
-                    const value = handleChange(e);
+                    const value = mask ? handleChange(e, mask) : e.currentTarget.value;
                     onChange?.(value)
                 }}
-                onKeyDown={handleChange}
+                onKeyDown={mask ? handleChange : undefined}
             />
             <LabelStyle htmlFor={name}> {label} </LabelStyle>
         </InputSpanStyle>

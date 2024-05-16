@@ -13,7 +13,8 @@ interface OrderBookResponse {
 
 class OrderBook extends Entity {
     constructor() {
-        const endpoint = 'https://api.binance.com/api/v3'
+        const target = import.meta.env.VITE_API_BINANCE
+        const endpoint = `${target}/api/v3`
         super(endpoint)
     }
 

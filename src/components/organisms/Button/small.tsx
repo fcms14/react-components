@@ -10,7 +10,7 @@ const ButtonSmall = ({ text, onClick, iconSize, buttonStyle }: ButtonDefaultInte
   return (
     <Button.Root buttonStyle={{ ...buttonStyle, small: true }} onClick={onClick}>
       <Button.Subtitle titleStyle={{ color: color }}> {text} </Button.Subtitle>
-      {buttonStyle?.isLoading && <Button.Icon color={color} loading={buttonStyle.isLoading} width={_iconSize} icon={AiOutlineLoading3Quarters} />}
+      {buttonStyle?.isLoading && <Button.Icon color={color} isLoading={buttonStyle.isLoading} width={_iconSize} icon={AiOutlineLoading3Quarters} />}
     </Button.Root>
   )
 }

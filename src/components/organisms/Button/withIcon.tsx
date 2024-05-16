@@ -21,7 +21,7 @@ const ButtonWithIcon = ({ text, icon, iconSize, onClick, iconBefore, buttonStyle
   return (
     <Button.Root buttonStyle={_buttonStyle} onClick={onClick}>
       <Button.Title titleStyle={{ color: color }}> {text} </Button.Title>
-      <Button.Icon color={color} loading={buttonStyle?.isLoading} width={_iconSize} icon={buttonStyle?.isLoading ? AiOutlineLoading3Quarters : icon} />
+      <Button.Icon color={color} isLoading={buttonStyle?.isLoading} width={_iconSize} icon={buttonStyle?.isLoading ? AiOutlineLoading3Quarters : icon} />
     </Button.Root>
   )
 }

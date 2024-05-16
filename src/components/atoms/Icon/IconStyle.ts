@@ -14,7 +14,7 @@ const IconStyle = styled.div<IconProps>`
   padding: ${props => props.applyPadding ? props.theme.padding.icon : undefined};
   cursor: ${props => props.cursor};
   
-  ${props => props.loading && css`
+  ${props => props.isLoading && css`
     animation: ${animation} 1s linear infinite;
   `}
 

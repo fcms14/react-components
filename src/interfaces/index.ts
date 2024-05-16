@@ -84,7 +84,7 @@ export interface IconProps {
     cursor: string,
     rounded?: boolean,
     applyPadding?: boolean,
-    loading?: boolean,
+    isLoading?: boolean,
 }
 
 export interface IconComponentInterface {
@@ -94,7 +94,7 @@ export interface IconComponentInterface {
     color?: string,
     rounded?: boolean,
     applyPadding?: boolean,
-    loading?: boolean,
+    isLoading?: boolean,
 }
 
 export interface RowProps {
@@ -173,7 +173,7 @@ export interface MenuRowInterface {
 
 export interface ButtonDefaultInterface {
     text: string,
-    onClick: () => void,
+    onClick?: () => void,
     iconSize?: number,
     buttonStyle?: ButtonProps
 }

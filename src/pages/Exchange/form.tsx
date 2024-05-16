@@ -85,8 +85,8 @@ const ExchangeForm = ({ children }: Interface) => {
                 text={values.isBuyOrder ? "Comprar" : "Vender"}
                 onClick={() => dispatchAddNotification(
                   {
-                    subtitle: `Ordem enviada ${Math.random().toFixed(2)}`,
-                    text: "Aguarde o processamento de sua ordem",
+                    subtitle: `Ordem de ${values.isBuyOrder ? "compra" : "venda"} enviada`,
+                    text: `Ordem no valor de ${values.total}`,
                     subtext: "Acompanhe em sua lista de ordens abertas",
                     toasterStyle: { type: "success" },
                     active: true,

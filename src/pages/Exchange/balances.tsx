@@ -4,14 +4,24 @@ import { RowProps } from "../../interfaces"
 import { theme } from "../../providers/theme"
 import { ExchangeFormIntercace } from "./form"
 import { Decimal, Mask, Parser } from "../../helpers/Mask"
+import { newUserAccount } from "../../entities/UserAccount"
+import { useQuery } from "react-query"
 
 const ExchangeBalances = () => {
+    const { data } = useQuery("userAccount", () => newUserAccount.list(), { staleTime: 30000, cacheTime: 30000 })
+
+    const _brl = data?.find((value) => value.name === "BRL")?.balance ?? 0
+    const _usd = data?.find((value) => value.name === "USDT")?.balance ?? 0
+
+    const brl = Parser.intToFloat(_brl)
+    const tether = Parser.intToFloat(_usd)
+
     const { setFieldValue, values } = useFormikContext()
-    const rowStyle: RowProps = { borderBottom: `1px solid ${theme.colors.main.stroke}` }
     const _values = values as ExchangeFormIntercace
+
     const quote = Parser.unmasker(_values.limit)
-    const brl = Parser.intToFloat(50000)
-    const tether = Parser.intToFloat(50000)
+
+    const rowStyle: RowProps = { borderBottom: `1px solid ${theme.colors.main.stroke}` }
 
     function handle(total: number, quantity: number) {
         setFieldValue("quantity", Mask.currency(quantity, Decimal.USD, "USD"))
