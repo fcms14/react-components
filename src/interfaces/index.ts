@@ -31,7 +31,7 @@ export interface FontSizeInterface {
     title: SizeInterface,
     subtitle: SizeInterface,
     text: SizeInterface,
-    caption: SubSizeInterface,
+    subtext: SubSizeInterface,
 }
 
 interface SizeInterface {
@@ -60,6 +60,9 @@ export interface SectionProps {
     gap?: string,
     flexDirection?: string,
     justifyContent?: string,
+    textalign?: string,
+    borderBotom?: boolean,
+    padding?: boolean,
 }
 
 export interface FontProps {
@@ -70,7 +73,7 @@ export interface FontProps {
     cursor?: string,
 }
 
-export interface CaptionProps {
+export interface SubtextProps {
     size?: 'small' | 'default' | 'big',
     parent?: 'header' | 'main',
     element?: 'title' | 'font',
@@ -81,8 +84,7 @@ export interface IconProps {
     cursor: string,
     rounded?: boolean,
     applyPadding?: boolean,
-    loading?: boolean,
-    topRight?: boolean,
+    isLoading?: boolean,
 }
 
 export interface IconComponentInterface {
@@ -92,8 +94,7 @@ export interface IconComponentInterface {
     color?: string,
     rounded?: boolean,
     applyPadding?: boolean,
-    loading?: boolean,
-    topRight?: boolean,
+    isLoading?: boolean,
 }
 
 export interface RowProps {
@@ -120,8 +121,20 @@ export interface ButtonProps {
     active?: boolean,
     isLoading?: boolean,
     secondary?: boolean,
+    small?: boolean,
     color?: string,
     type?: "button" | "submit" | "reset" | undefined,
+    whiteSpace?: string;
+}
+
+export interface CellProps {
+    textAlign?: "center" | "right" | "left"
+    color?: string
+    cursor?: string
+}
+
+export interface TableProps {
+    height?: string
 }
 
 export interface ToggleSpanProps {
@@ -137,7 +150,7 @@ export interface NotificationInterface {
     active: boolean,
     text: string,
     subtitle: string,
-    caption?: string,
+    subtext?: string,
     toasterStyle: ToasterProps,
 }
 
@@ -156,6 +169,13 @@ export interface MenuRowInterface {
     text: string,
     iconSize?: number,
     icon: IconType,
+}
+
+export interface ButtonDefaultInterface {
+    text: string,
+    onClick?: () => void,
+    iconSize?: number,
+    buttonStyle?: ButtonProps
 }
 
 export interface ColorByType {

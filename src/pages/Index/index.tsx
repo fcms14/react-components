@@ -13,7 +13,7 @@ import { MenuRowInterface } from "../../interfaces"
 
 const Index = () => {
   const navigate = useNavigate()
-  const balance = Mask.currencyBrl("9534278012")
+  const balance = Mask.currency(95342780.12)
 
   const items: MenuRowInterface[] = [
     {
@@ -36,6 +36,8 @@ const Index = () => {
         <Breadcrumb paths={["Um", "Dois", "Tres", "Quatro", "Um", "Dois", "Tres", "Quatro"]} />
         <Row.Menu items={items} />
         <Button.Default text="Negociar" onClick={() => navigate('/exchange')} buttonStyle={{ active: true }} />
+        <Row.FourColumnRow borderBotom text={["Total", "Preço", "Preço", "Total"]} color={["", "", "", ""]} />
+        <Row.FourColumnRow borderBotom text={["R$ 5000", "R$5.15", "5.20", "R$ 300"]} color={["red", "red", "green", "green"]} />
         <List />
       </main>
       <footer>

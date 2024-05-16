@@ -17,7 +17,7 @@ const ButtonOnlyIcon = ({ icon, iconSize, onClick, buttonStyle }: Interface) => 
 
   return (
     <Button.Root buttonStyle={{ width: "fit-content", ...buttonStyle }} onClick={onClick}>
-      <Button.Icon color={color} loading={buttonStyle?.isLoading} width={_iconSize} icon={buttonStyle?.isLoading ? AiOutlineLoading3Quarters : icon}/>
+      <Button.Icon color={color} isLoading={buttonStyle?.isLoading} width={_iconSize} icon={buttonStyle?.isLoading ? AiOutlineLoading3Quarters : icon}/>
     </Button.Root>
   )
 }

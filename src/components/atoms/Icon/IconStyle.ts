@@ -13,14 +13,8 @@ const IconStyle = styled.div<IconProps>`
   justify-content: center;
   padding: ${props => props.applyPadding ? props.theme.padding.icon : undefined};
   cursor: ${props => props.cursor};
-
-  ${props => props.topRight && css`
-    position: absolute;
-    top: ${props.theme.gap};
-    right: 8px;
-  `}
   
-  ${props => props.loading && css`
+  ${props => props.isLoading && css`
     animation: ${animation} 1s linear infinite;
   `}
 

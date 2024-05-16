@@ -2,23 +2,29 @@ import InputStyle, { InputSpanStyle, LabelStyle } from "./InputStyle"
 import { InputProps } from "../../../interfaces"
 import { useFormikContext } from "formik"
 import { BaseSyntheticEvent } from "react"
-import { Mask, MaskType } from "../../../helpers/Mask"
+import { InputMask, MaskType, MaskConfigTypes, configOptions } from "../../../helpers/Mask"
 
 interface Interface {
     label: string
     type: string
-    mask: MaskType
+    mask?: MaskType
+    maskConfig?: MaskConfigTypes
     inputMode?: string
-    onChange?: () => void
+    onChange?: (value: string) => void
     name: string
     inputStyle?: InputProps
 }
 
-const Input = ({ label, type, mask, name, inputStyle, onChange, inputMode }: Interface) => {
+const Input = ({ label, type, mask, maskConfig, name, inputStyle, onChange, inputMode }: Interface) => {
     const { setFieldValue } = useFormikContext()
 
-    function handleChange(e: BaseSyntheticEvent) {
-        setFieldValue(e.currentTarget.name, Mask[mask](e.currentTarget.value))
+    function handleChange(e: BaseSyntheticEvent, mask: MaskType) {
+        if (!mask) return
+
+        const config = configOptions[maskConfig ?? "default"]
+        const value = InputMask[mask](e.currentTarget.value, config)
+        setFieldValue(e.currentTarget.name, value)
+        return value
     }
 
     return (
@@ -31,10 +37,10 @@ const Input = ({ label, type, mask, name, inputStyle, onChange, inputMode }: Int
                 type={type}
                 inputMode={inputMode}
                 onKeyUp={(e: BaseSyntheticEvent) => {
-                    handleChange(e);
-                    onChange?.()
+                    const value = mask ? handleChange(e, mask) : e.currentTarget.value;
+                    onChange?.(value)
                 }}
-                onKeyDown={handleChange}
+                onKeyDown={mask ? handleChange : undefined}
             />
             <LabelStyle htmlFor={name}> {label} </LabelStyle>
         </InputSpanStyle>

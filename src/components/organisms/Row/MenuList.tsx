@@ -1,4 +1,3 @@
-import { IconType } from "react-icons"
 import { MenuRowInterface, RowProps } from "../../../interfaces"
 import { Row } from "../../molecules/Row"
 import { theme } from "../../../providers/theme"
@@ -7,7 +6,7 @@ interface Interface {
   items: MenuRowInterface[]
 }
 
-const Menurows = ({ items }: Interface) => {
+const MenuList = ({ items }: Interface) => {
   const rowStyle: RowProps = {
     borderBottom: `1px solid ${theme.colors.main.stroke}`,
   }
@@ -25,4 +24,4 @@ const Menurows = ({ items }: Interface) => {
   )
 }
 
-export default Menurows
+export default MenuList

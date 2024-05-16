@@ -3,7 +3,7 @@ import ButtonStyle from "./ButtonStyle"
 import { ButtonProps } from "../../../interfaces"
 
 interface Interface {
-  onClick: () => void,
+  onClick?: () => void,
   children: ReactNode,
   buttonStyle?: ButtonProps
 }
@@ -13,7 +13,7 @@ const ButtonRoot = ({ children, buttonStyle, onClick }: Interface) => {
   const _onClick = isActive ? onClick : undefined
   
   return (
-    <ButtonStyle {...buttonStyle} onClick={_onClick}>
+    <ButtonStyle disabled={!isActive} {...buttonStyle} onClick={_onClick}>
       {children}
     </ButtonStyle >
   )
