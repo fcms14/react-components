@@ -6,6 +6,9 @@ import OrderBook from "./orderBook"
 import { ButtonDefaultInterface } from "../../interfaces"
 import { useState } from "react"
 import { Decimal, Mask, Parser } from "../../helpers/Mask"
+import OrdersOpened from "./OrdersOpened"
+import { useMutation, useQueryClient } from "react-query"
+import { PlaceOrder, newOrder } from "../../entities/Order"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
@@ -20,7 +23,11 @@ export interface ExchangeFormIntercace {
 }
 
 const ExchangeForm = ({ children }: Interface) => {
-  const [showPanel, setShowPanel] = useState<"OrderBook" | "OrderOpen" | "OrderHistory">("OrderBook")
+  const queryClient = useQueryClient();
+  const [showPanel, setShowPanel] = useState<"OrderBook" | "OrdersOpened" | "OrderHistory">("OrderBook")
+  const [isLoading, setIsLoading] = useState(false)
+
+  queryClient.refetchQueries({ queryKey: ['ordersOpened'] })
 
   const initialValues: ExchangeFormIntercace = {
     isLimitOrder: true,
@@ -30,10 +37,26 @@ const ExchangeForm = ({ children }: Interface) => {
     quantity: "",
   }
 
+  const mutation = useMutation(newOrder.place, {
+    onSuccess: ({ }) => { },
+    onError: () => { },
+  })
+
+  const submitForm = async (values: PlaceOrder) => {
+    setIsLoading(true)
+    try {
+      const uuid = await mutation.mutateAsync(values)
+      // console.log(uuid) wip ToDo - sse
+      setIsLoading(false)
+    } catch (error) {
+      setIsLoading(false)
+    }
+  }
+
   const buttons: ButtonDefaultInterface[] = [
-    { text: "Livro de Ofertas", buttonStyle: { active: true, secondary: !(showPanel === "OrderBook") }, onClick: () => { setShowPanel("OrderBook") } },
-    { text: "Ordens Abertas", buttonStyle: { active: true, secondary: !(showPanel === "OrderOpen") }, onClick: () => { setShowPanel("OrderOpen") } },
-    { text: "Ordens Executadas", buttonStyle: { active: true, secondary: !(showPanel === "OrderHistory") }, onClick: () => { setShowPanel("OrderHistory") } },
+    { text: "Livro de Ofertas", buttonStyle: { type: "button", active: true, secondary: !(showPanel === "OrderBook") }, onClick: () => { setShowPanel("OrderBook") } },
+    { text: "Ordens Abertas", buttonStyle: { type: "button", active: true, secondary: !(showPanel === "OrdersOpened") }, onClick: () => { setShowPanel("OrdersOpened") } },
+    { text: "Ordens Executadas", buttonStyle: { type: "button", active: true, secondary: !(showPanel === "OrderHistory") }, onClick: () => { setShowPanel("OrderHistory") } },
   ]
 
   function handleQuantity(total: string, limit: string) {
@@ -46,7 +69,16 @@ const ExchangeForm = ({ children }: Interface) => {
 
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={(values) => { }} >
+      <Formik initialValues={initialValues} onSubmit={(values) =>
+        submitForm({
+          account_debit: "2c67cfab-7dd1-49a6-88fb-0df935c7f88c",
+          account_credit: "c97904b1-ec1c-4816-87ff-3a7f5fcbf19d",
+          amount: Parser.unmasker(values.quantity, "US$") * 100,
+          price: Number((Parser.unmasker(values.limit, "R$") * 100).toFixed(0)),
+          type: values.isLimitOrder ? "LIMIT" : "MARKET",
+          side: values.isBuyOrder ? "BUY" : "SELL",
+        })
+      }>
         {({ values, errors, touched, setFieldValue }) => (
           <Form>
             {children}
@@ -93,9 +125,10 @@ const ExchangeForm = ({ children }: Interface) => {
                   }
                 )}
                 buttonStyle={{
-                  active: true,
+                  // active: true,
+                  active: (!isLoading && !!values.limit && !!values.quantity || !!values.total),
                   color: values.isBuyOrder ? "#0D9E00" : "#FF2F21",
-                  isLoading: false,
+                  isLoading: isLoading,
                   secondary: false,
                   type: "submit",
                 }}
@@ -104,6 +137,8 @@ const ExchangeForm = ({ children }: Interface) => {
             <aside>
               <Button.Panel buttons={buttons} />
               {showPanel === "OrderBook" && <OrderBook />}
+              {showPanel === "OrdersOpened" && <OrdersOpened />}
+              {showPanel === "OrderHistory" && <OrdersOpened />}
             </aside>
           </Form>
         )}

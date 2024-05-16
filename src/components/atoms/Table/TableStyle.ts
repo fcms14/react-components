@@ -30,7 +30,7 @@ const TableStyle = styled.table`
 `
 
 export const TableWrapper = styled.div<TableProps>`
-    max-height: ${({ height }) => height};
+    height: ${({ height }) => height};
     overflow-y: auto;
 `
 

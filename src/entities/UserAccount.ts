@@ -1,11 +1,6 @@
 import Entity from "./Entity";
 import { UserRespose } from "./User";
 
-export interface DepthInterface {
-    symbol: string
-    limit?: number
-}
-
 export interface UserAccountResponse {
     uuid: string;
     user_uuid: string;

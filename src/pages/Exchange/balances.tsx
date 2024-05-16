@@ -8,7 +8,7 @@ import { newUserAccount } from "../../entities/UserAccount"
 import { useQuery } from "react-query"
 
 const ExchangeBalances = () => {
-    const { data } = useQuery("userAccount", () => newUserAccount.list(), { staleTime: 30000, cacheTime: 30000 })
+    const { data } = useQuery("userAccount", () => newUserAccount.list(), { staleTime: Infinity, cacheTime: Infinity })
 
     const _brl = data?.find((value) => value.name === "BRL")?.balance ?? 0
     const _usd = data?.find((value) => value.name === "USDT")?.balance ?? 0
