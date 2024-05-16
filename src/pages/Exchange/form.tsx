@@ -27,8 +27,6 @@ const ExchangeForm = ({ children }: Interface) => {
   const [showPanel, setShowPanel] = useState<"OrderBook" | "OrdersOpened" | "OrderHistory">("OrderBook")
   const [isLoading, setIsLoading] = useState(false)
 
-  queryClient.refetchQueries({ queryKey: ['ordersOpened'] })
-
   const initialValues: ExchangeFormIntercace = {
     isLimitOrder: true,
     isBuyOrder: true,
@@ -46,6 +44,7 @@ const ExchangeForm = ({ children }: Interface) => {
     setIsLoading(true)
     try {
       const uuid = await mutation.mutateAsync(values)
+      queryClient.refetchQueries({ queryKey: ['ordersOpened'] })
       // console.log(uuid) wip ToDo - sse
       setIsLoading(false)
     } catch (error) {
