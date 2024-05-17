@@ -3,6 +3,7 @@ import Error from "../pages/Error";
 import Index from "../pages/Index";
 import Exchange from "../pages/Exchange";
 import Login from "../pages/Login";
+import ApiDocs from "../pages/Docs";
 
 export const Routes = createBrowserRouter([
   {
@@ -13,6 +14,11 @@ export const Routes = createBrowserRouter([
   {
     path: "/testes",
     element: <Index />,
+    ErrorBoundary: Error
+  },
+  {
+    path: "/api-docs",
+    element: <ApiDocs />,
     ErrorBoundary: Error
   },
   {
