@@ -36,21 +36,23 @@ const ExchangeForm = ({ children }: Interface) => {
   }
 
   const mutation = useMutation(newOrder.place, {
-    onSuccess: ({ }) => { },
-    onError: () => { },
-  })
-
-  const submitForm = async (values: PlaceOrder) => {
-    setIsLoading(true)
-    try {
-      const uuid = await mutation.mutateAsync(values)
+    onSuccess: ({ status, uuid }) => {
       queryClient.refetchQueries({ queryKey: ['ordersOpened'] })
-      // console.log(uuid) wip ToDo - sse
       setIsLoading(false)
-    } catch (error) {
+      dispatchAddNotification(
+        {
+          subtitle: `Ordem ${uuid} criada`,
+          text: `Status: ${status}`,
+          subtext: "Acompanhe em sua lista de ordens abertas",
+          toasterStyle: { type: "success" },
+          active: true,
+        }
+      )
+    },
+    onError: (values) => {
       setIsLoading(false)
-    }
-  }
+    },
+  })
 
   const buttons: ButtonDefaultInterface[] = [
     { text: "Livro de Ofertas", buttonStyle: { type: "button", active: true, secondary: !(showPanel === "OrderBook") }, onClick: () => { setShowPanel("OrderBook") } },
@@ -68,8 +70,9 @@ const ExchangeForm = ({ children }: Interface) => {
 
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={(values) =>
-        submitForm({
+      <Formik initialValues={initialValues} onSubmit={(values) => {
+        setIsLoading(true)
+        mutation.mutate({
           account_debit: "2c67cfab-7dd1-49a6-88fb-0df935c7f88c",
           account_credit: "c97904b1-ec1c-4816-87ff-3a7f5fcbf19d",
           amount: Parser.unmasker(values.quantity, "US$") * 100,
@@ -77,7 +80,7 @@ const ExchangeForm = ({ children }: Interface) => {
           type: values.isLimitOrder ? "LIMIT" : "MARKET",
           side: values.isBuyOrder ? "BUY" : "SELL",
         })
-      }>
+      }}>
         {({ values, errors, touched, setFieldValue }) => (
           <Form>
             {children}
@@ -114,22 +117,11 @@ const ExchangeForm = ({ children }: Interface) => {
               </section>
               <Button.Default
                 text={values.isBuyOrder ? "Comprar" : "Vender"}
-                onClick={() => dispatchAddNotification(
-                  {
-                    subtitle: `Ordem de ${values.isBuyOrder ? "compra" : "venda"} enviada`,
-                    text: `Ordem no valor de ${values.total}`,
-                    subtext: "Acompanhe em sua lista de ordens abertas",
-                    toasterStyle: { type: "success" },
-                    active: true,
-                  }
-                )}
                 buttonStyle={{
-                  // active: true,
                   active: (!isLoading && !!values.limit && !!values.quantity || !!values.total),
-                  color: values.isBuyOrder ? "#0D9E00" : "#FF2F21",
                   isLoading: isLoading,
-                  secondary: false,
                   type: "submit",
+                  color: values.isBuyOrder ? "#0D9E00" : "#FF2F21",
                 }}
               />
             </main>

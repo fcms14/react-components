@@ -3,6 +3,7 @@ import { dispatchAddNotification } from '../features/toaster/toasterDispatcher';
 
 const api = axios.create({
     baseURL: "",
+    timeout: 10000
 });
 
 api.interceptors.request.use(
@@ -19,8 +20,9 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
     (response) => response,
-    ({ response }) => {
-        const { code, message, shortMessage } = response.data
+    (response) => {
+        const data = response?.response?.data ?? response
+        const { code, message, shortMessage } = data
 
         dispatchAddNotification({
             subtitle: message ?? "",
@@ -30,7 +32,7 @@ api.interceptors.response.use(
             active: true,
         })
 
-        if (message === 'Unauthorized' && !response.config.url.includes("/auth/login")) {
+        if (message === 'Unauthorized' && !response?.response?.config?.url.includes("/auth/login")) {
             const language = localStorage.getItem('language') || 'ptbr'
             localStorage.clear()
             localStorage.setItem("language", language)
@@ -38,7 +40,7 @@ api.interceptors.response.use(
             return ('/')
         }
 
-        return Promise.reject(response)
+        return Promise.reject(response?.response ?? response)
     }
 );
 
