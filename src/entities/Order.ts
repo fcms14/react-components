@@ -1,4 +1,4 @@
-import Entity from "./Entity"
+import Api from "./Api"
 
 export interface OrderStatus {
     NEW: 'NEW'
@@ -31,9 +31,9 @@ export interface OrderResponse {
     account_credit: string
     amount: number
     price: number
-    status: OrderStatus
-    type: OrderType
-    side: OrderSide
+    status: keyof OrderStatus
+    type: keyof OrderType
+    side: keyof OrderSide
     fee_value: number
     user_fee_id: number
     order_id: number
@@ -47,7 +47,11 @@ export interface OrderResponse {
 
 export interface SseOrder {
     uuid: string
-    status: OrderStatus
+    status: keyof OrderStatus
+}
+
+export interface ListInterface {
+    status: keyof OrderStatus
 }
 
 export interface PlaceOrder {
@@ -59,18 +63,16 @@ export interface PlaceOrder {
     side: string
 }
 
-class Order extends Entity {
+class Order extends Api {
     constructor() {
-        const target = import.meta.env.VITE_API_URL
-        const endpoint = `${target}/order`
-        super(endpoint)
+        super('/order')
     }
 
-    list = (uuid: string, status: string) => this.get<OrderResponse[]>(`/${uuid}?status=${status}`)
+    list = (uuid: string, params: ListInterface) => this.get<OrderResponse[], ListInterface>({ path: `/${uuid}`, params: params })
 
-    place = (body: PlaceOrder) => this.post<SseOrder>('', body)
+    place = (body: PlaceOrder) => this.post<SseOrder, any, PlaceOrder>({ path: '', body: body })
 
-    cancel = (uuid: string) => this.delete<OrderResponse>(`/${uuid}`)
+    cancel = (uuid: string) => this.delete<OrderResponse>({ path: `/${uuid}` })
 }
 
-export const newOrder = new Order
+export default Order

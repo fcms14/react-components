@@ -1,10 +1,12 @@
 import { useQuery } from "react-query"
 import Table from "../../components/atoms/Table"
 import { Decimal, Mask, Parser } from "../../helpers/Mask"
-import { newOrder } from "../../entities/Order"
+import Order from "../../entities/Order"
 
 const OrdersOpened = () => {
-  const { data, refetch } = useQuery("ordersOpened", () => newOrder.list("c97904b1-ec1c-4816-87ff-3a7f5fcbf19d", "OPEN"), { staleTime: Infinity, cacheTime: Infinity })
+  const newOrder = new Order
+  const { data, refetch } = useQuery("ordersOpened", () => newOrder.list("c97904b1-ec1c-4816-87ff-3a7f5fcbf19d", { status: "OPEN" }), { staleTime: Infinity, cacheTime: Infinity })
+  console.log(data)
 
   async function handleCancel(uuid: string) {
     try {

@@ -1,21 +1,11 @@
 import axios from 'axios';
 import { dispatchAddNotification } from '../features/toaster/toasterDispatcher';
 
-const api = axios.create({
-    baseURL: "",
-    timeout: 10000
-});
+const api = axios.create({ timeout: 30000 });
 
 api.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem('token')
-        if (!config.url?.includes("binance") && token) {
-            config.headers.Authorization = `Bearer ${token}`
-        }
-
-        return config
-    },
-    (error) => { }
+    (config) => config,
+    (error) => console.log(error)
 );
 
 api.interceptors.response.use(
@@ -32,7 +22,7 @@ api.interceptors.response.use(
             active: true,
         })
 
-        if (message === 'Unauthorized' && !response?.response?.config?.url.includes("/auth/login")) {
+        if (message === 'Unauthorized' && !response?.response?.config?.url.includes("/login")) {
             const language = localStorage.getItem('language') || 'ptbr'
             localStorage.clear()
             localStorage.setItem("language", language)

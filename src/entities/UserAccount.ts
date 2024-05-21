@@ -1,4 +1,4 @@
-import Entity from "./Entity";
+import Api from "./Api";
 import { UserRespose } from "./User";
 
 export interface UserAccountResponse {
@@ -20,15 +20,12 @@ export interface UserAccountResponse {
     User?: UserRespose;
 }
 
-class UserAccount extends Entity {
+class UserAccount extends Api {
     constructor() {
-        const target = import.meta.env.VITE_API_URL
-        const endpoint = `${target}/user-account`
-        super(endpoint)
+        super('/user-account')
     }
 
-    list = () => this.get<UserAccountResponse[]>('')
-
+    list = () => this.get<UserAccountResponse[]>({ path: '' })
 }
 
-export const newUserAccount = new UserAccount
+export default UserAccount

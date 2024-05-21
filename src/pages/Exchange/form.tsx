@@ -2,13 +2,13 @@ import { Form, Formik } from "formik"
 import Input from "../../components/atoms/Input"
 import { Button } from "../../components/organisms/Button"
 import { dispatchAddNotification } from "../../features/toaster/toasterDispatcher"
-import OrderBook from "./orderBook"
+import OrderBookTable from "./orderBookTable"
 import { ButtonDefaultInterface } from "../../interfaces"
 import { useState } from "react"
 import { Decimal, Mask, Parser } from "../../helpers/Mask"
-import OrdersOpened from "./OrdersOpened"
+import OrdersOpened from "./ordersOpened"
 import { useMutation, useQueryClient } from "react-query"
-import { PlaceOrder, newOrder } from "../../entities/Order"
+import Order from "../../entities/Order"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
@@ -23,6 +23,7 @@ export interface ExchangeFormIntercace {
 }
 
 const ExchangeForm = ({ children }: Interface) => {
+  const newOrder = new Order
   const queryClient = useQueryClient();
   const [showPanel, setShowPanel] = useState<"OrderBook" | "OrdersOpened" | "OrderHistory">("OrderBook")
   const [isLoading, setIsLoading] = useState(false)
@@ -127,7 +128,7 @@ const ExchangeForm = ({ children }: Interface) => {
             </main>
             <aside>
               <Button.Panel buttons={buttons} />
-              {showPanel === "OrderBook" && <OrderBook />}
+              {showPanel === "OrderBook" && <OrderBookTable />}
               {showPanel === "OrdersOpened" && <OrdersOpened />}
               {showPanel === "OrderHistory" && <OrdersOpened />}
             </aside>

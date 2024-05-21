@@ -15,7 +15,7 @@ const ApiDocs = () => {
       <ApiReferenceReact
         configuration={{
           spec: {
-            url: `${import.meta.env.VITE_API_URL}/api-json`
+            url: `${import.meta.env.VITE_API}/api-json`
           },
           theme: "default",
           customCss: customCss

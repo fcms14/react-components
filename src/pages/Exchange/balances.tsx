@@ -4,10 +4,11 @@ import { RowProps } from "../../interfaces"
 import { theme } from "../../providers/theme"
 import { ExchangeFormIntercace } from "./form"
 import { Decimal, Mask, Parser } from "../../helpers/Mask"
-import { newUserAccount } from "../../entities/UserAccount"
+import UserAccount from "../../entities/UserAccount"
 import { useQuery } from "react-query"
 
 const ExchangeBalances = () => {
+    const newUserAccount = new UserAccount
     const { data } = useQuery("userAccount", () => newUserAccount.list(), { staleTime: Infinity, cacheTime: Infinity })
 
     const _brl = data?.find((value) => value.name === "BRL")?.balance ?? 0

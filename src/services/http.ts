@@ -1,12 +1,62 @@
-import api from "./api.config"
+import { AxiosRequestConfig } from "axios"
+import api from "../services/api.config"
 
-const $http = {
-    get: async <T>(url: string, params?: any) => await api.get<T>(`${url}`, { params: params, headers: {} }),
-    post: async <T>(url: string, payload?: any) => await api.post<T>(`${url}`, payload, { headers: {} }),
-    postForm: async <T>(url: string, payload?: any, config?: any) => await api.postForm<T>(`${url}`, payload, config),
-    update: async <T>(url: string, payload?: any) => await api.put<T>(`${url}`, payload),
-    download: async <T>(url: string, payload?: any) => await api.post<T>(`${url}`, payload, { responseType: 'blob' }),
-    delete: async <T>(url: string, payload?: any) => await api.delete<T>(`${url}`, payload),
+interface HttpInterface<P = any, B = any> {
+    path: string,
+    params?: P,
+    body?: B
 }
 
-export default $http
+abstract class Http {
+    config: AxiosRequestConfig
+
+    constructor(config: AxiosRequestConfig) {
+        this.config = config
+    }
+
+    async get<R, P = any>({ path, params }: HttpInterface<P>) {
+        const { data } = await api.get<R>(
+            path,
+            { ...this.config, params }
+        )
+
+        return data
+    }
+    async delete<R, P = any>({ path, params }: HttpInterface<P>) {
+        const { data } = await api.delete<R>(
+            path,
+            { ...this.config, params }
+        )
+
+        return data
+    }
+    async post<R, P = any, B = any>({ path, params, body }: HttpInterface<P, B>) {
+        const { data } = await api.post<R>(
+            path,
+            body,
+            { ...this.config, params }
+        )
+
+        return data
+    }
+    async put<R, P = any, B = any>({ path, params, body }: HttpInterface<P, B>) {
+        const { data } = await api.put<R>(
+            path,
+            body,
+            { ...this.config, params }
+        )
+
+        return data
+    }
+    async download<R, P = any, B = any>({ path, params, body }: HttpInterface<P, B>) {
+        const { data } = await api.post<R>(
+            path,
+            body,
+            { ...this.config, params, responseType: 'blob' }
+        )
+
+        return data
+    }
+}
+
+export default Http

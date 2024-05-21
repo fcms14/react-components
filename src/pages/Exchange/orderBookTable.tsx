@@ -1,18 +1,20 @@
 import { useQuery } from "react-query"
-import { newOrderBook } from "../../entities/OrderBook"
 import { useFormikContext } from "formik"
 import Table from "../../components/atoms/Table"
 import { CellProps } from "../../interfaces"
 import { ExchangeFormIntercace } from "./form"
 import { Decimal, Mask, Parser } from "../../helpers/Mask"
+import OrderBook from "../../entities/OrderBook"
 
-const OrderBook = () => {
+const OrderBookTable = () => {
+  const newOrderBook = new OrderBook
+
   const ticker = "USDTBRL"
   const buyStyle: CellProps = { color: "#0D9E00", textAlign: "right" }
   const sellStyle: CellProps = { color: "#FF2F21", textAlign: "left" }
   const { setFieldValue, values } = useFormikContext()
   const _values = values as ExchangeFormIntercace
-  const { data } = useQuery("orderBook", () => newOrderBook.getBook({ symbol: ticker, limit: 10 }), { refetchInterval: 5000 })
+  const { data } = useQuery("orderBook", () => newOrderBook.list({ symbol: ticker, limit: 10 }), { refetchInterval: 5000 })
 
   function handleQuantity(quantity: string, limit: string) {
     const total = Number(quantity) * Number(limit)
@@ -81,4 +83,4 @@ const OrderBook = () => {
   )
 }
 
-export default OrderBook
+export default OrderBookTable

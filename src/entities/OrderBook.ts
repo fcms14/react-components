@@ -1,8 +1,8 @@
-import Entity from "./Entity";
+import ApiBinance from "./ApiBinance"
 
 interface DepthInterface {
     symbol: string
-    limit?: number
+    limit: number
 }
 
 interface OrderBookResponse {
@@ -11,15 +11,12 @@ interface OrderBookResponse {
     asks: string[][]
 }
 
-class OrderBook extends Entity {
+class OrderBook extends ApiBinance {
     constructor() {
-        const target = import.meta.env.VITE_API_BINANCE
-        const endpoint = `${target}/api/v3`
-        super(endpoint)
+        super('/api/v3/depth')
     }
 
-    getBook = ({ symbol, limit }: DepthInterface) => this.get<OrderBookResponse>(`/depth?symbol=${symbol}&limit=${limit ?? 50}`)
-
+    list = (params: DepthInterface) => this.get<OrderBookResponse, DepthInterface>({ path: '', params: params })
 }
 
-export const newOrderBook = new OrderBook
+export default OrderBook

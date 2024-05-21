@@ -1,4 +1,4 @@
-import Entity from "./Entity";
+import Api from "./Api"
 
 export interface AuthInterface {
     login: string
@@ -9,14 +9,12 @@ interface AuthResponse {
     access_token: string
 }
 
-class Auth extends Entity {
+class Auth extends Api {
     constructor() {
-        const target = import.meta.env.VITE_API_URL
-        const endpoint = `${target}/auth`
-        super(endpoint)
+        super('/auth')
     }
 
-    login = (body: AuthInterface) => this.post<AuthResponse>(`/login`, body)
+    login = (body: AuthInterface) => this.post<AuthResponse, any, AuthInterface>({ path: '/login', body: body })
 }
 
-export const newAuth = new Auth
+export default Auth
