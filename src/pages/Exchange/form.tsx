@@ -26,7 +26,6 @@ const ExchangeForm = ({ children }: Interface) => {
   const newOrder = new Order
   const queryClient = useQueryClient();
   const [showPanel, setShowPanel] = useState<"OrderBook" | "OrdersOpened" | "OrderHistory">("OrderBook")
-  const [isLoading, setIsLoading] = useState(false)
 
   const initialValues: ExchangeFormIntercace = {
     isLimitOrder: true,
@@ -39,19 +38,13 @@ const ExchangeForm = ({ children }: Interface) => {
   const mutation = useMutation(newOrder.place, {
     onSuccess: ({ status, uuid }) => {
       queryClient.refetchQueries({ queryKey: ['ordersOpened'] })
-      setIsLoading(false)
-      dispatchAddNotification(
-        {
-          subtitle: `Ordem ${uuid} criada`,
-          text: `Status: ${status}`,
-          subtext: "Acompanhe em sua lista de ordens abertas",
-          toasterStyle: { type: "success" },
-          active: true,
-        }
-      )
-    },
-    onError: (values) => {
-      setIsLoading(false)
+      dispatchAddNotification({
+        subtitle: `Ordem ${uuid} criada`,
+        text: `Status: ${status}`,
+        subtext: "Acompanhe em sua lista de ordens abertas",
+        toasterStyle: { type: "success" },
+        active: true,
+      })
     },
   })
 
@@ -71,17 +64,17 @@ const ExchangeForm = ({ children }: Interface) => {
 
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={(values) => {
-        setIsLoading(true)
-        mutation.mutate({
+      <Formik
+        initialValues={initialValues}
+        onSubmit={(values) => mutation.mutate({
           account_debit: "2c67cfab-7dd1-49a6-88fb-0df935c7f88c",
           account_credit: "c97904b1-ec1c-4816-87ff-3a7f5fcbf19d",
-          amount: Parser.unmasker(values.quantity, "US$") * 100,
-          price: Number((Parser.unmasker(values.limit, "R$") * 100).toFixed(0)),
+          amount: Parser.unmasker(values.quantity, "US$"),
+          price: Number((Parser.unmasker(values.limit, "R$"))),
           type: values.isLimitOrder ? "LIMIT" : "MARKET",
           side: values.isBuyOrder ? "BUY" : "SELL",
-        })
-      }}>
+        })}
+      >
         {({ values, errors, touched, setFieldValue }) => (
           <Form>
             {children}
@@ -119,8 +112,8 @@ const ExchangeForm = ({ children }: Interface) => {
               <Button.Default
                 text={values.isBuyOrder ? "Comprar" : "Vender"}
                 buttonStyle={{
-                  active: (!isLoading && !!values.limit && !!values.quantity || !!values.total),
-                  isLoading: isLoading,
+                  active: (!mutation.isLoading && !!values.limit && !!values.quantity || !!values.total),
+                  isLoading: mutation.isLoading,
                   type: "submit",
                   color: values.isBuyOrder ? "#0D9E00" : "#FF2F21",
                 }}

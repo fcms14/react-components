@@ -1,21 +1,26 @@
-import { useQuery } from "react-query"
+import { useMutation, useQuery } from "react-query"
 import Table from "../../components/atoms/Table"
-import { Decimal, Mask, Parser } from "../../helpers/Mask"
+import { Decimal, Mask } from "../../helpers/Mask"
 import Order from "../../entities/Order"
+import { dispatchAddNotification } from "../../features/toaster/toasterDispatcher"
 
 const OrdersOpened = () => {
   const newOrder = new Order
   const { data, refetch } = useQuery("ordersOpened", () => newOrder.list("c97904b1-ec1c-4816-87ff-3a7f5fcbf19d", { status: "OPEN" }), { staleTime: Infinity, cacheTime: Infinity })
-  console.log(data)
 
-  async function handleCancel(uuid: string) {
-    try {
-      await newOrder.cancel(uuid)
+  const mutation = useMutation(newOrder.cancel, {
+    onSuccess: ({ status, uuid }) => {
       refetch()
-    } catch (error) {
-      console.log(error)
-    }
-  }
+      dispatchAddNotification({
+        subtitle: `Ordem ${uuid} cancelada`,
+        text: `Status: ${status}`,
+        subtext: "",
+        toasterStyle: { type: "success" },
+        active: true,
+      })
+    },
+    onError: () => refetch(),
+  })
 
   return (
     <Table
@@ -34,10 +39,10 @@ const OrdersOpened = () => {
             cell: [
               { text: order.created_at.toLocaleString(), },
               { text: order.type, },
-              { text: Mask.currency(Parser.intToFloat(order.price), Decimal.USDT, "BRL"), },
-              { text: Mask.currency(Parser.intToFloat(order.amount), Decimal.USD, "USD"), },
-              { text: Mask.currency(Parser.intToFloat(order.amount * order.price / 100)), },
-              { text: "X", onClick: () => handleCancel(order.uuid), },
+              { text: Mask.currency(order.price, Decimal.USDT, "BRL"), },
+              { text: Mask.currency(order.amount, Decimal.USD, "USD"), },
+              { text: Mask.currency(order.amount * order.price), },
+              { text: mutation.isLoading ? "Cancelando..." : "X", onClick: () => mutation.isLoading ? {} : mutation.mutate(order.uuid), },
             ]
           }
         })
