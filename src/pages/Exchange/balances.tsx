@@ -11,13 +11,16 @@ const ExchangeBalances = () => {
     const newUserAccount = new UserAccount
     const { data } = useQuery("userAccount", () => newUserAccount.list(), { staleTime: Infinity, cacheTime: Infinity })
 
-    const brl = data?.find((value) => value.name === "BRL")?.balance ?? 0
-    const tether = data?.find((value) => value.name === "USDT")?.balance ?? 0
+    const _brl = data?.find((value) => value.name === "BRL")
+    const _tether = data?.find((value) => value.name === "USDT")
+
+    const brl = (_brl?.balance ?? 0) - (_brl?.on_hold ?? 0)
+    const tether = (_tether?.balance ?? 0) - (_tether?.on_hold ?? 0)
 
     const { setFieldValue, values } = useFormikContext()
     const _values = values as ExchangeFormIntercace
 
-    const quote = Parser.unmasker(_values.limit)
+    const quote = Parser.unmasker(_values.isLimitOrder ? _values.limit : _values.marketQuote)
 
     const rowStyle: RowProps = { borderBottom: `1px solid ${theme.colors.main.stroke}` }
 

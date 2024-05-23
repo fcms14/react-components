@@ -5,11 +5,9 @@ export interface UserAccountResponse {
     uuid: string;
     user_uuid: string;
     name: string;
-    fee_services?: any;
     pix_key: string;
     balance: number;
-    available: number;
-    locked: number;
+    on_hold: number;
     automatic: Boolean;
     daily_at: number;
     instantly: Boolean;

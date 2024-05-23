@@ -10,12 +10,15 @@ import OrdersOpened from "./ordersOpened"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import Order from "../../entities/Order"
 import UserAccount from "../../entities/UserAccount"
+import { Row } from "../../components/molecules/Row"
+import OrderBook from "../../entities/OrderBook"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
 }
 
 export interface ExchangeFormIntercace {
+  marketQuote: string
   isLimitOrder: boolean
   isBuyOrder: boolean
   limit: string
@@ -24,17 +27,23 @@ export interface ExchangeFormIntercace {
 }
 
 const ExchangeForm = ({ children }: Interface) => {
-  const newOrder = new Order
-  const queryClient = useQueryClient();
   const [showPanel, setShowPanel] = useState<"OrderBook" | "OrdersOpened" | "OrderHistory">("OrderBook")
+  const queryClient = useQueryClient();
 
   const newUserAccount = new UserAccount
-  const { data } = useQuery("userAccount", () => newUserAccount.list(), { staleTime: Infinity, cacheTime: Infinity })
+  const newOrderBook = new OrderBook
+  const newOrder = new Order
 
-  const debitAccount = data?.find((value) => value.name === "BRL")
-  const creditAccount = data?.find((value) => value.name === "USDT")
+  const ticker = "USDTBRL"
+
+  const { data: userAccounts } = useQuery("userAccount", () => newUserAccount.list(), { staleTime: Infinity, cacheTime: Infinity })
+  const { data: book } = useQuery("orderBook", () => newOrderBook.list({ symbol: ticker, limit: 10 }), { refetchInterval: 5000 })
+
+  const debitAccount = userAccounts?.find((value) => value.name === "BRL")
+  const creditAccount = userAccounts?.find((value) => value.name === "USDT")
 
   const initialValues: ExchangeFormIntercace = {
+    marketQuote: "",
     isLimitOrder: true,
     isBuyOrder: true,
     limit: "",
@@ -66,7 +75,7 @@ const ExchangeForm = ({ children }: Interface) => {
           })
         }
 
-        if (data.status === "No funds") {
+        if (["No funds", "ERROR"].includes(data.status)) {
           eventSource.close()
           dispatchAddNotification({
             subtitle: `Ordem ${uuid}`,
@@ -109,24 +118,28 @@ const ExchangeForm = ({ children }: Interface) => {
 
   return (
     <>
-      {data && debitAccount && creditAccount &&
+      {userAccounts && debitAccount && creditAccount &&
         <Formik
           initialValues={initialValues}
           onSubmit={(values) => mutation.mutate({
             account_debit: debitAccount?.uuid,
             account_credit: creditAccount?.uuid,
-            amount: Parser.unmasker(values.quantity, "US$"),
-            price: Number((Parser.unmasker(values.limit, "R$"))),
+            amount: values.isLimitOrder ? Parser.unmasker(values.quantity, "US$") : Parser.unmasker(values.total),
+            price: Number((Parser.unmasker(values.limit, "R$"))) || undefined,
             type: values.isLimitOrder ? "LIMIT" : "MARKET",
             side: values.isBuyOrder ? "BUY" : "SELL",
           })}
         >
-          {({ values, errors, touched, setFieldValue }) => (
-            <Form>
+          {({ values, errors, touched, setFieldValue }) => {
+            values.marketQuote = values.isBuyOrder
+              ? Mask.currency(Number(book?.asks[0][0]), Decimal.USDT)
+              : Mask.currency(Number(book?.bids[0][0]), Decimal.USDT)
+
+            return (<Form>
               {children}
               <main>
                 <section>
-                  {values.isLimitOrder &&
+                  {values.isLimitOrder ?
                     <Input
                       onChange={(value: string) => setFieldValue("total", handleTotal(values.quantity, value))}
                       mask={"currency"}
@@ -136,20 +149,30 @@ const ExchangeForm = ({ children }: Interface) => {
                       type={"text"}
                       inputMode={"numeric"}
                     />
+                    :
+                    <>
+                      <Row.Root>
+                        <div></div>
+                        <Row.Section>
+                          <Row.Text size="small"> Cotação </Row.Text>
+                          <Row.Title size="small"> {values.marketQuote} </Row.Title>
+                        </Row.Section>
+                      </Row.Root>
+                    </>
                   }
                   <Input
-                    onChange={(value: string) => setFieldValue("total", handleTotal(value, values.limit))}
+                    onChange={(value: string) => setFieldValue("total", handleTotal(value, values.isLimitOrder ? values.limit : values.marketQuote))}
                     mask={"currency"}
                     maskConfig="usdCurrency"
-                    label="Quantidade: Tether"
+                    label={`Quantidade: Tether${values.isLimitOrder ? " (aprox)" : ""}`}
                     name={"quantity"}
                     type={"text"}
                     inputMode={"numeric"}
                   />
                   <Input
-                    onChange={(value: string) => setFieldValue("quantity", handleQuantity(value, values.limit))}
+                    onChange={(value: string) => setFieldValue("quantity", handleQuantity(value, values.isLimitOrder ? values.limit : values.marketQuote))}
                     mask={"currency"}
-                    label="Quantidade: Reais"
+                    label={"Quantidade: Reais"}
                     name={"total"}
                     type={"text"}
                     inputMode={"numeric"}
@@ -172,7 +195,8 @@ const ExchangeForm = ({ children }: Interface) => {
                 {showPanel === "OrderHistory" && <OrdersOpened />}
               </aside>
             </Form>
-          )}
+            )
+          }}
         </Formik>
       }
     </>

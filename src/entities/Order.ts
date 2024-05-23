@@ -58,7 +58,7 @@ export interface PlaceOrder {
     account_debit: string
     account_credit: string
     amount: number
-    price: number
+    price?: number
     type: string
     side: string
 }
