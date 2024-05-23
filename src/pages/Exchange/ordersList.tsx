@@ -4,7 +4,7 @@ import { Decimal, Mask } from "../../helpers/Mask"
 import Order, { OrderStatus } from "../../entities/Order"
 import { dispatchAddNotification } from "../../features/toaster/toasterDispatcher"
 import { sse } from "./eventListener"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 interface Interface {
   status: keyof OrderStatus
@@ -13,6 +13,7 @@ interface Interface {
 const OrdersList = ({ status }: Interface) => {
   const queryClient = useQueryClient();
   const newOrder = new Order
+  const [cancellingOrderUuid, setCancellingOrderUuid] = useState<string | null>(null);
   const { data, refetch } = useQuery(["ordersOpened", status], () => newOrder.list({ status: status }), { staleTime: Infinity, cacheTime: Infinity })
 
   useEffect(() => {
@@ -32,43 +33,55 @@ const OrdersList = ({ status }: Interface) => {
         toasterStyle: { type: "success" },
         active: true,
       })
+      setCancellingOrderUuid(null);
     },
-    onError: () => refetch(),
+    onError: () => {
+      setCancellingOrderUuid(null); // Reset the state on error
+      refetch();
+    }
+    
   })
-
+ 
   return (
     <Table
       tableStyle={{ height: "300px" }}
       headers={[
         { text: "Data", cellStyle: { textAlign: "left" } },
         { text: "Tipo", cellStyle: { textAlign: "left" } },
+        { text: "Operacão", cellStyle: { textAlign: "left" } },
         { text: "Preço", cellStyle: { textAlign: "left" } },
         { text: "Quantidade", cellStyle: { textAlign: "left" } },
         { text: "Total", cellStyle: { textAlign: "left" } },
         { text: "", cellStyle: { textAlign: "left" } },
       ]}
       rows={
-        data?.map((order, i) => {
-          return {
-            cell: [
-              { text: Mask.dateTime(order.created_at), },
-              { text: order.type, },
-              { text: Mask.currency(order.price, Decimal.USDT, "BRL"), },
-              { text: Mask.currency(order.amount, Decimal.USD, "USD"), },
-              { text: Mask.currency(order.volume), },
-              {
-                text:
+        data && Array.isArray(data) && data.length > 0 ?
+          data?.map((order, i) => {
+            return {
+              cell: [
+                { text:  Mask.dateTime(order.created_at) },
+                { text: order.type, },
+                { text: order.side, },
+                { text: Mask.currency(order.price, Decimal.USDT, "BRL"), },
+                { text: Mask.currency(order.amount, Decimal.USD, "USD"), },
+                { text: Mask.currency(order.volume), },
+                {
+                  text:
                   order.status === "OPEN"
-                    ? mutation.isLoading ? "Cancelando..." : "X"
-                    : "",
-                onClick: () =>
-                  order.status === "OPEN"
-                    ? mutation.isLoading ? {} : mutation.mutate(order.uuid)
-                    : {},
-              },
-            ]
-          }
-        }) ?? [{ cell: [{ text: "Carregando" }] }]
+                  ? cancellingOrderUuid === order.uuid
+                    ? "Cancelando..."
+                    : "X"
+                  : "X",
+                  onClick: () => {
+                    if (order.status === "OPEN" && !mutation.isLoading) {
+                      setCancellingOrderUuid(order.uuid);
+                      mutation.mutate(order.uuid);
+                  }
+                  } 
+                },
+              ]
+            }
+        }) ?? [{ cell: [{ text: "Carregando" }] }] : [{ cell: [{ text: "Nenhuma ordem encontrada" }] }]
       }
     />
   )

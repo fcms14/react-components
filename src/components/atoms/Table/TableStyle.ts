@@ -25,6 +25,7 @@ const TableStyle = styled.table`
         ${({ theme }) => css`
             border-bottom: 1px solid ${theme.colors.main.stroke};
             padding: ${theme.padding.header};
+            white-space: nowrap;
         `}
     }
 `
