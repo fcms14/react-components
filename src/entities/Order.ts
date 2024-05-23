@@ -68,7 +68,7 @@ class Order extends Api {
         super('/order')
     }
 
-    list = (uuid: string, params: ListInterface) => this.get<OrderResponse[], ListInterface>({ path: `/${uuid}`, params: params })
+    list = (params: ListInterface) => this.get<OrderResponse[], ListInterface>({ path: '', params: params })
 
     place = (body: PlaceOrder) => this.post<SseOrder, any, PlaceOrder>({ path: '', body: body })
 

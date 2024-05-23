@@ -12,8 +12,10 @@ const OrderBookTable = () => {
   const ticker = "USDTBRL"
   const buyStyle: CellProps = { color: "#0D9E00", textAlign: "right" }
   const sellStyle: CellProps = { color: "#FF2F21", textAlign: "left" }
+
   const { setFieldValue, values } = useFormikContext()
   const _values = values as ExchangeFormIntercace
+
   const { data } = useQuery("orderBook", () => newOrderBook.list({ symbol: ticker, limit: 10 }), { refetchInterval: 5000 })
 
   function handleQuantity(quantity: string, limit: string) {

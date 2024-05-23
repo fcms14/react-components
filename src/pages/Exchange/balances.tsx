@@ -11,11 +11,8 @@ const ExchangeBalances = () => {
     const newUserAccount = new UserAccount
     const { data } = useQuery("userAccount", () => newUserAccount.list(), { staleTime: Infinity, cacheTime: Infinity })
 
-    const _brl = data?.find((value) => value.name === "BRL")?.balance ?? 0
-    const _usd = data?.find((value) => value.name === "USDT")?.balance ?? 0
-
-    const brl = Parser.intToFloat(_brl)
-    const tether = Parser.intToFloat(_usd)
+    const brl = data?.find((value) => value.name === "BRL")?.balance ?? 0
+    const tether = data?.find((value) => value.name === "USDT")?.balance ?? 0
 
     const { setFieldValue, values } = useFormikContext()
     const _values = values as ExchangeFormIntercace

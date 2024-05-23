@@ -6,7 +6,7 @@ import { dispatchAddNotification } from "../../features/toaster/toasterDispatche
 
 const OrdersOpened = () => {
   const newOrder = new Order
-  const { data, refetch } = useQuery("ordersOpened", () => newOrder.list("c97904b1-ec1c-4816-87ff-3a7f5fcbf19d", { status: "OPEN" }), { staleTime: Infinity, cacheTime: Infinity })
+  const { data, refetch } = useQuery("ordersOpened", () => newOrder.list({ status: "OPEN" }), { staleTime: Infinity, cacheTime: Infinity })
 
   const mutation = useMutation(newOrder.cancel, {
     onSuccess: ({ status, uuid }) => {
