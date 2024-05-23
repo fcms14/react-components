@@ -30,6 +30,7 @@ export interface OrderResponse {
     account_debit: string
     account_credit: string
     amount: number
+    volume: number
     price: number
     status: keyof OrderStatus
     type: keyof OrderType

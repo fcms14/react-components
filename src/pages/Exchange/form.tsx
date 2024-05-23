@@ -6,12 +6,14 @@ import OrderBookTable from "./orderBookTable"
 import { ButtonDefaultInterface } from "../../interfaces"
 import { useState } from "react"
 import { Decimal, Mask, Parser } from "../../helpers/Mask"
-import OrdersOpened from "./ordersOpened"
+import OrdersList from "./ordersList"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import Order from "../../entities/Order"
 import UserAccount from "../../entities/UserAccount"
 import { Row } from "../../components/molecules/Row"
 import OrderBook from "../../entities/OrderBook"
+import { sse } from "./eventListener"
+import { ExchangeOrderValidator } from "../../validators"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
@@ -53,43 +55,7 @@ const ExchangeForm = ({ children }: Interface) => {
 
   const mutation = useMutation(newOrder.place, {
     onSuccess: ({ status, uuid }) => {
-      const eventSource = new EventSource(`${import.meta.env.VITE_API}/order/sse/${uuid}`)
-
-      eventSource.addEventListener('message', (event) => {
-        const data = JSON.parse(event.data)
-
-        if (data.status === "OPEN") {
-          queryClient.refetchQueries({ queryKey: ['ordersOpened'] })
-        }
-
-        if (data.status === "FILLED") {
-          queryClient.refetchQueries({ queryKey: ['ordersOpened'] })
-          queryClient.refetchQueries({ queryKey: ['userAccount'] })
-          eventSource.close()
-          dispatchAddNotification({
-            subtitle: `Ordem ${uuid} executada`,
-            text: `Status: ${data.status}`,
-            subtext: "",
-            toasterStyle: { type: "success" },
-            active: true,
-          })
-        }
-
-        if (["No funds", "ERROR"].includes(data.status)) {
-          eventSource.close()
-          dispatchAddNotification({
-            subtitle: `Ordem ${uuid}`,
-            text: `Status: ${data.status}`,
-            subtext: "",
-            toasterStyle: { type: "alert" },
-            active: true,
-          })
-        }
-
-        console.log(data)
-      })
-
-      eventSource.addEventListener('error', (error) => console.log(error))
+      sse(uuid, queryClient)
 
       queryClient.refetchQueries({ queryKey: ['ordersOpened'] })
       dispatchAddNotification({
@@ -109,7 +75,7 @@ const ExchangeForm = ({ children }: Interface) => {
   ]
 
   function handleQuantity(total: string, limit: string) {
-    return Mask.currency(Parser.unmasker(total) / Parser.unmasker(limit), Decimal.BRL, "USD")
+    return Mask.currency(Parser.unmasker(total) / Parser.unmasker(limit) || 0, Decimal.BRL, "USD")
   }
 
   function handleTotal(quantity: string, limit: string) {
@@ -121,6 +87,7 @@ const ExchangeForm = ({ children }: Interface) => {
       {userAccounts && debitAccount && creditAccount &&
         <Formik
           initialValues={initialValues}
+          validationSchema={ExchangeOrderValidator}
           onSubmit={(values) => mutation.mutate({
             account_debit: debitAccount?.uuid,
             account_credit: creditAccount?.uuid,
@@ -130,10 +97,12 @@ const ExchangeForm = ({ children }: Interface) => {
             side: values.isBuyOrder ? "BUY" : "SELL",
           })}
         >
-          {({ values, errors, touched, setFieldValue }) => {
+          {({ values, errors, touched, setFieldValue, isValid }) => {
             values.marketQuote = values.isBuyOrder
               ? Mask.currency(Number(book?.asks[0][0]), Decimal.USDT)
               : Mask.currency(Number(book?.bids[0][0]), Decimal.USDT)
+
+            console.log(isValid)
 
             return (<Form>
               {children}
@@ -148,6 +117,7 @@ const ExchangeForm = ({ children }: Interface) => {
                       name={"limit"}
                       type={"text"}
                       inputMode={"numeric"}
+                      error={errors.limit && touched.limit && errors.limit}
                     />
                     :
                     <>
@@ -164,10 +134,11 @@ const ExchangeForm = ({ children }: Interface) => {
                     onChange={(value: string) => setFieldValue("total", handleTotal(value, values.isLimitOrder ? values.limit : values.marketQuote))}
                     mask={"currency"}
                     maskConfig="usdCurrency"
-                    label={`Quantidade: Tether${values.isLimitOrder ? " (aprox)" : ""}`}
+                    label={`Quantidade: Tether${values.isLimitOrder ? "" : " (aprox)"}`}
                     name={"quantity"}
                     type={"text"}
                     inputMode={"numeric"}
+                    error={errors.quantity && touched.quantity && errors.quantity}
                   />
                   <Input
                     onChange={(value: string) => setFieldValue("quantity", handleQuantity(value, values.isLimitOrder ? values.limit : values.marketQuote))}
@@ -176,23 +147,28 @@ const ExchangeForm = ({ children }: Interface) => {
                     name={"total"}
                     type={"text"}
                     inputMode={"numeric"}
+                    error={errors.total && touched.total && errors.total}
                   />
                 </section>
                 <Button.Default
                   text={values.isBuyOrder ? "Comprar" : "Vender"}
                   buttonStyle={{
-                    active: (!mutation.isLoading && !!values.limit && !!values.quantity || !!values.total),
+                    active: (!mutation.isLoading && isValid),
                     isLoading: mutation.isLoading,
                     type: "submit",
-                    color: values.isBuyOrder ? "#0D9E00" : "#FF2F21",
+                    color: values.isBuyOrder
+                      ? isValid
+                        ? "#0D9E00" : "#0D9E0095"
+                      : isValid
+                        ? "#FF2F21" : "#FF2F2195",
                   }}
                 />
               </main>
               <aside>
                 <Button.Panel buttons={buttons} />
                 {showPanel === "OrderBook" && <OrderBookTable />}
-                {showPanel === "OrdersOpened" && <OrdersOpened />}
-                {showPanel === "OrderHistory" && <OrdersOpened />}
+                {showPanel === "OrdersOpened" && <OrdersList status="OPEN" />}
+                {showPanel === "OrderHistory" && <OrdersList status="FILLED" />}
               </aside>
             </Form>
             )

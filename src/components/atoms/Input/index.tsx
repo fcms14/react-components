@@ -1,8 +1,10 @@
-import InputStyle, { InputSpanStyle, LabelStyle } from "./InputStyle"
+import InputStyle, { ErrorSpanStyle, InputSpanStyle, LabelStyle } from "./InputStyle"
 import { InputProps } from "../../../interfaces"
 import { useFormikContext } from "formik"
 import { BaseSyntheticEvent } from "react"
 import { InputMask, MaskType, MaskConfigTypes, configOptions } from "../../../helpers/Mask"
+import Subtext from "../Subtext"
+import { theme } from "../../../providers/theme"
 
 interface Interface {
     label: string
@@ -13,9 +15,10 @@ interface Interface {
     onChange?: (value: string) => void
     name: string
     inputStyle?: InputProps
+    error?: string | boolean
 }
 
-const Input = ({ label, type, mask, maskConfig, name, inputStyle, onChange, inputMode }: Interface) => {
+const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChange, inputMode }: Interface) => {
     const { setFieldValue } = useFormikContext()
 
     function handleChange(e: BaseSyntheticEvent, mask: MaskType) {
@@ -43,6 +46,7 @@ const Input = ({ label, type, mask, maskConfig, name, inputStyle, onChange, inpu
                 onKeyDown={mask ? handleChange : undefined}
             />
             <LabelStyle htmlFor={name}> {label} </LabelStyle>
+            {error && <ErrorSpanStyle> <Subtext size="big" color={theme.colorByType.info}>{error}</Subtext> </ErrorSpanStyle>}
         </InputSpanStyle>
     )
 }

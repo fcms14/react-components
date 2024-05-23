@@ -1,6 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import { InputProps } from "../../../interfaces";
 import { Field } from "formik";
+import { getSize } from "../../organisms/Button/helper";
 
 const focusOn = keyframes`
   from {transform: translateY(-60%) translateX(-10%) scale(0.8);}
@@ -33,7 +34,16 @@ export const LabelStyle = styled.label`
     padding-bottom: ${theme.padding.header};
   `}
 `
-const InputStyle = styled(Field)<InputProps>`
+
+export const ErrorSpanStyle = styled.span`
+  position: absolute;
+  ${({ theme }) => css`
+    bottom: -${getSize(theme.gap)}px;
+    padding-left: ${theme.padding.header};
+    padding-bottom: ${theme.padding.header};
+  `}
+`
+const InputStyle = styled(Field) <InputProps>`
   font-family: 'InterSemiBold';
 
   &::placeholder {

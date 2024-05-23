@@ -1,15 +1,29 @@
-import { useMutation, useQuery } from "react-query"
+import { useMutation, useQuery, useQueryClient } from "react-query"
 import Table from "../../components/atoms/Table"
 import { Decimal, Mask } from "../../helpers/Mask"
-import Order from "../../entities/Order"
+import Order, { OrderStatus } from "../../entities/Order"
 import { dispatchAddNotification } from "../../features/toaster/toasterDispatcher"
+import { sse } from "./eventListener"
+import { useEffect } from "react"
 
-const OrdersOpened = () => {
+interface Interface {
+  status: keyof OrderStatus
+}
+
+const OrdersList = ({ status }: Interface) => {
+  const queryClient = useQueryClient();
   const newOrder = new Order
-  const { data, refetch } = useQuery("ordersOpened", () => newOrder.list({ status: "OPEN" }), { staleTime: Infinity, cacheTime: Infinity })
+  const { data, refetch } = useQuery(["ordersOpened", status], () => newOrder.list({ status: status }), { staleTime: Infinity, cacheTime: Infinity })
+
+  useEffect(() => {
+    if (status === "OPEN") {
+      data?.map((order) => sse(order.uuid, queryClient))
+    }
+  }, [data])
 
   const mutation = useMutation(newOrder.cancel, {
     onSuccess: ({ status, uuid }) => {
+      queryClient.refetchQueries({ queryKey: ['userAccount'] })
       refetch()
       dispatchAddNotification({
         subtitle: `Ordem ${uuid} cancelada`,
@@ -37,20 +51,27 @@ const OrdersOpened = () => {
         data?.map((order, i) => {
           return {
             cell: [
-              { text: order.created_at.toLocaleString(), },
+              { text: Mask.dateTime(order.created_at), },
               { text: order.type, },
               { text: Mask.currency(order.price, Decimal.USDT, "BRL"), },
               { text: Mask.currency(order.amount, Decimal.USD, "USD"), },
-              { text: Mask.currency(order.amount * order.price), },
-              { text: mutation.isLoading ? "Cancelando..." : "X", onClick: () => mutation.isLoading ? {} : mutation.mutate(order.uuid), },
+              { text: Mask.currency(order.volume), },
+              {
+                text:
+                  order.status === "OPEN"
+                    ? mutation.isLoading ? "Cancelando..." : "X"
+                    : "",
+                onClick: () =>
+                  order.status === "OPEN"
+                    ? mutation.isLoading ? {} : mutation.mutate(order.uuid)
+                    : {},
+              },
             ]
           }
-        })
-        ??
-        [{ cell: [{ text: "Carregando" }] }]
+        }) ?? [{ cell: [{ text: "Carregando" }] }]
       }
     />
   )
 }
 
-export default OrdersOpened
+export default OrdersList
