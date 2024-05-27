@@ -21,8 +21,8 @@ const Exchange = () => {
         rightClick={() => navigate('/')}
       />
       <main>
-        <ExchangeForm>
-          <ExchangeBalances />
+        <ExchangeForm ticker="USDTBRL">
+          <ExchangeBalances ticker="USDTBRL" />
           <OrderSelectorType />
         </ExchangeForm>
       </main>
