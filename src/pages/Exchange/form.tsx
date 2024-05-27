@@ -3,7 +3,7 @@ import Input from "../../components/atoms/Input"
 import { Button } from "../../components/organisms/Button"
 import { dispatchAddNotification } from "../../features/toaster/toasterDispatcher"
 import OrderBookTable from "./orderBookTable"
-import { ButtonDefaultInterface } from "../../interfaces"
+import { ButtonDefaultInterface, Sort } from "../../interfaces"
 import { useState } from "react"
 import { Decimal, Mask, Parser } from "../../helpers/Mask"
 import OrdersList from "./ordersList"
@@ -102,8 +102,6 @@ const ExchangeForm = ({ children }: Interface) => {
               ? Mask.currency(Number(book?.asks[0][0]), Decimal.USDT)
               : Mask.currency(Number(book?.bids[0][0]), Decimal.USDT)
 
-            console.log(isValid)
-
             return (<Form>
               {children}
               <main>
@@ -167,8 +165,8 @@ const ExchangeForm = ({ children }: Interface) => {
               <aside>
                 <Button.Panel buttons={buttons} />
                 {showPanel === "OrderBook" && <OrderBookTable />}
-                {showPanel === "OrdersOpened" && <OrdersList status="OPEN" />}
-                {showPanel === "OrderHistory" && <OrdersList status="FILLED" />}
+                {showPanel === "OrdersOpened" && <OrdersList listOptions={{ status: "OPEN", limit: 100, page: 1, price: Sort.desc }} />}
+                {showPanel === "OrderHistory" && <OrdersList listOptions={{ status: "FILLED", limit: 100, page: 1 }} />}
               </aside>
             </Form>
             )

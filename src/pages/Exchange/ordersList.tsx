@@ -1,20 +1,20 @@
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import Table from "../../components/atoms/Table"
 import { Decimal, Mask } from "../../helpers/Mask"
-import Order, { OrderStatus } from "../../entities/Order"
+import Order, { ListInterface, OrderStatus } from "../../entities/Order"
 import { dispatchAddNotification } from "../../features/toaster/toasterDispatcher"
 import { sse } from "./eventListener"
 import { useEffect, useState } from "react"
 
 interface Interface {
-  status: keyof OrderStatus
+  listOptions: ListInterface
 }
 
-const OrdersList = ({ status }: Interface) => {
+const OrdersList = ({ listOptions }: Interface) => {
   const queryClient = useQueryClient();
   const newOrder = new Order
   const [cancellingOrderUuid, setCancellingOrderUuid] = useState<string | null>(null);
-  const { data, refetch } = useQuery(["ordersOpened", status], () => newOrder.list({ status: status }), { staleTime: Infinity, cacheTime: Infinity })
+  const { data, refetch } = useQuery(["ordersOpened", listOptions.status], () => newOrder.list(listOptions), { staleTime: Infinity, cacheTime: Infinity })
 
   useEffect(() => {
     if (status === "OPEN") {
@@ -39,9 +39,9 @@ const OrdersList = ({ status }: Interface) => {
       setCancellingOrderUuid(null); // Reset the state on error
       refetch();
     }
-    
+
   })
- 
+
   return (
     <Table
       tableStyle={{ height: "300px" }}
@@ -59,7 +59,7 @@ const OrdersList = ({ status }: Interface) => {
           data?.map((order, i) => {
             return {
               cell: [
-                { text:  Mask.dateTime(order.created_at) },
+                { text: Mask.dateTime(order.created_at) },
                 { text: order.type, },
                 { text: order.side, },
                 { text: Mask.currency(order.price, Decimal.USDT, "BRL"), },
@@ -67,21 +67,21 @@ const OrdersList = ({ status }: Interface) => {
                 { text: Mask.currency(order.volume), },
                 {
                   text:
-                  order.status === "OPEN"
-                  ? cancellingOrderUuid === order.uuid
-                    ? "Cancelando..."
-                    : "X"
-                  : "X",
+                    order.status === "OPEN"
+                      ? cancellingOrderUuid === order.uuid
+                        ? "Cancelando..."
+                        : "X"
+                      : "",
                   onClick: () => {
                     if (order.status === "OPEN" && !mutation.isLoading) {
                       setCancellingOrderUuid(order.uuid);
                       mutation.mutate(order.uuid);
+                    }
                   }
-                  } 
                 },
               ]
             }
-        }) ?? [{ cell: [{ text: "Carregando" }] }] : [{ cell: [{ text: "Nenhuma ordem encontrada" }] }]
+          }) ?? [{ cell: [{ text: "Carregando" }] }] : [{ cell: [{ text: "Nenhuma ordem encontrada" }] }]
       }
     />
   )

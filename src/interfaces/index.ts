@@ -184,5 +184,10 @@ export interface ColorByType {
     alert: string,
     info: string,
 }
+
+export enum Sort {
+    asc = 'asc',
+    desc = 'desc'
+}
 export interface InputProps {
 }

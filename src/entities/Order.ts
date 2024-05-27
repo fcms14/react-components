@@ -1,3 +1,4 @@
+import { Sort } from "../interfaces"
 import Api from "./Api"
 
 export interface OrderStatus {
@@ -53,6 +54,9 @@ export interface SseOrder {
 
 export interface ListInterface {
     status: keyof OrderStatus
+    limit?: number
+    page?: number
+    price?: Sort
 }
 
 export interface PlaceOrder {
