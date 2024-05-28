@@ -6,11 +6,31 @@ import { Button } from "../../components/organisms/Button"
 import Auth from "../../entities/Auth"
 import { useMutation } from "react-query"
 import { useNavigate } from "react-router-dom"
+import { Row } from "../../components/organisms/Row"
+import { MdSearch, MdDelete, MdAdd } from "react-icons/md"
 
 const Login = () => {
   const newAuth = new Auth
+  const navigate = useNavigate() 
 
-  const navigate = useNavigate()
+  // const items = [
+  //   {
+  //     text: "Pesquisar",
+  //     icon: MdSearch,
+      
+  //   },
+  //   {
+  //     text: "Adicionar",
+  //     icon: MdAdd,
+           
+  //   },
+  //   {
+  //     text: "Excluir",
+  //     icon: MdDelete,
+  //     color: "red"      
+  //   }
+
+  // ];
 
   const initialValues = {
     login: "",
@@ -36,6 +56,7 @@ const Login = () => {
             <Form>
               <main>
                 <section>
+                  {/* <Row.DropDownMenuRow item={items} /> */}
                   <Input name="login" label="Usuário" type="text" />
                   <Input name="password" label="Senha" type="password" />
                 </section>
