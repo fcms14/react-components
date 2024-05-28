@@ -113,6 +113,8 @@ export interface RowProps {
 export interface HeaderProps {
     justifyContent?: string,
     flexDirection?: string,
+    alignitems?: string,
+    backgroundColor?: string
 }
 
 export interface ButtonProps {

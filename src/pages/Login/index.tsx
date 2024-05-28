@@ -8,6 +8,7 @@ import { useMutation } from "react-query"
 import { useNavigate } from "react-router-dom"
 import { Row } from "../../components/organisms/Row"
 import { MdSearch, MdDelete, MdAdd } from "react-icons/md"
+import HeaderGuest from "../../components/organisms/Header/guest"
 
 const Login = () => {
   const newAuth = new Auth
@@ -46,7 +47,8 @@ const Login = () => {
 
   return (
     <ViewPort>
-      <Header.Default text="Acessar sua conta" />
+      {/* <Header.Default text="Acessar sua conta" /> */}
+      <HeaderGuest text="Logo" colorText="#BE9E37"/>
       <main>
         <Formik
           initialValues={initialValues}

@@ -1,4 +1,3 @@
-import { MdClose } from "react-icons/md"
 import { Row } from "../../molecules/Row"
 import DropDownMenu from "../../atoms/DropDownMenu"
 import { IconType } from "react-icons"
@@ -18,13 +17,13 @@ const DropDownMenuRow = ({item}: Interface) => {
      <DropDownMenu>  
         <>{item.map((item: items, index: number) =>
             <Row.Root key={index}>            
-                    <Row.Section sectionStyle={{  flexDirection: "row", alignItems: "center", gap:"4px", padding: true}}>
-                        <Row.Icon width={20} icon={item.icon} />
-                        <Row.Text size="big" color={item.color}> {item.text} </Row.Text>
+                <Row.Section sectionStyle={{  flexDirection: "row", alignItems: "center", gap:"4px", padding: true}}>
+                    <Row.Icon width={20} icon={item.icon} />
+                    <Row.Text size="big" color={item.color}> {item.text} </Row.Text>
                 </Row.Section>            
             </Row.Root>          
          )}</>
-     </DropDownMenu>    
+      </DropDownMenu>    
     )
 }
 
