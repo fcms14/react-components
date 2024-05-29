@@ -4,7 +4,7 @@ import { RowProps } from '../../../interfaces'
 const RowStyle = styled.div<RowProps>`
   display: flex;
   flex-grow: 1;
-  max-width: 350px;
+  
  
 
   ${props => css`
@@ -22,9 +22,9 @@ const RowStyle = styled.div<RowProps>`
     
   `}
 
-  ${({ theme }) => css`
-    gap: ${theme.gap};
-    padding: ${`${theme.gap} ${theme.padding.main}`};
+  ${props => css`
+    gap: ${props.theme.gap};
+    padding: ${  props?.padding ?  ` ${props.theme.gap}  ${props.padding} ` : ` ${props.theme.gap} ${props.theme.padding.main}` };
   `}
 `
 
