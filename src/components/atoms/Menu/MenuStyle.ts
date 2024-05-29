@@ -3,7 +3,6 @@ import { MenuProps } from '../../../interfaces'
 
 const MenuStyle = styled.div<MenuProps>`
   display: flex;
-  border: 1px solid red;
 
   ${({ theme, justifyContent }) => css`
     padding: ${theme.padding.header};

@@ -32,7 +32,7 @@ const Login = () => {
       <Header.Default text="Acessar sua conta" />
       <main>
         <Shortcut icon={MdPix} text="Teste" onClick={() => console.log(1)} />
-        <Menu items={[
+        <Menu shortcutStyle={{flexDirection: "row"}} items={[
           { icon: MdPix, text: "Teste", onClick: () => console.log(1) },
           { icon: MdPix, text: "Teste" }
         ]} />
