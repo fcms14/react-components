@@ -1,49 +1,27 @@
-import  Header from "../../atoms/Header"
-import { Row } from "../../molecules/Row"
-import  RowCard  from "../Row/RowCard"
-import {RowCardInterface, MenuInterface, MenuProps, RowProps  } from "../../../interfaces"
+import Header from "../../atoms/Header"
+import RowCard from "../Row/RowCard"
+import { RowCardInterface, MenuInterface, AvatarInterface } from "../../../interfaces"
 import Menu from "../../atoms/Menu"
-import RowRoot from "../../molecules/Row/RowRoot"
 import { theme } from "../../../providers/theme"
-import { IconType } from "react-icons";
-import {  MdKeyboardArrowDown } from "react-icons/md"
-
+import Avatar from "../../atoms/Avatar"
+import Text from "../../atoms/Text"
 
 interface Interface {
-    textAvatar ?: string,
-    textBalance?: string,
-    card: RowCardInterface,
-    menu: MenuInterface,
-    avatar: IconType,
-    icon?: IconType, 
-    onClick: () => void
+  text: string,
+  avatar: AvatarInterface,
+  card: RowCardInterface,
+  menu: MenuInterface,
 }
 
-const menuStyle: MenuProps = {
-    justifyContent: `space-between`,
-}
-
-const rowStyle: RowProps = {
-    marginBottom: `1px`,
-    padding: '2px',
-    justifyContent: 'undefined',
-}
-
-const HeaderDashboard = ( {  onClick, avatar, textAvatar,  textBalance, card, menu }:  Interface) => {
-    return (
-     <Header dashboard = {true} >    
-        <RowRoot rowStyle={rowStyle}>   
-            <Row.Icon color={theme.colors.button.font} icon={avatar}  />   
-            <Row.Text color={theme.colors.button.font} >{textAvatar}</Row.Text>
-            <Row.Icon color={theme.colors.button.font} icon={MdKeyboardArrowDown} onClick={onClick} />                
-       </RowRoot>  
-        <RowRoot rowStyle={rowStyle}>  
-            <Row.Text color={theme.colors.button.font} >{textBalance}</Row.Text> 
-        </RowRoot> 
-           <RowCard {...card} ></RowCard>               
-           <Menu shortcutStyle={ {flexDirection: "row"}}  menuStyle={menuStyle} {...menu}  ></Menu>           
-     </Header>   
-    )
+const HeaderDashboard = ({ text, avatar, card, menu }: Interface) => {
+  return (
+    <Header height={"undefined"}>
+      <Avatar {...avatar} />
+      <Text color={theme.colors.button.font}>{text}</Text>
+      <RowCard {...card} />
+      <Menu {...menu} shortcutStyle={{ flexDirection: "row" }} menuStyle={{ justifyContent: "space-between" }} />
+    </Header>
+  )
 }
 
 export default HeaderDashboard

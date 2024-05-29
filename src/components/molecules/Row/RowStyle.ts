@@ -3,9 +3,6 @@ import { RowProps } from '../../../interfaces'
 
 const RowStyle = styled.div<RowProps>`
   display: flex;
-  flex-grow: 1;
-  
- 
 
   ${props => css`
     align-items: ${props?.alignItems ?? "center"};  
@@ -22,9 +19,9 @@ const RowStyle = styled.div<RowProps>`
     
   `}
 
-  ${props => css`
-    gap: ${props.theme.gap};
-    padding: ${  props?.padding ?  ` ${props.theme.gap}  ${props.padding} ` : ` ${props.theme.gap} ${props.theme.padding.main}` };
+  ${({ theme }) => css`
+    gap: ${theme.gap};
+    padding: ${`${theme.gap} ${theme.padding.main}`};
   `}
 `
 

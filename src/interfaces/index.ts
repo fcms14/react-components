@@ -108,14 +108,12 @@ export interface RowProps {
     flexDirection?: string,
     alignItems?: string,
     borderRadius?: string,
-    padding?:string,
 }
 
 export interface HeaderProps {
     height?: string,
     justifyContent?: string,
     flexDirection?: string,
-    dashboard?: boolean
 }
 
 export interface ButtonProps {
@@ -158,7 +156,7 @@ export interface MenuInterface {
     items: ShortcutInterface[]
     shortcutStyle?: ShorcutProps
     menuStyle?: MenuProps
-  }
+}
 
 
 export interface ShortcutInterface {
@@ -211,6 +209,11 @@ export interface RowCardInterface {
     title: string
     icon: IconType
     onClick: () => void
+}
+
+export interface AvatarInterface {
+    text: string
+    onClick?: () => void
 }
 
 export interface ColorByType {
