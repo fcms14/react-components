@@ -11,7 +11,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 const queryClient = new QueryClient()
 
 const App = () => {
-    const routes = useSelector((state: RootState) => state.routes);
+    const { routes } = useSelector((state: RootState) => state.routes);
     const toaster = useSelector((state: RootState) => state.toaster);
     const notifications = toaster.notifications.slice(1)
 
@@ -25,7 +25,7 @@ const App = () => {
         <QueryClientProvider client={queryClient}>
             {notifications.length > 0 && <Notification />}
             {toaster.show && <Toaster data={notifications} />}
-            <RouterProvider router={Routes(routes.routes)} />
+            <RouterProvider router={Routes(routes)} />
         </QueryClientProvider>
     )
 }

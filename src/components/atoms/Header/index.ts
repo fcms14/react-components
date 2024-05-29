@@ -7,7 +7,7 @@ const Header = styled.header<HeaderProps>`
   justify-content: center;
   position: sticky;
   top: 0;
-  z-index: 4;
+  z-index: 2;
   
   ${({ theme, height }) => css` 
     flex-direction: ${height ? "column" : "undefined"};

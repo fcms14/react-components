@@ -151,6 +151,7 @@ export interface ShorcutProps {
 
 export interface MenuProps {
     justifyContent?: string
+    applyPadding?: boolean,
 }
 
 export interface MenuInterface {
