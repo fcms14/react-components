@@ -1,4 +1,5 @@
 import { IconType } from "react-icons"
+import { ElementType } from "../routes";
 
 export interface ColorInterface {
     header: ElementsInterface,
@@ -170,6 +171,11 @@ export interface ShortcutInterface {
 
 export interface ToasterProps {
     type: "success" | "alert" | "error",
+}
+
+export interface RoutesInterface {
+    path: string,
+    element: ElementType
 }
 
 export interface NotificationInterface {
