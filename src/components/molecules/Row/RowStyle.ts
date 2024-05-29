@@ -5,10 +5,10 @@ const RowStyle = styled.div<RowProps>`
   display: flex;
 
   ${props => css`
-    align-items: ${props?.alignItems ?? "center"};  
+    align-items: ${props?.alignItems ?? "center"};
     justify-content: ${props?.justifyContent ?? "space-between"};
     
-    flex-direction: ${props?.flexDirection};    
+    flex-direction: ${props?.flexDirection};
     background-color: ${props?.backgroundColor};
     border-bottom: ${props?.borderBottom};
     border-radius: ${props?.borderRadius};

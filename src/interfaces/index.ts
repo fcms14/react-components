@@ -153,6 +153,12 @@ export interface MenuProps {
     justifyContent?: string
 }
 
+export interface MenuInterface {
+    items: ShortcutInterface[]
+    shortcutStyle?: ShorcutProps
+    menuStyle?: MenuProps
+}
+
 
 export interface ShortcutInterface {
     text: string,
@@ -202,6 +208,18 @@ export interface ButtonDefaultInterface {
     onClick?: () => void,
     iconSize?: number,
     buttonStyle?: ButtonProps
+}
+
+export interface RowCardInterface {
+    text: string
+    title: string
+    icon: IconType
+    onClick: () => void
+}
+
+export interface AvatarInterface {
+    text: string
+    onClick?: () => void
 }
 
 export interface ColorByType {

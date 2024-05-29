@@ -40,6 +40,21 @@ const Login = () => {
     <ViewPort>
       {/* <Header.Default text="Acessar sua conta" /> */}
       <Header.Guest> <img src="https://app.reset-bank.com/iconx/logo.png" /> </Header.Guest>
+      {/* <Header.Dashboard
+        avatar={{
+          text: "Olá, Felipe!",
+          onClick: () => console.log(1)
+        }}
+        text={"Nome da conta + Dados da conta"}
+        card={{ icon: MdRemoveRedEye, text: "Saldo disponível", title: "R$0,00", onClick: () => console.log(1) }}
+        menu={{
+          items: [
+            { icon: MdPix, text: "Teste", onClick: () => console.log(1) },
+            { icon: MdPix, text: "Teste", onClick: () => console.log(1) },
+            { icon: MdPix, text: "Teste", onClick: () => console.log(1) }
+          ]
+        }}
+      /> */}
       <main>
         <Shortcut icon={MdPix} text="Teste" onClick={() => console.log(1)} />
         <Menu shortcutStyle={{ flexDirection: "row" }} items={[
@@ -71,6 +86,13 @@ const Login = () => {
           )}
         </Formik>
       </main>
+      {/* <footer>
+        <Menu items={[
+          { icon: MdPix, text: "Teste", onClick: () => console.log(1) },
+          { icon: MdPix, text: "Teste", onClick: () => console.log(1) },
+          { icon: MdPix, text: "Teste", onClick: () => console.log(1) }
+        ]} />
+      </footer> */}
     </ViewPort>
   )
 }
