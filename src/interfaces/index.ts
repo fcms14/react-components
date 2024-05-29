@@ -52,6 +52,7 @@ interface SubSizeInterface {
 export interface PaddingInterface {
     header: string,
     main: string,
+    guest: string,
     icon: string,
 }
 
@@ -62,7 +63,6 @@ export interface SectionProps {
     justifyContent?: string,
     textalign?: string,
     borderBotom?: boolean,
-    padding?: boolean,
 }
 
 export interface FontProps {
