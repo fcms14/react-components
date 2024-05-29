@@ -1,13 +1,16 @@
-import styled, { css }  from 'styled-components'
+import styled, { css } from 'styled-components'
 import { HeaderProps } from "../../../interfaces";
 
 const Header = styled.section<HeaderProps>`
-display: flex;
-height: 230px;
-
-${props => css` 
-justify-content: ${props?.justifyContent ? `${props?.alignitems}` : "center"};
-align-items: ${props?.alignitems ? `${props?.alignitems}` : "center"};
-background:  ${props?.backgroundColor ? `${props?.backgroundColor}` : "#1A1449"};
-` }`
+  display: flex;
+  overflow: hidden;
+  height: 230px;
+  justify-content: center;
+  align-items: "center";
+  
+  ${({ theme }) => css` 
+    padding: ${theme.padding.guest};
+    background:  ${theme.colors.header.fill}};
+  `}
+`
 export default Header

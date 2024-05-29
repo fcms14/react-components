@@ -7,6 +7,5 @@ export const Header = {
   Default: HeaderDefault,
   WithIcon: HeaderWithIcon,
   WithTwoIcons: HeaderWithTwoIcons,
-  HeaderGuest: HeaderGuest
-  
+  Guest: HeaderGuest,  
 }

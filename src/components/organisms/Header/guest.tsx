@@ -1,21 +1,16 @@
-import  Header from "../../atoms/Header"
-import { Row } from "../../molecules/Row"
-
+import { ReactNode } from "react"
+import Header from "../../atoms/Header"
 
 interface Interface {
-    text?: string,
-    colorText?: string
+  children: ReactNode,
 }
 
-
-const HeaderGuest = ( { text,  colorText }:  Interface) => {
-    return (
-     <Header>         
-        <Row.Root >                            
-            <Row.Title size="big" color={colorText}> {text} </Row.Title>
-        </Row.Root>         
-     </Header>   
-    )
+const HeaderGuest = ({ children }: Interface) => {
+  return (
+    <Header>
+      {children}
+    </Header>
+  )
 }
 
 export default HeaderGuest

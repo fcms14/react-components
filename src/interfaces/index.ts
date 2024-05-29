@@ -52,6 +52,7 @@ interface SubSizeInterface {
 export interface PaddingInterface {
     header: string,
     main: string,
+    guest: string,
     icon: string,
 }
 
