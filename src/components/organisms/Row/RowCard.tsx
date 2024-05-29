@@ -2,15 +2,10 @@ import { IconType } from "react-icons"
 import { Row } from "../../molecules/Row"
 import { theme } from "../../../providers/theme"
 import { getIconSize } from "../Button/helper"
+import {RowCardInterface  } from "../../../interfaces"
 
-interface Interface {
-  text: string
-  title: string
-  icon: IconType
-  onClick: () => void
-}
 
-const RowCard = ({ text, title, icon, onClick }: Interface) => {
+const RowCard = ({ text, title, icon, onClick }: RowCardInterface ) => {
   return (
     <Row.Root rowStyle={{ flexDirection: "column", alignItems: "left", backgroundColor: theme.colorByType.info, borderRadius: theme.radius }}>
       <Row.Text color={theme.colors.button.font}> {text} </Row.Text>
