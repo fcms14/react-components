@@ -4,31 +4,28 @@ import Index from "../pages/Index";
 import Exchange from "../pages/Exchange";
 import Login from "../pages/Login";
 import ApiDocs from "../pages/Docs";
+import { RoutesInterface } from "../interfaces";
 
-export const Routes = createBrowserRouter([
-  {
-    path: "/",
-    element: <Login />,
-    ErrorBoundary: Error
-  },
-  {
-    path: "/testes",
-    element: <Index />,
-    ErrorBoundary: Error
-  },
-  {
-    path: "/api-docs",
-    element: <ApiDocs />,
-    ErrorBoundary: Error
-  },
-  {
-    path: "/exchange",
-    element: <Exchange />,
-    ErrorBoundary: Error
-  },
-  {
-    path: "*",
-    element: <Error />,
-    ErrorBoundary: Error
-  },
-]);
+const components = {
+  Exchange,
+  Error,
+  Login,
+  ApiDocs,
+  Index
+}
+
+export type ElementType = keyof typeof components;
+
+export const Routes = (allowedRoutes: RoutesInterface[]) => {
+  const routes = allowedRoutes.map((route: RoutesInterface) => {
+    const Component = components[route.element ?? "Error"]
+
+    return {
+      path: route.path,
+      element: <Component />,
+      ErrorBoundary: Error
+    }
+  })
+
+  return createBrowserRouter(routes)
+};

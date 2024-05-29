@@ -1,3 +1,4 @@
+import { RoutesInterface } from "../interfaces"
 import Api from "./Api"
 
 export interface AuthInterface {
@@ -7,6 +8,11 @@ export interface AuthInterface {
 
 interface AuthResponse {
     access_token: string
+    routes: RoutesInterface[]
+}
+
+interface ProfileResponse {
+    routes: RoutesInterface[]
 }
 
 class Auth extends Api {
@@ -15,6 +21,8 @@ class Auth extends Api {
     }
 
     login = (body: AuthInterface) => this.post<AuthResponse, any, AuthInterface>({ path: '/login', body: body })
+
+    profile = () => this.get<ProfileResponse>({ path: '/profile' })
 }
 
 export default Auth

@@ -11,6 +11,7 @@ import Menu from "../../components/atoms/Menu"
 import { MdSearch, MdDelete, MdAdd } from "react-icons/md"
 import { Header } from "../../components/organisms/Header"
 import DropDown from "../../components/atoms/DropDown"
+import { dispatchSetRoutes } from "../../features/routes/routeDispatcher"
 
 const Login = () => {
   const newAuth = new Auth
@@ -28,8 +29,9 @@ const Login = () => {
   }
 
   const mutation = useMutation(newAuth.login, {
-    onSuccess: ({ access_token }) => {
+    onSuccess: ({ access_token, routes }) => {
       localStorage.setItem("token", access_token)
+      dispatchSetRoutes(routes)
       return navigate('/exchange')
     },
   })
@@ -40,7 +42,7 @@ const Login = () => {
       <Header.Guest> <img src="https://app.reset-bank.com/iconx/logo.png" /> </Header.Guest>
       <main>
         <Shortcut icon={MdPix} text="Teste" onClick={() => console.log(1)} />
-        <Menu shortcutStyle={{flexDirection: "row"}} items={[
+        <Menu shortcutStyle={{ flexDirection: "row" }} items={[
           { icon: MdPix, text: "Teste", onClick: () => console.log(1) },
           { icon: MdPix, text: "Teste" }
         ]} />
