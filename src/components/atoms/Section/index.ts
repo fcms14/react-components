@@ -7,7 +7,6 @@ const Section = styled.section<SectionProps>`
  
   ${props => css`
     flex-direction: ${props?.flexDirection ?? "column"};
-    padding:  ${props.padding ? `${props.theme.radius}` : "undefined"};
 
     justify-content: ${props?.justifyContent};
     align-items: ${props.alignItems};
