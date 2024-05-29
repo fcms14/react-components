@@ -3,6 +3,9 @@ import { RowProps } from '../../../interfaces'
 
 const RowStyle = styled.div<RowProps>`
   display: flex;
+  flex-grow: 1;
+  max-width: 350px;
+ 
 
   ${props => css`
     align-items: ${props?.alignItems ?? "center"};  
@@ -16,6 +19,7 @@ const RowStyle = styled.div<RowProps>`
     position: ${props?.position};
     top: ${props?.top};
     margin-bottom: ${props?.marginBottom};
+    
   `}
 
   ${({ theme }) => css`

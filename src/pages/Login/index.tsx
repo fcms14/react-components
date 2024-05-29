@@ -8,9 +8,13 @@ import { useNavigate } from "react-router-dom"
 import { MdPix } from "react-icons/md"
 import Shortcut from "../../components/atoms/Shortcut"
 import Menu from "../../components/atoms/Menu"
-import { MdSearch, MdDelete, MdAdd } from "react-icons/md"
+import { MdSearch, MdDelete, MdAdd, MdRemoveRedEye } from "react-icons/md"
 import { Header } from "../../components/organisms/Header"
 import DropDown from "../../components/atoms/DropDown"
+import { Row } from "../../components/organisms/Row"
+import HeaderGuest from "../../components/organisms/Header/guest"
+import HeaderDashboard from "../../components/organisms/Header/dashboard"
+import RowCard from "../../components/organisms/Row/RowCard"
 
 const Login = () => {
   const newAuth = new Auth
@@ -37,7 +41,9 @@ const Login = () => {
   return (
     <ViewPort>
       {/* <Header.Default text="Acessar sua conta" /> */}
-      <Header.Guest> <img src="https://app.reset-bank.com/iconx/logo.png" /> </Header.Guest>
+      {/* <Header.Guest> <img src="https://app.reset-bank.com/iconx/logo.png" /> </Header.Guest> */}
+      {/* <HeaderGuest text="Logo" colorText="#BE9E37"/> */}
+      <HeaderDashboard icon={MdRemoveRedEye} onClick={() => console.log(1)} ></HeaderDashboard>
       <main>
         <Shortcut icon={MdPix} text="Teste" onClick={() => console.log(1)} />
         <Menu shortcutStyle={{flexDirection: "row"}} items={[
