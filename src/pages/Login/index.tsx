@@ -5,23 +5,12 @@ import { Button } from "../../components/organisms/Button"
 import Auth from "../../entities/Auth"
 import { useMutation } from "react-query"
 import { useNavigate } from "react-router-dom"
-import { MdPix } from "react-icons/md"
-import Shortcut from "../../components/atoms/Shortcut"
-import Menu from "../../components/atoms/Menu"
-import { MdSearch, MdDelete, MdAdd } from "react-icons/md"
 import { Header } from "../../components/organisms/Header"
-import DropDown from "../../components/atoms/DropDown"
 import { dispatchSetRoutes } from "../../features/routes/routeDispatcher"
 
 const Login = () => {
   const newAuth = new Auth
   const navigate = useNavigate()
-
-  const items = [
-    { text: "Pesquisar", icon: MdSearch, onClick: () => console.log(1) },
-    { text: "Adicionar", icon: MdAdd, },
-    { text: "Excluir", icon: MdDelete, color: "red" }
-  ];
 
   const initialValues = {
     login: "",
@@ -56,12 +45,16 @@ const Login = () => {
         }}
       /> */}
       <main>
-        <Shortcut icon={MdPix} text="Teste" onClick={() => console.log(1)} />
-        <Menu shortcutStyle={{ flexDirection: "row" }} items={[
+        {/* <Shortcut icon={MdPix} text="Teste" onClick={() => console.log(1)} /> */}
+        {/* <Menu shortcutStyle={{ flexDirection: "row" }} items={[
           { icon: MdPix, text: "Teste", onClick: () => console.log(1) },
           { icon: MdPix, text: "Teste" }
-        ]} />
-        <DropDown item={items} />
+        ]} /> */}
+        {/* <DropDown item={[
+          { text: "Pesquisar", icon: MdSearch, onClick: () => console.log(1) },
+          { text: "Adicionar", icon: MdAdd, },
+          { text: "Excluir", icon: MdDelete, color: "red" }
+        ]} /> */}
         <Formik
           initialValues={initialValues}
           onSubmit={(values) => mutation.mutate(values)}
