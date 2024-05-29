@@ -3,11 +3,15 @@ import { Row } from "../../components/molecules/Row"
 import { RowProps } from "../../interfaces"
 import { theme } from "../../providers/theme"
 import { ExchangeFormIntercace } from "./form"
-import { Decimal, Mask, Parser } from "../../helpers/Mask"
+import { Decimal, Fractions, Mask, Parser } from "../../helpers/Mask"
 import UserAccount from "../../entities/UserAccount"
 import { useQuery } from "react-query"
 
-const ExchangeBalances = () => {
+interface Interface {
+    ticker: keyof typeof Fractions
+}
+
+const ExchangeBalances = ({ ticker }: Interface) => {
     const newUserAccount = new UserAccount
     const { data } = useQuery("userAccount", () => newUserAccount.list(), { staleTime: Infinity, cacheTime: Infinity })
 
@@ -25,7 +29,7 @@ const ExchangeBalances = () => {
     const rowStyle: RowProps = { borderBottom: `1px solid ${theme.colors.main.stroke}` }
 
     function handle(total: number, quantity: number) {
-        setFieldValue("quantity", Mask.currency(quantity != Infinity ? quantity : 0, Decimal.USD, "USD"))
+        setFieldValue("quantity", quantity != Infinity ? quantity.toFixed(Fractions[ticker]) : 0)
         setFieldValue("total", Mask.currency(total))
     }
 

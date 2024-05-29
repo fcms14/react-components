@@ -3,6 +3,13 @@ export enum Decimal {
     USDT = 4,
     BRL = 2,
     USD = 2,
+    USDTBRL = 1,
+}
+
+export enum Fractions {
+    USDTBRL = 1,
+    DEFAULT = 2,
+    BTCBRL = 8
 }
 
 interface Config {
@@ -16,10 +23,11 @@ export const configOptions = {
     default: { style: "currency", currency: "BRL", minimumFractionDigits: Decimal.BRL, divisor: 100, },
     usdCurrency: { style: "currency", currency: "USD", minimumFractionDigits: Decimal.USD, divisor: 100, },
     usdQuote: { style: "currency", currency: "BRL", minimumFractionDigits: Decimal.USDT, divisor: 10000, },
-    btcQuote: { style: undefined, currency: "BRL", minimumFractionDigits: Decimal.BTC, divisor: 100000000, }
+    btcQuote: { style: undefined, currency: "BRL", minimumFractionDigits: Decimal.BTC, divisor: 100000000, },
+    number: { currency: "BRL", minimumFractionDigits: Decimal.USDTBRL, divisor: 10 }
 }
 
-export const Parser = {    
+export const Parser = {
     intToFloat: (value: number | string): number => Number(value) / 100,
     unmasker: (value: string, replace: string = "R$"): number => Number(value.replace(replace, "").replaceAll('.', '').replace(',', '.')),
 }
@@ -41,7 +49,8 @@ export const InputMask = {
         const cleanValue = +value.replace(/\D+/g, '') / config.divisor
         const options = { ...config }
         return new Intl.NumberFormat('pt-br', options).format(cleanValue)
-    }
+    },
+    number: (value: string, config: Config = configOptions.default): string => (+value.replace(/\D+/g, '') / config.divisor).toFixed(config.minimumFractionDigits)
 }
 
 export type MaskType = keyof typeof InputMask;

@@ -3,13 +3,16 @@ import { useFormikContext } from "formik"
 import Table from "../../components/atoms/Table"
 import { CellProps } from "../../interfaces"
 import { ExchangeFormIntercace } from "./form"
-import { Decimal, Mask, Parser } from "../../helpers/Mask"
+import { Decimal, Fractions, Mask, Parser } from "../../helpers/Mask"
 import OrderBook from "../../entities/OrderBook"
 
-const OrderBookTable = () => {
+interface Interface {
+  ticker: keyof typeof Fractions
+}
+
+const OrderBookTable = ({ ticker }: Interface) => {
   const newOrderBook = new OrderBook
 
-  const ticker = "USDTBRL"
   const buyStyle: CellProps = { color: "#0D9E00", textAlign: "right" }
   const sellStyle: CellProps = { color: "#FF2F21", textAlign: "left" }
 
@@ -22,15 +25,22 @@ const OrderBookTable = () => {
     const total = Number(quantity) * Number(limit)
 
     setFieldValue("limit", Mask.currency(Number(limit), Decimal.USDT))
-    setFieldValue("quantity", Mask.currency(Number(quantity), Decimal.USD, "USD"))
+    setFieldValue("quantity", Number(quantity))
     setFieldValue("total", Mask.currency(Number(total)))
   }
 
   function handleLimit(limit: string) {
-    const total = Parser.unmasker(_values.quantity, "US$") * Number(limit)
-
     setFieldValue("limit", Mask.currency(Number(limit), Decimal.USDT))
-    setFieldValue("total", Mask.currency(Number(total)))
+
+    if (_values.quantity) {
+      setFieldValue("total", Mask.currency(Number(_values.quantity) * Number(limit)))
+      return
+    }
+
+    if (_values.total) {
+      setFieldValue("quantity", (Parser.unmasker(_values.total) / Number(limit)).toFixed(Fractions[ticker]))
+      return
+    }
   }
 
   let accBid = 0
