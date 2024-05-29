@@ -6,6 +6,9 @@ import { Button } from "../../components/organisms/Button"
 import Auth from "../../entities/Auth"
 import { useMutation } from "react-query"
 import { useNavigate } from "react-router-dom"
+import { MdPix } from "react-icons/md"
+import Shortcut from "../../components/atoms/Shortcut"
+import Menu from "../../components/atoms/Menu"
 
 const Login = () => {
   const newAuth = new Auth
@@ -28,6 +31,11 @@ const Login = () => {
     <ViewPort>
       <Header.Default text="Acessar sua conta" />
       <main>
+        <Shortcut icon={MdPix} text="Teste" onClick={() => console.log(1)} />
+        <Menu items={[
+          { icon: MdPix, text: "Teste", onClick: () => console.log(1) },
+          { icon: MdPix, text: "Teste" }
+        ]} />
         <Formik
           initialValues={initialValues}
           onSubmit={(values) => mutation.mutate(values)}
