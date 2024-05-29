@@ -10,11 +10,14 @@ interface Interface {
 }
 
 const ViewPort = ({ children }: Interface) => {
+  const token = localStorage.getItem('token')
   const newAuth = new Auth
-  const { data, isLoading } = useQuery("authProfile", () => newAuth.profile(), { staleTime: Infinity, cacheTime: Infinity })
+
+  const { data, isLoading, isError } = useQuery("authProfile", () => newAuth.profile(), { staleTime: Infinity, cacheTime: Infinity, retry: false, enabled: !!token })
+
 
   useEffect(() => {
-    if (!isLoading && data) {
+    if (!isError && !isLoading && data?.routes) {
       dispatchSetRoutes(data.routes)
     }
   }, [data])
