@@ -3,8 +3,8 @@ import { SectionProps } from '../../../interfaces'
 
 const Section = styled.section<SectionProps>`
   display: flex;
-  flex-grow: 1; 
- 
+  flex-grow: 1;
+
   ${props => css`
     flex-direction: ${props?.flexDirection ?? "column"};
 
