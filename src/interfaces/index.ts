@@ -111,6 +111,7 @@ export interface RowProps {
 }
 
 export interface HeaderProps {
+    height?: string,
     justifyContent?: string,
     flexDirection?: string,
 }
