@@ -22,7 +22,6 @@ const ViewPortStyle = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 5.625rem;
         position: sticky;
         z-index: 2;
         bottom: 0;
