@@ -5,9 +5,12 @@ import { Button } from "../../components/organisms/Button"
 import Auth from "../../entities/Auth"
 import { useMutation } from "react-query"
 import { useNavigate } from "react-router-dom"
+import { MdPix } from "react-icons/md"
+import Shortcut from "../../components/atoms/Shortcut"
+import Menu from "../../components/atoms/Menu"
 import { MdSearch, MdDelete, MdAdd } from "react-icons/md"
-import DropDown from "../../components/atoms/DropDown"
 import { Header } from "../../components/organisms/Header"
+import DropDown from "../../components/atoms/DropDown"
 
 const Login = () => {
   const newAuth = new Auth
@@ -36,6 +39,11 @@ const Login = () => {
       {/* <Header.Default text="Acessar sua conta" /> */}
       <Header.Guest> <img src="https://app.reset-bank.com/iconx/logo.png" /> </Header.Guest>
       <main>
+        <Shortcut icon={MdPix} text="Teste" onClick={() => console.log(1)} />
+        <Menu shortcutStyle={{flexDirection: "row"}} items={[
+          { icon: MdPix, text: "Teste", onClick: () => console.log(1) },
+          { icon: MdPix, text: "Teste" }
+        ]} />
         <DropDown item={items} />
         <Formik
           initialValues={initialValues}

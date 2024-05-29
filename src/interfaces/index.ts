@@ -142,6 +142,25 @@ export interface ToggleSpanProps {
     flexDirection?: string,
 }
 
+export interface ShorcutProps {
+    flexDirection?: string
+    cursor?: string
+}
+
+export interface MenuProps {
+    justifyContent?: string
+}
+
+
+export interface ShortcutInterface {
+    text: string,
+    icon: IconType,
+    onClick?: () => void,
+    width?: number,
+    color?: string,
+    shortcutStyle?: ShorcutProps
+}
+
 export interface ToasterProps {
     type: "success" | "alert" | "error",
 }
