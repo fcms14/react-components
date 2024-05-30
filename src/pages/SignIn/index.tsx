@@ -7,10 +7,16 @@ import { useMutation } from "react-query"
 import { useNavigate } from "react-router-dom"
 import { Header } from "../../components/organisms/Header"
 import { dispatchSetRoutes } from "../../features/routes/routeDispatcher"
+import { SignInValidator } from "../../validators"
+import { MdRemoveRedEye } from "react-icons/md"
+import { FaEyeSlash } from "react-icons/fa"
+import { useState } from "react"
+import { IconComponentInterface } from "../../interfaces"
 
 const SignIn = () => {
   const newAuth = new Auth
   const navigate = useNavigate()
+  const [showInputValue, setShowInputValue] = useState(false)
 
   const initialValues = {
     login: "",
@@ -25,25 +31,29 @@ const SignIn = () => {
     },
   })
 
+  const icon: IconComponentInterface = { icon: showInputValue ? MdRemoveRedEye : FaEyeSlash, onClick: () => setShowInputValue(!showInputValue) }
+  const inputType = showInputValue ? "text" : "password"
+
   return (
     <ViewPort>
       <Header.Guest> <img src="https://app.reset-bank.com/iconx/logo.png" /> </Header.Guest>
       <main>
         <Formik
+          validationSchema={SignInValidator}
           initialValues={initialValues}
           onSubmit={(values) => mutation.mutate(values)}
         >
-          {({ values }) => (
+          {({ errors, isValid, touched }) => (
             <Form>
               <main>
                 <section>
-                  <Input name="login" label="Usuário" type="text" />
-                  <Input name="password" label="Senha" type="password" />
+                  <Input name="login" label="Usuário" type="text" error={touched.login && errors.login} />
+                  <Input name="password" label="Senha" type={inputType} error={touched.password && errors.password} icon={icon} />
                 </section>
                 <Button.Default
                   text="Acessar"
                   buttonStyle={{
-                    active: (!mutation.isLoading && !!values.login && !!values.password),
+                    active: (!mutation.isLoading && isValid),
                     isLoading: mutation.isLoading,
                     type: "submit"
                   }}

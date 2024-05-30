@@ -23,6 +23,12 @@ export const InputSpanStyle = styled.span`
   position: relative;
   flex-direction: column;
   padding: ${({ theme }) => theme.padding.main};
+
+  > div {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+  }
 `
 
 export const LabelStyle = styled.label`

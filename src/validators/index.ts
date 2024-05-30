@@ -44,8 +44,15 @@ const greaterThanZero = Yup.string().test(
     }
 )
 
+const required = Yup.string().required("Este campo é obrigatório")
+
 export const ExchangeOrderValidator = Yup.object().shape({
     limit: notZeroAndEndsWithZero,
     total: notZeroCurrency,
     quantity: notZero,
+})
+
+export const SignInValidator = Yup.object().shape({
+    login: required,
+    password: required,
 })
