@@ -14,6 +14,7 @@ import { Row } from "../../components/molecules/Row"
 import OrderBook from "../../entities/OrderBook"
 import { sse } from "./eventListener"
 import { ExchangeOrderValidator } from "../../validators"
+import { dispatchHideAlerts, dispatchSetAlerts } from "../../features/alert/alertDispatcher"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
@@ -87,14 +88,35 @@ const ExchangeForm = ({ children, ticker }: Interface) => {
         <Formik
           initialValues={initialValues}
           validationSchema={ExchangeOrderValidator}
-          onSubmit={(values) => mutation.mutate({
-            account_debit: debitAccount?.uuid,
-            account_credit: creditAccount?.uuid,
-            amount: values.isLimitOrder ? Number(values.quantity) : Parser.unmasker(values.total),
-            price: Number((Parser.unmasker(values.limit, "R$"))) || undefined,
-            type: values.isLimitOrder ? "LIMIT" : "MARKET",
-            side: values.isBuyOrder ? "BUY" : "SELL",
-          })}
+          onSubmit={(values) => {
+            dispatchSetAlerts({
+              buttons: [
+                {
+                  text: "Cancelar",
+                  buttonStyle: { type: "button", active: true, secondary: false, color: "#FF0000" },
+                  onClick: () => { dispatchHideAlerts() },
+                },
+                {
+                  text: "Confirmar",
+                  buttonStyle: { type: "button", active: true, secondary: false },
+                  onClick: () => {
+                    mutation.mutate({
+                      account_debit: debitAccount?.uuid,
+                      account_credit: creditAccount?.uuid,
+                      amount: values.isLimitOrder ? Number(values.quantity) : Parser.unmasker(values.total),
+                      price: Number((Parser.unmasker(values.limit, "R$"))) || undefined,
+                      type: values.isLimitOrder ? "LIMIT" : "MARKET",
+                      side: values.isBuyOrder ? "BUY" : "SELL",
+                    })
+                    dispatchHideAlerts()
+                  },
+                }
+              ],
+              show: true,
+              title: "Enviar ordem",
+              text: `Enviar order de ${values.isBuyOrder ? "compra" : "venda"} no valor de ${values.total}`
+            })
+          }}
         >
           {({ values, errors, setFieldValue, isValid }) => {
             values.marketQuote = values.isBuyOrder

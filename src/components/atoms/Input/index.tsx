@@ -46,7 +46,7 @@ const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChang
                 onKeyDown={mask ? handleChange : undefined}
             />
             <LabelStyle htmlFor={name}> {label} </LabelStyle>
-            {error && <ErrorSpanStyle> <Subtext size="big" color={theme.colorByType.info}>{error}</Subtext> </ErrorSpanStyle>}
+            {error && <ErrorSpanStyle> <Subtext size="big" color={"#FF0000"}>{error}</Subtext> </ErrorSpanStyle>}
         </InputSpanStyle>
     )
 }

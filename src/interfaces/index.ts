@@ -179,6 +179,13 @@ export interface RoutesInterface {
     element: ElementType
 }
 
+export interface AlertInterface {
+    show: boolean,
+    title: string,
+    text: string,
+    buttons: ButtonDefaultInterface[]
+}
+
 export interface NotificationInterface {
     active: boolean,
     text: string,

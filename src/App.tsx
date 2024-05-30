@@ -7,11 +7,13 @@ import Notification from './components/atoms/Notification';
 import Toaster from './components/atoms/Toaster';
 import { RootState } from './store';
 import { QueryClient, QueryClientProvider } from 'react-query'
+import ModAlert from './components/atoms/ModAlert';
 
 const queryClient = new QueryClient()
 
 const App = () => {
     const { routes } = useSelector((state: RootState) => state.routes);
+    const alert = useSelector((state: RootState) => state.alert);
     const toaster = useSelector((state: RootState) => state.toaster);
     const notifications = toaster.notifications.slice(1)
 
@@ -25,6 +27,7 @@ const App = () => {
         <QueryClientProvider client={queryClient}>
             {notifications.length > 0 && <Notification />}
             {toaster.show && <Toaster data={notifications} />}
+            {alert.show && <ModAlert {...alert} />}
             <RouterProvider router={Routes(routes)} />
         </QueryClientProvider>
     )

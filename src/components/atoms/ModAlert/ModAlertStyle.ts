@@ -19,7 +19,7 @@ export const BlurPage = styled.div`
 
   backdrop-filter: blur(4px);
   background: rgba(0,0,0,0.5);
-  animation: ${fadeIn} 2s ease-in-out;
+  animation: ${fadeIn} 0.382s ease-in-out;
 `
 
 const ModAlertStyle = styled.div`
