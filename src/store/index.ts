@@ -19,5 +19,6 @@ export default configureStore({
         toaster: toasterReducer,
         routes: routesReducer,
         alert: alertReducer
-    }
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 })

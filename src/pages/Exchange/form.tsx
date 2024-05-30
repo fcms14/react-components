@@ -88,7 +88,7 @@ const ExchangeForm = ({ children, ticker }: Interface) => {
         <Formik
           initialValues={initialValues}
           validationSchema={ExchangeOrderValidator}
-          onSubmit={(values) => {
+          onSubmit={(values) => 
             dispatchSetAlerts({
               buttons: [
                 {
@@ -116,7 +116,7 @@ const ExchangeForm = ({ children, ticker }: Interface) => {
               title: "Enviar ordem",
               text: `Enviar order de ${values.isBuyOrder ? "compra" : "venda"} no valor de ${values.total}`
             })
-          }}
+          }
         >
           {({ values, errors, setFieldValue, isValid }) => {
             values.marketQuote = values.isBuyOrder

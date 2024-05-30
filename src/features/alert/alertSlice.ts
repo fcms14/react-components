@@ -9,7 +9,7 @@ export const alertSlice = createSlice({
     buttons: [
       {
         text: '',
-        onClick: () => { },
+        onClick: undefined,
         buttonStyle: {
           type: 'button',
           active: true,
@@ -29,6 +29,9 @@ export const alertSlice = createSlice({
     },
     hideAlerts: (state) => {
       state.show = false
+      state.title = ''
+      state.text = ''
+      state.buttons = []
     }
   },
 })
