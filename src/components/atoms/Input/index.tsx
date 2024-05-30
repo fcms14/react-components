@@ -33,7 +33,7 @@ const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChang
     }
 
     return (
-        <InputSpanStyle>
+        <InputSpanStyle onClick={onFocus}>
             <InputStyle
                 {...inputStyle}
                 placeholder={label}

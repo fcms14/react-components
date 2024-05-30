@@ -16,20 +16,22 @@ interface Interface {
   name: string
   label: string
   values?: string[]
+  required?: boolean
   options: OptionInterface[]
+  error?: string | boolean
 }
 
-const MultiSelect = ({ name, label, options, values }: Interface) => {
+const MultiSelect = ({ name, label, options, values, required, error }: Interface) => {
   const { setFieldValue } = useFormikContext()
   const [show, setShow] = useState(false)
   const [searchKey, setSearchKey] = useState<string>("")
-  const onMouseLeave = () => { setSearchKey(""); setFieldValue("search", ""); setShow(false) }
+  const onMouseLeave = () => { setSearchKey(""); setFieldValue(`search-${name}`, ""); setShow(false) }
   const icon: IconComponentInterface = { icon: MdArrowDropDown, width: Number(theme.fontsizes.title.default.match(/\d+/)), onClick: () => setShow(!show) }
 
   return (
-    <MultiSelectStyle show={show} onMouseLeave={onMouseLeave}>
-      {<Input
-        name={"search"}
+    <MultiSelectStyle show={show}>
+      <Input
+        name={`search-${name}`}
         label={`${values ? `${label}: ${values}` : label}`}
         type="text"
         onFocus={() => setShow(true)}
@@ -38,15 +40,17 @@ const MultiSelect = ({ name, label, options, values }: Interface) => {
           setSearchKey(value)
         }}
         icon={icon}
+        error={error}
       />
-      }
       <Field
+        onMouseLeave={onMouseLeave}
         as={"select"}
         name={name}
         id={name}
-        required={true}
+        required={required}
         multiple={true}
         value={values}
+        size={8}
       >
         {show &&
           options

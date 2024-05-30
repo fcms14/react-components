@@ -14,9 +14,21 @@ const MultiSelectStyle = styled.div<Props>`
     top: 70px;
     left: ${({ theme }) => theme.padding.main};
     z-index: 2;
-    padding: 12px;
+    padding: ${({ theme }) => theme.padding.header};
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
     width: calc(100% - ${({ theme }) => `${getSize(theme.padding.main) * 2}px`});
+
+    &:focus, &:active {
+      outline: none;
+    }
+
+    > option:checked,
+    > option:hover,
+    > option:focus,
+    > option:active { 
+      background: ${({ theme }) => theme.colorByType.info};
+      color:  ${({ theme }) => theme.colors.button.font};
+    }
   }
 `
 
