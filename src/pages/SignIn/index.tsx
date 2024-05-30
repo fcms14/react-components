@@ -14,6 +14,7 @@ import { useState } from "react"
 import { IconComponentInterface } from "../../interfaces"
 import { Row } from "../../components/molecules/Row"
 import Link from "../../components/atoms/Link"
+import MultiSelect from "../../components/atoms/MultiSelect"
 
 const SignIn = () => {
   const newAuth = new Auth
@@ -23,6 +24,7 @@ const SignIn = () => {
   const initialValues = {
     login: "",
     password: "",
+    teste: undefined
   }
 
   const mutation = useMutation(newAuth.login, {
@@ -51,10 +53,36 @@ const SignIn = () => {
           initialValues={initialValues}
           onSubmit={(values) => mutation.mutate(values)}
         >
-          {({ errors, isValid, touched }) => (
+          {({ errors, isValid, touched, values }) => (
             <Form>
               <main>
                 <section>
+                  <MultiSelect
+                    name="teste"
+                    label="Teste"
+                    values={values.teste}
+                    options={[
+                      { label: "Teste 1", value: "teste1" },
+                      { label: "Teste 2", value: "teste2" },
+                      { label: "Teste 3", value: "teste3" },
+                      { label: "Teste 4", value: "teste4" },
+                      { label: "Teste 5", value: "teste5" },
+                      { label: "Teste 6", value: "teste6" },
+                      { label: "Teste 7", value: "teste7" },
+                      { label: "Teste 8", value: "teste8" },
+                      { label: "Teste 9", value: "teste9" },
+                      { label: "Teste 10", value: "teste10" },
+                      { label: "Teste 11", value: "teste11" },
+                      { label: "Teste 12", value: "teste12" },
+                      { label: "Teste 13", value: "teste13" },
+                      { label: "Teste 14", value: "teste14" },
+                      { label: "Teste 15", value: "teste15" },
+                      { label: "Teste 16", value: "teste16" },
+                      { label: "Teste 17", value: "teste17" },
+                      { label: "Teste 18", value: "teste18" },
+                      { label: "Teste 19", value: "teste19" },
+                    ]}
+                  />
                   <Input name="login" label="Usuário" type="text" error={touched.login && errors.login} />
                   <Input name="password" label="Senha" type={inputType} error={touched.password && errors.password} icon={icon} />
                 </section>
@@ -76,7 +104,8 @@ const SignIn = () => {
                 </Row.Section>
               </footer>
             </Form>
-          )}
+          )
+          }
         </Formik>
       </main>
     </ViewPort>

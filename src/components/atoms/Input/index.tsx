@@ -7,19 +7,20 @@ import Subtext from "../Subtext"
 import Icon from "../Icon"
 
 interface Interface {
+    name: string
     label: string
     type: string
     mask?: MaskType
     maskConfig?: MaskConfigTypes
     inputMode?: string
     onChange?: (value: string) => void
-    name: string
+    onFocus?: () => void
     inputStyle?: InputProps
     error?: string | boolean
     icon?: IconComponentInterface
 }
 
-const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChange, inputMode, icon }: Interface) => {
+const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChange, onFocus, inputMode, icon }: Interface) => {
     const { setFieldValue } = useFormikContext()
 
     function handleChange(e: BaseSyntheticEvent, mask: MaskType) {
@@ -40,6 +41,7 @@ const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChang
                 name={name}
                 type={type}
                 inputMode={inputMode}
+                onFocus={onFocus}
                 onKeyUp={(e: BaseSyntheticEvent) => {
                     const value = mask ? handleChange(e, mask) : e.currentTarget.value;
                     onChange?.(value)

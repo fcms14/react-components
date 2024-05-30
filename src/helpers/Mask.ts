@@ -84,7 +84,8 @@ export const InputMask = {
         .replace(/(\d{5})-(\d)(\d{5})/, '$1-$2')
         .replace(/(-\d{5})\d+?$/, '$1')
     ,
-    ddi: (value: string): string => `+${+value.replace(/\D+/g, '')}`
+    ddi: (value: string): string => `+${+value.replace(/\D+/g, '')}`,
+    normalize: (value: string): string => value.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
 }
 
 export type MaskType = keyof typeof InputMask;

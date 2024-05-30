@@ -34,7 +34,10 @@ export const InputSpanStyle = styled.span`
 
 export const LabelStyle = styled.label`
   position: absolute;
-  
+  overflow: hidden;
+  width: 90%;
+  text-wrap: nowrap;
+    
   ${({ theme }) => css`
     bottom: ${theme.padding.main};
     padding-left: ${theme.padding.header};

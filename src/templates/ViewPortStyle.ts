@@ -12,6 +12,9 @@ const ViewPortStyle = styled.div`
         display: flex;
         flex-grow: 1;
         flex-direction: column;
+    }
+    
+    > main > form > main {
         justify-content: space-between;
 
         > section > div {
