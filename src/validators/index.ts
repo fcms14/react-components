@@ -40,11 +40,22 @@ const greaterThanZero = Yup.string().test(
     "O valor precisa ser maior que R$ 0,00",
     (value) => {
         if (!value) return true
-        parseFloat(value.replace(/[^0-9,.-]+/g, '').replace(',', '.')) > 0
+        return parseFloat(value.replace(/[^0-9,.-]+/g, '').replace(',', '.')) > 0
     }
 )
 
 const required = Yup.string().required("Este campo é obrigatório")
+
+const isEmail = Yup.string().email("Digite um e-mail válido")
+
+const isValidPhone = Yup.string().test(
+    "isValidPhone",
+    "Digite um número de celular válido",
+    (value) => {
+        if (!value) return false
+        return value.replace(/\D+/g, '').length === 11
+    }
+)
 
 export const ExchangeOrderValidator = Yup.object().shape({
     limit: notZeroAndEndsWithZero,
@@ -53,6 +64,17 @@ export const ExchangeOrderValidator = Yup.object().shape({
 })
 
 export const SignInValidator = Yup.object().shape({
+    login: required,
+    password: required,
+})
+
+export const SignUpValidator = Yup.object().shape({
+    name: required,
+    cpf: required,
+    email: isEmail,
+    ddi: required,
+    phone: isValidPhone,
+    birthday: required,
     login: required,
     password: required,
 })

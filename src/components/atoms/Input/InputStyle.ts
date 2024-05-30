@@ -22,6 +22,7 @@ export const InputSpanStyle = styled.span`
   display: flex;
   position: relative;
   flex-direction: column;
+  flex-grow: 1;
   padding: ${({ theme }) => theme.padding.main};
 
   > div {

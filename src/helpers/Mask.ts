@@ -50,7 +50,41 @@ export const InputMask = {
         const options = { ...config }
         return new Intl.NumberFormat('pt-br', options).format(cleanValue)
     },
-    number: (value: string, config: Config = configOptions.default): string => (+value.replace(/\D+/g, '') / config.divisor).toFixed(config.minimumFractionDigits)
+    number: (value: string, config: Config = configOptions.default): string => (+value.replace(/\D+/g, '') / config.divisor).toFixed(config.minimumFractionDigits),
+    name: (value: string): string => value
+        .toLowerCase()
+        .replace(/(^|\s)\S/g, match => match.toUpperCase())
+        .replace(/\(.+?\)|\..+?\b/g, match => match.charAt(0) + match.charAt(1).toUpperCase() + match.slice(2))
+    ,
+    cpf: (value: string): string => value
+        .replace(/\D+/g, '')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+        .replace(/(-\d{2})\d+?$/, '$1'),
+
+    cnpj: (value: string): string => value
+        .replace(/\D+/g, '')
+        .replace(/(\d{2})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1/$2')
+        .replace(/(\d{4})(\d)/, '$1-$2')
+        .replace(/(-\d{2})\d+?$/, '$1')
+    ,
+    document: (value: string) => {
+        if (value.length <= 14) {
+            return InputMask.cpf(value)
+        }
+        return InputMask.cnpj(value)
+    },
+    phone: (value: string): string => value
+        .replace(/\D+/g, '')
+        .replace(/(\d{2})(\d)/, '($1)$2')
+        .replace(/(\d{5})(\d)/, '$1-$2')
+        .replace(/(\d{5})-(\d)(\d{5})/, '$1-$2')
+        .replace(/(-\d{5})\d+?$/, '$1')
+    ,
+    ddi: (value: string): string => `+${+value.replace(/\D+/g, '')}`
 }
 
 export type MaskType = keyof typeof InputMask;

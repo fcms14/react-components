@@ -19,6 +19,7 @@ interface Interface {
 
 const icons = {
   "SignIn": MdOutlineAttachMoney,
+  "SignUp": MdOutlineAttachMoney,
   "Dashboard": MdWallet,
   "Exchange": MdDashboard,
   "ApiDocs": MdPix,

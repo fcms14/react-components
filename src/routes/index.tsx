@@ -5,9 +5,11 @@ import Exchange from "../pages/Exchange";
 import ApiDocs from "../pages/ApiDocs";
 import Error from "../pages/Error";
 import { RoutesInterface } from "../interfaces";
+import SignUp from "../pages/SignUp";
 
 const components = {
   SignIn,
+  SignUp,
   Dashboard,
   Exchange,
   ApiDocs,
