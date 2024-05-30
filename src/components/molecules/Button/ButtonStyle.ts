@@ -16,7 +16,7 @@ const ButtonStyle = styled.button<ButtonProps>`
   ${({ theme, small }) => css`
     ${small
       ? `
-        margin: 0 ${theme.padding.main} ${theme.padding.header};
+        flex-grow: 1;
         padding: ${getSize(theme.padding.header) / 4}px ${theme.padding.header};
       `
       : `

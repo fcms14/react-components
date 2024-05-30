@@ -41,7 +41,7 @@ export const ThStyle = styled.th<CellProps>`
     `
 
 export const TdStyle = styled.td<CellProps>`
-    font-size: ${({theme}) => theme.fontsizes.text.small};
+    font-size: ${({ theme }) => theme.fontsizes.text.small};
     text-align: ${props => props.textAlign};
     color: ${props => props.color};
     cursor: ${props => props.cursor};
