@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom"
 import { Header } from "../../components/organisms/Header"
 import { dispatchSetRoutes } from "../../features/routes/routeDispatcher"
 
-const Login = () => {
+const SignIn = () => {
   const newAuth = new Auth
   const navigate = useNavigate()
 
@@ -57,4 +57,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default SignIn

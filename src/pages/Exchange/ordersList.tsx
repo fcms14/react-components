@@ -43,10 +43,11 @@ const OrdersList = ({ listOptions }: Interface) => {
 
   })
 
-  return (<div style={{minHeight: "300px", padding: theme.padding.main}}>
-    {isLoading
-      ? "Carregando..."
-      : !data?.length && "Nenhuma ordem encontrada"
+  return (<>
+    {(isLoading || !data?.length) &&
+      <div style={{ height: "300px", padding: theme.padding.main }}>
+        {isLoading ? "Carregando..." : "Nenhuma ordem encontrada"}
+      </div>
     }
     {data && data?.length > 0 && <Table
       tableStyle={{ height: "300px" }}
@@ -88,7 +89,7 @@ const OrdersList = ({ listOptions }: Interface) => {
         })
       }
     />}
-  </div>
+  </>
   )
 }
 

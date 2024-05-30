@@ -5,19 +5,23 @@ export const routeSlice = createSlice({
     initialState: {
         routes: [{
             path: "/",
-            element: "Login",
+            element: "SignIn",
+        },
+        {
+            path: "/signup",
+            element: "SignUp",
+        },
+        {
+            path: "/dashboard",
+            element: "Dashboard",
         },
         {
             path: "/api-docs",
             element: "ApiDocs",
         },
         {
-            path: "/testes",
-            element: "Index",
-        },
-        {
             path: "*",
-            element: "Login",
+            element: "SignIn",
         }]
     },
     reducers: {

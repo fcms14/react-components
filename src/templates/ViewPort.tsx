@@ -10,17 +10,19 @@ import { useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { RootState } from "../store"
 import { RoutesInterface } from "../interfaces"
+import { ElementType } from "../routes"
+import SplashScreen from "../components/atoms/SplashScreen"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
 }
 
 const icons = {
+  "SignIn": MdOutlineAttachMoney,
+  "Dashboard": MdWallet,
   "Exchange": MdDashboard,
-  "Error": MdMenu,
-  "Login": MdOutlineAttachMoney,
   "ApiDocs": MdPix,
-  "Index": MdWallet
+  "Error": MdMenu,
 }
 
 const ViewPort = ({ children }: Interface) => {
@@ -38,13 +40,15 @@ const ViewPort = ({ children }: Interface) => {
     }
   }, [data])
 
+  const isElementType = (element: string): element is ElementType => element in icons
+
   return (
     <ViewPortStyle>
-      {isLoading ? <>Carregando ... </> : children}
+      {isLoading ? <SplashScreen /> : children}
       <footer>
         <Menu menuStyle={{ justifyContent: "space-between", applyPadding: true }} items={
           routes.map((route: RoutesInterface) => {
-            return { icon: icons[route.element], text: route.path, onClick: () => navigate(route.path) }
+            return { icon: isElementType(route.element) ? icons[route.element] : MdMenu, text: route.path, onClick: () => navigate(route.path) }
           })
         } />
       </footer>

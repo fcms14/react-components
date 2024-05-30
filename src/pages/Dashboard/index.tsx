@@ -8,7 +8,7 @@ import { MdCardGiftcard } from "react-icons/md"
 import List from "./list"
 import { MenuRowInterface } from "../../interfaces"
 
-const Index = () => {
+const Dashboard = () => {
   const navigate = useNavigate()
   const balance = Mask.currency(953480.12)
 
@@ -39,4 +39,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Dashboard

@@ -1,24 +1,26 @@
 import { createBrowserRouter } from "react-router-dom";
-import Error from "../pages/Error";
-import Index from "../pages/Index";
+import SignIn from "../pages/SignIn";
+import Dashboard from "../pages/Dashboard";
 import Exchange from "../pages/Exchange";
-import Login from "../pages/Login";
-import ApiDocs from "../pages/Docs";
+import ApiDocs from "../pages/ApiDocs";
+import Error from "../pages/Error";
 import { RoutesInterface } from "../interfaces";
 
 const components = {
+  SignIn,
+  Dashboard,
   Exchange,
-  Error,
-  Login,
   ApiDocs,
-  Index
+  Error,
 }
 
 export type ElementType = keyof typeof components;
 
 export const Routes = (allowedRoutes: RoutesInterface[]) => {
+  const isElementType = (element: string): element is ElementType => element in components
+
   const routes = allowedRoutes.map((route: RoutesInterface) => {
-    const Component = components[route.element ?? "Error"]
+    const Component = isElementType(route.element) ? components[route.element] : Error
 
     return {
       path: route.path,

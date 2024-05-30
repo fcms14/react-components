@@ -4,6 +4,7 @@ import { MenuProps } from '../../../interfaces'
 const MenuStyle = styled.div<MenuProps>`
   display: flex;
   width: 100%;
+  overflow-x: auto;
 
   ${({ theme, justifyContent, applyPadding }) => css`
     gap: ${theme.gap};
