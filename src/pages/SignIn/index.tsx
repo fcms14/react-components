@@ -15,6 +15,7 @@ import { IconComponentInterface } from "../../interfaces"
 import { Row } from "../../components/molecules/Row"
 import Link from "../../components/atoms/Link"
 import RadionButton from "../../components/atoms/Radio"
+import Checkbox from "../../components/atoms/Checkbox"
 
 
 const SignIn = () => {
