@@ -44,7 +44,7 @@ const SignUp = () => {
 
   return (
     <ViewPort>
-      <Header.Guest> <img src="https://app.reset-bank.com/iconx/logo.png" /> </Header.Guest>
+      <Header.Guest />
       <Row.Root>
         <Row.Section>
           <Row.Title>Cadastre-se</Row.Title>

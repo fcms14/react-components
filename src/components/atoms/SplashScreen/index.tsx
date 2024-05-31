@@ -7,7 +7,7 @@ import { Row } from "../../molecules/Row"
 const SplashScreen = () => {
   return (
     <>
-      <Header.Guest> <img src="https://app.reset-bank.com/iconx/logo.png" /> </Header.Guest>
+      <Header.Guest />
       <main>
         <SplashScreenStyle>
           <Row.Root>

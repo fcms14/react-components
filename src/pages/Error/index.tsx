@@ -6,7 +6,7 @@ import { Row } from "../../components/molecules/Row"
 const Error = () => {
   return (
     <ViewPort>
-      <Header.Guest> <img src="https://app.reset-bank.com/iconx/logo.png" /> </Header.Guest>
+      <Header.Guest />
       <main>
         <Row.Root>
           <Row.Text> ... </Row.Text>

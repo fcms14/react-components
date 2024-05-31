@@ -1,14 +1,13 @@
-import { ReactNode } from "react"
 import Header from "../../atoms/Header"
 
 interface Interface {
-  children: ReactNode,
+
 }
 
-const HeaderGuest = ({ children }: Interface) => {
+const HeaderGuest = ({ }: Interface) => {
   return (
     <Header>
-      {children}
+      <img src={import.meta.env.VITE_WHITE_LABEL_LOGO} />
     </Header>
   )
 }

@@ -38,7 +38,7 @@ const SignIn = () => {
 
   return (
     <ViewPort>
-      <Header.Guest> <img src="https://app.reset-bank.com/iconx/logo.png" /> </Header.Guest>
+      <Header.Guest />
       <main>
         <Row.Root>
           <Row.Section>
