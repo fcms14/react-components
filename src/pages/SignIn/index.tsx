@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik"
-import AuthTemplate from "../../templates/AuthTemplate"
+import GuestTemplate from "../../templates/GuestTemplate"
 import Input from "../../components/atoms/Input"
 import { Button } from "../../components/organisms/Button"
 import Auth from "../../entities/Auth"
@@ -29,7 +29,7 @@ const SignIn = () => {
     onSuccess: ({ access_token, routes }) => {
       localStorage.setItem("token", access_token)
       dispatchSetRoutes(routes)
-      return navigate('/exchange')
+      return navigate('/dashboard')
     },
   })
 
@@ -37,7 +37,7 @@ const SignIn = () => {
   const inputType = showInputValue ? "text" : "password"
 
   return (
-    <AuthTemplate showFooterMenu={false}>
+    <GuestTemplate>
       <Header.Guest />
       <main>
         <Row.Root>
@@ -79,7 +79,7 @@ const SignIn = () => {
           )}
         </Formik>
       </main>
-    </AuthTemplate>
+    </GuestTemplate>
   )
 }
 

@@ -1,4 +1,4 @@
-import AuthTemplate from "../../../templates/AuthTemplate"
+import GuestTemplate from "../../../templates/GuestTemplate"
 import { BlurPage } from "../ModAlert/ModAlertStyle"
 import SidePanelStyle from "./SidePanelStyle"
 
@@ -11,9 +11,9 @@ const SidePanel = ({ children, onClick }: Interface) => {
   return (
     <BlurPage onClick={onClick}>
       <SidePanelStyle onClick={(e) => e.stopPropagation()}>
-        <AuthTemplate>
+        <GuestTemplate>
           {children}
-        </AuthTemplate>
+        </GuestTemplate>
       </SidePanelStyle>
     </BlurPage>
   )

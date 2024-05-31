@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik"
-import AuthTemplate from "../../templates/AuthTemplate"
+import GuestTemplate from "../../templates/GuestTemplate"
 import Input from "../../components/atoms/Input"
 import { Button } from "../../components/organisms/Button"
 import Auth from "../../entities/Auth"
@@ -43,7 +43,7 @@ const SignUp = () => {
   const inputType = showInputValue ? "text" : "password"
 
   return (
-    <AuthTemplate showFooterMenu={false}>
+    <GuestTemplate>
       <Header.Guest />
       <Row.Root>
         <Row.Section>
@@ -95,7 +95,7 @@ const SignUp = () => {
           )}
         </Formik>
       </main>
-    </AuthTemplate>
+    </GuestTemplate>
   )
 }
 

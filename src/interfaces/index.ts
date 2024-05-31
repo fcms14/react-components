@@ -177,6 +177,8 @@ export interface ToasterProps {
 export interface RoutesInterface {
     path: string,
     element: ElementType
+    show: boolean
+    label: string
 }
 
 export interface AlertInterface {
