@@ -43,6 +43,12 @@ const SignIn = () => {
   return (
     <GuestTemplate>
       <Header.Guest />
+      <Row.Root>
+        <Row.Section sectionStyle={{ flexDirection: "center" }}>
+          <Checkbox text="Depositar"></Checkbox >
+          <Checkbox  text="Sacar"></Checkbox >
+        </Row.Section>
+      </Row.Root>  
       <main>
         <Row.Root>
           <Row.Section>
