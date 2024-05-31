@@ -15,6 +15,7 @@ import { IconComponentInterface } from "../../interfaces"
 import { Row } from "../../components/molecules/Row"
 import Link from "../../components/atoms/Link"
 import RadionButton from "../../components/atoms/Radio"
+import Checkbox from "../../components/atoms/Checkbox"
 
 
 const SignIn = () => {
@@ -42,12 +43,13 @@ const SignIn = () => {
   return (
     <ViewPort>
       <Header.Guest> <img src="https://app.reset-bank.com/iconx/logo.png" /> </Header.Guest>
+         
       <Row.Root>
         <Row.Section sectionStyle={{ flexDirection: "center" }}>
-          <RadionButton name="seletor"  text="Depositar"></RadionButton >
-          <RadionButton name="seletor"  text="Sacar"></RadionButton >
+          <Checkbox text="Depositar"></Checkbox >
+          <Checkbox  text="Sacar"></Checkbox >
         </Row.Section>
-      </Row.Root>     
+      </Row.Root>  
       <main>
         <Row.Root>
           <Row.Section>
