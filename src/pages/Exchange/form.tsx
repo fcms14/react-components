@@ -208,8 +208,8 @@ const ExchangeForm = ({ children, ticker }: Interface) => {
               <aside>
                 <Button.Panel buttons={buttons} />
                 {showPanel === "OrderBook" && <OrderBookTable ticker={ticker} />}
-                {showPanel === "OrdersOpened" && <OrdersList listOptions={{ status: "OPEN", limit: 100, page: 1, price: Sort.desc }} />}
-                {showPanel === "OrderHistory" && <OrdersList listOptions={{ status: "FILLED", limit: 100, page: 1 }} />}
+                <OrdersList show={showPanel === "OrdersOpened"} listOptions={{ status: "OPEN", limit: 100, page: 1, price: Sort.desc }} />
+                <OrdersList show={showPanel === "OrderHistory"} listOptions={{ status: "FILLED", limit: 100, page: 1 }} />
               </aside>
             </Form>
             )

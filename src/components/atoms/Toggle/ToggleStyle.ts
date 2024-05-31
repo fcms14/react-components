@@ -49,7 +49,7 @@ const ToggleStyle = styled.span<ToggleSpanProps>`
     `}
   }
 
-  > input:checked::before {
+  input:checked::before {
     -webkit-transform: translateX(32px);
     -ms-transform: translateX(32px);
     transform: translateX(32px);

@@ -8,10 +8,11 @@ import { useEffect, useState } from "react"
 import { theme } from "../../providers/theme"
 
 interface Interface {
-  listOptions: ListInterface
+  listOptions: ListInterface,
+  show?: boolean
 }
 
-const OrdersList = ({ listOptions }: Interface) => {
+const OrdersList = ({ listOptions, show = true }: Interface) => {
   const queryClient = useQueryClient()
   const newOrder = new Order
   const [cancellingOrderUuid, setCancellingOrderUuid] = useState<string[]>([])
@@ -43,54 +44,62 @@ const OrdersList = ({ listOptions }: Interface) => {
 
   })
 
-  return (<>
-    {(isLoading || !data?.length) &&
+  if (!show) {
+    return (<></>)
+  }
+
+  if (isLoading || !data?.length) {
+    return (
       <div style={{ height: "300px", padding: theme.padding.main }}>
         {isLoading ? "Carregando..." : "Nenhuma ordem encontrada"}
       </div>
-    }
-    {data && data?.length > 0 && <Table
-      tableStyle={{ height: "300px" }}
-      headers={[
-        { text: "Data", cellStyle: { textAlign: "left" } },
-        { text: "Tipo", cellStyle: { textAlign: "left" } },
-        { text: "Operacão", cellStyle: { textAlign: "left" } },
-        { text: "Preço", cellStyle: { textAlign: "left" } },
-        { text: "Quantidade", cellStyle: { textAlign: "left" } },
-        { text: "Total", cellStyle: { textAlign: "left" } },
-        { text: "", cellStyle: { textAlign: "left" } },
-      ]}
-      rows={
-        data.map((order, i) => {
-          return {
-            cell: [
-              { text: Mask.dateTime(order.created_at) },
-              { text: order.type, },
-              { text: order.side, },
-              { text: Mask.currency(order.price, Decimal.USDT, "BRL"), },
-              { text: Mask.currency(order.amount, Decimal.USD, "USD"), },
-              { text: Mask.currency(order.volume), },
-              {
-                text:
-                  order.status === "OPEN"
-                    ? cancellingOrderUuid.find(value => value === order.uuid)
-                      ? "Cancelando..."
-                      : "X"
-                    : "",
-                onClick: () => {
-                  if (order.status === "OPEN" && !cancellingOrderUuid.find(value => value === order.uuid)) {
-                    setCancellingOrderUuid([...cancellingOrderUuid, order.uuid])
-                    mutation.mutate(order.uuid)
+    )
+  }
+
+  return (<>
+    {data.length > 0 &&
+      <Table
+        tableStyle={{ height: "300px" }}
+        headers={[
+          { text: "Data", cellStyle: { textAlign: "left" } },
+          { text: "Tipo", cellStyle: { textAlign: "left" } },
+          { text: "Operacão", cellStyle: { textAlign: "left" } },
+          { text: "Preço", cellStyle: { textAlign: "left" } },
+          { text: "Quantidade", cellStyle: { textAlign: "left" } },
+          { text: "Total", cellStyle: { textAlign: "left" } },
+          { text: "", cellStyle: { textAlign: "left" } },
+        ]}
+        rows={
+          data.map((order, i) => {
+            return {
+              cell: [
+                { text: Mask.dateTime(order.created_at) },
+                { text: order.type, },
+                { text: order.side, },
+                { text: Mask.currency(order.price, Decimal.USDT, "BRL"), },
+                { text: Mask.currency(order.amount, Decimal.USD, "USD"), },
+                { text: Mask.currency(order.volume), },
+                {
+                  text:
+                    order.status === "OPEN"
+                      ? cancellingOrderUuid.find(value => value === order.uuid)
+                        ? "Cancelando..."
+                        : "X"
+                      : "",
+                  onClick: () => {
+                    if (order.status === "OPEN" && !cancellingOrderUuid.find(value => value === order.uuid)) {
+                      setCancellingOrderUuid([...cancellingOrderUuid, order.uuid])
+                      mutation.mutate(order.uuid)
+                    }
                   }
-                }
-              },
-            ]
-          }
-        })
-      }
-    />}
-  </>
-  )
+                },
+              ]
+            }
+          })
+        }
+      />
+    }
+  </>)
 }
 
 export default OrdersList
