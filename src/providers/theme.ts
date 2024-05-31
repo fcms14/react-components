@@ -1,6 +1,7 @@
-import { ColorByType, ColorInterface, FontSizeInterface, FooterInterface, PaddingInterface } from "../interfaces"
+import { ColorByType, ColorDefault, ColorInterface, FontSizeInterface, FooterInterface, PaddingInterface } from "../interfaces"
 
 interface ThemeInterface {
+  colorDefault: ColorDefault,
   colorByType: ColorByType,
   colors: ColorInterface,
   fontsizes: FontSizeInterface,
@@ -11,6 +12,7 @@ interface ThemeInterface {
 }
 
 export const theme: ThemeInterface = {
+  colorDefault: JSON.parse((import.meta.env.VITE_COLOR_DEFAULT).slice(1, -1).replace(/\*/g, '"')),
   colorByType: JSON.parse((import.meta.env.VITE_COLOR_BY_TYPE).slice(1, -1).replace(/\*/g, '"')),
   colors: JSON.parse((import.meta.env.VITE_COLORS).slice(1, -1).replace(/\*/g, '"')),
   fontsizes: JSON.parse((import.meta.env.VITE_FONTSIZES).slice(1, -1).replace(/\*/g, '"')),

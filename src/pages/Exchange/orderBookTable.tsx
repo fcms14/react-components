@@ -5,6 +5,7 @@ import { CellProps } from "../../interfaces"
 import { ExchangeFormIntercace } from "./form"
 import { Decimal, Fractions, Mask, Parser } from "../../helpers/Mask"
 import OrderBook from "../../entities/OrderBook"
+import { theme } from "../../providers/theme"
 
 interface Interface {
   ticker: keyof typeof Fractions
@@ -13,8 +14,8 @@ interface Interface {
 const OrderBookTable = ({ ticker }: Interface) => {
   const newOrderBook = new OrderBook
 
-  const buyStyle: CellProps = { color: "#0D9E00", textAlign: "right" }
-  const sellStyle: CellProps = { color: "#FF2F21", textAlign: "left" }
+  const buyStyle: CellProps = { color: theme.colorDefault.buy, textAlign: "right" }
+  const sellStyle: CellProps = { color: theme.colorDefault.sell, textAlign: "left" }
 
   const { setFieldValue, values } = useFormikContext()
   const _values = values as ExchangeFormIntercace

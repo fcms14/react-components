@@ -15,6 +15,7 @@ import OrderBook from "../../entities/OrderBook"
 import { sse } from "./eventListener"
 import { ExchangeOrderValidator } from "../../validators"
 import { dispatchHideAlerts, dispatchSetAlerts } from "../../features/alert/alertDispatcher"
+import { theme } from "../../providers/theme"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
@@ -88,12 +89,12 @@ const ExchangeForm = ({ children, ticker }: Interface) => {
         <Formik
           initialValues={initialValues}
           validationSchema={ExchangeOrderValidator}
-          onSubmit={(values) => 
+          onSubmit={(values) =>
             dispatchSetAlerts({
               buttons: [
                 {
                   text: "Cancelar",
-                  buttonStyle: { type: "button", active: true, secondary: false, color: "#FF0000" },
+                  buttonStyle: { type: "button", active: true, secondary: false, color: theme.colorDefault.error },
                   onClick: () => { dispatchHideAlerts() },
                 },
                 {
@@ -177,9 +178,9 @@ const ExchangeForm = ({ children, ticker }: Interface) => {
                     type: "submit",
                     color: values.isBuyOrder
                       ? isValid
-                        ? "#0D9E00" : "#0D9E0095"
+                        ? theme.colorDefault.buy : `${theme.colorDefault.buy}95`
                       : isValid
-                        ? "#FF2F21" : "#FF2F2195",
+                        ? theme.colorDefault.sell : `${theme.colorDefault.sell}95`,
                   }}
                 />
               </main>

@@ -2,6 +2,7 @@ import Toggle from "../../components/atoms/Toggle"
 import { Row } from "../../components/molecules/Row"
 import { useFormikContext } from "formik";
 import { ExchangeFormIntercace } from "./form";
+import { theme } from "../../providers/theme";
 
 const OrderSelectorType = () => {
     const { setFieldValue, values } = useFormikContext()
@@ -20,7 +21,7 @@ const OrderSelectorType = () => {
                 <Toggle
                     text={_values.isBuyOrder ? "Comprar" : "Vender"}
                     onToggleChange={(checked: boolean) => setFieldValue("isBuyOrder", checked)}
-                    color={_values.isBuyOrder ? "#0D9E00" : "#FF2F21"}
+                    color={_values.isBuyOrder ? theme.colorDefault.buy : theme.colorDefault.sell}
                 />
             </Row.Section>
         </Row.Root>

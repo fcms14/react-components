@@ -237,6 +237,14 @@ export interface ColorByType {
     info: string,
 }
 
+export interface ColorDefault {
+    buy: string,
+    sell: string,
+    error: string,
+    info: string,
+    white: string,
+}
+
 export enum Sort {
     asc = 'asc',
     desc = 'desc'

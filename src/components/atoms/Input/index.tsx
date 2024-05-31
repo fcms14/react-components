@@ -5,6 +5,7 @@ import { BaseSyntheticEvent } from "react"
 import { InputMask, MaskType, MaskConfigTypes, configOptions } from "../../../helpers/Mask"
 import Subtext from "../Subtext"
 import Icon from "../Icon"
+import { theme } from "../../../providers/theme"
 
 interface Interface {
     name: string
@@ -49,7 +50,7 @@ const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChang
                 onKeyDown={mask ? handleChange : undefined}
             />
             <LabelStyle htmlFor={name}> {label} </LabelStyle>
-            {error && <ErrorSpanStyle> <Subtext size="big" color={"#FF0000"}>{error}</Subtext> </ErrorSpanStyle>}
+            {error && <ErrorSpanStyle> <Subtext size="big" color={theme.colorDefault.error}>{error}</Subtext> </ErrorSpanStyle>}
             {icon && <Icon {...icon} />}
         </InputSpanStyle>
     )
