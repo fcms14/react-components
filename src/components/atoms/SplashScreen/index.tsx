@@ -3,11 +3,16 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai"
 import SplashScreenStyle from "./SplashScreenStyle"
 import { theme } from "../../../providers/theme"
 import { Row } from "../../molecules/Row"
+import GuestTemplate from "../../../templates/GuestTemplate"
 
-const SplashScreen = () => {
+interface Interface {
+  showHeader?: boolean
+}
+
+const SplashScreen = ({ showHeader = true }: Interface) => {
   return (
-    <>
-      <Header.Guest />
+    <GuestTemplate>
+      <>{showHeader && <Header.Guest />}</>
       <main>
         <SplashScreenStyle>
           <Row.Root>
@@ -18,7 +23,7 @@ const SplashScreen = () => {
           </Row.Root>
         </SplashScreenStyle>
       </main>
-    </>
+    </GuestTemplate>
   )
 }
 

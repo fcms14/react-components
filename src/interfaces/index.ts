@@ -188,6 +188,10 @@ export interface AlertInterface {
     buttons: ButtonDefaultInterface[]
 }
 
+export interface SensibleDataInterface {
+    show: boolean
+}
+
 export interface NotificationInterface {
     active: boolean,
     text: string,

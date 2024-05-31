@@ -10,7 +10,7 @@ const Exchange = () => {
   const navigate = useNavigate()
 
   return (
-    <AuthTemplate showFooterMenu={true}>
+    <AuthTemplate showFooterMenu={false}>
       <Header.WithTwoIcons
         text="Negociar - Tether"
         leftIcon={MdArrowBack}

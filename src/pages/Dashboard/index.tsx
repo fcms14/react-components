@@ -9,11 +9,15 @@ import List from "./list"
 import { MenuRowInterface } from "../../interfaces"
 import { useState } from "react"
 import UnderPanel from "../../components/atoms/UnderPanel"
+import { dispatchVisibility } from "../../features/sensibleData/sensibleDataDispatcher"
+import { RootState } from "../../store"
+import { useSelector } from "react-redux"
 
 const Dashboard = () => {
+  const { show: showBalance} = useSelector((state: RootState) => state.sensibleData);
   const navigate = useNavigate()
-  const balance = Mask.currency(953480.12)
-  const [show, setShow] = useState<boolean>(false)
+  const balance = showBalance ? Mask.currency(953480.12) : "*******"
+  const [showPanel, setShowPanel] = useState<boolean>(false)
 
   const items: MenuRowInterface[] = [
     { title: "Pagar", text: "Com cartão", icon: MdCardGiftcard, },
@@ -23,9 +27,9 @@ const Dashboard = () => {
   return (
     <AuthTemplate>
       <Header.Dashboard
-        avatar={{ text: "Olá, Felipe!", onClick: () => setShow(!show) }}
+        avatar={{ text: "Olá, Felipe!", onClick: () => setShowPanel(!showPanel) }}
         text={"Nome da conta + Dados da conta"}
-        card={{ icon: MdRemoveRedEye, text: "Saldo disponível", title: balance, onClick: () => console.log(1) }}
+        card={{ icon: MdRemoveRedEye, text: "Saldo disponível", title: balance, onClick: dispatchVisibility }}
         menu={{
           items: [
             { icon: MdCurrencyExchange, text: "Negociar", onClick: () => navigate('/exchange') },
@@ -35,8 +39,8 @@ const Dashboard = () => {
         }}
       />
       <main>
-        {show &&
-          <UnderPanel onClick={() => setShow(false)}>
+        {showPanel &&
+          <UnderPanel onClick={() => setShowPanel(false)}>
             <Header.Guest>Teste</Header.Guest>
             <main>Teste</main>
           </UnderPanel>

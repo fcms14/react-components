@@ -16,6 +16,7 @@ import { sse } from "./eventListener"
 import { ExchangeOrderValidator } from "../../validators"
 import { dispatchHideAlerts, dispatchSetAlerts } from "../../features/alert/alertDispatcher"
 import { theme } from "../../providers/theme"
+import SplashScreen from "../../components/atoms/SplashScreen"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
@@ -39,8 +40,8 @@ const ExchangeForm = ({ children, ticker }: Interface) => {
   const newOrderBook = new OrderBook
   const newOrder = new Order
 
-  const { data: userAccounts } = useQuery("userAccount", () => newUserAccount.list(), { staleTime: Infinity, cacheTime: Infinity })
-  const { data: book } = useQuery("orderBook", () => newOrderBook.list({ symbol: ticker, limit: 10 }), { refetchInterval: 5000 })
+  const { data: userAccounts, isLoading: loadingAccounts } = useQuery("userAccount", () => newUserAccount.list(), { staleTime: Infinity, cacheTime: Infinity })
+  const { data: book, isLoading: loadingBook } = useQuery("orderBook", () => newOrderBook.list({ symbol: ticker, limit: 10 }), { refetchInterval: 5000 })
 
   const debitAccount = userAccounts?.find((value) => value.name === "BRL")
   const creditAccount = userAccounts?.find((value) => value.name === "USDT")
@@ -85,6 +86,7 @@ const ExchangeForm = ({ children, ticker }: Interface) => {
 
   return (
     <>
+      {(loadingAccounts || loadingBook) && <SplashScreen showHeader={false} />}
       {userAccounts && debitAccount && creditAccount &&
         <Formik
           initialValues={initialValues}
