@@ -1,3 +1,4 @@
+import { dispatchHideAlerts } from "../../../features/alert/alertDispatcher";
 import { ButtonDefaultInterface } from "../../../interfaces";
 import { Button } from "../../organisms/Button";
 import Text from "../Text"
@@ -12,7 +13,7 @@ interface Interface {
 
 const ModAlert = ({ title, text, buttons }: Interface) => {
   return (
-    <BlurPage>
+    <BlurPage onClick={dispatchHideAlerts}>
       <ModAlertStyle>
         <header>
           <Title> {title} </Title>
