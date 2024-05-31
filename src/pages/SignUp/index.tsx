@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik"
-import ViewPort from "../../templates/ViewPort"
+import AuthTemplate from "../../templates/AuthTemplate"
 import Input from "../../components/atoms/Input"
 import { Button } from "../../components/organisms/Button"
 import Auth from "../../entities/Auth"
@@ -43,7 +43,7 @@ const SignUp = () => {
   const inputType = showInputValue ? "text" : "password"
 
   return (
-    <ViewPort>
+    <AuthTemplate showFooterMenu={false}>
       <Header.Guest />
       <Row.Root>
         <Row.Section>
@@ -95,7 +95,7 @@ const SignUp = () => {
           )}
         </Formik>
       </main>
-    </ViewPort>
+    </AuthTemplate>
   )
 }
 

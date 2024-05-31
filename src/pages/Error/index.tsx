@@ -1,11 +1,11 @@
-import ViewPort from "../../templates/ViewPort"
+import AuthTemplate from "../../templates/AuthTemplate"
 import { MdError } from "react-icons/md"
 import { Header } from "../../components/organisms/Header"
 import { Row } from "../../components/molecules/Row"
 
 const Error = () => {
   return (
-    <ViewPort>
+    <AuthTemplate>
       <Header.Guest />
       <main>
         <Row.Root>
@@ -16,7 +16,7 @@ const Error = () => {
           <Row.Text> Ocorreu um erro durante o carregamento desta página. Por favor tente mais tarde. </Row.Text>
         </Row.Root>
       </main>
-    </ViewPort>
+    </AuthTemplate>
   )
 }
 

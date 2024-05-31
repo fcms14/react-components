@@ -1,4 +1,4 @@
-import ViewPort from "../../templates/ViewPort"
+import AuthTemplate from "../../templates/AuthTemplate"
 import { Header } from "../../components/organisms/Header"
 import ExchangeBalances from "./balances"
 import OrderSelectorType from "./orderSelectorType"
@@ -10,14 +10,14 @@ const Exchange = () => {
   const navigate = useNavigate()
 
   return (
-    <ViewPort>
+    <AuthTemplate>
       <Header.WithTwoIcons
         text="Negociar - Tether"
         leftIcon={MdArrowBack}
         rightIcon={MdClose}
         iconSize={24}
-        leftClick={() => navigate('/')}
-        rightClick={() => navigate('/')}
+        leftClick={() => navigate('/dashboard')}
+        rightClick={() => navigate('/dashboard')}
       />
       <main>
         <ExchangeForm ticker="USDTBRL">
@@ -25,7 +25,7 @@ const Exchange = () => {
           <OrderSelectorType />
         </ExchangeForm>
       </main>
-    </ViewPort>
+    </AuthTemplate>
   )
 }
 

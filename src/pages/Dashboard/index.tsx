@@ -1,4 +1,4 @@
-import ViewPort from "../../templates/ViewPort"
+import AuthTemplate from "../../templates/AuthTemplate"
 import { Header } from "../../components/organisms/Header"
 import { useNavigate } from "react-router-dom"
 import { Row } from "../../components/organisms/Row"
@@ -21,7 +21,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <ViewPort>
+    <AuthTemplate>
       <Header.Dashboard
         avatar={{ text: "Olá, Felipe!", onClick: () => setShow(!show) }}
         text={"Nome da conta + Dados da conta"}
@@ -44,7 +44,7 @@ const Dashboard = () => {
         <Row.Menu items={items} />
         <List />
       </main>
-    </ViewPort>
+    </AuthTemplate>
   )
 }
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const ViewPortStyle = styled.div`
+const BodyDefaultStyle = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 100dvh;
@@ -40,4 +40,4 @@ const ViewPortStyle = styled.div`
     }
 `
 
-export default ViewPortStyle
+export default BodyDefaultStyle

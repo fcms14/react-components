@@ -1,5 +1,5 @@
 import { JSX } from "react/jsx-runtime"
-import ViewPortStyle from "./ViewPortStyle"
+import BodyDefaultStyle from "./BodyDefaultStyle"
 import Auth from "../entities/Auth"
 import { useQuery } from "react-query"
 import { useEffect } from "react"
@@ -15,6 +15,7 @@ import SplashScreen from "../components/atoms/SplashScreen"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
+  showFooterMenu?: boolean
 }
 
 const icons = {
@@ -26,7 +27,7 @@ const icons = {
   "Error": MdMenu,
 }
 
-const ViewPort = ({ children }: Interface) => {
+const AuthTemplate = ({ children, showFooterMenu = true }: Interface) => {
   const token = localStorage.getItem('token')
   const { routes } = useSelector((state: RootState) => state.routes);
 
@@ -44,17 +45,26 @@ const ViewPort = ({ children }: Interface) => {
   const isElementType = (element: string): element is ElementType => element in icons
 
   return (
-    <ViewPortStyle>
+    <BodyDefaultStyle>
       {isLoading ? <SplashScreen /> : children}
-      <footer>
-        <Menu menuStyle={{ justifyContent: "space-between", applyPadding: true }} items={
-          routes.map((route: RoutesInterface) => {
-            return { icon: isElementType(route.element) ? icons[route.element] : MdMenu, text: route.path, onClick: () => navigate(route.path) }
-          })
-        } />
-      </footer>
-    </ViewPortStyle>
+      {showFooterMenu && <footer>
+        <Menu
+          menuStyle={{ justifyContent: "space-between", applyPadding: true }}
+          items={
+            routes
+              .filter((route: RoutesInterface) => route.show)
+              .map((route: RoutesInterface) => {
+                return {
+                  icon: isElementType(route.element) ? icons[route.element] : MdMenu,
+                  text: route.label,
+                  onClick: () => navigate(route.path)
+                }
+              })
+          }
+        />
+      </footer>}
+    </BodyDefaultStyle>
   )
 }
 
-export default ViewPort
+export default AuthTemplate

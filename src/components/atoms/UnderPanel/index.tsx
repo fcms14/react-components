@@ -1,4 +1,3 @@
-import ViewPort from "../../../templates/ViewPort"
 import { BlurPage } from "../ModAlert/ModAlertStyle"
 import UnderPanelStyle from "./UnderPanelStyle"
 
