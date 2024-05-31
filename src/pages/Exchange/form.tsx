@@ -17,6 +17,7 @@ import { ExchangeOrderValidator } from "../../validators"
 import { dispatchHideAlerts, dispatchSetAlerts } from "../../features/alert/alertDispatcher"
 import { theme } from "../../providers/theme"
 import SplashScreen from "../../components/atoms/SplashScreen"
+import Toggle from "../../components/atoms/Toggle"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
@@ -130,6 +131,24 @@ const ExchangeForm = ({ children, ticker }: Interface) => {
               {children}
               <main>
                 <section>
+                  <Row.Root>
+                    <Row.Section>
+                      <Toggle
+                        name={"isLimitOrder"}
+                        label={values.isLimitOrder ? "Ordem Limite" : "Ordem a Mercado"}
+                        checked={values.isLimitOrder}
+                      />
+                    </Row.Section>
+                    <Row.Section>
+                      <Toggle
+                        name={"isBuyOrder"}
+                        label={values.isBuyOrder ? "Comprar" : "Vender"}
+                        checked={values.isBuyOrder}
+                        color={values.isBuyOrder ? theme.colorDefault.buy : theme.colorDefault.sell}
+                        toggleStyle={{ flexDirection: "row-reverse" }}
+                      />
+                    </Row.Section>
+                  </Row.Root>
                   {values.isLimitOrder ?
                     <Input
                       onChange={(value: string) => setFieldValue("total", handleTotal(values.quantity, value))}
@@ -189,8 +208,8 @@ const ExchangeForm = ({ children, ticker }: Interface) => {
               <aside>
                 <Button.Panel buttons={buttons} />
                 {showPanel === "OrderBook" && <OrderBookTable ticker={ticker} />}
-                {showPanel === "OrdersOpened" && <OrdersList listOptions={{ status: "OPEN", limit: 100, page: 1, price: Sort.desc }} />}
-                {showPanel === "OrderHistory" && <OrdersList listOptions={{ status: "FILLED", limit: 100, page: 1 }} />}
+                <OrdersList show={showPanel === "OrdersOpened"} listOptions={{ status: "OPEN", limit: 100, page: 1, price: Sort.desc }} />
+                <OrdersList show={showPanel === "OrderHistory"} listOptions={{ status: "FILLED", limit: 100, page: 1 }} />
               </aside>
             </Form>
             )

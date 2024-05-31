@@ -1,11 +1,13 @@
 import InputStyle, { ErrorSpanStyle, InputSpanStyle, LabelStyle } from "./InputStyle"
 import { IconComponentInterface, InputProps } from "../../../interfaces"
 import { useFormikContext } from "formik"
-import { BaseSyntheticEvent } from "react"
+import { BaseSyntheticEvent, useState } from "react"
 import { InputMask, MaskType, MaskConfigTypes, configOptions } from "../../../helpers/Mask"
 import Subtext from "../Subtext"
 import Icon from "../Icon"
 import { theme } from "../../../providers/theme"
+import { MdRemoveRedEye } from "react-icons/md"
+import { FaEyeSlash } from "react-icons/fa"
 
 interface Interface {
     name: string
@@ -23,6 +25,7 @@ interface Interface {
 
 const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChange, onFocus, inputMode, icon }: Interface) => {
     const { setFieldValue } = useFormikContext()
+    const [show, toggleVisibility] = useState<boolean>(false)
 
     function handleChange(e: BaseSyntheticEvent, mask: MaskType) {
         if (!mask) return
@@ -40,7 +43,7 @@ const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChang
                 placeholder={label}
                 id={name}
                 name={name}
-                type={type}
+                type={(type === "password" && show) ? "text" : type}
                 inputMode={inputMode}
                 onFocus={onFocus}
                 onKeyUp={(e: BaseSyntheticEvent) => {
@@ -51,6 +54,7 @@ const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChang
             />
             <LabelStyle htmlFor={name}> {label} </LabelStyle>
             {error && <ErrorSpanStyle> <Subtext size="big" color={theme.colorDefault.error}>{error}</Subtext> </ErrorSpanStyle>}
+            {(type === "password") && <Icon icon={!show ? FaEyeSlash : MdRemoveRedEye} onClick={() => toggleVisibility(!show)} />}
             {icon && <Icon {...icon} />}
         </InputSpanStyle>
     )

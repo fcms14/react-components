@@ -46,6 +46,8 @@ const greaterThanZero = Yup.string().test(
 
 const required = Yup.string().required("Este campo é obrigatório")
 
+const requiredAlert = Yup.string().required("*obrigatório")
+
 const isEmail = Yup.string().email("Digite um e-mail válido")
 
 const isValidPhone = Yup.string().test(
@@ -72,7 +74,7 @@ export const SignUpValidator = Yup.object().shape({
     name: required,
     cpf: required,
     email: isEmail,
-    ddi: required,
+    ddi: requiredAlert,
     phone: isValidPhone,
     birthday: required,
     login: required,

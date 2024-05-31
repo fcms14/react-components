@@ -62,7 +62,6 @@ export const InputMask = {
         .replace(/(\d{3})(\d)/, '$1.$2')
         .replace(/(\d{3})(\d{1,2})/, '$1-$2')
         .replace(/(-\d{2})\d+?$/, '$1'),
-
     cnpj: (value: string): string => value
         .replace(/\D+/g, '')
         .replace(/(\d{2})(\d)/, '$1.$2')
@@ -84,7 +83,10 @@ export const InputMask = {
         .replace(/(\d{5})-(\d)(\d{5})/, '$1-$2')
         .replace(/(-\d{5})\d+?$/, '$1')
     ,
-    ddi: (value: string): string => `+${+value.replace(/\D+/g, '')}`,
+    ddi: (value: string): string => '+' + value
+        .replace(/\D+/g, '')
+        .replace(/^(\d{4}).*$/, '$1')
+    ,
     normalize: (value: string): string => value.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
 }
 

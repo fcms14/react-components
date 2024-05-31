@@ -1,10 +1,18 @@
 import styled from 'styled-components'
 
-const BodyDefaultStyle = styled.div`
+interface Props {
+    isGuest?: boolean
+}
+
+const BodyDefaultStyle = styled.div<Props>`
     display: flex;
     flex-direction: column;
     min-height: 100dvh;
     position: relative;
+
+    > main {
+        padding: ${({ isGuest }) => isGuest ? "10vw" : undefined};
+    }
 
     > main,
     > main > form, 
@@ -19,7 +27,6 @@ const BodyDefaultStyle = styled.div`
 
         > section > div {
             display: flex;
-            flex-wrap: wrap;
         }
     }    
 

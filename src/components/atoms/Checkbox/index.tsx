@@ -1,22 +1,20 @@
 import { Field, useFormikContext } from "formik"
-import ToggleStyle from "./ToggleStyle"
+import CheckboxStyle from "./CheckboxStyle"
 import { BaseSyntheticEvent } from "react"
 import Subtitle from "../Subtitle"
-import { ToggleSpanProps } from "../../../interfaces"
 
 interface Interface {
   name: string
   label: string
   checked: boolean
   color?: string
-  toggleStyle?: ToggleSpanProps
 }
 
-const Toggle = ({ name, label, checked, color, toggleStyle }: Interface) => {
+const Checkbox = ({ name, label, checked, color }: Interface) => {
   const { setFieldValue } = useFormikContext()
 
   return (
-    <ToggleStyle {...toggleStyle} color={color}>
+    <CheckboxStyle color={color}>
       <Field
         id={name}
         name={name}
@@ -27,8 +25,8 @@ const Toggle = ({ name, label, checked, color, toggleStyle }: Interface) => {
       <label htmlFor={name}>
         <Subtitle color={color}> {label} </Subtitle>
       </label>
-    </ToggleStyle>
+    </CheckboxStyle>
   )
 }
 
-export default Toggle
+export default Checkbox
