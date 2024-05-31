@@ -15,7 +15,7 @@ interface OptionInterface {
 interface Interface {
   name: string
   label: string
-  value?: string
+  value: string
   options: OptionInterface[]
   error?: string | boolean
 }
@@ -33,7 +33,7 @@ const Select = ({ name, label, options, value, error }: Interface) => {
         name={name}
         label={`${value ? `${label}: ${value}` : label}`}
         type="text"
-        onFocus={() => setShow(true)}
+        onFocus={() => setShow(!show)}
         onChange={(value: string) => {
           setShow(value.length > 0)
           setSearchKey(value)

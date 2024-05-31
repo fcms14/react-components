@@ -15,7 +15,7 @@ interface OptionInterface {
 interface Interface {
   name: string
   label: string
-  values?: string[]
+  values: string[]
   required?: boolean
   options: OptionInterface[]
   error?: string | boolean
@@ -34,7 +34,7 @@ const MultiSelect = ({ name, label, options, values, required, error }: Interfac
         name={`search-${name}`}
         label={`${values ? `${label}: ${values}` : label}`}
         type="text"
-        onFocus={() => setShow(true)}
+        onFocus={() => setShow(!show)}
         onChange={(value: string) => {
           setShow(value.length > 0)
           setSearchKey(value)
