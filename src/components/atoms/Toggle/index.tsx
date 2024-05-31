@@ -1,29 +1,34 @@
-import { useState } from "react"
+import { Field, useFormikContext } from "formik"
+import ToggleStyle from "./ToggleStyle"
+import { BaseSyntheticEvent } from "react"
 import Subtitle from "../Subtitle"
-import ToggleStyle, { ToggleSpanStyle } from "./ToggleStyle"
 import { ToggleSpanProps } from "../../../interfaces"
 
 interface Interface {
-    text: string
-    color?: string
-    onToggleChange?: (checked: boolean) => void;
-    toggleStyle?: ToggleSpanProps
+  name: string
+  label: string
+  checked: boolean
+  color?: string
+  toggleStyle?: ToggleSpanProps
 }
 
-const Toggle = ({ text, color, onToggleChange, toggleStyle }: Interface) => {
-    const [checked, setChecked] = useState(true);
+const Toggle = ({ name, label, checked, color, toggleStyle }: Interface) => {
+  const { setFieldValue } = useFormikContext()
 
-    const handleCheckboxChange = () => {
-        onToggleChange?.(!checked);
-        setChecked(!checked);
-    };
-
-    return (
-        <ToggleSpanStyle {...toggleStyle}>
-            <Subtitle color={color}> {text} </Subtitle>
-            <ToggleStyle color={color}> <input type="checkbox" checked={checked} onChange={handleCheckboxChange} /> <span /> </ToggleStyle>
-        </ToggleSpanStyle>
-    )
+  return (
+    <ToggleStyle {...toggleStyle} color={color}>
+      <Field
+        id={name}
+        name={name}
+        type="checkbox"
+        onChange={(e: BaseSyntheticEvent) => setFieldValue(e.currentTarget.name, !checked)}
+        checked={checked}
+      />
+      <label htmlFor={name}>
+        <Subtitle color={color}> {label} </Subtitle>
+      </label>
+    </ToggleStyle>
+  )
 }
 
 export default Toggle

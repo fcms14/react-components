@@ -10,6 +10,9 @@ import { dispatchSetRoutes } from "../../features/routes/routeDispatcher"
 import { SignUpValidator } from "../../validators"
 import { Row } from "../../components/molecules/Row"
 import Link from "../../components/atoms/Link"
+import Checkbox from "../../components/atoms/Checkbox"
+import Radio from "../../components/atoms/Radio"
+import Toggle from "../../components/atoms/Toggle"
 
 const SignUp = () => {
   const newAuth = new Auth
@@ -24,6 +27,10 @@ const SignUp = () => {
     birthday: "",
     login: "",
     password: "",
+    teste1: true,
+    teste2: false,
+    teste3: "",
+    teste4: false,
   }
 
   const mutation = useMutation(newAuth.login, {
@@ -47,9 +54,9 @@ const SignUp = () => {
         <Formik
           validationSchema={SignUpValidator}
           initialValues={initialValues}
-          onSubmit={(values) => mutation.mutate(values)}
+          onSubmit={(values) => console.log(values)}
         >
-          {({ errors, isValid, touched }) => (
+          {({ errors, isValid, touched, values }) => (
             <Form>
               <main>
                 <section>
@@ -65,6 +72,15 @@ const SignUp = () => {
                   <Input mask={"name"} name="birthday" label="Data de nascimento" inputMode="numeric" type="date" error={touched.birthday && errors.birthday} />
                   <Input name="login" label="Usuário" type="text" error={touched.login && errors.login} />
                   <Input name="password" label="Senha" type="password" error={touched.password && errors.password} />
+                  <Toggle checked={values.teste4} name="teste4" label="Teste 4" />
+                  <Checkbox checked={values.teste1} name="teste1" label="Depositar" />
+                  <Checkbox checked={values.teste2} name="teste2" label="Sacar" />
+                  <Radio id="teste31" value="VALUE31" name="teste3" label="Teste 31" />
+                  <Radio id="teste32" value="VALUE32" name="teste3" label="Teste 32" />
+                  <Radio id="teste33" value="VALUE33" name="teste3" label="Teste 33" />
+                  <Radio id="teste34" value="VALUE34" name="teste3" label="Teste 34" />
+                  <Radio id="teste35" value="VALUE35" name="teste3" label="Teste 35" />
+                  <Radio id="teste36" value="VALUE36" name="teste3" label="Teste 36" />
                 </section>
               </main>
               <footer>

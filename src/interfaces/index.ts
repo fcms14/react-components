@@ -143,6 +143,7 @@ export interface TableProps {
 export interface ToggleSpanProps {
     justifyContent?: string,
     flexDirection?: string,
+    color?: string,
 }
 
 export interface ShorcutProps {

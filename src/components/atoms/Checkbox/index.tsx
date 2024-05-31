@@ -10,7 +10,7 @@ interface Interface {
   color?: string
 }
 
-const Checkbox = ({ name, label, color, checked }: Interface) => {
+const Checkbox = ({ name, label, checked, color }: Interface) => {
   const { setFieldValue } = useFormikContext()
 
   return (
