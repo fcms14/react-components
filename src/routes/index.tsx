@@ -6,6 +6,7 @@ import ApiDocs from "../pages/ApiDocs";
 import Error from "../pages/Error";
 import { RoutesInterface } from "../interfaces";
 import SignUp from "../pages/SignUp";
+import Menu from "../pages/Menu";
 
 const components = {
   SignIn,
@@ -14,6 +15,7 @@ const components = {
   Exchange,
   ApiDocs,
   Error,
+  Menu
 }
 
 export type ElementType = keyof typeof components;

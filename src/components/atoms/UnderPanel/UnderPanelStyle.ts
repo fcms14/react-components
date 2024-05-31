@@ -13,7 +13,7 @@ export const UnderPanelStyle = styled.div`
   right: 0;
   z-index: 3;
   background: #FFFFFF;
-  animation: ${slideIn} 1s linear;
+  animation: ${slideIn} 0.382s ease-in-out;
 `
 
 export default UnderPanelStyle

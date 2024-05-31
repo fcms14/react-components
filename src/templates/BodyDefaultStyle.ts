@@ -36,6 +36,8 @@ const BodyDefaultStyle = styled.div`
         position: sticky;
         z-index: 2;
         bottom: 0;
+        padding-top: ${({ theme }) => theme.padding.header};
+        padding-bottom: ${({ theme }) => theme.padding.header};
         background-color: ${({ theme }) => theme.footer.fill};
     }
 `

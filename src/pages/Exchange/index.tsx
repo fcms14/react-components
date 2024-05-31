@@ -11,13 +11,12 @@ const Exchange = () => {
 
   return (
     <AuthTemplate showFooterMenu={false}>
-      <Header.WithTwoIcons
+      <Header.WithIcon
+        iconBefore
         text="Negociar - Tether"
-        leftIcon={MdArrowBack}
-        rightIcon={MdClose}
+        icon={MdArrowBack}
         iconSize={24}
-        leftClick={() => navigate('/dashboard')}
-        rightClick={() => navigate('/dashboard')}
+        onClick={() => navigate('/dashboard')}
       />
       <main>
         <ExchangeForm ticker="USDTBRL">

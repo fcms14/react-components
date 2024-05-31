@@ -6,31 +6,25 @@ export const routeSlice = createSlice({
         routes: [{
             path: "/",
             element: "SignIn",
-            label: "",
+            label: "SigIn",
             show: false,
         },
         {
             path: "/signup",
             element: "SignUp",
-            label: "",
+            label: "SigUp",
             show: false,
-        },
-        {
-            path: "/dashboard",
-            element: "Dashboard",
-            label: "Início",
-            show: true,
         },
         {
             path: "/api-docs",
             element: "ApiDocs",
-            label: "",
+            label: "ApiDocs",
             show: false,
         },
         {
             path: "*",
             element: "SignIn",
-            label: "",
+            label: "404",
             show: false,
         }]
     },

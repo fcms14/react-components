@@ -12,12 +12,12 @@ const MenuList = ({ items }: Interface) => {
   }
 
   return (
-    <>{items.map((item: MenuRowInterface, index: number) =>
-      <Row.Root rowStyle={rowStyle} key={index}>
-        <Row.Icon width={item.iconSize} icon={item.icon} />
+    <>{items.map(({ icon, iconSize, title, text, onClick }: MenuRowInterface, index: number) =>
+      <Row.Root rowStyle={rowStyle} key={index} onClick={onClick} >
+        <Row.Icon width={iconSize} icon={icon} />
         <Row.Section>
-          <Row.Title size="small"> {item.title} </Row.Title>
-          <Row.Text size="big"> {item.text} </Row.Text>
+          <Row.Title size="small"> {title} </Row.Title>
+          <Row.Text size="big"> {text} </Row.Text>
         </Row.Section>
       </Row.Root>
     )}</>

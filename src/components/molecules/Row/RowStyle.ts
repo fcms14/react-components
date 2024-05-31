@@ -8,6 +8,7 @@ const RowStyle = styled.div<RowProps>`
     align-items: ${props?.alignItems ?? "center"};
     justify-content: ${props?.justifyContent ?? "space-between"};
     
+    cursor: ${props?.cursor};
     flex-direction: ${props?.flexDirection};
     background-color: ${props?.backgroundColor};
     border-bottom: ${props?.borderBottom};

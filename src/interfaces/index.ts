@@ -109,6 +109,7 @@ export interface RowProps {
     flexDirection?: string,
     alignItems?: string,
     borderRadius?: string,
+    cursor?: string
 }
 
 export interface HeaderProps {
@@ -179,6 +180,7 @@ export interface RoutesInterface {
     element: ElementType
     show: boolean
     label: string
+    detail?: string
 }
 
 export interface AlertInterface {
@@ -215,6 +217,7 @@ export interface MenuRowInterface {
     text: string,
     iconSize?: number,
     icon: IconType,
+    onClick?: () => void,
 }
 
 export interface ButtonDefaultInterface {

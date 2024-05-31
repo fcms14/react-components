@@ -15,7 +15,7 @@ export interface UserAccountResponse {
     updated_at: Date;
     deleted_at?: Date;
     is_default: Boolean;
-    User?: UserRespose;
+    User: UserRespose;
 }
 
 class UserAccount extends Api {

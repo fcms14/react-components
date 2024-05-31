@@ -3,13 +3,14 @@ import RowStyle from "./RowStyle"
 import { RowProps } from "../../../interfaces"
 
 interface Interface {
-  children: ReactNode,
+  children: ReactNode
+  onClick?: () => void
   rowStyle?: RowProps
 }
 
-const RowRoot = ({ children, rowStyle }: Interface) => {
+const RowRoot = ({ children, rowStyle, onClick }: Interface) => {
   return (
-    <RowStyle {...rowStyle}>
+    <RowStyle {...rowStyle} onClick={onClick} cursor={onClick ? "pointer" : "inherit"}>
       {children}
     </RowStyle>
   )

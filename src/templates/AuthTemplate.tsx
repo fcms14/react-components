@@ -5,7 +5,7 @@ import { useQuery } from "react-query"
 import { useEffect } from "react"
 import { dispatchSetRoutes } from "../features/routes/routeDispatcher"
 import Menu from "../components/atoms/Menu"
-import { MdDashboard, MdMenu, MdOutlineAttachMoney, MdPix, MdWallet } from "react-icons/md"
+import { MdApi, MdCurrencyExchange, MdDashboard, MdError, MdFileCopy, MdLink, MdManageAccounts, MdMenu, MdOutlineAttachMoney, MdPeople, MdPerson, MdPix, MdWallet } from "react-icons/md"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { RootState } from "../store"
@@ -19,13 +19,21 @@ interface Interface {
   showFooterMenu?: boolean
 }
 
-const icons = {
+export const routeIcons = {
   "SignIn": MdOutlineAttachMoney,
   "SignUp": MdOutlineAttachMoney,
-  "Dashboard": MdWallet,
-  "Exchange": MdDashboard,
-  "ApiDocs": MdPix,
-  "Error": MdMenu,
+  "ApiDocs": MdFileCopy,
+  "Error": MdError,
+  "Dashboard": MdDashboard,
+  "Statement": MdWallet,
+  "Pix": MdPix,
+  "Contacts": MdPeople,
+  "Menu": MdMenu,
+  "Accounts": MdManageAccounts,
+  "Exchange": MdCurrencyExchange,
+  "Integrations": MdApi,
+  "Profile": MdPerson,
+  "LinkedAccounts": MdLink,
 }
 
 const AuthTemplate = ({ children, showFooterMenu = true }: Interface) => {
@@ -43,20 +51,20 @@ const AuthTemplate = ({ children, showFooterMenu = true }: Interface) => {
     }
   }, [data])
 
-  const isElementType = (element: string): element is ElementType => element in icons
+  const isElementType = (element: string): element is ElementType => element in routeIcons
 
   return (
     <BodyDefaultStyle>
       {isLoading ? <SplashScreen /> : children}
       {showFooterMenu && <footer>
         <Menu
-          menuStyle={{ justifyContent: "space-between", applyPadding: true }}
+          menuStyle={{ justifyContent: "space-between" }}
           items={
             routes
               .filter((route: RoutesInterface) => route.show)
               .map((route: RoutesInterface) => {
                 return {
-                  icon: isElementType(route.element) ? icons[route.element] : MdMenu,
+                  icon: isElementType(route.element) ? routeIcons[route.element] : MdMenu,
                   color: (pathname === route.path) ? theme.footer.inactive : theme.footer.active,
                   text: route.label,
                   onClick: () => navigate(route.path)

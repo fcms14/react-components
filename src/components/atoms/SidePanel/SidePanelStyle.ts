@@ -13,7 +13,7 @@ export const SidePanelStyle = styled.div`
   right: 0;
   z-index: 3;
   background: #FFFFFF;
-  animation: ${slideIn} 1s ease-in-out;
+  animation: ${slideIn} 0.618s ease-in-out;
 `
 
 export default SidePanelStyle

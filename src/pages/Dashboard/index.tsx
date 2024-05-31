@@ -2,33 +2,63 @@ import AuthTemplate from "../../templates/AuthTemplate"
 import { Header } from "../../components/organisms/Header"
 import { useNavigate } from "react-router-dom"
 import { Row } from "../../components/organisms/Row"
-import { MdCurrencyExchange, MdPix, MdRemoveRedEye } from "react-icons/md"
+import { MdCurrencyBitcoin, MdCurrencyExchange, MdPix, MdRemoveRedEye } from "react-icons/md"
 import { Mask } from "../../helpers/Mask"
-import { MdCardGiftcard } from "react-icons/md"
 import List from "./list"
-import { MenuRowInterface } from "../../interfaces"
-import { useState } from "react"
+import { ButtonDefaultInterface, MenuRowInterface } from "../../interfaces"
+import { useEffect, useState } from "react"
 import UnderPanel from "../../components/atoms/UnderPanel"
 import { dispatchVisibility } from "../../features/sensibleData/sensibleDataDispatcher"
 import { RootState } from "../../store"
 import { useSelector } from "react-redux"
+import { useQuery } from "react-query"
+import UserAccount, { UserAccountResponse } from "../../entities/UserAccount"
+import { theme } from "../../providers/theme"
+import { Button } from "../../components/organisms/Button"
 
 const Dashboard = () => {
-  const { show: showBalance} = useSelector((state: RootState) => state.sensibleData);
-  const navigate = useNavigate()
-  const balance = showBalance ? Mask.currency(953480.12) : "*******"
-  const [showPanel, setShowPanel] = useState<boolean>(false)
+  const newUserAccount = new UserAccount
+  const { show: showBalance } = useSelector((state: RootState) => state.sensibleData);
+  const { data } = useQuery("userAccount", () => newUserAccount.list(), { staleTime: Infinity, cacheTime: Infinity })
 
-  const items: MenuRowInterface[] = [
-    { title: "Pagar", text: "Com cartão", icon: MdCardGiftcard, },
-    { title: "Pagar", text: "Em dinheiro", icon: MdCardGiftcard, },
-  ];
+  const [showPanel, setShowPanel] = useState<boolean>(false)
+  const [account, setAccount] = useState<UserAccountResponse>()
+
+  useEffect(() => {
+    setAccount(data?.find((value) => value.is_default))
+  }, [data])
+
+  const navigate = useNavigate()
+  const balance = showBalance ? Mask.currency(account?.balance ?? 0) : "*******"
+
+  const items: MenuRowInterface[] | undefined = data && data.map((account) => {
+    return {
+      title: account.name,
+      text: account.pix_key,
+      icon: MdCurrencyBitcoin,
+      iconSize: Number(theme.fontsizes.title.bigger.match(/\d+/)),
+      onClick: () => { setShowPanel(false); setAccount(account) }
+    }
+  })
+
+  const logout = () => {
+    const language = localStorage.getItem('language') || 'ptbr'
+    localStorage.clear()
+    localStorage.setItem("language", language)
+    window.location.replace('/');
+    return ('/')
+  }
+
+  const buttons: ButtonDefaultInterface[] = [
+    { text: "Sair", buttonStyle: { type: "button", active: true, secondary: false }, onClick: () => { logout() } },
+    { text: "Fechar", buttonStyle: { type: "button", active: true, secondary: false }, onClick: () => { setShowPanel(false) } },
+  ]
 
   return (
     <AuthTemplate>
       <Header.Dashboard
-        avatar={{ text: "Olá, Felipe!", onClick: () => setShowPanel(!showPanel) }}
-        text={"Nome da conta + Dados da conta"}
+        avatar={{ text: `Olá, ${account?.User.name ?? ""}!`, onClick: () => setShowPanel(!showPanel) }}
+        text={`Chave Pix: ${account?.pix_key}` ?? ""}
         card={{ icon: MdRemoveRedEye, text: "Saldo disponível", title: balance, onClick: dispatchVisibility }}
         menu={{
           items: [
@@ -39,13 +69,12 @@ const Dashboard = () => {
         }}
       />
       <main>
-        {showPanel &&
+        {showPanel && items &&
           <UnderPanel onClick={() => setShowPanel(false)}>
-            <Header.Guest>Teste</Header.Guest>
-            <main>Teste</main>
+            <Row.Menu items={items} />
+            <Button.Panel buttons={buttons} />
           </UnderPanel>
         }
-        <Row.Menu items={items} />
         <List />
       </main>
     </AuthTemplate>
