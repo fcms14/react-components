@@ -14,6 +14,8 @@ import { useState } from "react"
 import { IconComponentInterface } from "../../interfaces"
 import { Row } from "../../components/molecules/Row"
 import Link from "../../components/atoms/Link"
+import RadionButton from "../../components/atoms/Radio"
+
 
 const SignIn = () => {
   const newAuth = new Auth
@@ -36,9 +38,16 @@ const SignIn = () => {
   const icon: IconComponentInterface = { icon: showInputValue ? MdRemoveRedEye : FaEyeSlash, onClick: () => setShowInputValue(!showInputValue) }
   const inputType = showInputValue ? "text" : "password"
 
+
   return (
     <ViewPort>
       <Header.Guest> <img src="https://app.reset-bank.com/iconx/logo.png" /> </Header.Guest>
+      <Row.Root>
+        <Row.Section sectionStyle={{ flexDirection: "center" }}>
+          <RadionButton name="seletor"  text="Depositar"></RadionButton >
+          <RadionButton name="seletor"  text="Sacar"></RadionButton >
+        </Row.Section>
+      </Row.Root>     
       <main>
         <Row.Root>
           <Row.Section>
