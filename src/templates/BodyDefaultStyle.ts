@@ -19,7 +19,6 @@ const BodyDefaultStyle = styled.div`
 
         > section > div {
             display: flex;
-            flex-wrap: wrap;
         }
     }    
 

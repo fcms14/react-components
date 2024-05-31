@@ -4,7 +4,7 @@ interface Props {
   color?: string
 }
 
-export const CheckboxStyle = styled.div<Props>` 
+export const CheckboxStyle = styled.span<Props>` 
   display: flex;
   
   > label {

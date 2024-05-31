@@ -17,6 +17,7 @@ import { ExchangeOrderValidator } from "../../validators"
 import { dispatchHideAlerts, dispatchSetAlerts } from "../../features/alert/alertDispatcher"
 import { theme } from "../../providers/theme"
 import SplashScreen from "../../components/atoms/SplashScreen"
+import Toggle from "../../components/atoms/Toggle"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
@@ -130,6 +131,24 @@ const ExchangeForm = ({ children, ticker }: Interface) => {
               {children}
               <main>
                 <section>
+                  <Row.Root>
+                    <Row.Section>
+                      <Toggle
+                        name={"isLimitOrder"}
+                        label={values.isLimitOrder ? "Ordem Limite" : "Ordem a Mercado"}
+                        checked={values.isLimitOrder}
+                      />
+                    </Row.Section>
+                    <Row.Section>
+                      <Toggle
+                        name={"isBuyOrder"}
+                        label={values.isBuyOrder ? "Comprar" : "Vender"}
+                        checked={values.isBuyOrder}
+                        color={values.isBuyOrder ? theme.colorDefault.buy : theme.colorDefault.sell}
+                        toggleStyle={{ flexDirection: "row-reverse" }}
+                      />
+                    </Row.Section>
+                  </Row.Root>
                   {values.isLimitOrder ?
                     <Input
                       onChange={(value: string) => setFieldValue("total", handleTotal(values.quantity, value))}

@@ -4,19 +4,19 @@ interface Props {
   color?: string
 }
 
-export const RadioStyle = styled.div<Props>` 
-    display: flex;
+export const RadioStyle = styled.span<Props>` 
+  display: flex;
 
-    > label {
-      cursor: pointer;
-    }
+  > label {
+    cursor: pointer;
+  }
 
-    ${({ theme }) => `
-      gap: ${theme.gap};
-      padding: ${theme.padding.icon};
-    `}
+  ${({ theme }) => `
+    gap: ${theme.gap};
+    padding: ${theme.padding.icon};
+  `}
 
-  > input[type="radio"] {
+  input[type="radio"] {
     cursor: pointer;
     position: relative;
     appearance: none;
@@ -28,7 +28,7 @@ export const RadioStyle = styled.div<Props>`
     `}
   }
 
-  > input[type="radio"]:checked::before {
+  input[type="radio"]:checked::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -39,6 +39,5 @@ export const RadioStyle = styled.div<Props>`
     border-radius: 50%;
     transform: translate(-50%, -50%);
   }
-
 `
 export default RadioStyle

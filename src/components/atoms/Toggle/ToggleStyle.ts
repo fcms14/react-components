@@ -2,8 +2,11 @@
 import styled, { css } from 'styled-components'
 import { ToggleSpanProps } from '../../../interfaces'
 
-const ToggleStyle = styled.label<ToggleSpanProps>`
+const ToggleStyle = styled.span<ToggleSpanProps>`
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: ${props => props.flexDirection};
   
   > label {
     cursor: pointer;
@@ -47,9 +50,9 @@ const ToggleStyle = styled.label<ToggleSpanProps>`
   }
 
   > input:checked::before {
-      -webkit-transform: translateX(32px);
-      -ms-transform: translateX(32px);
-      transform: translateX(32px);
+    -webkit-transform: translateX(32px);
+    -ms-transform: translateX(32px);
+    transform: translateX(32px);
   }
 `
 
