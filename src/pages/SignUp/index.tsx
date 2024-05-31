@@ -8,17 +8,12 @@ import { useNavigate } from "react-router-dom"
 import { Header } from "../../components/organisms/Header"
 import { dispatchSetRoutes } from "../../features/routes/routeDispatcher"
 import { SignUpValidator } from "../../validators"
-import { MdRemoveRedEye } from "react-icons/md"
-import { FaEyeSlash } from "react-icons/fa"
-import { useState } from "react"
-import { IconComponentInterface } from "../../interfaces"
 import { Row } from "../../components/molecules/Row"
 import Link from "../../components/atoms/Link"
 
 const SignUp = () => {
   const newAuth = new Auth
   const navigate = useNavigate()
-  const [showInputValue, setShowInputValue] = useState(false)
 
   const initialValues = {
     name: "",
@@ -38,9 +33,6 @@ const SignUp = () => {
       return navigate('/exchange')
     },
   })
-
-  const icon: IconComponentInterface = { icon: showInputValue ? MdRemoveRedEye : FaEyeSlash, onClick: () => setShowInputValue(!showInputValue) }
-  const inputType = showInputValue ? "text" : "password"
 
   return (
     <GuestTemplate>
@@ -72,7 +64,7 @@ const SignUp = () => {
                   </div>
                   <Input mask={"name"} name="birthday" label="Data de nascimento" inputMode="numeric" type="date" error={touched.birthday && errors.birthday} />
                   <Input name="login" label="Usuário" type="text" error={touched.login && errors.login} />
-                  <Input name="password" label="Senha" type={inputType} error={touched.password && errors.password} icon={icon} />
+                  <Input name="password" label="Senha" type="password" error={touched.password && errors.password} />
                 </section>
               </main>
               <footer>

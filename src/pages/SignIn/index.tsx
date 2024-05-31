@@ -14,9 +14,6 @@ import { useState } from "react"
 import { IconComponentInterface } from "../../interfaces"
 import { Row } from "../../components/molecules/Row"
 import Link from "../../components/atoms/Link"
-import RadionButton from "../../components/atoms/Radio"
-import Checkbox from "../../components/atoms/Checkbox"
-
 
 const SignIn = () => {
   const newAuth = new Auth
@@ -39,16 +36,9 @@ const SignIn = () => {
   const icon: IconComponentInterface = { icon: showInputValue ? MdRemoveRedEye : FaEyeSlash, onClick: () => setShowInputValue(!showInputValue) }
   const inputType = showInputValue ? "text" : "password"
 
-
   return (
     <GuestTemplate>
       <Header.Guest />
-      <Row.Root>
-        <Row.Section sectionStyle={{ flexDirection: "center" }}>
-          <Checkbox text="Depositar"></Checkbox >
-          <Checkbox  text="Sacar"></Checkbox >
-        </Row.Section>
-      </Row.Root>  
       <main>
         <Row.Root>
           <Row.Section>
