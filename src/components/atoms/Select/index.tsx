@@ -21,7 +21,7 @@ interface Interface {
 }
 
 const Select = ({ name, label, options, value, error }: Interface) => {
-  const { values, setFieldValue } = useFormikContext()
+  const { setFieldValue } = useFormikContext()
   const [show, setShow] = useState(false)
   const [searchKey, setSearchKey] = useState<string>("")
   const onMouseLeave = () => { setSearchKey(""); setShow(false) }
