@@ -10,9 +10,7 @@ import { dispatchSetRoutes } from "../../features/routes/routeDispatcher"
 import { SignUpValidator } from "../../validators"
 import { Row } from "../../components/molecules/Row"
 import Link from "../../components/atoms/Link"
-import Checkbox from "../../components/atoms/Checkbox"
-import Radio from "../../components/atoms/Radio"
-import Toggle from "../../components/atoms/Toggle"
+import { isMobile } from "react-device-detect"
 
 const SignUp = () => {
   const newAuth = new Auth
@@ -44,13 +42,13 @@ const SignUp = () => {
   return (
     <GuestTemplate>
       <Header.Guest />
-      <Row.Root>
-        <Row.Section>
-          <Row.Title>Cadastre-se</Row.Title>
-          <Row.Text>Preencha os campos abaixo para criar seu usuário</Row.Text>
-        </Row.Section>
-      </Row.Root>
       <main>
+        <Row.Root>
+          <Row.Section>
+            <Row.Title>Cadastre-se</Row.Title>
+            <Row.Text>Preencha os campos abaixo para criar seu usuário</Row.Text>
+          </Row.Section>
+        </Row.Root>
         <Formik
           validationSchema={SignUpValidator}
           initialValues={initialValues}
@@ -61,26 +59,17 @@ const SignUp = () => {
               <main>
                 <section>
                   <Input mask={"name"} name="name" label="Nome" type="text" error={touched.name && errors.name} />
-                  <Input mask={"document"} name="cpf" label="CPF" type="text" inputMode="numeric" error={touched.cpf && errors.cpf} />
-                  <Input mask={"name"} name="email" label="E-mail" type="text" error={touched.email && errors.email} />
+                  <Input mask={"cpf"} name="cpf" label="CPF" type="text" inputMode="numeric" error={touched.cpf && errors.cpf} />
+                  <Input name="email" label="E-mail" type="text" error={touched.email && errors.email} />
                   <div>
-                    <span style={{ width: "20%" }}>
+                    <span style={{ width: isMobile ? "30%" : "20%" }}>
                       <Input mask={"ddi"} name="ddi" label="DDI" type="text" inputMode="numeric" error={touched.ddi && errors.ddi} />
                     </span>
                     <Input mask={"phone"} name="phone" label="Celular" type="text" inputMode="numeric" error={touched.phone && errors.phone} />
                   </div>
-                  <Input mask={"name"} name="birthday" label="Data de nascimento" inputMode="numeric" type="date" error={touched.birthday && errors.birthday} />
+                  <Input name="birthday" label="Data de nascimento" inputMode="numeric" type="date" error={touched.birthday && errors.birthday} />
                   <Input name="login" label="Usuário" type="text" error={touched.login && errors.login} />
                   <Input name="password" label="Senha" type="password" error={touched.password && errors.password} />
-                  <Toggle checked={values.teste4} name="teste4" label="Teste 4" />
-                  <Checkbox checked={values.teste1} name="teste1" label="Depositar" />
-                  <Checkbox checked={values.teste2} name="teste2" label="Sacar" />
-                  <Radio id="teste31" value="VALUE31" name="teste3" label="Teste 31" />
-                  <Radio id="teste32" value="VALUE32" name="teste3" label="Teste 32" />
-                  <Radio id="teste33" value="VALUE33" name="teste3" label="Teste 33" />
-                  <Radio id="teste34" value="VALUE34" name="teste3" label="Teste 34" />
-                  <Radio id="teste35" value="VALUE35" name="teste3" label="Teste 35" />
-                  <Radio id="teste36" value="VALUE36" name="teste3" label="Teste 36" />
                 </section>
               </main>
               <footer>

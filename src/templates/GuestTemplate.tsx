@@ -21,7 +21,7 @@ const GuestTemplate = ({ children }: Interface) => {
   }, [data])
 
   return (
-    <BodyDefaultStyle>
+    <BodyDefaultStyle isGuest>
       {children}
     </BodyDefaultStyle>
   )
