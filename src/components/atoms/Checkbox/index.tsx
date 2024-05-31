@@ -1,32 +1,32 @@
-import Subtitle from "../Subtitle"
+import { Field, useFormikContext } from "formik"
 import CheckboxStyle from "./CheckboxStyle"
-import {  useState } from "react"
+import { BaseSyntheticEvent } from "react"
+import Subtitle from "../Subtitle"
 
 interface Interface {
-    text: string
-    color?: string   
-      
+  name: string
+  label: string
+  checked: boolean
+  color?: string
 }
 
-const Checkbox = ({  text,  color}: Interface) => { 
-    const [checked, setChecked] = useState(false);   
+const Checkbox = ({ name, label, color, checked }: Interface) => {
+  const { setFieldValue } = useFormikContext()
 
-    const handleonRadioChange = () => {
-        const newCheckedState = !checked;
-        setChecked(newCheckedState);     
-    };
-
-    return (
-        <CheckboxStyle>
-            <input
-            type="checkbox"   
-            onChange={() => {handleonRadioChange();}}        
-            checked={checked}          
-            title={text}            
-             />
-           <Subtitle color={color}> {text} </Subtitle>
-        </CheckboxStyle>                
-    )
+  return (
+    <CheckboxStyle color={color}>
+      <Field
+        id={name}
+        name={name}
+        type="checkbox"
+        onChange={(e: BaseSyntheticEvent) => setFieldValue(e.currentTarget.name, !checked)}
+        checked={checked}
+      />
+      <label htmlFor={name}>
+        <Subtitle color={color}> {label} </Subtitle>
+      </label>
+    </CheckboxStyle>
+  )
 }
 
 export default Checkbox

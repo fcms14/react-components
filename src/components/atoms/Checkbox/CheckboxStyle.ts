@@ -1,41 +1,48 @@
-import styled, { css }  from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const CheckboxStyle = styled.div ` 
-    display: inline-flex;
-    margin-right: 16px;
+interface Props {
+  color?: string
+}
 
-  > input {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    border: 2px solid ${({ theme }) => theme.colors.main.font}
-    border-radius: 4px;
-    position: relative;
+export const CheckboxStyle = styled.div<Props>` 
+  display: flex;
+  
+  > label {
     cursor: pointer;
-    margin-right: 8px;   
-   
-  }
-  > input:checked::before {       
-    content: '';
-    width: 100%;
-    height: 100%;
-    background-color: ${({ theme }) => theme.colors.main.font}
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0    
-     
   }
 
-  > input:checked::after {       
-    content: '✓';
-    color: ${({ theme }) => theme.colors.main.fill}; 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-     
+  ${({ theme }) => `
+    gap: ${theme.gap};
+    padding: ${theme.padding.icon};
+  `}
+
+  input[type="checkbox"] {
+    cursor: pointer;
+    appearance: none;
+    ${({ theme, color }) => css`
+      width: ${theme.fontsizes.title.big};
+      height: ${theme.fontsizes.title.big};
+      border: 3px solid ${color ?? theme.colors.button.active};
+      border-radius: ${theme.radius};
+    `}    
   }
 
+  input[type="checkbox"]:checked {
+    ${({ theme, color }) => css`
+      border: 1px solid ${color ?? theme.colors.button.active};
+      background-color: ${color ?? theme.colors.button.active};
+    `}
+  }
+
+  input[type="checkbox"]:checked::before {
+    content: '✔';
+    display: block;
+    text-align: center;
+    ${({ theme }) => css`
+      color: ${theme.colors.button.font};
+      font-size: ${theme.fontsizes.title.default};
+      line-height: ${theme.fontsizes.title.big};
+    `}
+  }
 `
 export default CheckboxStyle
