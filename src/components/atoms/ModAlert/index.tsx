@@ -14,7 +14,7 @@ interface Interface {
 const ModAlert = ({ title, text, buttons }: Interface) => {
   return (
     <BlurPage onClick={dispatchHideAlerts}>
-      <ModAlertStyle>
+      <ModAlertStyle onClick={(e) => e.stopPropagation()} >
         <header>
           <Title> {title} </Title>
         </header>
