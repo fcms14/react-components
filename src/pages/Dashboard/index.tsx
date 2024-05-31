@@ -7,10 +7,13 @@ import { Mask } from "../../helpers/Mask"
 import { MdCardGiftcard } from "react-icons/md"
 import List from "./list"
 import { MenuRowInterface } from "../../interfaces"
+import { useState } from "react"
+import UnderPanel from "../../components/atoms/UnderPanel"
 
 const Dashboard = () => {
   const navigate = useNavigate()
   const balance = Mask.currency(953480.12)
+  const [show, setShow] = useState<boolean>(false)
 
   const items: MenuRowInterface[] = [
     { title: "Pagar", text: "Com cartão", icon: MdCardGiftcard, },
@@ -20,7 +23,7 @@ const Dashboard = () => {
   return (
     <ViewPort>
       <Header.Dashboard
-        avatar={{ text: "Olá, Felipe!", onClick: () => console.log(1) }}
+        avatar={{ text: "Olá, Felipe!", onClick: () => setShow(!show) }}
         text={"Nome da conta + Dados da conta"}
         card={{ icon: MdRemoveRedEye, text: "Saldo disponível", title: balance, onClick: () => console.log(1) }}
         menu={{
@@ -32,6 +35,12 @@ const Dashboard = () => {
         }}
       />
       <main>
+        {show &&
+          <UnderPanel onClick={() => setShow(false)}>
+            <Header.Guest>Teste</Header.Guest>
+            <main>Teste</main>
+          </UnderPanel>
+        }
         <Row.Menu items={items} />
         <List />
       </main>

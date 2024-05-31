@@ -3,12 +3,13 @@ import { BlurPage } from "../ModAlert/ModAlertStyle"
 import SidePanelStyle from "./SidePanelStyle"
 
 interface Interface {
+  onClick: () => void
   children?: JSX.Element | JSX.Element[]
 }
 
-const SidePanel = ({ children }: Interface) => {
+const SidePanel = ({ children, onClick }: Interface) => {
   return (
-    <BlurPage onClick={() => console.log(1)}>
+    <BlurPage onClick={onClick}>
       <SidePanelStyle onClick={(e) => e.stopPropagation()}>
         <ViewPort>
           {children}
