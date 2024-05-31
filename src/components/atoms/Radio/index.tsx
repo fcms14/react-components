@@ -1,34 +1,33 @@
+import { Field, useFormikContext } from "formik"
 import Subtitle from "../Subtitle"
-import RadioButtonStyle from "./RadioButtonStyle"
-import {  useState } from "react"
+import RadioStyle from "./RadioStyle"
+import { BaseSyntheticEvent } from "react"
 
 interface Interface {
-    text: string
+    id: string
+    name: string
+    value: string
+    label: string
     color?: string
-    name:string   
-      
 }
 
-const RadioButton = ({  text,  color, name }: Interface) => { 
-    const [checked, setChecked] = useState(false);   
-
-    const handleonRadioChange = () => {
-        const newCheckedState = !checked;
-        setChecked(newCheckedState);     
-    };
+const Radio = ({ id, name, value, label, color }: Interface) => {
+    const { setFieldValue } = useFormikContext()
 
     return (
-        <RadioButtonStyle>
-            <input
-            name={name}
-            type="radio"   
-            onChange={() => {handleonRadioChange();}}        
-            checked={checked}          
-            title={text}            
-             />
-           <Subtitle color={color}> {text} </Subtitle>
-        </RadioButtonStyle>                
+        <RadioStyle>
+            <Field
+                id={id}
+                name={name}
+                value={value}
+                type="radio"
+                onChange={(e: BaseSyntheticEvent) => setFieldValue(e.currentTarget.name, value)}
+            />
+            <label htmlFor={id}>
+                <Subtitle color={color}> {label} </Subtitle>
+            </label>
+        </RadioStyle>
     )
 }
 
-export default RadioButton
+export default Radio
