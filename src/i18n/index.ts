@@ -1,14 +1,14 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import en from './locales/en.json';
-import pt from './locales/pt.json';
+import ptbr from './locales/ptbr.json';
 
 const resources = {
   en: {
     translation: en
   },
-  pt: {
-    translation: pt
+  ptbr: {
+    translation: ptbr
   }
 };
 
@@ -16,7 +16,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'pt',
+    fallbackLng: 'ptbr',
     interpolation: {
       escapeValue: false,
     },

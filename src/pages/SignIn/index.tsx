@@ -10,8 +10,10 @@ import { dispatchSetRoutes } from "../../features/routes/routeDispatcher"
 import { SignInValidator } from "../../validators"
 import { Row } from "../../components/molecules/Row"
 import Link from "../../components/atoms/Link"
+import { useTranslation } from "react-i18next"
 
 const SignIn = () => {
+  const { t, i18n } = useTranslation()
   const newAuth = new Auth
   const navigate = useNavigate()
 
@@ -36,6 +38,8 @@ const SignIn = () => {
           <Row.Section>
             <Row.Title>Bem vindo de volta</Row.Title>
             <Row.Text>Preencha com o CPF e a senha para acessar sua conta</Row.Text>
+            <Button.Default text="Português" onClick={() => i18n.changeLanguage('ptbr')} buttonStyle={{ active: true, isLoading: false, type: "button" }} />
+            <Button.Default text="English" onClick={() => i18n.changeLanguage('en')} buttonStyle={{ active: true, isLoading: false, type: "button" }} />
           </Row.Section>
         </Row.Root>
         <Formik
