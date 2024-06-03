@@ -4,6 +4,7 @@ import Auth from "../entities/Auth"
 import { useQuery } from "react-query"
 import { useEffect } from "react"
 import { dispatchSetRoutes } from "../features/routes/routeDispatcher"
+import GuestStyle from "./GuestStyle"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
@@ -21,9 +22,14 @@ const GuestTemplate = ({ children }: Interface) => {
   }, [data])
 
   return (
-    <BodyDefaultStyle isGuest>
-      {children}
-    </BodyDefaultStyle>
+    <GuestStyle>
+      <div>
+        <BodyDefaultStyle isGuest>
+          {children}
+        </BodyDefaultStyle>
+      </div>
+      <aside></aside>
+    </GuestStyle>
   )
 }
 

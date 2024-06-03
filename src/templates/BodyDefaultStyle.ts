@@ -1,3 +1,4 @@
+import { isMobile } from 'react-device-detect'
 import styled from 'styled-components'
 
 interface Props {
@@ -7,11 +8,11 @@ interface Props {
 const BodyDefaultStyle = styled.div<Props>`
     display: flex;
     flex-direction: column;
-    min-height: 100dvh;
+    min-height: ${isMobile ? "100dvh" : "100%"};
     position: relative;
 
     > main {
-        padding: ${({ isGuest }) => isGuest ? "10vw" : undefined};
+        padding: ${({ isGuest, theme }) => (isGuest && isMobile) ? "10vw" : theme.padding.main};
     }
 
     > main,
