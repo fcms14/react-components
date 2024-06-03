@@ -9,6 +9,7 @@ const GuestStyle = styled.div`
     > div {
       height: fit-content;
       width: 40dvw;
+      padding: ${({ theme }) => theme.padding.main};
     }
   `}
 

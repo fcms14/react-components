@@ -8,11 +8,11 @@ interface Props {
 const BodyDefaultStyle = styled.div<Props>`
     display: flex;
     flex-direction: column;
-    min-height: ${isMobile ? "100dvh" : "100%"};
+    min-height: ${({ isGuest }) => (!isGuest || isMobile) ? "100dvh" : "100%"};
     position: relative;
 
     > main {
-        padding: ${({ isGuest, theme }) => (isGuest && isMobile) ? "10vw" : theme.padding.main};
+        padding: ${({ isGuest }) => (isGuest && isMobile) ? "10vw" : undefined};
     }
 
     > main,

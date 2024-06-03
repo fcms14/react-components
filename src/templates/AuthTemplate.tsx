@@ -13,6 +13,8 @@ import { RoutesInterface } from "../interfaces"
 import { ElementType } from "../routes"
 import SplashScreen from "../components/atoms/SplashScreen"
 import { theme } from "../providers/theme"
+import AuthStyle from "./AuthStyle"
+import { isMobile } from "react-device-detect"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
@@ -54,26 +56,31 @@ const AuthTemplate = ({ children, showFooterMenu = true }: Interface) => {
   const isElementType = (element: string): element is ElementType => element in routeIcons
 
   return (
-    <BodyDefaultStyle>
-      {isLoading ? <SplashScreen /> : children}
-      {showFooterMenu && <footer>
-        <Menu
-          menuStyle={{ justifyContent: "space-between" }}
-          items={
-            routes
-              .filter((route: RoutesInterface) => route.show)
-              .map((route: RoutesInterface) => {
-                return {
-                  icon: isElementType(route.element) ? routeIcons[route.element] : MdMenu,
-                  color: (pathname === route.path) ? theme.footer.inactive : theme.footer.active,
-                  text: route.label,
-                  onClick: () => navigate(route.path)
-                }
-              })
-          }
-        />
-      </footer>}
-    </BodyDefaultStyle>
+    <AuthStyle>
+      <nav> Desktop Menu </nav>
+      <div>
+        <BodyDefaultStyle>
+          {isLoading ? <SplashScreen /> : children}
+          {showFooterMenu && isMobile && <footer>
+            <Menu
+              menuStyle={{ justifyContent: "space-between" }}
+              items={
+                routes
+                  .filter((route: RoutesInterface) => route.show)
+                  .map((route: RoutesInterface) => {
+                    return {
+                      icon: isElementType(route.element) ? routeIcons[route.element] : MdMenu,
+                      color: (pathname === route.path) ? theme.footer.inactive : theme.footer.active,
+                      text: route.label,
+                      onClick: () => navigate(route.path)
+                    }
+                  })
+              }
+            />
+          </footer>}
+        </BodyDefaultStyle>
+      </div>
+    </AuthStyle>
   )
 }
 
