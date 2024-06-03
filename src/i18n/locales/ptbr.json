@@ -2,5 +2,12 @@
     "deposit": "depósito",
     "deposit_one": "{{count}} depósito",
     "deposit_other": "{{count}} depósitos",
-    "deposit_zero": "{{count}} depósitos"
+    "deposit_zero": "{{count}} depósitos",
+    "Don't have an account yet?": "Ainda não tem uma conta?",
+    "Fill in with the CPF and the password to access your account": "Preencha com o CPF e a senha para acessar sua conta",
+    "password": "senha",
+    "sign in": "acessar",
+    "sign up": "cadastre-se",
+    "user": "usuário",
+    "Welcome back": "Bem vindo de volta"
 }

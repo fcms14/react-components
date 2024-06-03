@@ -1,5 +1,12 @@
 {
     "deposit": "deposit",
     "deposit_one": "{{count}} deposit",
-    "deposit_other": "{{count}} deposits"
+    "deposit_other": "{{count}} deposits",
+    "Don't have an account yet?": "Don't have an account yet?",
+    "Fill in with the CPF and the password to access your account": "Fill in with the CPF and the password to access your account",
+    "password": "password",
+    "sign in": "sign in",
+    "sign up": "sign up",
+    "user": "user",
+    "Welcome back": "Welcome back"
 }

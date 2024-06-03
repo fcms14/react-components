@@ -11,6 +11,7 @@ import { SignInValidator } from "../../validators"
 import { Row } from "../../components/molecules/Row"
 import Link from "../../components/atoms/Link"
 import { useTranslation } from "react-i18next"
+import { InputMask } from "../../helpers/Mask"
 
 const SignIn = () => {
   const { t, i18n } = useTranslation()
@@ -36,8 +37,8 @@ const SignIn = () => {
       <main>
         <Row.Root>
           <Row.Section>
-            <Row.Title>Bem vindo de volta</Row.Title>
-            <Row.Text>Preencha com o CPF e a senha para acessar sua conta</Row.Text>
+            <Row.Title>{t('Welcome back')}</Row.Title>
+            <Row.Text>{t('Fill in with the CPF and the password to access your account')}</Row.Text>
             <Button.Default text="Português" onClick={() => i18n.changeLanguage('ptbr')} buttonStyle={{ active: true, isLoading: false, type: "button" }} />
             <Button.Default text="English" onClick={() => i18n.changeLanguage('en')} buttonStyle={{ active: true, isLoading: false, type: "button" }} />
           </Row.Section>
@@ -51,13 +52,13 @@ const SignIn = () => {
             <Form>
               <main>
                 <section>
-                  <Input name="login" label="Usuário" type="text" error={touched.login && errors.login} />
-                  <Input name="password" label="Senha" type="password" error={touched.password && errors.password} />
+                  <Input name="login" label={InputMask.capitalize(t('user'))} type="text" error={touched.login && errors.login} />
+                  <Input name="password" label={InputMask.capitalize(t('password'))} type="password" error={touched.password && errors.password} />
                 </section>
               </main>
               <footer>
                 <Button.Default
-                  text="Acessar"
+                  text={InputMask.capitalize(t('sign in'))}
                   buttonStyle={{
                     active: (!mutation.isLoading && isValid),
                     isLoading: mutation.isLoading,
@@ -66,8 +67,8 @@ const SignIn = () => {
                 />
                 <Row.Section sectionStyle={{ alignItems: "center" }}>
                   <Row.Text>
-                    Ainda não tem uma conta?
-                    <Link onClick={() => navigate("/signup")}> Cadastre-se </Link>
+                    {t("Don't have an account yet?")}
+                    <Link onClick={() => navigate("/signup")}> {InputMask.capitalize(t("sign up"))} </Link>
                   </Row.Text>
                 </Row.Section>
               </footer>

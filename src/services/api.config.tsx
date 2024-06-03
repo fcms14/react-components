@@ -23,9 +23,7 @@ api.interceptors.response.use(
         })
 
         if (message === 'Unauthorized' && !["/login"].includes(response?.response?.config?.url)) {
-            const language = localStorage.getItem('language') || 'ptbr'
             localStorage.clear()
-            localStorage.setItem("language", language)
             window.location.replace('/');
             return ('/')
         }

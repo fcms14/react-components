@@ -42,9 +42,7 @@ const Dashboard = () => {
   })
 
   const logout = () => {
-    const language = localStorage.getItem('language') || 'ptbr'
     localStorage.clear()
-    localStorage.setItem("language", language)
     window.location.replace('/');
     return ('/')
   }

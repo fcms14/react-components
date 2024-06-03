@@ -56,6 +56,7 @@ export const InputMask = {
         .replace(/(^|\s)\S/g, match => match.toUpperCase())
         .replace(/\(.+?\)|\..+?\b/g, match => match.charAt(0) + match.charAt(1).toUpperCase() + match.slice(2))
     ,
+    capitalize: (value: string): string => value.charAt(0).toUpperCase() + value.slice(1),
     cpf: (value: string): string => value
         .replace(/\D+/g, '')
         .replace(/(\d{3})(\d)/, '$1.$2')
