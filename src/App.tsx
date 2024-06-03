@@ -9,6 +9,7 @@ import Toaster from './components/atoms/Toaster';
 import { RootState } from './store';
 import { QueryClient, QueryClientProvider } from 'react-query'
 import ModAlert from './components/atoms/ModAlert';
+import LanguageSelector from './components/atoms/LanguageSelector/index.js';
 
 const queryClient = new QueryClient()
 
@@ -29,6 +30,7 @@ const App = () => {
             {notifications.length > 0 && <Notification />}
             {toaster.show && <Toaster data={notifications} />}
             {alert.show && <ModAlert {...alert} />}
+            <LanguageSelector />
             <RouterProvider router={Routes(routes)} />
         </QueryClientProvider>
     )
