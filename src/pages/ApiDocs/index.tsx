@@ -10,7 +10,7 @@ const ApiDocs = () => {
   return (
     <>
       <div style={{ position: "absolute", top: "10px", right: "20px", zIndex: "21", backgroundColor: "var(--scalar-background-1)", borderRadius: "4px" }}>
-        <img src={import.meta.env.VITE_WHITE_LABEL_LOGO} className={isMobile ? "w-8" : "w-20"} />
+        <img src={import.meta.env.VITE_WHITE_LABEL_LOGO_GUEST} className={isMobile ? "w-8" : "w-20"} />
       </div>
       <ApiReferenceReact
         configuration={{

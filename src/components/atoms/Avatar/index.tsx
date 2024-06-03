@@ -8,11 +8,7 @@ import { AvatarInterface } from "../../../interfaces"
 const Avatar = ({ text, onClick }: AvatarInterface) => {
   return (
     <AvatarStyle onClick={onClick}>
-      <Icon
-        icon={MdPersonOutline}
-        color={theme.colors.header.font}
-        width={Number(theme.fontsizes.title.bigger.match(/\d+/))}
-      />
+      <img src={import.meta.env.VITE_WHITE_LABEL_LOGO_ICON} width={Number(theme.fontsizes.title.bigger.match(/\d+/))} />
       <Title color={theme.colors.button.font}>{text}</Title>
       <Icon
         icon={MdArrowDropDown}
