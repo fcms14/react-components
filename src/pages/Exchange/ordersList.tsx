@@ -6,6 +6,7 @@ import { dispatchAddNotification } from "../../features/toaster/toasterDispatche
 import { sse } from "./eventListener"
 import { useEffect, useState } from "react"
 import { theme } from "../../providers/theme"
+import SplashScreen from "../../components/atoms/SplashScreen"
 
 interface Interface {
   listOptions: ListInterface,
@@ -51,7 +52,7 @@ const OrdersList = ({ listOptions, show = true }: Interface) => {
   if (isLoading || !data?.length) {
     return (
       <div style={{ height: "300px", padding: theme.padding.main }}>
-        {isLoading ? "Carregando..." : "Nenhuma ordem encontrada"}
+        {isLoading ? <SplashScreen showHeader={false} /> : "Nenhuma ordem encontrada"}
       </div>
     )
   }

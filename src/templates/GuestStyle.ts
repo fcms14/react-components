@@ -2,7 +2,7 @@ import { isMobile } from "react-device-detect";
 import styled, { css } from "styled-components";
 
 const GuestStyle = styled.div`
-  display: ${isMobile ? "inherit" : "flex"};
+  display: ${isMobile ? "block" : "flex"};
   align-items: center;
 
   ${!isMobile && css`

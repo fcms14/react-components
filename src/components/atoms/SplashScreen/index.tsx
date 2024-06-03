@@ -11,19 +11,17 @@ interface Interface {
 
 const SplashScreen = ({ showHeader = true }: Interface) => {
   return (
-    <GuestTemplate>
-      <>{showHeader && <Header.Guest />}</>
-      <main>
-        <SplashScreenStyle>
-          <Row.Root>
-            <Row.Section sectionStyle={{ gap: theme.gap }}>
-              <Row.Icon icon={AiOutlineLoading3Quarters} width={Number(theme.fontsizes.title.biggest.match(/\d+/))} isLoading />
-              <Row.Title>Carregando...</Row.Title>
-            </Row.Section>
-          </Row.Root>
-        </SplashScreenStyle>
-      </main>
-    </GuestTemplate>
+    <>
+      {showHeader && <Header.Guest />}
+      <SplashScreenStyle>
+        <Row.Root>
+          <Row.Section sectionStyle={{ gap: theme.gap }}>
+            <Row.Icon icon={AiOutlineLoading3Quarters} width={Number(theme.fontsizes.title.biggest.match(/\d+/))} isLoading />
+            <Row.Title>Carregando...</Row.Title>
+          </Row.Section>
+        </Row.Root>
+      </SplashScreenStyle>
+    </>
   )
 }
 
