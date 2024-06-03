@@ -13,13 +13,24 @@ const AuthStyle = styled.div`
 
   > nav {
     display: ${isMobile ? "none" : "flex"};
+    flex-direction: column;
     height: 100dvh;
     width: 300px;
     position: sticky;
     top: 0;
     left: 0;
-    background-color: ${({ theme }) => theme.footer.fill};    
-    padding: ${({ theme }) => theme.padding.main};
+
+    ${({ theme }) => css`
+      background-color: ${theme.footer.fill};
+      gap: ${theme.padding.main};
+      
+      > span {
+        padding: ${theme.padding.main};
+        > img {
+          padding: ${theme.padding.main};
+        }
+      }
+    `
   }
 `
 

@@ -137,7 +137,7 @@ export interface CellProps {
 }
 
 export interface TableProps {
-    height?: string
+    height?: string,
 }
 
 export interface ToggleSpanProps {
@@ -147,19 +147,19 @@ export interface ToggleSpanProps {
 }
 
 export interface ShorcutProps {
-    flexDirection?: string
-    cursor?: string
+    flexDirection?: string,
+    cursor?: string,
 }
 
 export interface MenuProps {
-    justifyContent?: string
+    justifyContent?: string,
     applyPadding?: boolean,
 }
 
 export interface MenuInterface {
-    items: ShortcutInterface[]
-    shortcutStyle?: ShorcutProps
-    menuStyle?: MenuProps
+    items: ShortcutInterface[],
+    shortcutStyle?: ShorcutProps,
+    menuStyle?: MenuProps,
 }
 
 
@@ -169,7 +169,8 @@ export interface ShortcutInterface {
     onClick?: () => void,
     width?: number,
     color?: string,
-    shortcutStyle?: ShorcutProps
+    shortcutStyle?: ShorcutProps,
+    isActive: boolean,
 }
 
 export interface ToasterProps {
@@ -178,21 +179,21 @@ export interface ToasterProps {
 
 export interface RoutesInterface {
     path: string,
-    element: ElementType
-    show: boolean
-    label: string
-    detail?: string
+    element: ElementType,
+    show: boolean,
+    label: string,
+    detail?: string,
 }
 
 export interface AlertInterface {
     show: boolean,
     title: string,
     text: string,
-    buttons: ButtonDefaultInterface[]
+    buttons: ButtonDefaultInterface[],
 }
 
 export interface SensibleDataInterface {
-    show: boolean
+    show: boolean,
 }
 
 export interface NotificationInterface {
@@ -210,7 +211,7 @@ export interface NotificationCardInterface extends NotificationInterface {
 export interface ToasterInterface {
     show: boolean,
     timeoutId: number,
-    notifications: NotificationInterface[]
+    notifications: NotificationInterface[],
 }
 
 export interface MenuRowInterface {
@@ -225,19 +226,19 @@ export interface ButtonDefaultInterface {
     text: string,
     onClick?: () => void,
     iconSize?: number,
-    buttonStyle?: ButtonProps
+    buttonStyle?: ButtonProps,
 }
 
 export interface RowCardInterface {
-    text: string
-    title: string
-    icon: IconType
-    onClick: () => void
+    text: string,
+    title: string,
+    icon: IconType,
+    onClick: () => void,
 }
 
 export interface AvatarInterface {
-    text: string
-    onClick?: () => void
+    text: string,
+    onClick?: () => void,
 }
 
 export interface ColorByType {
@@ -257,7 +258,7 @@ export interface ColorDefault {
 
 export enum Sort {
     asc = 'asc',
-    desc = 'desc'
+    desc = 'desc',
 }
 export interface InputProps {
 }
