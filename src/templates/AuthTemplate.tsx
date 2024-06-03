@@ -5,37 +5,19 @@ import { useQuery } from "react-query"
 import { useEffect } from "react"
 import { dispatchSetRoutes } from "../features/routes/routeDispatcher"
 import Menu from "../components/atoms/Menu"
-import { MdApi, MdCurrencyExchange, MdDashboard, MdError, MdFileCopy, MdLink, MdManageAccounts, MdMenu, MdOutlineAttachMoney, MdPeople, MdPerson, MdPix, MdWallet } from "react-icons/md"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { RootState } from "../store"
-import { RoutesInterface } from "../interfaces"
-import { ElementType } from "../routes"
+import { RoutesInterface, ShortcutInterface } from "../interfaces"
 import SplashScreen from "../components/atoms/SplashScreen"
 import { theme } from "../providers/theme"
 import AuthStyle from "./AuthStyle"
 import { isMobile } from "react-device-detect"
+import { routeIcons } from "../pages/Menu"
 
 interface Interface {
   children?: JSX.Element | JSX.Element[]
   showFooterMenu?: boolean
-}
-
-export const routeIcons = {
-  "SignIn": MdOutlineAttachMoney,
-  "SignUp": MdOutlineAttachMoney,
-  "ApiDocs": MdFileCopy,
-  "Error": MdError,
-  "Dashboard": MdDashboard,
-  "Statement": MdWallet,
-  "Pix": MdPix,
-  "Contacts": MdPeople,
-  "Menu": MdMenu,
-  "Accounts": MdManageAccounts,
-  "Exchange": MdCurrencyExchange,
-  "Integrations": MdApi,
-  "Profile": MdPerson,
-  "LinkedAccounts": MdLink,
 }
 
 const AuthTemplate = ({ children, showFooterMenu = true }: Interface) => {
@@ -53,7 +35,14 @@ const AuthTemplate = ({ children, showFooterMenu = true }: Interface) => {
     }
   }, [data])
 
-  const isElementType = (element: string): element is ElementType => element in routeIcons
+  const menuItems: ShortcutInterface[] = routes.filter((route: RoutesInterface) => route.show).map((route: RoutesInterface) => {
+    return {
+      text: route.label,
+      onClick: () => navigate(route.path),
+      icon: routeIcons[route.element],
+      color: (pathname === route.path) ? theme.footer.inactive : theme.footer.active,
+    }
+  })
 
   return (
     <AuthStyle>
@@ -61,23 +50,7 @@ const AuthTemplate = ({ children, showFooterMenu = true }: Interface) => {
       <div>
         <BodyDefaultStyle>
           {isLoading ? <SplashScreen /> : children}
-          {showFooterMenu && isMobile && <footer>
-            <Menu
-              menuStyle={{ justifyContent: "space-between" }}
-              items={
-                routes
-                  .filter((route: RoutesInterface) => route.show)
-                  .map((route: RoutesInterface) => {
-                    return {
-                      icon: isElementType(route.element) ? routeIcons[route.element] : MdMenu,
-                      color: (pathname === route.path) ? theme.footer.inactive : theme.footer.active,
-                      text: route.label,
-                      onClick: () => navigate(route.path)
-                    }
-                  })
-              }
-            />
-          </footer>}
+          {showFooterMenu && isMobile && <footer> <Menu menuStyle={{ justifyContent: "space-around" }} items={menuItems} /> </footer>}
         </BodyDefaultStyle>
       </div>
     </AuthStyle>

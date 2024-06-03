@@ -21,10 +21,8 @@ const components = {
 export type ElementType = keyof typeof components;
 
 export const Routes = (allowedRoutes: RoutesInterface[]) => {
-  const isElementType = (element: string): element is ElementType => element in components
-
   const routes = allowedRoutes.map((route: RoutesInterface) => {
-    const Component = isElementType(route.element) ? components[route.element] : Error
+    const Component = components[route.element]
 
     return {
       path: route.path,
