@@ -1,0 +1,5 @@
+{
+    "deposit": "deposit",
+    "deposit_one": "{{count}} deposit",
+    "deposit_other": "{{count}} deposits"
+}

@@ -1,3 +1,4 @@
+import './i18n/index.ts'
 import './assets/css/index.css'
 import { RouterProvider } from 'react-router-dom';
 import { Routes } from './routes'

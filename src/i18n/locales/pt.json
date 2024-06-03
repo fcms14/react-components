@@ -1,0 +1,6 @@
+{
+    "deposit": "depósito",
+    "deposit_one": "{{count}} depósito",
+    "deposit_other": "{{count}} depósitos",
+    "deposit_zero": "{{count}} depósitos"
+}
