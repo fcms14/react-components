@@ -11,8 +11,12 @@ import { SignUpValidator } from "../../validators"
 import { Row } from "../../components/molecules/Row"
 import Link from "../../components/atoms/Link"
 import { isMobile } from "react-device-detect"
+import { useTranslation } from "react-i18next"
+import { InputMask } from "../../helpers/Mask"
 
 const SignUp = () => {
+  const { t } = useTranslation()
+
   const newAuth = new Auth
   const navigate = useNavigate()
 
@@ -35,7 +39,7 @@ const SignUp = () => {
     onSuccess: ({ access_token, routes }) => {
       localStorage.setItem("token", access_token)
       dispatchSetRoutes(routes)
-      return navigate('/exchange')
+      return navigate("/exchange")
     },
   })
 
@@ -45,8 +49,8 @@ const SignUp = () => {
       <main>
         <Row.Root>
           <Row.Section>
-            <Row.Title>Cadastre-se</Row.Title>
-            <Row.Text>Preencha os campos abaixo para criar seu usuário</Row.Text>
+            <Row.Title>{InputMask.capitalize(t("sign up"))}</Row.Title>
+            <Row.Text>{t("Fill in the fields below to create your user")}</Row.Text>
           </Row.Section>
         </Row.Root>
         <Formik
@@ -58,23 +62,21 @@ const SignUp = () => {
             <Form>
               <main>
                 <section>
-                  <Input mask={"name"} name="name" label="Nome" type="text" error={touched.name && errors.name} />
-                  <Input mask={"cpf"} name="cpf" label="CPF" type="text" inputMode="numeric" error={touched.cpf && errors.cpf} />
-                  <Input name="email" label="E-mail" type="text" error={touched.email && errors.email} />
+                  <Input mask={"name"} name="name" label={InputMask.capitalize(t("name"))} type="text" error={touched.name && errors.name} />
+                  <Input mask={"cpf"} name="cpf" label={"CPF"} type="text" inputMode="numeric" error={touched.cpf && errors.cpf} />
+                  <Input name="email" label={"E-mail"} type="text" error={touched.email && errors.email} />
                   <div>
                     <span style={{ width: isMobile ? "30%" : "20%" }}>
-                      <Input mask={"ddi"} name="ddi" label="DDI" type="text" inputMode="numeric" error={touched.ddi && errors.ddi} />
+                      <Input mask={"ddi"} name="ddi" label={"DDI"} type="text" inputMode="numeric" error={touched.ddi && errors.ddi} />
                     </span>
-                    <Input mask={"phone"} name="phone" label="Celular" type="text" inputMode="numeric" error={touched.phone && errors.phone} />
+                    <Input mask={"phone"} name="phone" label={InputMask.capitalize(t("phone number"))} type="text" inputMode="numeric" error={touched.phone && errors.phone} />
                   </div>
-                  <Input name="birthday" label="Data de nascimento" inputMode="numeric" type="date" error={touched.birthday && errors.birthday} />
-                  <Input name="login" label="Usuário" type="text" error={touched.login && errors.login} />
-                  <Input name="password" label="Senha" type="password" error={touched.password && errors.password} />
+                  <Input name="password" label={InputMask.capitalize(t("password"))} type="password" error={touched.password && errors.password} />
                 </section>
               </main>
               <footer>
                 <Button.Default
-                  text="Cadastrar"
+                  text={InputMask.capitalize(t('sign up'))}
                   buttonStyle={{
                     active: (!mutation.isLoading && isValid),
                     isLoading: mutation.isLoading,
@@ -83,8 +85,8 @@ const SignUp = () => {
                 />
                 <Row.Section sectionStyle={{ alignItems: "center" }}>
                   <Row.Text>
-                    Já tem uma conta?
-                    <Link onClick={() => navigate("/")}> Entrar </Link>
+                    {t("Already have an account?")}
+                    <Link onClick={() => navigate("/")}> {InputMask.capitalize(t("sign in"))} </Link>
                   </Row.Text>
                 </Row.Section>
               </footer>

@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next"
 import { InputMask } from "../../helpers/Mask"
 
 const SignIn = () => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const newAuth = new Auth
   const navigate = useNavigate()
 
@@ -39,8 +39,6 @@ const SignIn = () => {
           <Row.Section>
             <Row.Title>{t('Welcome back')}</Row.Title>
             <Row.Text>{t('Fill in with the CPF and the password to access your account')}</Row.Text>
-            <Button.Default text="Português" onClick={() => i18n.changeLanguage('ptbr')} buttonStyle={{ active: true, isLoading: false, type: "button" }} />
-            <Button.Default text="English" onClick={() => i18n.changeLanguage('en')} buttonStyle={{ active: true, isLoading: false, type: "button" }} />
           </Row.Section>
         </Row.Root>
         <Formik
