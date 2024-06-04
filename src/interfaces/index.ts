@@ -170,7 +170,7 @@ export interface ShortcutInterface {
     width?: number,
     color?: string,
     shortcutStyle?: ShorcutProps,
-    isActive: boolean,
+    isActive?: boolean,
 }
 
 export interface ToasterProps {

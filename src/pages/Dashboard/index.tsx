@@ -3,6 +3,7 @@ import { Header } from "../../components/organisms/Header"
 import { useNavigate } from "react-router-dom"
 import { Row } from "../../components/organisms/Row"
 import { MdCurrencyBitcoin, MdCurrencyExchange, MdPix, MdRemoveRedEye } from "react-icons/md"
+import { FaEyeSlash } from "react-icons/fa"
 import { Mask } from "../../helpers/Mask"
 import List from "./list"
 import { ButtonDefaultInterface, MenuRowInterface } from "../../interfaces"
@@ -57,7 +58,7 @@ const Dashboard = () => {
       <Header.Dashboard
         avatar={{ text: `Olá, ${account?.User.name ?? ""}!`, onClick: () => setShowPanel(!showPanel) }}
         text={`Chave Pix: ${account?.pix_key}` ?? ""}
-        card={{ icon: MdRemoveRedEye, text: "Saldo disponível", title: balance, onClick: dispatchVisibility }}
+        card={{ icon: !showBalance ? FaEyeSlash : MdRemoveRedEye, text: "Saldo disponível", title: balance, onClick: dispatchVisibility }}
         menu={{
           items: [
             { icon: MdCurrencyExchange, text: "Negociar", onClick: () => navigate('/exchange') },
