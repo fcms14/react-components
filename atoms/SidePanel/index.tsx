@@ -11,9 +11,7 @@ const SidePanel = ({ children, onClick }: SidePanelInterface) => {
   return (
     <BlurPage onClick={onClick}>
       <SidePanelStyle onClick={(e) => e.stopPropagation()}>
-        <GuestStyle>
-          {children}
-        </GuestStyle>
+        {children}
       </SidePanelStyle>
     </BlurPage>
   )
