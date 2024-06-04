@@ -12,7 +12,7 @@ const Sidebar = ({ items }: SidebarInterface) => {
   return (
     <SidebarStyle>
       {items.map((item, index) =>
-        <SidebarLiStyle isActive={item.isActive}>
+        <SidebarLiStyle isActive={item.isActive} key={index}>
           <Shortcut shortcutStyle={{ flexDirection: "row" }} {...item} text={t(item.text)} key={index} />
         </SidebarLiStyle>
       )}
