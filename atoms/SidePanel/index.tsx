@@ -1,4 +1,4 @@
-import GuestStyle from "../../../templates/GuestStyle"
+import GuestStyle from "../../templates/GuestStyle"
 import { BlurPage } from "../ModAlert/ModAlertStyle"
 import SidePanelStyle from "./SidePanelStyle"
 
