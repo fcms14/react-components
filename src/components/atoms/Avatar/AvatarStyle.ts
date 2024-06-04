@@ -1,6 +1,6 @@
 import styled, { css, keyframes } from 'styled-components'
 
-const moveDown = keyframes`
+export const moveDown = keyframes`
   0% {transform: translateY(0);}
   100% {transform: translateY(25%);}
 `;

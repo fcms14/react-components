@@ -64,6 +64,8 @@ export interface SectionProps {
     justifyContent?: string,
     textalign?: string,
     borderBotom?: boolean,
+    flexGrow?: string,
+    animation?: boolean,
 }
 
 export interface FontProps {
@@ -238,6 +240,7 @@ export interface RowCardInterface {
 
 export interface AvatarInterface {
     text: string,
+    color?: string,
     onClick?: () => void,
 }
 

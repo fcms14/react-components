@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { Row } from "../../components/organisms/Row"
 import { MdCurrencyBitcoin, MdCurrencyExchange, MdPix, MdRemoveRedEye } from "react-icons/md"
 import { FaEyeSlash } from "react-icons/fa"
-import { Mask } from "../../helpers/Mask"
+import { InputMask, Mask } from "../../helpers/Mask"
 import List from "./list"
 import { ButtonDefaultInterface, MenuRowInterface } from "../../interfaces"
 import { useEffect, useState } from "react"
@@ -16,6 +16,7 @@ import { useQuery } from "react-query"
 import UserAccount, { UserAccountResponse } from "../../entities/UserAccount"
 import { theme } from "../../providers/theme"
 import { Button } from "../../components/organisms/Button"
+import { isMobile } from "react-device-detect"
 
 const Dashboard = () => {
   const newUserAccount = new UserAccount
@@ -53,20 +54,26 @@ const Dashboard = () => {
     { text: "Fechar", buttonStyle: { type: "button", active: true, secondary: false }, onClick: () => { setShowPanel(false) } },
   ]
 
+  const headerData = {
+    avatar: { text: `Olá, ${account?.User.name ?? ""}!`, onClick: () => setShowPanel(!showPanel) },
+    text: `Chave Pix: ${account?.pix_key}` ?? "",
+    title: InputMask.name((account?.User.name ?? "") + " " + (account?.name ?? "")),
+    card: { icon: !showBalance ? FaEyeSlash : MdRemoveRedEye, text: "Saldo disponível", title: balance, onClick: dispatchVisibility },
+    menu: {
+      items: [
+        { icon: MdCurrencyExchange, text: "Negociar", onClick: () => navigate('/exchange') },
+        { icon: MdPix, text: "Teste", onClick: () => console.log(1) },
+        { icon: MdPix, text: "Teste", onClick: () => console.log(1) }
+      ]
+    }
+  }
+
   return (
     <AuthTemplate>
-      <Header.Dashboard
-        avatar={{ text: `Olá, ${account?.User.name ?? ""}!`, onClick: () => setShowPanel(!showPanel) }}
-        text={`Chave Pix: ${account?.pix_key}` ?? ""}
-        card={{ icon: !showBalance ? FaEyeSlash : MdRemoveRedEye, text: "Saldo disponível", title: balance, onClick: dispatchVisibility }}
-        menu={{
-          items: [
-            { icon: MdCurrencyExchange, text: "Negociar", onClick: () => navigate('/exchange') },
-            { icon: MdPix, text: "Teste", onClick: () => console.log(1) },
-            { icon: MdPix, text: "Teste", onClick: () => console.log(1) }
-          ]
-        }}
-      />
+      {isMobile
+        ? <Header.Dashboard {...headerData} />
+        : <Header.Desktop {...headerData} />
+      }
       <main>
         {showPanel && items &&
           <UnderPanel onClick={() => setShowPanel(false)}>

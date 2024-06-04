@@ -1,11 +1,20 @@
 import styled, { css } from 'styled-components'
 import { SectionProps } from '../../../interfaces'
+import { moveDown } from '../Avatar/AvatarStyle'
 
 const Section = styled.section<SectionProps>`
   display: flex;
-  flex-grow: 1;
 
+  ${props => props.animation && css `
+    :hover {
+      > div {
+        animation: ${moveDown} 1s ease-in-out infinite;
+      }
+    }
+  `}
+  
   ${props => css`
+    flex-grow: ${props?.flexGrow ?? "1"};
     flex-direction: ${props?.flexDirection ?? "column"};
 
     justify-content: ${props?.justifyContent};
