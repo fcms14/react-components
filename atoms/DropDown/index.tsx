@@ -4,7 +4,7 @@ import Icon from "../Icon"
 import Text from "../Text"
 import { theme } from "../../../providers/theme"
 
-interface item {
+export interface DropDownItemInterface {
   text: string,
   icon: IconType,
   onClick?: () => void,
@@ -13,13 +13,13 @@ interface item {
 }
 
 export interface DropDownInterface {
-  items: item[]
+  items: DropDownItemInterface[]
 }
 
 const DropDown = ({ items }: DropDownInterface) => {
   return (
     <DropDownStyle>
-      {items.map(({ text, icon, onClick, color, width }: item, index: number) =>
+      {items.map(({ text, icon, onClick, color, width }: DropDownItemInterface, index: number) =>
         <DropDownItemStyle onClick={onClick} cursor={onClick ? 'pointer' : 'inherit'} key={index}>
           <Icon
             icon={icon}

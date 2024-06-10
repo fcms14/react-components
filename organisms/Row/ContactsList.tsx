@@ -1,18 +1,12 @@
 import { Row } from "../../molecules/Row"
-import { IconType } from "react-icons"
-import { useTranslation } from "react-i18next"
 import { InputMask } from "../../../components/helpers/Mask"
-import Icon from "../../atoms/Icon"
+import { MdPerson } from "react-icons/md"
+import DropDown, {DropDownItemInterface } from "../../atoms/DropDown"
 
 export interface ContactsListInterface {
-    name: string,
-    email: string,
-    key_document: string,
-    document: string,
-    phone: string,
-    iconSize?: number,
-    icon: IconType,
-    onClick?: () => void,
+    title: string,
+    text: string,
+    actions?: DropDownItemInterface[]     
 }
   
 export interface Interface {
@@ -20,20 +14,24 @@ export interface Interface {
 }
 
 const ContactsList = ({items}: Interface) => {
-    const { t } = useTranslation()
-
     return (
         <>
         {items.map((item, key:number) => (
-            <Row.Root key={key} rowStyle={{ justifyContent: "flex-start" }}>
-                <Row.Section sectionStyle={{borderBotom: true}}>
-                    <Row.Text key={key}> {item} </Row.Text>               
+            <div key={key} style={{ borderBottom: `1px solid` }}>
+            <Row.Root rowStyle={{  }}>
+                <Row.Icon icon={MdPerson} rounded />
+                <Row.Section>
+                    <Row.Title size="small"> {InputMask.name(item.title)} </Row.Title>
+                    <Row.Text> {item.text} </Row.Text>
                 </Row.Section>
-            </Row.Root>
+                {item.actions &&  
+                <DropDown items={item.actions}/>
+                }
+            </Row.Root>                       
+          </div>
         ))}
     </>
-    )                        
+    )                      
       
-
 }
 export default ContactsList
