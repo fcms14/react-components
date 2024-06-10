@@ -17,8 +17,7 @@ const ContactsList = ({items}: Interface) => {
     return (
         <>
         {items.map((item, key:number) => (
-            <div key={key} style={{ borderBottom: `1px solid` }}>
-            <Row.Root rowStyle={{  }}>
+            <Row.Root key={key} rowStyle={{ borderBottom: `1px solid` }}>
                 <Row.Icon icon={MdPerson} rounded />
                 <Row.Section>
                     <Row.Title size="small"> {InputMask.name(item.title)} </Row.Title>
@@ -27,8 +26,7 @@ const ContactsList = ({items}: Interface) => {
                 {item.actions &&  
                 <DropDown items={item.actions}/>
                 }
-            </Row.Root>                       
-          </div>
+            </Row.Root>                     
         ))}
     </>
     )                      
