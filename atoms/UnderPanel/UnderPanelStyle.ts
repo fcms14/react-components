@@ -6,6 +6,10 @@ const slideIn = keyframes`
 `;
 
 export const UnderPanelStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({theme}) => theme.gap};
+
   width: 100dvw;
   position: fixed;
   bottom: 0;
