@@ -13,7 +13,7 @@ export interface ModAlertInterface {
 
 const ModAlert = ({ title, text, buttons, onClick }: ModAlertInterface) => {
   return (
-    <BlurPage onClick={onClick}>
+    <BlurPage zIndex={4} onClick={onClick}>
       <ModAlertStyle onClick={(e) => e.stopPropagation()}>
         <header>
           <Title> {title} </Title>
