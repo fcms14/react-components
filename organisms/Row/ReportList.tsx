@@ -1,20 +1,20 @@
 import { Row } from "../../molecules/Row"
 import { InputMask } from "../../../components/helpers/Mask"
-import { MdPerson } from "react-icons/md"
+import { MdNavigateNext, MdPerson } from "react-icons/md"
 import DropDown, { DropDownItemInterface } from "../../atoms/DropDown"
 import { theme } from "../../../providers/theme"
 
-export interface ContactsListInterface {
+export interface ReportListInterface {
   title: string,
   text: string,
   actions?: DropDownItemInterface[]
 }
 
 export interface Interface {
-  items: ContactsListInterface[]
+  items: ReportListInterface[]
 }
 
-const ContactsList = ({ items }: Interface) => {
+const ReportList = ({ items }: Interface) => {
   return (
     <>
       {items.map((item, key: number) => (
@@ -24,10 +24,15 @@ const ContactsList = ({ items }: Interface) => {
             <Row.Title size="small"> {InputMask.name(item.title)} </Row.Title>
             <Row.Text> {item.text} </Row.Text>
           </Row.Section>
-          {item.actions && <DropDown items={item.actions} />}
+          {item.actions ?
+            item.actions.length === 1
+              ? <Row.Icon icon={MdNavigateNext} color={theme.colors.main.font} onClick={item.actions[0].onClick} width={Number(theme.fontsizes.title.big.match(/\d+/))} />
+              : <DropDown items={item.actions} />
+            : <></>
+          }
         </Row.Root>
       ))}
     </>
   )
 }
-export default ContactsList
+export default ReportList
