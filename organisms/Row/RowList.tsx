@@ -8,26 +8,35 @@ export interface RowListInterface {
   rightTitle: string,
   leftTitle: string,
   rightText: string,
-  lefticon: IconType,
-  righticon: IconType,
+  leftIcon: IconType,
+  rightIcon: IconType,
   leftText: string, 
-  onClick: () => void,
+  onClick?: () => void,
 }
 
-const RowList = ({  leftText, rightTitle, rightText, lefticon, righticon, leftTitle,  onClick }: RowListInterface) => {
+export interface Interface {
+    items: RowListInterface[]
+  }
+
+const RowList = ({  items }: Interface) => {
   return (
-    <Row.Root rowStyle={{borderBottom: `1px solid ${theme.colors.main.stroke}` }}>
-        <Row.Icon width={getIconSize()} icon={lefticon} onClick={onClick}  />   
-        <Row.Section>
-            <Row.Text>{ leftText}</Row.Text>
-            <Row.Title>{leftTitle}</Row.Title>
-        </Row.Section>     
-        <Row.Section sectionStyle={{alignItems: "flex-end"}}>
-            <Row.Text>{rightText}</Row.Text>      
-            <Row.Title >{rightTitle}</Row.Title>            
-        </Row.Section>      
-        <Row.Icon width={getIconSize()} icon={righticon} onClick={onClick} />       
-    </Row.Root>
+    <>
+     {items.map(({  rightTitle,  rightText, leftTitle,  leftText, leftIcon,  rightIcon, onClick }, key: number) => (
+        <Row.Root key={key} rowStyle={{borderBottom: `1px solid ${theme.colors.main.stroke}` }}>
+            <Row.Icon width={getIconSize()} icon={leftIcon} onClick={onClick}  />   
+            <Row.Section>
+                <Row.Text>{leftText}</Row.Text>
+                <Row.Title>{leftTitle}</Row.Title>
+            </Row.Section>     
+            <Row.Section sectionStyle={{alignItems: "flex-end"}}>
+                <Row.Text>{rightText}</Row.Text>      
+                <Row.Title >{rightTitle}</Row.Title>            
+            </Row.Section>      
+            <Row.Icon width={getIconSize()} icon={rightIcon} onClick={onClick} />       
+        </Row.Root>
+        ))}
+    </>
+
   );
 }
 
