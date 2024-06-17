@@ -9,5 +9,5 @@ export const Row = {
     FourColumnRow: FourColumnRow,
     Menu: MenuList,
     ReportList: ReportList,
-    RowList: RowList
+    List: RowList
 }
