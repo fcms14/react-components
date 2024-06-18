@@ -1,7 +1,5 @@
 import { Row } from "../../molecules/Row";
 import { theme } from "../../../providers/theme";
-import { getIconSize } from "../../helpers/helper";
-import { IconType } from "react-icons";
 import { IconComponentInterface } from "../../atoms/Icon";
 
 
@@ -13,6 +11,7 @@ export interface RowListInterface {
   rightIcon: IconComponentInterface,
   leftText: string,
   onClick?: () => void,
+  observer?: ((instance: HTMLDivElement | null) => void)
 }
 
 export interface Interface {
@@ -22,8 +21,8 @@ export interface Interface {
 const RowList = ({ items }: Interface) => {
   return (
     <>
-      {items.map(({ rightTitle, rightText, leftTitle, leftText, leftIcon, rightIcon, onClick }, key: number) => (
-        <Row.Root key={key} rowStyle={{ borderBottom: `1px solid ${theme.colors.main.stroke}` }}>
+      {items.map(({ rightTitle, rightText, leftTitle, leftText, leftIcon, rightIcon, onClick, observer }, key: number) => (
+        <Row.Root key={key} rowStyle={{ borderBottom: `1px solid ${theme.colors.main.stroke}` }} observer={observer}>
           <Row.Icon {...leftIcon} />
           <Row.Section>
             <Row.Text>{leftText}</Row.Text>
