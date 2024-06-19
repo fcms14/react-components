@@ -15,6 +15,7 @@ const BreadcrumbStyle = styled.header`
 `
 
 export const BreadcrumbDivStyle = styled.div`
-
+    display: flex;
+    align-items: center;
 `
 export default BreadcrumbStyle;
