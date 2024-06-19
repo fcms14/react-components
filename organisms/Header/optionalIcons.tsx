@@ -3,10 +3,14 @@ import { HeaderProps } from "../../atoms/Header";
 import { theme } from "../../../providers/theme";
 import { Header } from "../../molecules/Header"
 
+export interface HeaderRightIconInterface extends IconComponentInterface {
+  text: string
+}
+
 export interface HeaderOptionalIconsInterface {
   text: string,
   leftIcon?: IconComponentInterface
-  rightIcon?: IconComponentInterface
+  rightIcon?: HeaderRightIconInterface
   iconBefore?: boolean
 }
 

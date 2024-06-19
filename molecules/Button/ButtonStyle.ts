@@ -10,7 +10,8 @@ export interface ButtonProps {
   small?: boolean,
   color?: string,
   type?: "button" | "submit" | "reset" | undefined,
-  whiteSpace?: string;
+  whiteSpace?: string,
+  flexGrow?: number,
 }
 
 const ButtonStyle = styled.button<ButtonProps>`
@@ -24,10 +25,10 @@ const ButtonStyle = styled.button<ButtonProps>`
   width: ${props => props.width};
   white-space: ${props => props.whiteSpace};
 
-  ${({ theme, small }) => css`
+  ${({ theme, small, flexGrow = 1 }) => css`
     ${small
       ? `
-        flex-grow: 1;
+        flex-grow: ${flexGrow};
         padding: ${getSize(theme.padding.header) / 4}px ${theme.padding.header};
       `
       : `
