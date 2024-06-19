@@ -1,24 +1,15 @@
 import { isMobile } from "react-device-detect";
 import styled, { css } from "styled-components";
 
-const GuestStyle = styled.div`
+interface Props {
+  isGuest?: boolean
+}
+
+const GuestStyle = styled.div<Props>`
   display: ${isMobile ? "block" : "flex"};
   align-items: center;
-
-  ${!isMobile && css`
-    > div {
-      height: fit-content;
-      width: 40dvw;
-      padding: ${({ theme }) => theme.padding.main};
-    }
-  `}
-
-  > aside {
-    display: ${isMobile ? "none" : "flex"};
-    background-color: ${({ theme }) => theme.colors.header.fill};
-    height: 100dvh;
-    flex-grow: 1;
-  }
+  min-height: ${({ isGuest }) => (!isGuest || isMobile) ? "100dvh" : "100%"};
+  // position: relative;
 `
 
 export default GuestStyle
