@@ -9,7 +9,7 @@ const BreadcrumbStyle = styled.header`
     z-index: 2;
     background-color: ${theme.colorDefault.white};
     justify-content: space-between;
-    
+    height: 2.5rem;    
     padding: ${({ theme }) => `0 ${theme.padding.main}`};
     gap: ${({ theme }) => `${theme.gap}`};
 `

@@ -10,7 +10,7 @@ const SelectStyle = styled.div`
 `
 
 export const SelectNav = styled.nav`
-  background: #FFFFFF;
+  background: ${({ theme }) => theme.colorDefault.white};
   position: absolute;
   max-height: 220px;
   overflow-y: scroll;

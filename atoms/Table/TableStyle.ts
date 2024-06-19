@@ -18,7 +18,7 @@ const TableStyle = styled.table`
     > thead {
         position: sticky;
         top: 0;
-        background-color: #FFFFFF;
+        background-color: ${({ theme }) => theme.colorDefault.white};
         z-index: 1;
     }
 

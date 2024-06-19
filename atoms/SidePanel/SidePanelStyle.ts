@@ -15,7 +15,7 @@ export const SidePanelStyle = styled.div`
   z-index: 3;
   height: 100dvh;
   overflow-y: auto;
-  background: #FFFFFF;
+  background: ${({ theme }) => theme.colorDefault.white};
   animation: ${slideIn} 0.618s ease-in-out;
 `
 

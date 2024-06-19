@@ -19,7 +19,7 @@ export const BlurPage = styled.div<Props>`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: ${({zIndex}) => zIndex ?? '3'};
+  z-index: ${({ zIndex }) => zIndex ?? '3'};
 
   backdrop-filter: blur(4px);
   background: rgba(0,0,0,0.5);
@@ -31,7 +31,7 @@ const ModAlertStyle = styled.div`
   flex-direction: column;
   z-index: 1;
 
-  background: #FFFFFF;
+  background: ${({ theme }) => theme.colorDefault.white};
   box-shadow: rgba(0 0 0 / 60%) 0 12px 64px;
   max-width: 80dvw;
   
