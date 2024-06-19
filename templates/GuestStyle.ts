@@ -12,7 +12,7 @@ export const GuestMainStyle = styled.main`
   justify-content: ${isMobile ? undefined : "center"};
   position: relative;
   min-height: ${isMobile ? "100dvh" : "100%"};
-  width: ${isMobile ? undefined : "40dvw"};
+  width: ${isMobile ? undefined :  "clamp(220px, calc(220px + 20vw), 960px)"};
 `
 
 export const GuestAsideStyle = styled.aside`
