@@ -1,38 +1,20 @@
-import { isMobile } from 'react-device-detect'
 import styled from 'styled-components'
 
 interface Props {
-    isGuest?: boolean
+  padding?: string
+  flexGrow?: number
+  headerTop?: string
 }
 
-const MainStyle = styled.div<Props>`
-    display: flex;
-    flex-direction: column;
-    
-    // position: relative;
+const MainStyle = styled.main<Props>`
+  display: flex;
+  flex-direction: column;
+  padding: ${({ padding }) => padding};
+  flex-grow: ${({ flexGrow = 1 }) => flexGrow};
 
-    padding: ${({ isGuest }) => (isGuest && isMobile) ? "10vw" : undefined};
-
-    form, 
-    form > main {
-        display: flex;
-        flex-grow: 1;
-        flex-direction: column;
-    }
-    
-    > form > main {
-        justify-content: space-between;
-
-        > section > div {
-            display: flex;
-        }
-    }    
-
-    > form > footer {
-        display: flex;
-        flex-direction: column;
-        padding-bottom: ${({ theme }) => theme.padding.main};
-    }
+  > header {
+   top: ${({ headerTop }) => headerTop};
+  }
 `
 
 export default MainStyle

@@ -6,24 +6,32 @@ import Text from "../Text"
 import { FaAngleRight } from "react-icons/fa";
 import Span from "../Span"
 import { theme } from "../../../providers/theme"
+import { useNavigate } from "react-router-dom"
 
-export interface BreadcrumbInterface {
-  paths: string[]
+export interface BreadCrumbPathInterface {
+  path: string,
+  label: string
 }
 
-const Breadcrumb = ({ paths }: BreadcrumbInterface) => {
+interface Interface {
+  paths: BreadCrumbPathInterface[]
+}
+
+const Breadcrumb = ({ paths }: Interface) => {
+  const navigate = useNavigate()
+
   return (
     <BreadcrumbStyle>
-      <Title> {paths.slice(0, 1)[0]}</Title>
+      <Title cursor="pointer" onClick={() => navigate(paths.slice(0, 1)[0].path)}> {paths.slice(0, 1)[0].label}</Title>
 
       {paths.slice(1, 2)[0] && <>
         <Icon width={20} icon={FaAngleRight} color={theme.colors.main.icon} />
-        <Subtitle> {paths.slice(1, 2)[0]} </Subtitle>
+        <Subtitle cursor="pointer" onClick={() => navigate(paths.slice(1, 2)[0].path)}> {paths.slice(1, 2)[0].label} </Subtitle>
       </>}
 
-      {paths.slice(2).map((text: string, i: number) => <Span key={i}>
+      {paths.slice(2).map(({ path, label }: BreadCrumbPathInterface, i: number) => <Span key={i}>
         <Icon width={20} icon={FaAngleRight} color={theme.colors.main.icon} />
-        <Text> {text} </Text>
+        <Text cursor="pointer" onClick={() => navigate(path)}> {label} </Text>
       </Span>)}
     </BreadcrumbStyle>
   )

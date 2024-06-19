@@ -2,8 +2,8 @@ import HeaderDefault from "./default";
 import HeaderWithIcon from "./withIcon";
 import HeaderWithTwoIcons from "./withTwoIcons";
 import HeaderGuest from "./guest";
-import HeaderDashboard from "./dashboard";
-import HeaderDesktop from "./desktop";
+import HeaderAvatarMobile from "./avatarMobile";
+import HeaderAvatarDesktop from "./avatarDesktop";
 import HeaderOptionalIcons from "./optionalIcons";
 
 export const Header = {
@@ -12,6 +12,6 @@ export const Header = {
   WithTwoIcons: HeaderWithTwoIcons,
   OptionalIcons: HeaderOptionalIcons,
   Guest: HeaderGuest,
-  Dashboard: HeaderDashboard,
-  Desktop: HeaderDesktop,
+  AvatarMobile: HeaderAvatarMobile,
+  AvatarDesktop: HeaderAvatarDesktop,
 }

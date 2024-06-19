@@ -1,36 +1,92 @@
 import { isMobile } from "react-device-detect";
 import styled, { css } from "styled-components";
 
-const AuthStyle = styled.div`
-  display: ${isMobile ? "inherit" : "flex"};
-  position: relative;
+export const NavStyle = styled.nav`
+  display: ${isMobile ? "none" : "flex"};
+  flex-direction: column;
+  height: 100dvh;
+  width: 300px;
+  position: sticky;
+  top: 0;
+  left: 0;
 
-  ${!isMobile && css`
-    > div {
-      flex-grow: 1;
+  ${({ theme }) => css`
+    background-color: ${theme.footer.fill};
+    gap: ${theme.padding.main};
+  `}
+`
+
+export const SpanLogoStyle = styled.span`
+  ${({ theme }) => css`
+    padding: ${theme.padding.main};
+    > img {
+      padding: ${theme.padding.main};
     }
   `}
+`
 
-  > nav {
-    display: ${isMobile ? "none" : "flex"};
-    flex-direction: column;
-    height: 100dvh;
-    width: 300px;
-    position: sticky;
-    top: 0;
-    left: 0;
+const AuthStyle = styled.div`
+  display: ${isMobile ? "inherit" : "flex"};
+`
 
-    ${({ theme }) => css`
-      background-color: ${theme.footer.fill};
-      gap: ${theme.padding.main};
-      
-      > span {
-        padding: ${theme.padding.main};
-        > img {
-          padding: ${theme.padding.main};
-        }
+export const AuthBodyStyle = styled.div`
+  flex-grow: ${isMobile ? undefined : 1};
+  position: relative;
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+`
+
+export const AuthFooterStyle = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  z-index: 2;
+  bottom: 0;
+  padding-top: ${({ theme }) => theme.padding.header};
+  padding-bottom: ${({ theme }) => theme.padding.header};
+  background-color: ${({ theme }) => theme.footer.fill};
+`
+
+interface Props {
+  isGuest?: boolean
+}
+
+export const BodyDefaultStyle = styled.div<Props>`
+  display: flex;
+  flex-direction: column;
+  min-height: ${({ isGuest }) => (!isGuest || isMobile) ? "100dvh" : "100%"};
+  position: relative;
+
+  > main {
+      padding: ${({ isGuest }) => (isGuest && isMobile) ? "10vw" : undefined};
+  }
+
+  > main,
+  > main > form, 
+  > main > form > main {
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+  }
+  
+  > main > form > main {
+      justify-content: space-between;
+
+      > section > div {
+          display: flex;
       }
-    `
+  }    
+
+  > main > form > footer {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: ${({ theme }) => theme.padding.main};
+  }
+
+  > footer {
+
   }
 `
 

@@ -12,6 +12,7 @@ export interface FontProps {
 const Text = styled.p<FontProps>`
     font-size: ${props => props.theme.fontsizes.text[props?.size ?? 'default']};
     color: ${props => props.color ?? props.theme.colors[props?.parent ?? 'main'][props?.element ?? 'font']};
+    cursor: ${props => props?.cursor};
     text-align: ${props => props.textAlign};
 `
 
