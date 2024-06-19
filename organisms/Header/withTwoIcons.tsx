@@ -1,5 +1,6 @@
 import { IconType } from "react-icons";
 import { Header } from "../../molecules/Header"
+import { theme } from "../../../providers/theme";
 
 interface Interface {
   text: string,
@@ -11,11 +12,12 @@ interface Interface {
 }
 
 const HeaderWithTwoIcons = ({ text, leftIcon, rightIcon, iconSize, leftClick, rightClick }: Interface) => {
+  const iconWidth = iconSize ?? Number(theme.fontsizes.title.big.match(/\d+/))
   return (
     <Header.Root>
-      <Header.Icon width={iconSize} icon={leftIcon} onClick={leftClick} />
+      <Header.Icon width={iconWidth} icon={leftIcon} onClick={leftClick} />
       <Header.Title parent="header"> {text} </Header.Title>
-      <Header.Icon width={iconSize} icon={rightIcon} onClick={rightClick} />
+      <Header.Icon width={iconWidth} icon={rightIcon} onClick={rightClick} />
     </Header.Root>
   )
 }
