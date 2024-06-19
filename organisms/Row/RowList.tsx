@@ -2,7 +2,6 @@ import { Row } from "../../molecules/Row";
 import { theme } from "../../../providers/theme";
 import { IconComponentInterface } from "../../atoms/Icon";
 
-
 export interface RowListInterface {
   rightTitle: string,
   leftTitle: string,
