@@ -7,6 +7,7 @@ export interface ReportListInterface {
   title: string,
   text: string,
   actions?: DropDownItemInterface[]
+  observer?: ((instance: HTMLDivElement | null) => void)
 }
 
 export interface Interface {
@@ -16,8 +17,8 @@ export interface Interface {
 const ReportList = ({ items }: Interface) => {
   return (
     <>
-      {items.map(({ text, title, actions }, key: number) => (
-        <Row.Root key={key} rowStyle={{ borderBottom: `1px solid ${theme.colors.main.stroke}` }}>
+      {items.map(({ text, title, actions, observer }, key: number) => (
+        <Row.Root key={key} rowStyle={{ borderBottom: `1px solid ${theme.colors.main.stroke}` }} observer={observer}>
           <Row.Icon icon={MdPerson} rounded />
           <Row.Section>
             <Row.Title size="small"> {title} </Row.Title>
