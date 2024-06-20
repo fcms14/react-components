@@ -8,13 +8,14 @@ export interface CheckboxInterface {
   label: string
   checked: boolean
   color?: string
+  margin?: string
 }
 
-const Checkbox = ({ name, label, checked, color }: CheckboxInterface) => {
+const Checkbox = ({ name, label, checked, color, margin }: CheckboxInterface) => {
   const { setFieldValue } = useFormikContext()
 
   return (
-    <CheckboxStyle color={color}>
+    <CheckboxStyle color={color} margin={margin} >
       <Field
         id={name}
         name={name}
