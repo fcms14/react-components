@@ -2,11 +2,13 @@ import { Row } from "../../molecules/Row"
 import { MdNavigateNext, MdPerson } from "react-icons/md"
 import DropDown, { DropDownItemInterface } from "../../atoms/DropDown"
 import { theme } from "../../../providers/theme"
+import { IconType } from "react-icons"
 
 export interface ReportListInterface {
   title: string,
   text: string,
   actions?: DropDownItemInterface[]
+  icon?: IconType
 }
 
 export interface Interface {
@@ -14,11 +16,12 @@ export interface Interface {
 }
 
 const ReportList = ({ items }: Interface) => {
+  
   return (
     <>
-      {items.map(({ text, title, actions }, key: number) => (
+      {items.map(({ text, title, actions, icon }, key: number) => (
         <Row.Root key={key} rowStyle={{ borderBottom: `1px solid ${theme.colors.main.stroke}` }}>
-          <Row.Icon icon={MdPerson} rounded />
+          <Row.Icon icon={icon?? MdPerson } rounded />
           <Row.Section>
             <Row.Title size="small"> {title} </Row.Title>
             <Row.Text> {text} </Row.Text>
