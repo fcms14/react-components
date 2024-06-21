@@ -2,14 +2,10 @@ import styled, { css } from 'styled-components'
 
 interface Props {
   color?: string
-  margin?: string
 }
 
 export const CheckboxStyle = styled.span<Props>` 
   display: flex;
-  ${({ margin }) => css`
-      margin: ${margin ?? margin};
-  `}
   
   > label {
     cursor: pointer;
