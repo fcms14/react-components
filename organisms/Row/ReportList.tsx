@@ -1,5 +1,5 @@
 import { Row } from "../../molecules/Row"
-import { MdNavigateNext, MdPerson } from "react-icons/md"
+import { MdNavigateNext } from "react-icons/md"
 import DropDown, { DropDownItemInterface } from "../../atoms/DropDown"
 import { theme } from "../../../providers/theme"
 import { IconType } from "react-icons"
@@ -21,7 +21,7 @@ const ReportList = ({ items }: Interface) => {
     <>
       {items.map(({ text, title, actions, icon, observer }, key: number) => (
         <Row.Root key={key} rowStyle={{ borderBottom: `1px solid ${theme.colors.main.stroke}` }} observer={observer}>
-          <Row.Icon icon={icon ?? MdPerson} rounded />
+          <Row.Icon icon={icon} rounded />
           <Row.Section>
             <Row.Title size="small"> {title} </Row.Title>
             <Row.Text> {text} </Row.Text>
