@@ -7,7 +7,8 @@ import { IconType } from "react-icons"
 export interface ReportListInterface {
   title: string,
   text: string,
-  icon: IconType
+  icon: IconType,
+  iconColor?: string,
   actions?: DropDownItemInterface[]
   observer?: ((instance: HTMLDivElement | null) => void)
 }
@@ -19,9 +20,9 @@ export interface Interface {
 const ReportList = ({ items }: Interface) => {
   return (
     <>
-      {items.map(({ text, title, actions, icon, observer }, key: number) => (
+      {items.map(({ text, title, actions, icon, iconColor, observer }, key: number) => (
         <Row.Root key={key} rowStyle={{ borderBottom: `1px solid ${theme.colors.main.stroke}` }} observer={observer}>
-          <Row.Icon icon={icon} rounded />
+          <Row.Icon icon={icon} color={iconColor} rounded />
           <Row.Section>
             <Row.Title size="small"> {title} </Row.Title>
             <Row.Text> {text} </Row.Text>
