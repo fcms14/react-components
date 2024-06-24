@@ -14,7 +14,7 @@ const Checkbox = ({ name, label, checked, color }: CheckboxInterface) => {
   const { setFieldValue } = useFormikContext()
 
   return (
-    <CheckboxStyle color={color}>
+    <CheckboxStyle color={color} >
       <Field
         id={name}
         name={name}
