@@ -19,7 +19,7 @@ const ModAlert = ({ title, text, buttons, onClick }: ModAlertInterface) => {
           <Title> {title} </Title>
         </header>
         <main>
-          <Text> {text}</Text>
+          <Text> <pre>{text}</pre></Text>
         </main>
         <footer>
           <Button.Panel buttons={buttons} />
