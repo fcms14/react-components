@@ -45,8 +45,13 @@ export const Mask = {
     },
     date: (value: Date) => {
         const date = new Date(value)
+        date.setDate(date.getDate() + 1)
         const formatedDate = date.toLocaleDateString('pt-BR')
         return formatedDate
+    },
+    dateEn: (value: Date) => {
+        const date = new Date(value)
+        return date.toISOString().slice(0, 10)
     },
 }
 
