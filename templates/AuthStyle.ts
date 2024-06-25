@@ -9,6 +9,7 @@ export const NavStyle = styled.nav`
   position: sticky;
   top: 0;
   left: 0;
+  height: auto;
 
   ${({ theme }) => css`
     background-color: ${theme.footer.fill};
@@ -53,6 +54,7 @@ interface Props {
   isGuest?: boolean
 }
 
+// ToDo
 export const BodyDefaultStyle = styled.div<Props>`
   display: flex;
   flex-direction: column;
