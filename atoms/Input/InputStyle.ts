@@ -44,7 +44,7 @@ export const LabelStyle = styled.label`
   ${({ theme }) => css`
     bottom: ${theme.padding.main};
     padding-left: ${theme.padding.header};
-    padding-bottom: ${theme.padding.header};
+    padding-bottom: ${theme.radius};
   `}
 `
 
