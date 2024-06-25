@@ -53,7 +53,7 @@ export const ErrorSpanStyle = styled.span`
   ${({ theme }) => css`
     bottom: -${getSize(theme.gap)}px;
     padding-left: ${theme.padding.header};
-    padding-bottom: ${theme.padding.header};
+    padding-bottom: ${theme.radius};
   `}
 `
 const InputStyle = styled(Field) <InputProps>`

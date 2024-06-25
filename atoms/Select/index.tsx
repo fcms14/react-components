@@ -17,7 +17,7 @@ export interface SelectInterface {
   label: string
   value: string
   options: OptionInterface[]
-  error?: string | boolean
+  error?: string
 }
 
 const Select = ({ name, label, options, value, error }: SelectInterface) => {
