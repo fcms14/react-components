@@ -9,7 +9,8 @@ export const NavStyle = styled.nav`
   position: sticky;
   top: 0;
   left: 0;
-  height: auto;
+  height: 100dvh;
+  overflow-y: auto;
 
   ${({ theme }) => css`
     background-color: ${theme.footer.fill};
