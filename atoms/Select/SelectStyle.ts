@@ -30,6 +30,7 @@ export const SelectLi = styled.li<Props>`
   background: ${({ theme, selected }) => selected ? theme.colorByType.info : theme.colorDefault.white};
   color:  ${({ theme, selected }) => selected ? theme.colors.button.font : undefined};
   width: 100%;
+  cursor: pointer;
 `
 
 export default SelectStyle
