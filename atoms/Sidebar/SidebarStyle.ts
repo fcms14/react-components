@@ -2,15 +2,17 @@ import styled, { css } from 'styled-components'
 
 interface Props {
   isActive?: boolean
+  isExpanded?: boolean
 }
 
-const SidebarStyle = styled.ul`
+const SidebarStyle = styled.ul<Props>`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100%; 
 
-  ${({ theme }) => css`
-    gap: ${theme.gap};
+  ${({ theme, isExpanded }) => css`
+    gap: ${!isExpanded ? '30px' : theme.gap };
+    align-items: ${isExpanded ? '' : 'center'};
   `}
 `
 

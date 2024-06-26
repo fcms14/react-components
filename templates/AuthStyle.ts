@@ -1,16 +1,16 @@
 import { isMobile } from "react-device-detect";
 import styled, { css } from "styled-components";
 
-export const NavStyle = styled.nav`
+export const NavStyle = styled.nav<Props>`
   display: ${isMobile ? "none" : "flex"};
   flex-direction: column;
-  height: 100dvh;
-  width: 300px;
+  height: 100vh;
+  width: ${({ isExpanded }) => (isExpanded ? "300px" : "50px")};
   position: sticky;
   top: 0;
   left: 0;
-  height: 100dvh;
   overflow-y: auto;
+  transition: width 0.3s;
 
   ${({ theme }) => css`
     background-color: ${theme.footer.fill};
@@ -53,6 +53,7 @@ export const AuthFooterStyle = styled.footer`
 
 interface Props {
   isGuest?: boolean
+  isExpanded?: boolean
 }
 
 // ToDo
