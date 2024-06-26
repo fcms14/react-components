@@ -9,6 +9,8 @@ import { theme } from "../../../providers/theme"
 import { useNavigate } from "react-router-dom"
 import { HeaderRightIconInterface } from "../../organisms/Header/optionalIcons"
 import { Button } from "../../organisms/Button"
+import { DropDownItemInterface } from "../DropDown"
+import Action from "../../molecules/Action/intex"
 
 export interface BreadCrumbPathInterface {
   path: string,
@@ -18,9 +20,10 @@ export interface BreadCrumbPathInterface {
 interface Interface {
   paths: BreadCrumbPathInterface[]
   rightIcon?: HeaderRightIconInterface
+  actions?: DropDownItemInterface[]
 }
 
-const Breadcrumb = ({ paths, rightIcon }: Interface) => {
+const Breadcrumb = ({ paths, rightIcon, actions }: Interface) => {
   const navigate = useNavigate()
 
   return (
@@ -37,7 +40,8 @@ const Breadcrumb = ({ paths, rightIcon }: Interface) => {
           <Icon width={20} icon={FaAngleRight} color={theme.colors.main.icon} />
           <Text cursor="pointer" onClick={() => navigate(path)}> {label} </Text>
         </Span>)}
-      </BreadcrumbDivStyle>
+      </BreadcrumbDivStyle>    
+      {actions && <Action actions={actions} />}
       {rightIcon && rightIcon.onClick &&
         <Button.Small
           icon={rightIcon.icon}
@@ -46,7 +50,6 @@ const Breadcrumb = ({ paths, rightIcon }: Interface) => {
           buttonStyle={{ active: true, small: true, flexGrow: 0 }}
         />
       }
-
     </BreadcrumbStyle>
   )
 }

@@ -2,6 +2,8 @@ import { IconComponentInterface } from "../../atoms/Icon";
 import { HeaderProps } from "../../atoms/Header";
 import { theme } from "../../../providers/theme";
 import { Header } from "../../molecules/Header"
+import Action from "../../molecules/Action/intex";
+import { DropDownItemInterface } from "../../atoms/DropDown";
 
 export interface HeaderRightIconInterface extends IconComponentInterface {
   text: string
@@ -12,9 +14,10 @@ export interface HeaderOptionalIconsInterface {
   leftIcon?: IconComponentInterface
   rightIcon?: HeaderRightIconInterface
   iconBefore?: boolean
+  actions?: DropDownItemInterface[]
 }
 
-const HeaderOptionalIcons = ({ text, leftIcon, rightIcon, iconBefore }: HeaderOptionalIconsInterface) => {
+const HeaderOptionalIcons = ({ text, leftIcon, rightIcon, iconBefore, actions }: HeaderOptionalIconsInterface) => {
   const iconWidth = leftIcon?.width ?? rightIcon?.width ?? Number(theme.fontsizes.title.big.match(/\d+/))
   const size = `${(iconWidth) + (Number(theme.padding.icon.match(/\d+/)) * 2)}px`;
   const headerStyle: HeaderProps | undefined = iconBefore ? { flexDirection: "row-reverse" } : undefined
@@ -23,7 +26,7 @@ const HeaderOptionalIcons = ({ text, leftIcon, rightIcon, iconBefore }: HeaderOp
     <Header.Root headerStyle={{ ...headerStyle }}>
       {leftIcon ? <Header.Icon {...leftIcon} width={iconWidth} /> : <Header.Spacer width={size} />}
       <Header.Title parent="header"> {text} </Header.Title>
-      {rightIcon ? <Header.Icon {...rightIcon} width={iconWidth} /> : <Header.Spacer width={size} />}
+      {rightIcon ? <Header.Icon {...rightIcon} width={iconWidth} /> : (actions ? <Action actions={actions} /> : <Header.Spacer width={size} />)}
     </Header.Root>
   )
 }
