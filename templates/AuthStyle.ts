@@ -1,11 +1,11 @@
 import { isMobile } from "react-device-detect";
 import styled, { css } from "styled-components";
 
-export const NavStyle = styled.nav<Props>`
+export const NavStyle = styled.nav`
   display: ${isMobile ? "none" : "flex"};
   flex-direction: column;
   height: 100vh;
-  width: ${({ isExpanded }) => (isExpanded ? "300px" : "50px")};
+  width: auto;
   position: sticky;
   top: 0;
   left: 0;
@@ -53,7 +53,6 @@ export const AuthFooterStyle = styled.footer`
 
 interface Props {
   isGuest?: boolean
-  isExpanded?: boolean
 }
 
 // ToDo

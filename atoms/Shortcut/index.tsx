@@ -8,7 +8,7 @@ export interface ShortcutInterface {
   text: string,
   icon: IconType,
   onClick?: () => void,
-  isExpanded: boolean,
+  isExpanded?: boolean,
   width?: number,
   color?: string,
   shortcutStyle?: ShorcutProps,
