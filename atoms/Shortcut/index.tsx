@@ -8,13 +8,14 @@ export interface ShortcutInterface {
   text: string,
   icon: IconType,
   onClick?: () => void,
+  isExpanded?: boolean,
   width?: number,
   color?: string,
   shortcutStyle?: ShorcutProps,
   isActive?: boolean,
 }
 
-const Shortcut = ({ text, icon, onClick, color, width, shortcutStyle }: ShortcutInterface) => {
+const Shortcut = ({ text, icon, onClick, color, width, shortcutStyle, isExpanded }: ShortcutInterface) => {
   return (
     <ShortcutStyle onClick={onClick} cursor={onClick ? 'pointer' : 'inherit'} {...shortcutStyle}>
       <Icon
@@ -22,7 +23,7 @@ const Shortcut = ({ text, icon, onClick, color, width, shortcutStyle }: Shortcut
         color={color ?? theme.colors.header.font}
         width={width ?? Number(theme.fontsizes.title.bigger.match(/\d+/))}
       />
-      <Text color={color ?? theme.colors.header.font}>{text}</Text>
+      {isExpanded && <Text color={color ?? theme.colors.header.font}>{text}</Text>}
     </ShortcutStyle>
   )
 }

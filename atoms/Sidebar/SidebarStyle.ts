@@ -2,12 +2,12 @@ import styled, { css } from 'styled-components'
 
 interface Props {
   isActive?: boolean
+  isExpanded?: boolean
 }
 
 const SidebarStyle = styled.ul`
   display: flex;
   flex-direction: column;
-  width: 100%;
 
   ${({ theme }) => css`
     gap: ${theme.gap};
@@ -15,9 +15,18 @@ const SidebarStyle = styled.ul`
 `
 
 export const SidebarLiStyle = styled.li<Props>`
-  ${({ theme, isActive }) => css`
+  ${({ theme, isActive, isExpanded }) => css`
     padding: ${({ theme }) => theme.padding.main};
-    border-right: ${isActive ? `10px solid ${theme.colors.header.font}` : ""};
+    border-right: ${(isExpanded && isActive) ? `10px solid ${theme.colors.header.font}` : "undefined"};
+  `}
+`
+
+export const SpanLogoStyle = styled.span<Props>`
+  display: flex;
+  
+  ${({ theme, isExpanded }) => css`
+    width: ${isExpanded ? "240px" : "60px"};
+    padding: ${isExpanded ? theme.padding.main : `${theme.padding.main} 0`};
   `}
 `
 
