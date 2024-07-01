@@ -12,7 +12,7 @@ const MainStyle = styled.main<Props>`
   padding: ${({ padding }) => padding};
   flex-grow: ${({ flexGrow = 1 }) => flexGrow};
 
-  . header {
+  > header {
    top: ${({ headerTop }) => headerTop};
   }
 `
