@@ -5,7 +5,6 @@ export const NavStyle = styled.nav`
   display: ${isMobile ? "none" : "flex"};
   flex-direction: column;
   height: 100dvh;
-  width: auto;
   position: sticky;
   top: 0;
   left: 0;
