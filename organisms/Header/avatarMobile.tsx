@@ -1,18 +1,17 @@
 import Header from "../../atoms/Header"
 import Text from "../../atoms/Text"
 import { theme } from "../../../providers/theme"
-import RowCard, { RowCardInterface } from "../Row/RowCard"
+import RowCard from "../Row/RowCard"
 import Menu, { MenuInterface } from "../../atoms/Menu"
-import Avatar, { AvatarInterface } from "../../atoms/Avatar"
+import Avatar from "../../atoms/Avatar"
+import { HeaderAvatarDesktopInterface } from "./avatarDesktop"
 
-interface Interface {
-  text: string,
-  avatar: AvatarInterface,
-  card: RowCardInterface,
+
+export interface HeaderAvatarMobileInterface extends HeaderAvatarDesktopInterface {
   menu: MenuInterface,
 }
 
-const HeaderDashboard = ({ text, avatar, card, menu }: Interface) => {
+const HeaderAvatarMobile = ({ text, avatar, card, menu }: HeaderAvatarMobileInterface) => {
   return (
     <Header height={"undefined"}>
       <Avatar {...avatar} />
@@ -23,4 +22,4 @@ const HeaderDashboard = ({ text, avatar, card, menu }: Interface) => {
   )
 }
 
-export default HeaderDashboard
+export default HeaderAvatarMobile

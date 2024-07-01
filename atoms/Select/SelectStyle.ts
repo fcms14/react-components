@@ -10,7 +10,7 @@ const SelectStyle = styled.div`
 `
 
 export const SelectNav = styled.nav`
-  background: #FFFFFF;
+  background: ${({ theme }) => theme.colorDefault.white};
   position: absolute;
   max-height: 220px;
   overflow-y: scroll;
@@ -30,6 +30,7 @@ export const SelectLi = styled.li<Props>`
   background: ${({ theme, selected }) => selected ? theme.colorByType.info : theme.colorDefault.white};
   color:  ${({ theme, selected }) => selected ? theme.colors.button.font : undefined};
   width: 100%;
+  cursor: pointer;
 `
 
 export default SelectStyle

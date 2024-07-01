@@ -4,6 +4,7 @@ import { FontProps } from '../Text'
 const Subtitle = styled.h2<FontProps>`
     font-family: "InterBold";
     font-size: ${props => props.theme.fontsizes.subtitle[props?.size ?? 'default']};
+    cursor: ${props => props?.cursor};
     color: ${props => props.color ?? props.theme.colors[props?.parent ?? 'main'][props?.element ?? 'title']};
 `
 

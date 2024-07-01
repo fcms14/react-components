@@ -9,17 +9,23 @@ export interface ModAlertInterface {
   text: string
   buttons: ButtonDefaultInterface[]
   onClick: () => void
+  preFormat?: boolean
 }
 
-const ModAlert = ({ title, text, buttons, onClick }: ModAlertInterface) => {
+const ModAlert = ({ title, text, buttons, onClick, preFormat }: ModAlertInterface) => {
   return (
-    <BlurPage onClick={onClick}>
+    <BlurPage zIndex={4} onClick={onClick}>
       <ModAlertStyle onClick={(e) => e.stopPropagation()}>
         <header>
           <Title> {title} </Title>
         </header>
         <main>
-          <Text> {text}</Text>
+          <Text>
+            {preFormat
+              ? <pre>{text}</pre>
+              : <>{text}</>
+            }
+          </Text>
         </main>
         <footer>
           <Button.Panel buttons={buttons} />

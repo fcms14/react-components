@@ -44,7 +44,7 @@ export const LabelStyle = styled.label`
   ${({ theme }) => css`
     bottom: ${theme.padding.main};
     padding-left: ${theme.padding.header};
-    padding-bottom: ${theme.padding.header};
+    padding-bottom: ${theme.radius};
   `}
 `
 
@@ -53,7 +53,7 @@ export const ErrorSpanStyle = styled.span`
   ${({ theme }) => css`
     bottom: -${getSize(theme.gap)}px;
     padding-left: ${theme.padding.header};
-    padding-bottom: ${theme.padding.header};
+    padding-bottom: ${theme.radius};
   `}
 `
 const InputStyle = styled(Field) <InputProps>`

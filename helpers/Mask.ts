@@ -12,6 +12,11 @@ export enum Fractions {
     BTCBRL = 8
 }
 
+export enum ValueType {
+    VALUE = 'VALUE',
+    PERCENT = 'PERCENT'
+}
+
 interface Config {
     style?: string,
     currency: string,
@@ -30,6 +35,7 @@ export const configOptions = {
 export const Parser = {
     intToFloat: (value: number | string): number => Number(value) / 100,
     unmasker: (value: string, replace: string = "R$"): number => Number(value.replace(replace, "").replaceAll('.', '').replace(',', '.')),
+    unmaskerToInt: (value: string): number => Number(value.replace("R$", "").replace(/[^\w\s]/gi, '').replaceAll(' ', ''))
 }
 
 export const Mask = {
@@ -37,10 +43,23 @@ export const Mask = {
         const options = { style: 'currency', currency: code, minimumFractionDigits: decimal }
         return new Intl.NumberFormat('pt-br', options).format(value)
     },
+    valueOrPercent: (value: number, type: ValueType): string => type === ValueType.PERCENT
+        ? `${value}%`
+        : InputMask.currency(value.toString()),
     dateTime: (value: Date) => {
         const date = new Date(value)
         const formatedDate = date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' })
         return formatedDate
+    },
+    date: (value: Date) => {
+        const date = new Date(value)
+        date.setDate(date.getDate() + 1)
+        const formatedDate = date.toLocaleDateString('pt-BR')
+        return formatedDate
+    },
+    dateEn: (value: Date) => {
+        const date = new Date(value)
+        return date.toISOString().slice(0, 10)
     },
 }
 

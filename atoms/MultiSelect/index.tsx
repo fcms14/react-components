@@ -18,7 +18,7 @@ export interface MultiSelectInterface {
   values: string[]
   required?: boolean
   options: OptionInterface[]
-  error?: string | boolean
+  error?: string
 }
 
 const MultiSelect = ({ name, label, options, values, required, error }: MultiSelectInterface) => {

@@ -1,11 +1,15 @@
 import styled, { css, keyframes } from "styled-components";
 
+interface Props {
+  zIndex?: number;
+}
+
 const fadeIn = keyframes`
   from { opacity: 0; }
   to { opacity: 1; }
 `;
 
-export const BlurPage = styled.div`
+export const BlurPage = styled.div<Props>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +19,7 @@ export const BlurPage = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 3;
+  z-index: ${({ zIndex }) => zIndex ?? '3'};
 
   backdrop-filter: blur(4px);
   background: rgba(0,0,0,0.5);
@@ -25,8 +29,9 @@ export const BlurPage = styled.div`
 const ModAlertStyle = styled.div`
   display: flex;
   flex-direction: column;
+  z-index: 1;
 
-  background: #FFFFFF;
+  background: ${({ theme }) => theme.colorDefault.white};
   box-shadow: rgba(0 0 0 / 60%) 0 12px 64px;
   max-width: 80dvw;
   

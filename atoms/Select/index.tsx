@@ -17,7 +17,7 @@ export interface SelectInterface {
   label: string
   value: string
   options: OptionInterface[]
-  error?: string | boolean
+  error?: string
 }
 
 const Select = ({ name, label, options, value, error }: SelectInterface) => {
@@ -33,7 +33,7 @@ const Select = ({ name, label, options, value, error }: SelectInterface) => {
         name={name}
         label={`${value ? `${label}: ${value}` : label}`}
         type="text"
-        onFocus={() => setShow(!show)}
+        onFocus={() => setShow(true)}
         onChange={(value: string) => {
           setShow(value.length > 0)
           setSearchKey(value)

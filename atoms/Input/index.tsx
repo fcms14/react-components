@@ -7,6 +7,7 @@ import Icon, { IconComponentInterface } from "../Icon"
 import { theme } from "../../../providers/theme"
 import { MdRemoveRedEye } from "react-icons/md"
 import { FaEyeSlash } from "react-icons/fa"
+import { useTranslation } from "react-i18next"
 
 export interface InputInterface {
     name: string
@@ -18,12 +19,13 @@ export interface InputInterface {
     onChange?: (value: string) => void
     onFocus?: () => void
     inputStyle?: InputProps
-    error?: string | boolean
+    error?: string
     icon?: IconComponentInterface
 }
 
 const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChange, onFocus, inputMode, icon }: InputInterface) => {
     const { setFieldValue } = useFormikContext()
+    const { t } = useTranslation()
     const [show, toggleVisibility] = useState<boolean>(false)
 
     function handleChange(e: BaseSyntheticEvent, mask: MaskType) {
@@ -52,7 +54,7 @@ const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChang
                 onKeyDown={mask ? handleChange : undefined}
             />
             <LabelStyle htmlFor={name}> {label} </LabelStyle>
-            {error && <ErrorSpanStyle> <Subtext size="big" color={theme.colorDefault.error}>{error}</Subtext> </ErrorSpanStyle>}
+            {error && <ErrorSpanStyle> <Subtext size="big" color={theme.colorDefault.error}>{t(error ?? "")}</Subtext> </ErrorSpanStyle>}
             {(type === "password") && <Icon icon={!show ? FaEyeSlash : MdRemoveRedEye} onClick={() => toggleVisibility(!show)} />}
             {icon && <Icon {...icon} />}
         </InputSpanStyle>

@@ -6,16 +6,16 @@ import { MdArrowDropDown, MdPerson } from "react-icons/md"
 import { RowCardInterface } from "../Row/RowCard"
 import { AvatarInterface } from "../../atoms/Avatar"
 
-interface Interface {
-  title: string,
+export interface HeaderAvatarDesktopInterface {
   text: string,
+  title: string,
   avatar: AvatarInterface,
   card: RowCardInterface,
 }
 
-const HeaderDesktop = ({ title, text, avatar, card }: Interface) => {
+const HeaderAvatarDesktop = ({ title, text, avatar, card }: HeaderAvatarDesktopInterface) => {
   return (
-    <Header height={"undefined"}>
+    <Header height={"undefined"} className="header">
       <Row.Root rowStyle={{ flexDirection: "row", alignItems: "left" }}>
         <Row.Section sectionStyle={{ flexGrow: "0" }}>
           <Row.Title>{avatar.text}</Row.Title>
@@ -41,4 +41,4 @@ const HeaderDesktop = ({ title, text, avatar, card }: Interface) => {
   )
 }
 
-export default HeaderDesktop
+export default HeaderAvatarDesktop

@@ -10,7 +10,7 @@ const ToasterStyle = styled.div`
   flex-direction: column;
   position: fixed;
   z-index: 3;
-  background-color: #FFFFFF;
+  background-color: ${({ theme }) => theme.colorDefault.white};
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   animation: ${animation} 1s ease;
   overflow-y: auto;

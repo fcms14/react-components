@@ -1,24 +1,25 @@
 import { isMobile } from "react-device-detect";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const GuestStyle = styled.div`
   display: ${isMobile ? "block" : "flex"};
-  align-items: center;
+  min-height: 100dvh;
+`
 
-  ${!isMobile && css`
-    > div {
-      height: fit-content;
-      width: 40dvw;
-      padding: ${({ theme }) => theme.padding.main};
-    }
-  `}
+export const GuestMainStyle = styled.main`
+  display: flex;  
+  flex-direction: column;
+  justify-content: ${isMobile ? undefined : "center"};
+  position: relative;
+  min-height: ${isMobile ? "100dvh" : "100%"};
+  width: ${isMobile ? undefined :  "clamp(220px, calc(220px + 20vw), 960px)"};
+`
 
-  > aside {
-    display: ${isMobile ? "none" : "flex"};
-    background-color: ${({ theme }) => theme.colors.header.fill};
-    height: 100dvh;
-    flex-grow: 1;
-  }
+export const GuestAsideStyle = styled.aside`
+  display: ${isMobile ? "none" : "flex"};
+  background-color: ${({ theme }) => theme.colors.header.fill};
+  min-height: 100dvh;
+  flex-grow: 1;
 `
 
 export default GuestStyle
