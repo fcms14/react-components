@@ -1,8 +1,8 @@
 import { Row } from "../../molecules/Row"
-import DropDown, { DropDownItemInterface } from "../../atoms/DropDown"
+import { DropDownItemInterface } from "../../atoms/DropDown"
 import { theme } from "../../../providers/theme"
 import { IconType } from "react-icons"
-import Action from "../../atoms/Action/index"
+import IconOrMenu from "../../atoms/IconOrMenu/index"
 
 export interface ReportListInterface {
   title: string,
@@ -27,7 +27,7 @@ const ReportList = ({ items }: Interface) => {
             <Row.Title size="small"> {title} </Row.Title>
             <Row.Text> {text} </Row.Text>
           </Row.Section>
-          {actions && <Action actions={actions} />}
+          {actions && <IconOrMenu actions={actions} />}
         </Row.Root>
       ))}
     </>

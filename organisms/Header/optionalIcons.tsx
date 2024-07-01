@@ -2,7 +2,7 @@ import { IconComponentInterface } from "../../atoms/Icon";
 import { HeaderProps } from "../../atoms/Header";
 import { theme } from "../../../providers/theme";
 import { Header } from "../../molecules/Header"
-import Action from "../../atoms/Action/index";
+import IconOrMenu from "../../atoms/IconOrMenu/index";
 import { DropDownItemInterface } from "../../atoms/DropDown";
 
 export interface HeaderRightIconInterface extends IconComponentInterface {
@@ -29,7 +29,7 @@ const HeaderOptionalIcons = ({ text, leftIcon, rightIcon, iconBefore, actions }:
       {rightIcon
         ? <Header.Icon {...rightIcon} width={iconWidth} />
         : (actions
-          ? <Action actions={actions} iconColor={theme.colors.header.icon} />
+          ? <IconOrMenu actions={actions} iconColor={theme.colors.header.icon} />
           : <Header.Spacer width={size} />
         )
       }

@@ -3,12 +3,12 @@ import { theme } from "../../../providers/theme";
 import DropDown, { DropDownItemInterface } from "../DropDown"
 import { Row } from "../../molecules/Row"
 
-interface ActionInterface {
+interface IconOrMenuInterface {
   actions: DropDownItemInterface[]
   iconColor?: string
 }
 
-const Action = ({ actions, iconColor }: ActionInterface) => {
+const IconOrMenu = ({ actions, iconColor }: IconOrMenuInterface) => {
   return <>
     {actions.length === 1
       ? <Row.Icon
@@ -22,4 +22,4 @@ const Action = ({ actions, iconColor }: ActionInterface) => {
   </>
 }
 
-export default Action
+export default IconOrMenu
