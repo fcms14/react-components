@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom"
 import { HeaderRightIconInterface } from "../../organisms/Header/optionalIcons"
 import { Button } from "../../organisms/Button"
 import { DropDownItemInterface } from "../DropDown"
-import Action from "../../molecules/Action/intex"
+import Action from "../Action/index"
 
 export interface BreadCrumbPathInterface {
   path: string,
@@ -40,7 +40,7 @@ const Breadcrumb = ({ paths, rightIcon, actions }: Interface) => {
           <Icon width={20} icon={FaAngleRight} color={theme.colors.main.icon} />
           <Text cursor="pointer" onClick={() => navigate(path)}> {label} </Text>
         </Span>)}
-      </BreadcrumbDivStyle>    
+      </BreadcrumbDivStyle>
       {actions && <Action actions={actions} />}
       {rightIcon && rightIcon.onClick &&
         <Button.Small

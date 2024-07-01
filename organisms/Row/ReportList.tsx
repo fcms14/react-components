@@ -2,7 +2,7 @@ import { Row } from "../../molecules/Row"
 import DropDown, { DropDownItemInterface } from "../../atoms/DropDown"
 import { theme } from "../../../providers/theme"
 import { IconType } from "react-icons"
-import Action from "../../molecules/Action/intex"
+import Action from "../../atoms/Action/index"
 
 export interface ReportListInterface {
   title: string,
@@ -27,7 +27,7 @@ const ReportList = ({ items }: Interface) => {
             <Row.Title size="small"> {title} </Row.Title>
             <Row.Text> {text} </Row.Text>
           </Row.Section>
-          <Action actions={actions} />
+          {actions && <Action actions={actions} />}
         </Row.Root>
       ))}
     </>
