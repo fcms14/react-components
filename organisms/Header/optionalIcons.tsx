@@ -29,7 +29,7 @@ const HeaderOptionalIcons = ({ text, leftIcon, rightIcon, iconBefore, actions }:
       {rightIcon
         ? <Header.Icon {...rightIcon} width={iconWidth} />
         : (actions
-          ? <Action actions={actions} />
+          ? <Action actions={actions} iconColor={theme.colors.header.icon} />
           : <Header.Spacer width={size} />
         )
       }

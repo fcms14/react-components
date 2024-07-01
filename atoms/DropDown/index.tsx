@@ -18,14 +18,15 @@ export interface DropDownItemInterface {
 
 export interface DropDownInterface {
   items: DropDownItemInterface[]
+  iconColor?: string
 }
 
-const DropDown = ({ items }: DropDownInterface) => {
+const DropDown = ({ items, iconColor }: DropDownInterface) => {
   const [showOptions, setShowOptions] = useState<boolean>(false)
 
   return (
     <DropDownWrapper onMouseLeave={() => setShowOptions(false)}>
-      <Button.Icon icon={SlOptionsVertical} onClick={() => setShowOptions(!showOptions)} color={theme.colors.main.font} applyPadding />
+      <Button.Icon icon={SlOptionsVertical} onClick={() => setShowOptions(!showOptions)} color={iconColor ?? theme.colors.main.font} applyPadding />
 
       {showOptions &&
         <DropDownStyle>

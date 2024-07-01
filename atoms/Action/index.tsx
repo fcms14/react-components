@@ -4,19 +4,20 @@ import DropDown, { DropDownItemInterface } from "../DropDown"
 import { Row } from "../../molecules/Row"
 
 interface ActionInterface {
-  actions: DropDownItemInterface[];
+  actions: DropDownItemInterface[]
+  iconColor?: string
 }
 
-const Action = ({ actions }: ActionInterface) => {
+const Action = ({ actions, iconColor }: ActionInterface) => {
   return <>
     {actions.length === 1
       ? <Row.Icon
         icon={actions[0].icon ?? MdNavigateNext}
-        color={theme.colors.main.font}
+        color={actions[0].color ?? theme.colors.main.font}
         onClick={actions[0].onClick}
         width={Number(theme.fontsizes.title.big.match(/\d+/))}
       />
-      : <DropDown items={actions} />
+      : <DropDown items={actions} iconColor={iconColor} />
     }
   </>
 }
