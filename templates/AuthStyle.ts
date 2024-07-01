@@ -5,25 +5,15 @@ export const NavStyle = styled.nav`
   display: ${isMobile ? "none" : "flex"};
   flex-direction: column;
   height: 100dvh;
-  width: 300px;
   position: sticky;
   top: 0;
   left: 0;
-  height: 100dvh;
   overflow-y: auto;
+  transition: width 0.3s;
 
   ${({ theme }) => css`
     background-color: ${theme.footer.fill};
     gap: ${theme.padding.main};
-  `}
-`
-
-export const SpanLogoStyle = styled.span`
-  ${({ theme }) => css`
-    padding: ${theme.padding.main};
-    > img {
-      padding: ${theme.padding.main};
-    }
   `}
 `
 
