@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const DropPanelStyle = styled.div`
   display: flex;
@@ -12,25 +12,6 @@ const DropPanelStyle = styled.div`
   background-color: ${({ theme }) => theme.colorDefault.white};
   gap: ${({ theme }) => theme.gap};
   border-radius: ${({ theme }) => theme.radius};
-`
-
-interface Props {
-  cursor?: string
-}
-
-export const DropPanelItemStyle = styled.div<Props>`
-  display: flex;
-  align-items: center;
-
-  ${({ theme, cursor }) => css`
-    padding: ${theme.padding.header} ${theme.padding.main};
-    gap: ${theme.gap};
-    cursor: ${cursor ?? 'inherit'};
-
-    :hover {
-      background-color: ${theme.colorByType.success};
-    }
-  `}
 `
 
 export const DropPanelWrapper = styled.div`
