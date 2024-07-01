@@ -5,13 +5,12 @@ interface Props {
   isExpanded?: boolean
 }
 
-const SidebarStyle = styled.ul<Props>`
+const SidebarStyle = styled.ul`
   display: flex;
   flex-direction: column;
 
-  ${({ theme, isExpanded }) => css`
+  ${({ theme }) => css`
     gap: ${theme.gap};
-    width: ${isExpanded ? "256px" : "80px"};
   `}
 `
 
@@ -26,6 +25,7 @@ export const SpanLogoStyle = styled.span<Props>`
   display: flex;
   
   ${({ theme, isExpanded }) => css`
+    width: ${isExpanded ? "240px" : "60px"};
     padding: ${isExpanded ? theme.padding.main : `${theme.padding.main} 0`};
   `}
 `

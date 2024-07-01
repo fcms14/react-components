@@ -15,7 +15,7 @@ const Sidebar = ({ items }: SidebarInterface) => {
   const { isExpanded } = useSelector((state: RootState) => state.sideBar)
 
   return (
-    <SidebarStyle isExpanded={isExpanded}>
+    <SidebarStyle>
       <SidebarLiStyle>
         {isExpanded
           ? <SpanLogoStyle isExpanded={isExpanded}> <img src={import.meta.env.VITE_WHITE_LABEL_LOGO_MENU} /> </SpanLogoStyle>
