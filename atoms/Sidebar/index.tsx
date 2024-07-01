@@ -1,12 +1,10 @@
 import { useTranslation } from "react-i18next"
 import Shortcut, { ShortcutInterface } from "../Shortcut"
-import SidebarStyle, { SidebarLiStyle } from "./SidebarStyle"
-import { useState } from "react"
+import SidebarStyle, { SidebarLiStyle, SpanLogoStyle } from "./SidebarStyle"
 import { MdArrowCircleLeft, MdArrowCircleRight } from "react-icons/md"
 import { useSelector } from "react-redux"
 import { RootState } from "../../../store"
 import { dispatchVisibility } from "../../../features/sideBar/sideBarDispatcher"
-import { SpanLogoStyle } from "../../templates/AuthStyle"
 
 export interface SidebarInterface {
   items: ShortcutInterface[]
@@ -17,10 +15,15 @@ const Sidebar = ({ items }: SidebarInterface) => {
   const { isExpanded } = useSelector((state: RootState) => state.sideBar)
 
   return (
-    <SidebarStyle>
-      {isExpanded ? <SpanLogoStyle> <img src={import.meta.env.VITE_WHITE_LABEL_LOGO_MENU} /> </SpanLogoStyle> : 'Icone da logo'}
+    <SidebarStyle isExpanded={isExpanded}>
+      <SidebarLiStyle>
+        {isExpanded
+          ? <SpanLogoStyle isExpanded={isExpanded}> <img src={import.meta.env.VITE_WHITE_LABEL_LOGO_MENU} /> </SpanLogoStyle>
+          : <SpanLogoStyle> <img src={import.meta.env.VITE_WHITE_LABEL_LOGO_SMALL} /> </SpanLogoStyle>
+        }
+      </SidebarLiStyle>
       {items.map((item, index) =>
-        <SidebarLiStyle isActive={item.isActive} key={index}>
+        <SidebarLiStyle isActive={item.isActive} isExpanded={isExpanded} key={index}>
           <Shortcut
             {...item}
             shortcutStyle={{ flexDirection: "row" }}

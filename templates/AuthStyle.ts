@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 export const NavStyle = styled.nav`
   display: ${isMobile ? "none" : "flex"};
   flex-direction: column;
-  height: 100vh;
+  height: 100dvh;
   width: auto;
   position: sticky;
   top: 0;
@@ -15,15 +15,6 @@ export const NavStyle = styled.nav`
   ${({ theme }) => css`
     background-color: ${theme.footer.fill};
     gap: ${theme.padding.main};
-  `}
-`
-
-export const SpanLogoStyle = styled.span`
-  ${({ theme }) => css`
-    padding: ${theme.padding.main};
-    > img {
-      padding: ${theme.padding.main};
-    }
   `}
 `
 

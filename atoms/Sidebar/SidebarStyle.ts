@@ -8,18 +8,25 @@ interface Props {
 const SidebarStyle = styled.ul<Props>`
   display: flex;
   flex-direction: column;
-  width: 100%; 
 
   ${({ theme, isExpanded }) => css`
-    gap: ${!isExpanded ? '30px' : theme.gap };
-    align-items: ${isExpanded ? '' : 'center'};
+    gap: ${theme.gap};
+    width: ${isExpanded ? "256px" : "80px"};
   `}
 `
 
 export const SidebarLiStyle = styled.li<Props>`
-  ${({ theme, isActive }) => css`
+  ${({ theme, isActive, isExpanded }) => css`
     padding: ${({ theme }) => theme.padding.main};
-    border-right: ${isActive ? `10px solid ${theme.colors.header.font}` : ""};
+    border-right: ${(isExpanded && isActive) ? `10px solid ${theme.colors.header.font}` : "undefined"};
+  `}
+`
+
+export const SpanLogoStyle = styled.span<Props>`
+  display: flex;
+  
+  ${({ theme, isExpanded }) => css`
+    padding: ${isExpanded ? theme.padding.main : `${theme.padding.main} 0`};
   `}
 `
 
