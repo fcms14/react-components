@@ -15,7 +15,7 @@ export interface HeaderAvatarDesktopInterface {
 
 const HeaderAvatarDesktop = ({ title, text, avatar, card }: HeaderAvatarDesktopInterface) => {
   return (
-    <Header height={"undefined"}>
+    <Header height={"undefined"} className="header">
       <Row.Root rowStyle={{ flexDirection: "row", alignItems: "left" }}>
         <Row.Section sectionStyle={{ flexGrow: "0" }}>
           <Row.Title>{avatar.text}</Row.Title>
