@@ -12,6 +12,7 @@ export interface RowProps {
   alignItems?: string,
   borderRadius?: string,
   cursor?: string
+  gap?: string
 }
 
 const RowStyle = styled.div<RowProps>`
@@ -32,8 +33,8 @@ const RowStyle = styled.div<RowProps>`
     margin-bottom: ${props?.marginBottom};
   `}
 
-  ${({ theme }) => css`
-    gap: ${theme.gap};
+  ${({ theme, gap }) => css`
+    gap: ${gap ?? theme.gap};
     padding: ${`${theme.gap} ${theme.padding.main}`};
   `}
 `
