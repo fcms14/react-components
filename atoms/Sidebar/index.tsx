@@ -5,6 +5,7 @@ import { MdArrowCircleLeft, MdArrowCircleRight } from "react-icons/md"
 import { useSelector } from "react-redux"
 import { RootState } from "../../../store"
 import { dispatchExpanded } from "../../../features/sideBar/sideBarDispatcher"
+import { theme } from "../../../providers/theme"
 
 export interface SidebarInterface {
   items: ShortcutInterface[]
@@ -35,6 +36,7 @@ const Sidebar = ({ items }: SidebarInterface) => {
       )}
       <SidebarLiStyle isActive={false}>
         <Shortcut
+          color={theme.footer.inactive}
           shortcutStyle={{ flexDirection: "row" }}
           icon={isExpanded ? MdArrowCircleLeft : MdArrowCircleRight}
           onClick={dispatchExpanded}
