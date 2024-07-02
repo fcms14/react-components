@@ -10,7 +10,7 @@ const ScrollContainer = styled.section<Props>`
   flex-grow: 1;
   
   ${({ theme, height }) => css`
-    max-height: ${height ?? "300px"};
+    max-height: 80dvh;
     border: 1px solid ${theme.colors.main.stroke};
     border-radius: ${theme.radius};
   `};
