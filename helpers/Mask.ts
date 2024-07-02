@@ -61,6 +61,12 @@ export const Mask = {
         const date = new Date(value)
         return date.toISOString().slice(0, 10)
     },
+    document: (value: string) => {
+        if (value.length <= 11) {
+            return InputMask.cpf(value)
+        }
+        return InputMask.cnpj(value)
+    },
 }
 
 export const InputMask = {
