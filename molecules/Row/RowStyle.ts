@@ -53,7 +53,7 @@ export const RowHeaderStyle = styled.div<RowProps>`
     box-shadow: ${props?.boxShadow};
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 1;
     margin-bottom: ${props?.marginBottom};
   `}
 

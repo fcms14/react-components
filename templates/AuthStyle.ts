@@ -1,13 +1,18 @@
 import { isMobile } from "react-device-detect";
 import styled, { css } from "styled-components";
 
-export const NavStyle = styled.nav`
+interface Props {
+  isExpanded?: boolean
+}
+
+export const NavStyle = styled.nav<Props>`
   display: ${isMobile ? "none" : "flex"};
   flex-direction: column;
   height: 100dvh;
   position: sticky;
   top: 0;
   left: 0;
+  min-width: ${({ isExpanded }) => isExpanded ? "272px" : "92px"};
   overflow-y: auto;
   transition: width 0.3s;
 

@@ -1,14 +1,18 @@
 import styled, { css } from "styled-components";
 
-const ScrollContainer = styled.section`
-  overflow-y: auto;
-  height: 300px;
-  position: relative;
+interface Props {
+  height?: string
+}
 
-  ${({ theme }) => css`
+const ScrollContainer = styled.section<Props>`
+  overflow-y: auto;
+  position: relative;
+  flex-grow: 1;
+  
+  ${({ theme, height }) => css`
+    max-height: ${height ?? "300px"};
     border: 1px solid ${theme.colors.main.stroke};
     border-radius: ${theme.radius};
-    margin: ${theme.padding.main};
   `};
 
 `
