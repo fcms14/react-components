@@ -1,10 +1,11 @@
 
 import { IconType } from "react-icons"
 import IconStyle from "./IconStyle"
+import { BaseSyntheticEvent } from "react"
 
 export interface IconComponentInterface {
     icon: IconType,
-    onClick?: () => void,
+    onClick?: (e?: BaseSyntheticEvent) => void,
     width?: number,
     color?: string,
     rounded?: boolean,
@@ -12,9 +13,7 @@ export interface IconComponentInterface {
     isLoading?: boolean,
 }
 
-const Icon = (props: IconComponentInterface) => {
-    const { icon: Icon, onClick, width, color, rounded, applyPadding, isLoading } = props
-
+const Icon = ({ icon: Icon, onClick, width, color, rounded, applyPadding, isLoading }: IconComponentInterface) => {
     return (
         <IconStyle
             rounded={rounded}

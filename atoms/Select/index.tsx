@@ -2,7 +2,7 @@ import { useFormikContext } from "formik"
 import { useState } from "react"
 import SelectStyle, { SelectLi, SelectNav, SelectUl } from "./SelectStyle"
 import Input from "../Input"
-import { MdArrowDropDown } from "react-icons/md"
+import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md"
 import { theme } from "../../../providers/theme"
 import { IconComponentInterface } from "../Icon"
 import { InputMask } from "../../../components/helpers/Mask"
@@ -25,7 +25,7 @@ const Select = ({ name, label, options, value, error }: SelectInterface) => {
   const [show, setShow] = useState(false)
   const [searchKey, setSearchKey] = useState<string>("")
   const onMouseLeave = () => { setSearchKey(""); setShow(false) }
-  const icon: IconComponentInterface = { icon: MdArrowDropDown, width: Number(theme.fontsizes.title.default.match(/\d+/)) }
+  const icon: IconComponentInterface = { icon: show ? MdArrowDropUp : MdArrowDropDown, width: Number(theme.fontsizes.title.default.match(/\d+/)), onClick: () => setShow(!show) }
 
   return (
     <SelectStyle onMouseLeave={onMouseLeave}>

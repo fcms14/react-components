@@ -2,7 +2,7 @@ import { Field, useFormikContext } from "formik"
 import { useState } from "react"
 import MultiSelectStyle from "./MultiSelectStyle"
 import Input from "../Input"
-import { MdArrowDropDown } from "react-icons/md"
+import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md"
 import { theme } from "../../../providers/theme"
 import { IconComponentInterface } from "../Icon"
 import { InputMask } from "../../../components/helpers/Mask"
@@ -26,7 +26,7 @@ const MultiSelect = ({ name, label, options, values, required, error }: MultiSel
   const [show, setShow] = useState(false)
   const [searchKey, setSearchKey] = useState<string>("")
   const onMouseLeave = () => { setSearchKey(""); setFieldValue(`search-${name}`, ""); setShow(false) }
-  const icon: IconComponentInterface = { icon: MdArrowDropDown, width: Number(theme.fontsizes.title.default.match(/\d+/)), onClick: () => setShow(!show) }
+  const icon: IconComponentInterface = { icon: show ? MdArrowDropUp : MdArrowDropDown, width: Number(theme.fontsizes.title.default.match(/\d+/)), onClick: () => setShow(!show) }
 
   return (
     <MultiSelectStyle show={show}>

@@ -56,7 +56,12 @@ const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChang
             <LabelStyle htmlFor={name}> {label} </LabelStyle>
             {error && <ErrorSpanStyle> <Subtext size="big" color={theme.colorDefault.error}>{t(error ?? "")}</Subtext> </ErrorSpanStyle>}
             {(type === "password") && <Icon icon={!show ? FaEyeSlash : MdRemoveRedEye} onClick={() => toggleVisibility(!show)} />}
-            {icon && <Icon {...icon} />}
+            {icon && <Icon {...icon} onClick={(e?: BaseSyntheticEvent) => {
+                if (icon.onClick) {
+                    e?.stopPropagation()
+                    icon.onClick()
+                }
+            }} />}
         </InputSpanStyle>
     )
 }
