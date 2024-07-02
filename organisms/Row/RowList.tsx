@@ -1,14 +1,15 @@
 import { Row } from "../../molecules/Row";
 import { theme } from "../../../providers/theme";
 import { IconComponentInterface } from "../../atoms/Icon";
+import HeaderSpacer from "../../molecules/Header/HeaderSpacer";
 
 export interface RowListInterface {
-  rightTitle: string,
-  leftTitle: string,
-  rightText: string,
-  leftIcon: IconComponentInterface,
-  rightIcon: IconComponentInterface,
-  leftText: string,
+  leftText?: string,
+  rightText?: string,
+  rightTitle?: string,
+  leftTitle?: string,
+  leftIcon?: IconComponentInterface,
+  rightIcon?: IconComponentInterface,
   onClick?: () => void,
   observer?: ((instance: HTMLDivElement | null) => void)
 }
@@ -22,7 +23,7 @@ const RowList = ({ items }: Interface) => {
     <>
       {items.map(({ rightTitle, rightText, leftTitle, leftText, leftIcon, rightIcon, onClick, observer }, key: number) => (
         <Row.Root key={key} rowStyle={{ borderBottom: `1px solid ${theme.colors.main.stroke}` }} observer={observer}>
-          <Row.Icon {...leftIcon} />
+          {leftIcon ? <Row.Icon {...leftIcon} /> : <HeaderSpacer width="16px" />}
           <Row.Section>
             <Row.Text>{leftText}</Row.Text>
             <Row.Subtitle>{leftTitle}</Row.Subtitle>
@@ -31,7 +32,7 @@ const RowList = ({ items }: Interface) => {
             <Row.Text textAlign="right">{rightText}</Row.Text>
             <Row.Subtitle>{rightTitle}</Row.Subtitle>
           </Row.Section>
-          <Row.Icon {...rightIcon} />
+          {rightIcon ? <Row.Icon {...rightIcon} /> : <HeaderSpacer width="16px" />}
         </Row.Root>
       ))}
     </>

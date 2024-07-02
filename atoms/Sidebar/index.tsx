@@ -4,7 +4,7 @@ import SidebarStyle, { SidebarLiStyle, SpanLogoStyle } from "./SidebarStyle"
 import { MdArrowCircleLeft, MdArrowCircleRight } from "react-icons/md"
 import { useSelector } from "react-redux"
 import { RootState } from "../../../store"
-import { dispatchVisibility } from "../../../features/sideBar/sideBarDispatcher"
+import { dispatchExpanded } from "../../../features/sideBar/sideBarDispatcher"
 
 export interface SidebarInterface {
   items: ShortcutInterface[]
@@ -37,7 +37,7 @@ const Sidebar = ({ items }: SidebarInterface) => {
         <Shortcut
           shortcutStyle={{ flexDirection: "row" }}
           icon={isExpanded ? MdArrowCircleLeft : MdArrowCircleRight}
-          onClick={dispatchVisibility}
+          onClick={dispatchExpanded}
           isExpanded={isExpanded}
           text={t("Recolher")}
         />
