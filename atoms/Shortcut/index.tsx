@@ -3,6 +3,7 @@ import { theme } from "../../../providers/theme"
 import ShortcutStyle, { ShorcutProps } from "./ShortcutStyle"
 import Text from "../Text"
 import { IconType } from "react-icons"
+import { isMobile } from "react-device-detect"
 
 export interface ShortcutInterface {
   text: string,
@@ -23,7 +24,7 @@ const Shortcut = ({ text, icon, onClick, color, width, shortcutStyle, isExpanded
         color={color ?? theme.colors.header.font}
         width={width ?? Number(theme.fontsizes.title.bigger.match(/\d+/))}
       />
-      {isExpanded && <Text color={color ?? theme.colors.header.font}>{text}</Text>}
+      {(isMobile || isExpanded) && <Text color={color ?? theme.colors.header.font}>{text}</Text>}
     </ShortcutStyle>
   )
 }
