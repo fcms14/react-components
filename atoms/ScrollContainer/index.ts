@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface Props {
-  height?: string
+  maxHeight?: string
 }
 
 const ScrollContainer = styled.section<Props>`
@@ -9,8 +9,8 @@ const ScrollContainer = styled.section<Props>`
   position: relative;
   flex-grow: 1;
   
-  ${({ theme, height }) => css`
-    max-height: 80dvh;
+  ${({ theme, maxHeight }) => css`
+    max-height: ${maxHeight};
     border: 1px solid ${theme.colors.main.stroke};
     border-radius: ${theme.radius};
   `};
