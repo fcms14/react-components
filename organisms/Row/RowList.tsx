@@ -23,7 +23,7 @@ const RowList = ({ items }: Interface) => {
     <>
       {items.map(({ rightTitle, rightText, leftTitle, leftText, leftIcon, rightIcon, onClick, observer }, key: number) => (
         <Row.Root key={key} rowStyle={{ borderBottom: `1px solid ${theme.colors.main.stroke}` }} observer={observer}>
-          {leftIcon ? <Row.Icon {...leftIcon} /> : <HeaderSpacer width="16px" />}
+          {leftIcon ? <Row.Icon {...leftIcon} /> : <HeaderSpacer width={theme.padding.main} />}
           <Row.Section>
             <Row.Text>{leftText}</Row.Text>
             <Row.Subtitle>{leftTitle}</Row.Subtitle>
@@ -32,7 +32,7 @@ const RowList = ({ items }: Interface) => {
             <Row.Text textAlign="right">{rightText}</Row.Text>
             <Row.Subtitle>{rightTitle}</Row.Subtitle>
           </Row.Section>
-          {rightIcon ? <Row.Icon {...rightIcon} /> : <HeaderSpacer width="16px" />}
+          {rightIcon ? <Row.Icon {...rightIcon} /> : <HeaderSpacer width={theme.padding.main} />}
         </Row.Root>
       ))}
     </>
