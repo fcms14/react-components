@@ -58,6 +58,8 @@ export const ErrorSpanStyle = styled.span`
 `
 const InputStyle = styled(Field) <InputProps>`
   font-family: 'InterSemiBold';
+  -webkit-appearance: none;
+  appearance: none;
 
   &::placeholder {
     opacity:0;
