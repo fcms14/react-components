@@ -1,3 +1,4 @@
+import { isMobile } from "react-device-detect"
 import Header from "../../atoms/Header"
 
 interface Interface {
@@ -7,7 +8,7 @@ interface Interface {
 const HeaderGuest = ({ }: Interface) => {
   return (
     <Header>
-      <img width={140} height={148} src={import.meta.env.VITE_WHITE_LABEL_LOGO_VERTICAL} />
+      <img style={{ width: isMobile ? '7rem' : '9rem' }} src={import.meta.env.VITE_WHITE_LABEL_LOGO_VERTICAL} />
     </Header>
   )
 }

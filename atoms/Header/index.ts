@@ -17,7 +17,6 @@ const Header = styled.header<HeaderProps>`
   
   ${({ theme, height }) => css` 
     flex-direction: ${height ? "column" : "undefined"};
-    height: ${height ?? "clamp(60px, 120px + 15vh, 50vh)"};
     padding: ${height ? theme.padding.main : "6vh"};
     background: ${isMobile ? theme.colors.header.fill : theme.colorDefault.white}};
     gap: ${theme.gap};
