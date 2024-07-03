@@ -60,6 +60,7 @@ const InputStyle = styled(Field) <InputProps>`
   font-family: 'InterSemiBold';
   -webkit-appearance: none;
   appearance: none;
+  width: 100%;
 
   &::placeholder {
     opacity:0;
