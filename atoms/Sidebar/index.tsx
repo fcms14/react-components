@@ -19,8 +19,8 @@ const Sidebar = ({ items }: SidebarInterface) => {
     <SidebarStyle>
       <SidebarLiStyle>
         {isExpanded
-          ? <SpanLogoStyle isExpanded={isExpanded}> <img src={import.meta.env.VITE_WHITE_LABEL_LOGO_MENU} /> </SpanLogoStyle>
-          : <SpanLogoStyle> <img src={import.meta.env.VITE_WHITE_LABEL_LOGO_SMALL} /> </SpanLogoStyle>
+          ? <SpanLogoStyle isExpanded={isExpanded}> <img src={import.meta.env.VITE_WHITE_LABEL_LOGO_HORIZONTAL} /> </SpanLogoStyle>
+          : <SpanLogoStyle> <img src={import.meta.env.VITE_WHITE_LABEL_LOGO_ICON} /> </SpanLogoStyle>
         }
       </SidebarLiStyle>
       {items.map((item, index) =>
