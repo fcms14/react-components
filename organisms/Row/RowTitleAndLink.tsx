@@ -7,15 +7,16 @@ export interface Interface {
   rightLink: string,
   path: string,
   color?: string,
+  tooltip?: string,
 }
 
-const RowTitleAndLink = ({ leftTitle, rightLink, path, color }: Interface) => {
+const RowTitleAndLink = ({ leftTitle, rightLink, path, color, tooltip }: Interface) => {
   const navigate = useNavigate()
 
   return (
     <Row.HeaderRoot>
       <Row.Section>
-        <Row.Title size="small">{leftTitle}</Row.Title>
+        <Row.Title title={tooltip} size="small">{leftTitle}</Row.Title>
       </Row.Section>
       <Row.Section sectionStyle={{ alignItems: "flex-end" }}>
         <Link onClick={() => navigate(path)}>
