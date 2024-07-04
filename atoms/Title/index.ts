@@ -6,6 +6,7 @@ const Title = styled.h1<FontProps>`
     font-size: ${props => props.theme.fontsizes.title[props?.size ?? 'default']};
     cursor: ${props => props?.cursor};
     color: ${props => props.color ?? props.theme.colors[props?.parent ?? 'main'][props?.element ?? 'title']};
+    text-wrap: ${props => props?.textWrap};
 `
 
 export default Title

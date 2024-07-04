@@ -25,12 +25,12 @@ const RowList = ({ items }: Interface) => {
         <Row.Root key={key} rowStyle={{ borderBottom: `1px solid ${theme.colors.main.stroke}` }} observer={observer}>
           {leftIcon ? <Row.Icon {...leftIcon} /> : <HeaderSpacer width={theme.padding.main} />}
           <Row.Section>
-            <Row.Text>{leftText}</Row.Text>
+            <Row.Text textWrap="wrap">{leftText}</Row.Text>
             <Row.Subtitle>{leftTitle}</Row.Subtitle>
           </Row.Section>
           <Row.Section sectionStyle={{ alignItems: "flex-end" }}>
             <Row.Text textAlign="right">{rightText}</Row.Text>
-            <Row.Subtitle>{rightTitle}</Row.Subtitle>
+            <Row.Subtitle textWrap="nowrap">{rightTitle}</Row.Subtitle>
           </Row.Section>
           {rightIcon ? <Row.Icon {...rightIcon} /> : <HeaderSpacer width={theme.padding.main} />}
         </Row.Root>
