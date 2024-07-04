@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 
-const Link = styled.a`
+interface Props {
+    light?: boolean
+}
+
+const Link = styled.a<Props>`
     cursor: pointer;
-    font-weight: bold;
+    font-weight: ${({ light }) => light ? "undefined" : "bold"};
 `
 
 export default Link
