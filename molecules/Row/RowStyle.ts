@@ -11,8 +11,9 @@ export interface RowProps {
   flexDirection?: string,
   alignItems?: string,
   borderRadius?: string,
-  cursor?: string
-  gap?: string
+  cursor?: string,
+  gap?: string,
+  overflowWrap?: string,
 }
 
 const RowStyle = styled.div<RowProps>`
@@ -31,6 +32,7 @@ const RowStyle = styled.div<RowProps>`
     position: ${props?.position};
     top: ${props?.top};
     margin-bottom: ${props?.marginBottom};
+    overflow-wrap: ${props?.overflowWrap};
   `}
 
   ${({ theme, gap }) => css`
