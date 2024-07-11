@@ -2,7 +2,9 @@ import styled, { css } from 'styled-components'
 import { theme } from '../../../providers/theme'
 
 const DatePickerStyle = styled.div`
-   z-index: 3;
+  .react-datepicker-popper {
+    z-index: 3; 
+  }
 
   .react-datepicker-wrapper {
     max-width: 8em;
