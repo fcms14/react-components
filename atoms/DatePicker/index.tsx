@@ -7,25 +7,19 @@ import DatePickerStyle from "./DatePickerstyle"
 registerLocale('ptBR', ptBR);
 
 export interface DatePickerInterface {
-    onDateChange: (date: Date | null) => void;
+  onDateChange: (date: Date) => void;
+  date: Date;
 }
 
-const CustomDatePicker = ({ onDateChange}: DatePickerInterface) => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
-    onDateChange(date);
-  };
-
+const CustomDatePicker = ({ onDateChange, date }: DatePickerInterface) => {
   return (
     <DatePickerStyle>
-        <DatePicker
-        selected={selectedDate}
-        onChange={handleDateChange}
+      <DatePicker
+        selected={date}
+        onChange={(value: any) => onDateChange(new Date(value))}
         dateFormat="dd/MM/yyyy"
         locale="ptBR"
-        />
+      />
     </DatePickerStyle>
   );
 };
