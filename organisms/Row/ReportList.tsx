@@ -24,8 +24,8 @@ const ReportList = ({ items }: Interface) => {
         <Row.Root key={key} rowStyle={{ borderBottom: `1px solid ${theme.colors.main.stroke}` }} observer={observer}>
           <Row.Icon icon={icon} color={iconColor} rounded />
           <Row.Section>
-            <Row.Title size="small"> {title} </Row.Title>
-            <Row.Text> {text} </Row.Text>
+            <Row.Title size="smaller"> {title} </Row.Title>
+            <Row.Text size="small"> {text} </Row.Text>
           </Row.Section>
           {actions && <IconOrMenu actions={actions} />}
         </Row.Root>

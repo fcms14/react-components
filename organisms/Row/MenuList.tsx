@@ -25,8 +25,8 @@ const MenuList = ({ items }: Interface) => {
       <Row.Root rowStyle={rowStyle} key={index} onClick={onClick} >
         <Row.Icon width={iconSize} icon={icon} />
         <Row.Section>
-          <Row.Title size="small"> {title} </Row.Title>
-          <Row.Text size="big"> {text} </Row.Text>
+          <Row.Title size="smaller"> {title} </Row.Title>
+          <Row.Text> {text} </Row.Text>
         </Row.Section>
       </Row.Root>
     )}</>

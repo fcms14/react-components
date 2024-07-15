@@ -16,7 +16,7 @@ const RowTitleAndLink = ({ leftTitle, rightLink, path, color, tooltip }: Interfa
   return (
     <Row.HeaderRoot>
       <Row.Section>
-        <Row.Title title={tooltip} size="small">{leftTitle}</Row.Title>
+        <Row.Title title={tooltip} size="smaller">{leftTitle}</Row.Title>
       </Row.Section>
       <Row.Section sectionStyle={{ alignItems: "flex-end" }}>
         <Link onClick={() => navigate(path)}>
