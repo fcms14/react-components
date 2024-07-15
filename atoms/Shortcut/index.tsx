@@ -22,7 +22,7 @@ const Shortcut = ({ text, icon, onClick, color, width, shortcutStyle, isExpanded
       <Icon
         icon={icon}
         color={color ?? theme.colors.header.font}
-        width={width ?? Number(theme.fontsizes.title.bigger.match(/\d+/))}
+        width={width ?? Number(theme.fontsizes.title.big.match(/\d+/))}
       />
       {(isMobile || isExpanded) && <Text color={color ?? theme.colors.header.font}>{text}</Text>}
     </ShortcutStyle>

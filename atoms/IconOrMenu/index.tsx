@@ -15,7 +15,7 @@ const IconOrMenu = ({ actions, iconColor }: IconOrMenuInterface) => {
         icon={actions[0].icon ?? MdNavigateNext}
         color={actions[0].color ?? theme.colors.main.font}
         onClick={actions[0].onClick}
-        width={Number(theme.fontsizes.title.big.match(/\d+/))}
+        width={Number(theme.fontsizes.subtitle.bigger.match(/\d+/))}
       />
       : <DropDown items={actions} iconColor={iconColor} />
     }
