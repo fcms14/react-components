@@ -9,9 +9,10 @@ export interface RadioInterface {
   value: string
   label: string
   color?: string
+  onChange?: () => void
 }
 
-const Radio = ({ id, name, value, label, color }: RadioInterface) => {
+const Radio = ({ id, name, value, label, color, onChange }: RadioInterface) => {
   const { setFieldValue } = useFormikContext()
 
   return (
@@ -21,7 +22,10 @@ const Radio = ({ id, name, value, label, color }: RadioInterface) => {
         name={name}
         value={value}
         type="radio"
-        onChange={(e: BaseSyntheticEvent) => setFieldValue(e.currentTarget.name, value)}
+        onChange={(e: BaseSyntheticEvent) => {
+          setFieldValue(e.currentTarget.name, value)
+          onChange?.()
+        }}
       />
       <label htmlFor={id}>
         <Subtitle color={color}> {label} </Subtitle>

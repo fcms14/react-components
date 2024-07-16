@@ -1,20 +1,28 @@
 import { useTranslation } from 'react-i18next';
-import LanguageSelectorStyle from './LanguageSelectorStyle';
-import Text from '../Text';
+import { Form, Formik } from 'formik';
+import { Row } from '../../molecules/Row';
+import Radio from '../Radio';
 
-export interface LanguageSelectorInterface {
-  color?: string
+interface Interface {
 }
 
-const LanguageSelector = ({ color }: LanguageSelectorInterface) => {
+const LanguageSelector = ({ }: Interface) => {
   const { t, i18n } = useTranslation()
 
+  const initialValues = { language: i18n.language }
+
   return (
-    <LanguageSelectorStyle>
-      <span onClick={() => i18n.changeLanguage("ptbr")}><Text color={color}>{t("portuguese")}</Text></span>
-      <Text> | </Text>
-      <span onClick={() => i18n.changeLanguage("en")}><Text color={color}>{t("english")}</Text></span>
-    </LanguageSelectorStyle>
+    <Formik initialValues={initialValues} onSubmit={() => { }} on>
+      <Form>
+        <Row.Root>
+          <Row.Title> {t("Language")} </Row.Title>
+        </Row.Root>
+        <Row.Root rowStyle={{ justifyContent: "flex_start" }}>
+          <Radio id="language-en" name="language" value="en" label={t("English")} onChange={() => i18n.changeLanguage("en")} />
+          <Radio id="language-pt" name="language" value="ptbr" label={t("Portuguese")} onChange={() => i18n.changeLanguage("ptbr")} />
+        </Row.Root>
+      </Form>
+    </Formik>
   )
 }
 
