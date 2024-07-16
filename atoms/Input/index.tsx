@@ -48,6 +48,9 @@ const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChang
                 inputMode={inputMode}
                 onFocus={onFocus}
                 onKeyUp={(e: BaseSyntheticEvent) => {
+                    const event = e as React.KeyboardEvent<HTMLInputElement>;
+                    if (event.code === "Backspace") return
+
                     const value = mask ? handleChange(e, mask) : e.currentTarget.value;
                     onChange?.(value)
                 }}

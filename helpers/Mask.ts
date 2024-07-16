@@ -76,6 +76,7 @@ export const InputMask = {
         return new Intl.NumberFormat('pt-br', options).format(cleanValue)
     },
     number: (value: string, config: Config = configOptions.default): string => (+value.replace(/\D+/g, '') / config.divisor).toFixed(config.minimumFractionDigits),
+    percentual: (value: string, config: Config = configOptions.default): string => `${(+value.replace(/\D+/g, '') / config.divisor).toFixed(config.minimumFractionDigits)}%`,
     name: (value: string): string => value
         .toLowerCase()
         .replace(/(^|\s)\S/g, match => match.toUpperCase())
