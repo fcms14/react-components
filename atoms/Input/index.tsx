@@ -24,7 +24,7 @@ export interface InputInterface {
     disabled?: boolean
 }
 
-const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChange, onFocus, inputMode, icon,disabled }: InputInterface) => {
+const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChange, onFocus, inputMode, icon, disabled }: InputInterface) => {
     const { setFieldValue } = useFormikContext()
     const { t } = useTranslation()
     const [show, toggleVisibility] = useState<boolean>(false)
