@@ -4,8 +4,8 @@ const DropPanelStyle = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  right: 190px;
-  top: -60px;
+  left: 70%; 
+  transform: translateX(-50%);
   z-index: 3;
   width: 330px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
@@ -16,6 +16,7 @@ const DropPanelStyle = styled.div`
 
 export const DropPanelWrapper = styled.div`
   position: relative;
+  top: -5%;
 `
 
 export default DropPanelStyle

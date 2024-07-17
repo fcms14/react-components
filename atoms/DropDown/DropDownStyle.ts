@@ -4,8 +4,10 @@ const DropDownStyle = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  right: 16px;
-  top: 24px;
+  display: inline-block;
+  top: 100%; 
+  left: -120%; 
+  transform: translateX(-50%);
   z-index: 3;
   width: max-content;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
