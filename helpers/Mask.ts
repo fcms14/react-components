@@ -103,6 +103,7 @@ export const InputMask = {
         }
         return InputMask.cnpj(value)
     },
+    integer: (value: string): string => value.replace(/\D+/g, ''),
     phone: (value: string): string => value
         .replace(/\D+/g, '')
         .replace(/(\d{2})(\d)/, '($1)$2')
