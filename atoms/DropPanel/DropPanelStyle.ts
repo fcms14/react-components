@@ -7,7 +7,7 @@ const DropPanelStyle = styled.div`
   left: 70%; 
   transform: translateX(-50%);
   z-index: 3;
-  width: 330px;
+  width: 30%;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   background-color: ${({ theme }) => theme.colorDefault.white};
   gap: ${({ theme }) => theme.gap};

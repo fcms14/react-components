@@ -11,7 +11,7 @@ const MultiSelectStyle = styled.div<Props>`
   > select {
     display: ${({ show }) => show ? 'flex' : 'none'};
     position: absolute;
-    top: 70px;
+    top: 80%;
     left: ${({ theme }) => theme.padding.main};
     z-index: 2;
     padding: ${({ theme }) => theme.padding.header};
