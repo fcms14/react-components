@@ -21,7 +21,7 @@ const HeaderAvatarDesktop = ({ title, text, avatar, card }: HeaderAvatarDesktopI
           <Row.Title>{avatar.text}</Row.Title>
           <Row.Section sectionStyle={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: theme.gap }} >
             <Row.Text> {card.text}: {card.title}  </Row.Text>
-            <Row.Icon color={theme.colors.main.font} width={getIconSize()} icon={card.icon} onClick={card.onClick} />
+            <Row.Icon color={theme.colors.main.font} width={getIconSize()} {...card.icon}/>
           </Row.Section>
         </Row.Section>
         <Row.Section sectionStyle={{ flexGrow: "0" }}>
