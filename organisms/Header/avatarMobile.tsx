@@ -11,12 +11,11 @@ export interface HeaderAvatarMobileInterface extends HeaderAvatarDesktopInterfac
   menu: MenuInterface,
 }
 
-const HeaderAvatarMobile = ({ text, avatar, card, menu, title }: HeaderAvatarMobileInterface) => {
+const HeaderAvatarMobile = ({ avatar, card, menu, title }: HeaderAvatarMobileInterface) => {
   return (
     <Header height={"undefined"}>
       <Avatar {...avatar} />
       {title && <Text color={theme.colors.button.font}>{title}</Text>}
-      <Text color={theme.colors.button.font}>{text}</Text>
       <RowCard {...card} />
       <Menu {...menu} shortcutStyle={{ flexDirection: "row" }} menuStyle={{ justifyContent: "space-between" }} />
     </Header>
