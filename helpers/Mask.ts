@@ -45,7 +45,7 @@ export const Mask = {
         return new Intl.NumberFormat('pt-br', options).format(value)
     },
     valueOrPercent: (value: number, type: ValueType): string => type === ValueType.PERCENT
-        ? `${value}%`
+        ? `${value.toString().replace('.', ',')}%`
         : InputMask.currency(value.toString()),
     dateTime: (value: Date) => {
         const date = new Date(value)
