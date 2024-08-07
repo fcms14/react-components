@@ -9,10 +9,11 @@ export interface RadioInterface {
   value: string
   label: string
   color?: string
+  checked?: boolean
   onChange?: () => void
 }
 
-const Radio = ({ id, name, value, label, color, onChange }: RadioInterface) => {
+const Radio = ({ id, name, value,checked, label, color, onChange }: RadioInterface) => {
   const { setFieldValue } = useFormikContext()
 
   return (
@@ -26,6 +27,7 @@ const Radio = ({ id, name, value, label, color, onChange }: RadioInterface) => {
           setFieldValue(e.currentTarget.name, value)
           onChange?.()
         }}
+        checked={checked}
       />
       <label htmlFor={id}>
         <Subtitle color={color}> {label} </Subtitle>
