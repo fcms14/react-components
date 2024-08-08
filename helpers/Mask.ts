@@ -35,7 +35,8 @@ export const configOptions = {
 export const Parser = {
     intToFloat: (value: number | string): number => Number(value) / 100,
     unmasker: (value: string, replace: string = "R$"): number => Number(value.replace(replace, "").replaceAll('.', '').replace(',', '.')),
-    unmaskerToInt: (value: string): number => Number(value.replace("R$", "").replace(/[^\w\s]/gi, '').replaceAll(' ', ''))
+    unmaskerToInt: (value: string): number => Number(value.replace("R$", "").replace(/[^\w\s]/gi, '').replaceAll(' ', '')),
+    unmaskPercent: (value: string): number =>  Number(value.replace('%', '').replace(',', '.')) 
 }
 
 export const Mask = {
@@ -44,7 +45,7 @@ export const Mask = {
         return new Intl.NumberFormat('pt-br', options).format(value)
     },
     valueOrPercent: (value: number, type: ValueType): string => type === ValueType.PERCENT
-        ? `${value}%`
+        ? `${value.toString().replace('.', ',')}%`
         : InputMask.currency(value.toString()),
     dateTime: (value: Date | string) => {
         const date = new Date(value)
@@ -103,6 +104,7 @@ export const InputMask = {
         }
         return InputMask.cnpj(value)
     },
+    integer: (value: string): string => value.replace(/\D+/g, ''),
     phone: (value: string): string => value
         .replace(/\D+/g, '')
         .replace(/(\d{2})(\d)/, '($1)$2')

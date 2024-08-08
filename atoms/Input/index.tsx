@@ -21,9 +21,10 @@ export interface InputInterface {
     inputStyle?: InputProps
     error?: string
     icon?: IconComponentInterface
+    disabled?: boolean
 }
 
-const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChange, onFocus, inputMode, icon }: InputInterface) => {
+const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChange, onFocus, inputMode, icon, disabled }: InputInterface) => {
     const { setFieldValue } = useFormikContext()
     const { t } = useTranslation()
     const [show, toggleVisibility] = useState<boolean>(false)
@@ -55,6 +56,7 @@ const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChang
                     onChange?.(value)
                 }}
                 onKeyDown={mask ? handleChange : undefined}
+                disabled={disabled}
             />
             <LabelStyle htmlFor={name}> {label} </LabelStyle>
             {error && <ErrorSpanStyle> <Subtext size="big" color={theme.colorDefault.error}>{t(error ?? "")}</Subtext> </ErrorSpanStyle>}
