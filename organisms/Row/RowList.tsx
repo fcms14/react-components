@@ -22,7 +22,7 @@ const RowList = ({ items }: Interface) => {
   return (
     <>
       {items.map(({ rightTitle, rightText, leftTitle, leftText, leftIcon, rightIcon, onClick, observer }, key: number) => (
-        <Row.Root key={key} rowStyle={{ borderBottom: `1px solid ${theme.colors.main.stroke}` }} observer={observer}>
+        <Row.Root key={key} rowStyle={{ borderBottom: `${theme.border}  ${theme.colors.main.stroke}` }} observer={observer}>
           {leftIcon ? <Row.Icon {...leftIcon} /> : <HeaderSpacer width={theme.padding.main} />}
           <Row.Section>
             <Row.Text textWrap="wrap">{leftText}</Row.Text>

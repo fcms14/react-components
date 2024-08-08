@@ -11,7 +11,7 @@ const DatePickerStyle = styled.div`
   }
 
   input {
-   border: 1px solid ${theme.colors.main.stroke};
+   border: ${theme.border} ${theme.colors.main.stroke};
    border-radius: ${theme.radius};
    width: auto;  
    max-width: 100%; 

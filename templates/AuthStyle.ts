@@ -12,7 +12,6 @@ export const NavStyle = styled.nav<Props>`
   position: sticky;
   top: 0;
   left: 0;
-  min-width: ${({ isExpanded }) => isExpanded ? "272px" : "92px"};
   overflow-y: auto;
   transition: width 0.3s;
 

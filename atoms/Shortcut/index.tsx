@@ -1,28 +1,26 @@
-import Icon from "../Icon"
+import Icon, { IconComponentInterface } from "../Icon"
 import { theme } from "../../../providers/theme"
 import ShortcutStyle, { ShorcutProps } from "./ShortcutStyle"
 import Text from "../Text"
-import { IconType } from "react-icons"
 import { isMobile } from "react-device-detect"
 
 export interface ShortcutInterface {
   text: string,
-  icon: IconType,
+  icon: IconComponentInterface,
   onClick?: () => void,
   isExpanded?: boolean,
-  width?: number,
   color?: string,
   shortcutStyle?: ShorcutProps,
   isActive?: boolean,
 }
 
-const Shortcut = ({ text, icon, onClick, color, width, shortcutStyle, isExpanded }: ShortcutInterface) => {
+const Shortcut = ({ text, icon, onClick, color,  shortcutStyle, isExpanded }: ShortcutInterface) => {
   return (
     <ShortcutStyle onClick={onClick} cursor={onClick ? 'pointer' : 'inherit'} {...shortcutStyle}>
       <Icon
-        icon={icon}
+        {...icon}
         color={color ?? theme.colors.header.font}
-        width={width ?? Number(theme.fontsizes.title.bigger.match(/\d+/))}
+        width={icon?.width ?? Number(theme.fontsizes.title.bigger.match(/\d+/))}
       />
       {(isMobile || isExpanded) && <Text color={color ?? theme.colors.header.font}>{text}</Text>}
     </ShortcutStyle>
