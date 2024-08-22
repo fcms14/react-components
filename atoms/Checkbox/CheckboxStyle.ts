@@ -29,7 +29,7 @@ const CheckboxStyle = styled.span<Props>`
 
   input[type="checkbox"]:checked {
     ${({ theme, color }) => css`
-      border: 1px solid ${color ?? theme.colors.button.active};
+      border: ${theme.border} ${color ?? theme.colors.button.active};
       background-color: ${color ?? theme.colors.button.active};
     `}
   }

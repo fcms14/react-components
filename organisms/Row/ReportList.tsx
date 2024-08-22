@@ -21,7 +21,7 @@ const ReportList = ({ items }: Interface) => {
   return (
     <>
       {items.map(({ text, title, actions, icon, iconColor, observer }, key: number) => (
-        <Row.Root key={key} rowStyle={{ borderBottom: `1px solid ${theme.colors.main.stroke}` }} observer={observer}>
+        <Row.Root key={key} rowStyle={{ borderBottom: `${theme.border} ${theme.colors.main.stroke}` }} observer={observer}>
           <Row.Icon icon={icon} color={iconColor} rounded />
           <Row.Section>
             <Row.Title size="small"> {title} </Row.Title>

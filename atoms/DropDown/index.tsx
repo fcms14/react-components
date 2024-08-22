@@ -3,7 +3,7 @@ import DropDownStyle, { DropDownItemStyle, DropDownWrapper } from "./DropDownSty
 import Icon from "../Icon"
 import Text from "../Text"
 import { theme } from "../../../providers/theme"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { SlOptionsVertical } from "react-icons/sl";
 import { Button } from "../../molecules/Button"
 
@@ -23,9 +23,23 @@ export interface DropDownInterface {
 
 const DropDown = ({ items, iconColor }: DropDownInterface) => {
   const [showOptions, setShowOptions] = useState<boolean>(false)
+  const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseLeave = () => {
+    hideTimeoutRef.current = setTimeout(() => {
+      setShowOptions(false);
+    }, 1000); 
+  };
+
+  const handleMouseEnter = () => {
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+      hideTimeoutRef.current = null;
+    }
+  };
 
   return (
-    <DropDownWrapper onMouseLeave={() => setShowOptions(false)}>
+    <DropDownWrapper onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
       <Button.Icon icon={SlOptionsVertical} onClick={() => setShowOptions(!showOptions)} color={iconColor ?? theme.colors.main.font} applyPadding />
 
       {showOptions &&

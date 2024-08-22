@@ -1,13 +1,12 @@
 import DropPanelStyle, { DropPanelWrapper } from "./DropPanelStyle"
 
 export interface DropPanelInterface {
-  onMouseLeave: () => void
   children: JSX.Element | JSX.Element[]
 }
 
-const DropPanel = ({ onMouseLeave, children }: DropPanelInterface) => {
+const DropPanel = ({ children }: DropPanelInterface) => {
   return (
-    <DropPanelWrapper onMouseLeave={onMouseLeave}>
+    <DropPanelWrapper >
       <DropPanelStyle>
         {children}
       </DropPanelStyle>

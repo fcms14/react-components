@@ -30,8 +30,9 @@ export const InputSpanStyle = styled.span`
 
   > div {
     position: absolute;
-    bottom: 30px;
-    right: 30px;
+    bottom: 30%;
+    right: 3%;
+   
   }
 `
 
@@ -67,13 +68,13 @@ const InputStyle = styled(Field) <InputProps>`
   }
 
   ${({ theme }) => css`
-    border-bottom: 1px solid ${theme.colors.button.inactive};
+    border-bottom: ${theme.border} ${theme.colors.button.inactive};
     line-height: ${theme.fontsizes.title.bigger};
     padding: ${`${theme.padding.main} 0 0 ${theme.padding.header}`};
 
     &:focus, &:active {
       outline: none;
-      border-bottom: 1px solid ${theme.colors.button.active};
+      border-bottom: ${theme.border} ${theme.colors.button.active};
       padding-bottom: 0.125rem;
     }
     
