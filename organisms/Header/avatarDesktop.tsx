@@ -7,7 +7,7 @@ import { RowCardInterface } from "../Row/RowCard"
 import { AvatarInterface } from "../../atoms/Avatar"
 
 export interface HeaderAvatarDesktopInterface {
-  text: string,
+  text?: string,
   title: string,
   avatar: AvatarInterface,
   card: RowCardInterface,
