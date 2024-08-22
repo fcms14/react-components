@@ -14,7 +14,7 @@ export interface ShortcutInterface {
   isActive?: boolean,
 }
 
-const Shortcut = ({ text, icon, onClick, color,  shortcutStyle, isExpanded }: ShortcutInterface) => {
+const Shortcut = ({ text, icon, onClick, color, shortcutStyle, isExpanded }: ShortcutInterface) => {
   return (
     <ShortcutStyle onClick={onClick} cursor={onClick ? 'pointer' : 'inherit'} {...shortcutStyle}>
       <Icon

@@ -27,11 +27,13 @@ const Select = ({ name, label, options, value, error }: SelectInterface) => {
   const onMouseLeave = () => { setSearchKey(""); setShow(false) }
   const icon: IconComponentInterface = { icon: show ? MdArrowDropUp : MdArrowDropDown, width: Number(theme.fontsizes.title.default.match(/\d+/)), onClick: () => setShow(!show) }
 
+  const selected = options.find((option) => option.value === value)
+
   return (
     <SelectStyle onMouseLeave={onMouseLeave}>
       <Input
         name={name}
-        label={`${value ? `${label}: ${value}` : label}`}
+        label={`${selected ? `${label}: ${selected.label}` : label}`}
         type="text"
         onFocus={() => setShow(true)}
         onChange={(value: string) => {

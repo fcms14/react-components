@@ -18,7 +18,7 @@ const Avatar = ({ text, color, onClick }: AvatarInterface) => {
       <Icon
         icon={MdArrowDropDown}
         color={color ?? theme.colors.button.font}
-        width={Number(theme.fontsizes.title.bigger.match(/\d+/))}
+        width={Number(theme.fontsizes.title.big.match(/\d+/))}
       />
     </AvatarStyle>
   )
