@@ -9,7 +9,7 @@ export const getColor = (secondary?: boolean, active?: boolean) => {
 }
 
 export const getIconSize = (iconSize?: number) => {
-    return iconSize ?? Number(theme.fontsizes.title.default.match(/\d+/)) * 1.2
+    return iconSize ?? Number(theme.fontsizes.title.small.match(/\d+/)) * 1.2
 }
 
 export const getSize = (size: string) => {

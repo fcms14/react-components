@@ -12,9 +12,8 @@ const SelectStyle = styled.div`
 export const SelectNav = styled.nav`
   background: ${({ theme }) => theme.colorDefault.white};
   position: absolute;
-  max-height: 220px;
   overflow-y: scroll;
-  top: 70px;
+  top: 80%;
   left: ${({ theme }) => theme.padding.main};
   z-index: 2;
   padding: ${({ theme }) => theme.padding.header};

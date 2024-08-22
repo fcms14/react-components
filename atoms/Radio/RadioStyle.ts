@@ -33,8 +33,8 @@ export const RadioStyle = styled.span<Props>`
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 11px; 
-    height: 11px;
+    width: 50%; 
+    height: 50%;
     background-color: ${({ theme }) => theme.colors.button.active}; 
     border-radius: 50%;
     transform: translate(-50%, -50%);

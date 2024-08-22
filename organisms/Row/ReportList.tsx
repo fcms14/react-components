@@ -1,14 +1,13 @@
 import { Row } from "../../molecules/Row"
 import { DropDownItemInterface } from "../../atoms/DropDown"
 import { theme } from "../../../providers/theme"
-import { IconType } from "react-icons"
 import IconOrMenu from "../../atoms/IconOrMenu/index"
+import { IconComponentInterface } from "../../atoms/Icon"
 
 export interface ReportListInterface {
   title: string,
   text: string,
-  icon: IconType,
-  iconColor?: string,
+  icon: IconComponentInterface,
   actions?: DropDownItemInterface[]
   observer?: ((instance: HTMLDivElement | null) => void)
 }
@@ -20,9 +19,9 @@ export interface Interface {
 const ReportList = ({ items }: Interface) => {
   return (
     <>
-      {items.map(({ text, title, actions, icon, iconColor, observer }, key: number) => (
-        <Row.Root key={key} rowStyle={{ borderBottom: `1px solid ${theme.colors.main.stroke}` }} observer={observer}>
-          <Row.Icon icon={icon} color={iconColor} rounded />
+      {items.map(({ text, title, actions, icon, observer }, key: number) => (
+        <Row.Root key={key} rowStyle={{ borderBottom: `${theme.border} ${theme.colors.main.stroke}` }} observer={observer}>
+          <Row.Icon {...icon} rounded/>
           <Row.Section>
             <Row.Title size="small"> {title} </Row.Title>
             <Row.Text> {text} </Row.Text>
