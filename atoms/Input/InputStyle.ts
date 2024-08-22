@@ -30,9 +30,8 @@ export const InputSpanStyle = styled.span`
 
   > div {
     position: absolute;
-    bottom: 30%;
-    right: 3%;
-   
+    bottom: 30px;
+    right: 30px;
   }
 `
 

@@ -27,6 +27,9 @@ const ToggleStyle = styled.span<ToggleSpanProps>`
     position: relative;
     appearance: none;
     width: 60px;
+    height: 28px;
+    border-radius: 34px;
+
     ${({ theme, color }) => css`
       background-color: ${color ?? theme.colors.button.inactive};
       border-radius: ${theme.toggle};
@@ -37,12 +40,10 @@ const ToggleStyle = styled.span<ToggleSpanProps>`
   input[type="checkbox"]::before {
     position: absolute;
     content: "";
-    height: 70%;
-    width: 35%;
-    ${({ theme }) => `
-      left: ${theme.radius};
-      bottom: ${theme.radius};
-    `}   
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -55,15 +56,11 @@ const ToggleStyle = styled.span<ToggleSpanProps>`
     `}
   }
 
-  ${({ theme }) => css`
-    input:checked::before {
-      -webkit-transform: translateX(${theme.toggle});
-      -ms-transform: translateX(${theme.toggle});
-      transform: translateX(${theme.toggle});
-    } 
-  `}
-
-
+  input:checked::before {
+    -webkit-transform: translateX(32px);
+    -ms-transform: translateX(32px);
+    transform: translateX(32px);
+  }
 `
 
 export default ToggleStyle

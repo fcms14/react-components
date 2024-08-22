@@ -11,7 +11,7 @@ const MultiSelectStyle = styled.div<Props>`
   > select {
     display: ${({ show }) => show ? 'flex' : 'none'};
     position: absolute;
-    top: 80%;
+    top: 70px;
     left: ${({ theme }) => theme.padding.main};
     z-index: 2;
     padding: ${({ theme }) => theme.padding.header};
@@ -27,7 +27,7 @@ const MultiSelectStyle = styled.div<Props>`
     > option:focus,
     > option:active { 
       background: ${({ theme }) => theme.colorByType.info};
-      color:  ${({ theme }) => theme.colors.button.font};
+      color: ${({ theme }) => theme.colors.button.font};
     }
   }
 `

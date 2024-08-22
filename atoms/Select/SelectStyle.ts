@@ -13,7 +13,7 @@ export const SelectNav = styled.nav`
   background: ${({ theme }) => theme.colorDefault.white};
   position: absolute;
   overflow-y: scroll;
-  top: 80%;
+  top: 70px;
   left: ${({ theme }) => theme.padding.main};
   z-index: 2;
   padding: ${({ theme }) => theme.padding.header};
