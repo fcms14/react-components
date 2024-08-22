@@ -1,13 +1,12 @@
 import { Row } from "../../molecules/Row"
 import { theme } from "../../../providers/theme"
 import { RowProps } from "../../molecules/Row/RowStyle"
-import { IconType } from "react-icons"
+import { IconComponentInterface } from "../../atoms/Icon"
 
 export interface MenuRowInterface {
   title: string,
   text: string,
-  iconSize?: number,
-  icon: IconType,
+  icon: IconComponentInterface,
   onClick?: () => void,
 }
 
@@ -21,9 +20,9 @@ const MenuList = ({ items }: Interface) => {
   }
 
   return (
-    <>{items.map(({ icon, iconSize, title, text, onClick }: MenuRowInterface, index: number) =>
+    <>{items.map(({ icon, title, text, onClick }: MenuRowInterface, index: number) =>
       <Row.Root rowStyle={rowStyle} key={index} onClick={onClick} >
-        <Row.Icon width={iconSize} icon={icon} />
+        <Row.Icon {...icon} />
         <Row.Section>
           <Row.Title size="small"> {title} </Row.Title>
           <Row.Text size="big"> {text} </Row.Text>

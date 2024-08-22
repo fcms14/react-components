@@ -1,6 +1,5 @@
-import { IconType } from "react-icons"
 import DropDownStyle, { DropDownItemStyle, DropDownWrapper } from "./DropDownStyle"
-import Icon from "../Icon"
+import Icon, { IconComponentInterface } from "../Icon"
 import Text from "../Text"
 import { theme } from "../../../providers/theme"
 import { useRef, useState } from "react"
@@ -10,10 +9,9 @@ import { Button } from "../../molecules/Button"
 
 export interface DropDownItemInterface {
   text: string,
-  icon?: IconType,
+  icon?: IconComponentInterface,
   onClick?: () => void,
   color?: string
-  width?: number,
 }
 
 export interface DropDownInterface {
@@ -44,12 +42,12 @@ const DropDown = ({ items, iconColor }: DropDownInterface) => {
 
       {showOptions &&
         <DropDownStyle>
-          {items.map(({ text, icon, onClick, color, width }: DropDownItemInterface, index: number) =>
+          {items.map(({ text, icon, onClick, color}: DropDownItemInterface, index: number) =>
             <DropDownItemStyle onClick={onClick} cursor={onClick ? 'pointer' : 'inherit'} key={index}>
               {icon && <Icon
-                icon={icon}
+                {...icon}
                 color={color ?? theme.colors.main.font}
-                width={width ?? Number(theme.fontsizes.title.default.match(/\d+/))}
+                width={icon?.width ?? Number(theme.fontsizes.title.default.match(/\d+/))}
               />}
               <Text color={color ?? theme.colors.main.font}>{text}</Text>
             </DropDownItemStyle>
