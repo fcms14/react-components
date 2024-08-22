@@ -26,7 +26,7 @@ const DropDown = ({ items, iconColor }: DropDownInterface) => {
   const handleMouseLeave = () => {
     hideTimeoutRef.current = setTimeout(() => {
       setShowOptions(false);
-    }, 1000); 
+    }, 1000);
   };
 
   const handleMouseEnter = () => {
@@ -42,7 +42,7 @@ const DropDown = ({ items, iconColor }: DropDownInterface) => {
 
       {showOptions &&
         <DropDownStyle>
-          {items.map(({ text, icon, onClick, color}: DropDownItemInterface, index: number) =>
+          {items.map(({ text, icon, onClick, color }: DropDownItemInterface, index: number) =>
             <DropDownItemStyle onClick={onClick} cursor={onClick ? 'pointer' : 'inherit'} key={index}>
               {icon && <Icon
                 {...icon}

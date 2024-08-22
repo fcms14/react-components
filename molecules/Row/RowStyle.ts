@@ -68,7 +68,7 @@ export const RowHeaderStyle = styled.div<RowProps>`
 
 export const RowCopyStyle = styled.div<RowProps>`
   display: block;
-  background-color:  ${({ theme }) => `${theme.colors.background.copy}`};
+  background-color: ${({ theme }) => `${theme.colors.background.copy}`};
   border-radius: 5px;
   border: 1px solid #ddd;
   position: relative;
@@ -76,20 +76,19 @@ export const RowCopyStyle = styled.div<RowProps>`
 
   div {
     position: absolute;
-  ${({ theme }) => css`
+    ${({ theme }) => css`
       right: ${theme.gap};
       top: ${theme.gap};
-  `}
+    `}
   }
 
-  pre  {
+  pre {
   ${({ theme }) => css`
       padding: ${theme.padding.main};
   `}
     font-family: monospace;
     white-space: pre-wrap;
   }
-
 `
 
 export default RowStyle

@@ -16,7 +16,7 @@ interface Interface {
 
 const MenuList = ({ items }: Interface) => {
   const rowStyle: RowProps = {
-    borderBottom: `${theme.border}  ${theme.colors.main.stroke}`,
+    borderBottom: `${theme.border} ${theme.colors.main.stroke}`,
   }
 
   return (

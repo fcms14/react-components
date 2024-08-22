@@ -38,7 +38,7 @@ const Sidebar = ({ items }: SidebarInterface) => {
         <Shortcut
           color={theme.footer.inactive}
           shortcutStyle={{ flexDirection: "row" }}
-          icon={{icon : isExpanded ? MdArrowCircleLeft : MdArrowCircleRight}}
+          icon={{ icon: isExpanded ? MdArrowCircleLeft : MdArrowCircleRight }}
           onClick={dispatchExpanded}
           isExpanded={isExpanded}
           text={t("Recolher")}

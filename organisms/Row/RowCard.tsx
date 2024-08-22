@@ -8,13 +8,13 @@ export interface RowCardInterface {
   icon: IconComponentInterface,
 }
 
-const RowCard = ({ text, title, icon}: RowCardInterface) => {
+const RowCard = ({ text, title, icon }: RowCardInterface) => {
   return (
     <Row.Root rowStyle={{ flexDirection: "column", alignItems: "left", backgroundColor: theme.colorByType.info, borderRadius: theme.radius }}>
       <Row.Text color={theme.colors.button.font}> {text} </Row.Text>
       <Row.Section sectionStyle={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }} >
         <Row.Title color={theme.colors.button.font}> {title} </Row.Title>
-        <Row.Icon {...icon}/>
+        <Row.Icon {...icon} />
       </Row.Section>
     </Row.Root>
   )

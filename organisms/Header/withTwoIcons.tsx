@@ -8,14 +8,14 @@ interface Interface {
   rightIcon: IconComponentInterface,
 }
 
-const HeaderWithTwoIcons = ({ text, leftIcon, rightIcon}: Interface) => {
+const HeaderWithTwoIcons = ({ text, leftIcon, rightIcon }: Interface) => {
   leftIcon.width ?? Number(theme.fontsizes.title.big.match(/\d+/))
   rightIcon.width ?? Number(theme.fontsizes.title.big.match(/\d+/))
   return (
     <Header.Root>
-      <Header.Icon  {...leftIcon} />
+      <Header.Icon {...leftIcon} />
       <Header.Title parent="header"> {text} </Header.Title>
-      <Header.Icon  {...rightIcon} />
+      <Header.Icon {...rightIcon} />
     </Header.Root>
   )
 }
