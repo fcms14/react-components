@@ -5,7 +5,8 @@ const RowIcon = (props: IconComponentInterface) => {
   return (
     <Icon
       {...props}
-      color={props.color ?? theme.colors.main.icon}
+      color={props?.color ?? theme.colors.main.icon}
+      width={props?.width ?? Number(theme.fontsizes.title.default.match(/\d+/))}
     />
   )
 }
