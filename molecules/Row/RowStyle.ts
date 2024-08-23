@@ -74,11 +74,11 @@ export const RowCopyStyle = styled.div<RowProps>`
   position: relative;
   max-width: 100%;
 
-  div {
+  > div {
     position: absolute;
     ${({ theme }) => css`
-      right: ${theme.gap};
-      top: ${theme.gap};
+      right: ${theme.padding.main};
+      bottom: ${theme.padding.main};
     `}
   }
 
