@@ -24,6 +24,13 @@ interface Config {
     divisor: number,
 }
 
+export const maskMapping: { [key: string]: 'document' | 'phone' | undefined } = {
+    'document': 'document',
+    'email': undefined,
+    'phone': 'phone',
+    'key': undefined,
+ };
+
 export const configOptions = {
     default: { style: "currency", currency: "BRL", minimumFractionDigits: Decimal.BRL, divisor: 100, },
     usdCurrency: { style: "currency", currency: "USD", minimumFractionDigits: Decimal.USD, divisor: 100, },
@@ -80,6 +87,7 @@ export const InputMask = {
     number: (value: string, config: Config = configOptions.default): string => (+value.replace(/\D+/g, '') / config.divisor).toFixed(config.minimumFractionDigits),
     percentual: (value: string, config: Config = configOptions.default): string => `${(+value.replace(/\D+/g, '') / config.divisor).toFixed(config.minimumFractionDigits)}%`,
     name: (value: string): string => value
+        .replace(/[^a-zA-ZÀ-ÿ\s]/g, '')
         .toLowerCase()
         .replace(/(^|\s)\S/g, match => match.toUpperCase())
         .replace(/\(.+?\)|\..+?\b/g, match => match.charAt(0) + match.charAt(1).toUpperCase() + match.slice(2))
