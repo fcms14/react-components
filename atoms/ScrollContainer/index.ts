@@ -11,7 +11,7 @@ const ScrollContainer = styled.section<Props>`
   
   ${({ theme, maxHeight }) => css`
     max-height: ${maxHeight};
-    border: 1px solid ${theme.colors.main.stroke};
+    border: ${theme.border} ${theme.colors.main.stroke};
     border-radius: ${theme.radius};
   `};
 

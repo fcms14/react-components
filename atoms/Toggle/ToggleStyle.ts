@@ -32,6 +32,8 @@ const ToggleStyle = styled.span<ToggleSpanProps>`
 
     ${({ theme, color }) => css`
       background-color: ${color ?? theme.colors.button.inactive};
+      border-radius: ${theme.toggle};
+      height: ${theme.toggle};
     `}
   }
 

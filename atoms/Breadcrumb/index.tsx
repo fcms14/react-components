@@ -44,7 +44,7 @@ const Breadcrumb = ({ paths, rightIcon, actions }: Interface) => {
       {actions && <IconOrMenu actions={actions} />}
       {rightIcon && rightIcon.onClick &&
         <Button.Small
-          icon={rightIcon.icon}
+          icon={{ icon: rightIcon.icon }}
           onClick={rightIcon.onClick}
           text={rightIcon.text}
           buttonStyle={{ active: true, small: true, flexGrow: 0 }}

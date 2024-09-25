@@ -1,13 +1,29 @@
+import { useRef } from "react";
 import DropPanelStyle, { DropPanelWrapper } from "./DropPanelStyle"
 
 export interface DropPanelInterface {
-  onMouseLeave: () => void
+  onMouseLeave?: () => void
   children: JSX.Element | JSX.Element[]
 }
 
-const DropPanel = ({ onMouseLeave, children }: DropPanelInterface) => {
+const DropPanel = ({ children, onMouseLeave }: DropPanelInterface) => {
+  const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseLeave = () => {
+    hideTimeoutRef.current = setTimeout(() => {
+      onMouseLeave?.();
+    }, 1000);
+  };
+
+  const handleMouseEnter = () => {
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+      hideTimeoutRef.current = null;
+    }
+  };
+
   return (
-    <DropPanelWrapper onMouseLeave={onMouseLeave}>
+    <DropPanelWrapper onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
       <DropPanelStyle>
         {children}
       </DropPanelStyle>

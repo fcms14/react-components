@@ -6,6 +6,7 @@ const HeaderIcon = (props: IconComponentInterface) => {
     <Icon
       {...props}
       color={props.color ?? theme.colors.header.icon}
+      width={props?.width ?? Number(theme.fontsizes.title.default.match(/\d+/))}
       applyPadding
     />
   )

@@ -27,7 +27,7 @@ const MultiSelectStyle = styled.div<Props>`
     > option:focus,
     > option:active { 
       background: ${({ theme }) => theme.colorByType.info};
-      color:  ${({ theme }) => theme.colors.button.font};
+      color: ${({ theme }) => theme.colors.button.font};
     }
   }
 `

@@ -24,14 +24,14 @@ const TableStyle = styled.table`
 
     > thead > tr > th {
         ${({ theme }) => css`
-            border-bottom: 1px solid ${theme.colors.main.stroke};
+            border-bottom: ${theme.border} ${theme.colors.main.stroke};
             padding: ${theme.padding.header};
         `}
     }
 
     > tbody > tr > td {
         ${({ theme }) => css`
-            border-bottom: 1px solid ${theme.colors.main.stroke};
+            border-bottom: ${theme.border} ${theme.colors.main.stroke};
             padding: ${theme.padding.header};
             white-space: nowrap;
         `}
