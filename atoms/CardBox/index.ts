@@ -8,7 +8,10 @@ const CardBoxStyle = styled.div`
   flex-grow: 1;
   flex-direction: column;
   align-items: center;
-  maxwidth: 50px; 
   height: 100px; 
+
+  ${({ theme }) => css`
+      width: ${isMobile ? theme.cardBox.sizeMobile : theme.cardBox.sizeDefault};
+  `}
 `
 export default CardBoxStyle
