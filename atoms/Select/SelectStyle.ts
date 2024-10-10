@@ -14,6 +14,7 @@ export const SelectNav = styled.nav`
   position: absolute;
   overflow-y: scroll;
   top: 70px;
+  max-height: 300px;
   left: ${({ theme }) => theme.padding.main};
   z-index: 2;
   padding: ${({ theme }) => theme.padding.header};

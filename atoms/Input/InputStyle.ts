@@ -2,10 +2,6 @@ import styled, { css, keyframes } from "styled-components";
 import { Field } from "formik";
 import { getSize } from "../../helpers/helper";
 
-export interface InputProps {
-
-}
-
 const focusOn = keyframes`
   from {transform: translateY(-60%) translateX(-10%) scale(0.8);}
   to {transform: translateY(-80%) translateX(0) scale(1);}
@@ -56,7 +52,7 @@ export const ErrorSpanStyle = styled.span`
     padding-bottom: ${theme.radius};
   `}
 `
-const InputStyle = styled(Field) <InputProps>`
+const InputStyle = styled(Field)`
   font-family: 'InterSemiBold';
   -webkit-appearance: none;
   appearance: none;
