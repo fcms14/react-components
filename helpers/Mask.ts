@@ -40,10 +40,18 @@ export const Parser = {
     unmaskPercent: (value: string): number => Number(value.replace('%', '').replace(',', '.')),
 }
 
+export const RemoveMask = {
+    document: (value: string): string => value.replace(/\D/g, ''),
+    phone: (value: string): string => '+55' + value.replace(/\D/g, ''),
+    email: (value: string): string => value,
+    key: (value: string): string => value,
+}
+
+export type RemoveMaskKeys = keyof typeof RemoveMask;
+
 export const Mask = {
     currency: (value: number, decimal: Decimal = Decimal.BRL, code: string = "BRL"): string => {
-        const options = { style: 'currency', currency: code, minimumFractionDigits: decimal }
-        return new Intl.NumberFormat('pt-br', options).format(value)
+        return new Intl.NumberFormat('pt-br', { style: 'currency', currency: code, minimumFractionDigits: decimal }).format(value)
     },
     valueOrPercent: (value: number, type: ValueType): string => type === ValueType.PERCENT
         ? `${value.toString().replace('.', ',')}%`
