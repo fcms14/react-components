@@ -1,4 +1,4 @@
-import InputStyle, { ErrorSpanStyle, InputProps, InputSpanStyle, LabelStyle } from "./InputStyle"
+import InputStyle, { ErrorSpanStyle, InputSpanStyle, LabelStyle } from "./InputStyle"
 import { useFormikContext } from "formik"
 import { BaseSyntheticEvent, useState } from "react"
 import { InputMask, MaskType, MaskConfigTypes, configOptions } from "../../../components/helpers/Mask"
@@ -16,15 +16,15 @@ export interface InputInterface {
     mask?: MaskType
     maskConfig?: MaskConfigTypes
     inputMode?: string
+    onBlur?: () => void
     onChange?: (value: string) => void
     onFocus?: () => void
-    inputStyle?: InputProps
     error?: string
     icon?: IconComponentInterface
     disabled?: boolean
 }
 
-const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChange, onFocus, inputMode, icon, disabled }: InputInterface) => {
+const Input = ({ error, label, type, mask, maskConfig, name, onChange, onFocus, onBlur, inputMode, icon, disabled }: InputInterface) => {
     const { setFieldValue } = useFormikContext()
     const { t } = useTranslation()
     const [show, toggleVisibility] = useState<boolean>(false)
@@ -41,12 +41,12 @@ const Input = ({ error, label, type, mask, maskConfig, name, inputStyle, onChang
     return (
         <InputSpanStyle onClick={onFocus}>
             <InputStyle
-                {...inputStyle}
                 placeholder={label}
                 id={name}
                 name={name}
                 type={(type === "password" && show) ? "text" : type}
                 inputMode={inputMode}
+                onBlur={onBlur}
                 onFocus={onFocus}
                 onKeyUp={(e: BaseSyntheticEvent) => {
                     const event = e as React.KeyboardEvent<HTMLInputElement>;
