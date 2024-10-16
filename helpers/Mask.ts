@@ -29,7 +29,7 @@ export const maskMapping: { [key: string]: 'document' | 'phone' | undefined } = 
     'email': undefined,
     'phone': 'phone',
     'key': undefined,
- };
+}
 
 export const configOptions = {
     default: { style: "currency", currency: "BRL", minimumFractionDigits: Decimal.BRL, divisor: 100, },
