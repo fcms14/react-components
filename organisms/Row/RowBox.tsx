@@ -1,5 +1,4 @@
 import { Row } from '../../molecules/Row';
-import RowRoot from '../../molecules/Row/RowRoot';
 import { isMobile } from 'react-device-detect'
 
 export interface RowBoxInterface {
@@ -13,7 +12,7 @@ const RowBox = ({ upperText, medText, borderText, color }: RowBoxInterface) => {
   const size = !isMobile ? 'default' : 'small'
 
   return (
-    <RowRoot rowStyle={{
+    <Row.Root rowStyle={{
       flexDirection: "column",
       justifyContent: "left",
       boxShadow: " 0px 4px 8px rgba(0, 0, 0, 0.25)",
@@ -23,7 +22,7 @@ const RowBox = ({ upperText, medText, borderText, color }: RowBoxInterface) => {
       <Row.Text size={size}> {upperText} </Row.Text>
       <Row.Text size={'bigger'} color={color ? color : ''}> {medText} </Row.Text>
       <Row.Text size={size} textWrap='nowrap'> {borderText} </Row.Text>
-    </RowRoot>
+    </Row.Root>
   )
 }
 
