@@ -1,6 +1,6 @@
 import InputStyle, { ErrorSpanStyle, InputSpanStyle, LabelStyle } from "./InputStyle"
 import { useFormikContext } from "formik"
-import { BaseSyntheticEvent, useEffect, useState } from "react"
+import { BaseSyntheticEvent, useState } from "react"
 import { InputMask, MaskType, MaskConfigTypes, configOptions } from "../../../components/helpers/Mask"
 import Subtext from "../Subtext"
 import Icon, { IconComponentInterface } from "../Icon"
@@ -72,7 +72,7 @@ const Input = ({ error, label, type, mask, maskConfig, name, onChange, onFocus, 
                     }
                 }} />}
             </InputSpanStyle>
-            {type === 'password' && validator && <PasswordValidator password={password} />}
+            {type === 'password' && validator && password != '' && <PasswordValidator password={password} />}
         </>
     )
 }
