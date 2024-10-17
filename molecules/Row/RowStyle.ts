@@ -13,6 +13,7 @@ export interface RowProps {
   borderRadius?: string,
   cursor?: string,
   gap?: string,
+  notPadding?: boolean,
   overflowWrap?: string,
   flexwrap?: string
   flexGrow?: string,
@@ -39,9 +40,9 @@ const RowStyle = styled.div<RowProps>`
     overflow-wrap: ${props?.overflowWrap};
   `}
 
-  ${({ theme, gap }) => css`
+  ${({ theme, gap, notPadding }) => css`
     gap: ${gap ?? theme.gap};
-    padding: ${`${theme.gap} ${theme.padding.main}`};
+    padding: ${notPadding ? undefined : `${theme.gap} ${theme.padding.main}`};
   `}
 `
 
