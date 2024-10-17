@@ -50,7 +50,7 @@ const Input = ({ error, label, type, mask, maskConfig, name, onChange, onFocus, 
                 onFocus={onFocus}
                 onKeyUp={(e: BaseSyntheticEvent) => {
                     const event = e as React.KeyboardEvent<HTMLInputElement>;
-                    if (event.code === "Backspace") return
+                    if (event.code === "Backspace" || e.currentTarget.value === '') return
                     const value = mask ? handleChange(e, mask) : e.currentTarget.value;
                     setFieldTouched(e.currentTarget.name)
                     onChange?.(value)
