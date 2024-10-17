@@ -15,6 +15,7 @@ export interface RowProps {
   gap?: string,
   overflowWrap?: string,
   flexwrap?: string
+  flexGrow?: string,
 }
 
 const RowStyle = styled.div<RowProps>`
@@ -25,6 +26,7 @@ const RowStyle = styled.div<RowProps>`
     justify-content: ${props?.justifyContent ?? "space-between"};
     flex-wrap: ${props?.flexwrap};
     
+    flex-grow: ${props?.flexGrow};
     cursor: ${props?.cursor};
     flex-direction: ${props?.flexDirection};
     background-color: ${props?.backgroundColor};

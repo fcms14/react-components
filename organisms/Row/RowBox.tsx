@@ -1,6 +1,5 @@
 import { Row } from '../../molecules/Row';
 import RowRoot from '../../molecules/Row/RowRoot';
-import CardBoxStyle from '../../atoms/CardBox';
 import { isMobile } from 'react-device-detect'
 
 export interface RowBoxInterface {
@@ -11,28 +10,21 @@ export interface RowBoxInterface {
 }
 
 const RowBox = ({ upperText, medText, borderText, color }: RowBoxInterface) => {
-   const size  = !isMobile ? 'default' : 'small'
+  const size = !isMobile ? 'default' : 'small'
+
   return (
-    <CardBoxStyle>
-      <RowRoot rowStyle={{ flexDirection: "column", justifyContent: "left" }}>
-        <Row.Section sectionStyle={{ flexDirection: "row" }}>
-          <Row.Text size={size}>
-            {upperText}
-          </Row.Text>
-        </Row.Section>
-        <Row.Section sectionStyle={{ flexDirection: "row" }}>
-          <Row.Text  size={'bigger'} color={color ? color : ''}>
-            {medText}
-          </Row.Text>
-        </Row.Section>
-        <Row.Section sectionStyle={{ flexDirection: "row",  }}>
-          <Row.Text  size={size} textWrap='nowrap'>
-            {borderText}
-          </Row.Text>
-        </Row.Section>
-      </RowRoot>
-    </CardBoxStyle>
-  );
-};
+    <RowRoot rowStyle={{
+      flexDirection: "column",
+      justifyContent: "left",
+      boxShadow: " 0px 4px 8px rgba(0, 0, 0, 0.25)",
+      borderRadius: "8px",
+      flexGrow: "1"
+    }}>
+      <Row.Text size={size}> {upperText} </Row.Text>
+      <Row.Text size={'bigger'} color={color ? color : ''}> {medText} </Row.Text>
+      <Row.Text size={size} textWrap='nowrap'> {borderText} </Row.Text>
+    </RowRoot>
+  )
+}
 
 export default RowBox;
