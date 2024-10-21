@@ -25,7 +25,7 @@ export interface InputInterface {
 }
 
 const Input = ({ error, label, type, mask, maskConfig, name, onChange, onFocus, onBlur, inputMode, icon, disabled }: InputInterface) => {
-    const { setFieldValue } = useFormikContext()
+    const { setFieldValue, setFieldTouched } = useFormikContext()
     const { t } = useTranslation()
     const [show, toggleVisibility] = useState<boolean>(false)
 
@@ -50,8 +50,8 @@ const Input = ({ error, label, type, mask, maskConfig, name, onChange, onFocus, 
                 onFocus={onFocus}
                 onKeyUp={(e: BaseSyntheticEvent) => {
                     const event = e as React.KeyboardEvent<HTMLInputElement>;
-                    if (event.code === "Backspace") return
-
+                    setFieldTouched(e.currentTarget.name)
+                    if (event.code === "Backspace" || e.currentTarget.value === '') return
                     const value = mask ? handleChange(e, mask) : e.currentTarget.value;
                     onChange?.(value)
                 }}

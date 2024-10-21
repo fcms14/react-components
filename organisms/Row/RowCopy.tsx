@@ -1,12 +1,9 @@
 import { useState } from "react"
-import { RowCopyStyle, RowHeaderStyle, RowProps } from "./RowStyle"
-import RowRoot from "./RowRoot"
-import RowIcon from "./RowIcon"
-import { Row } from "./"
+import { RowCopyStyle } from "../../molecules/Row/RowStyle"
+import { Row } from "../../molecules/Row"
 import { LuCopyCheck } from "react-icons/lu";
 import { FaCheck } from 'react-icons/fa';
 import copyContent from "../../helpers/copyContent"
-import RowSection from "./RowSection"
 import { theme } from "../../../providers/theme"
 
 export interface RowCopyInterface {
@@ -27,7 +24,7 @@ const RowCopy = ({ text }: RowCopyInterface) => {
   return (
     <RowCopyStyle>
       <div>
-        <RowIcon
+        <Row.Icon
           color={isCopied
             ? `${theme.colors.button.inactive}`
             : `${theme.colors.background.copy}`
