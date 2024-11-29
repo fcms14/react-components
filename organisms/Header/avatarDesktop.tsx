@@ -11,9 +11,10 @@ export interface HeaderAvatarDesktopInterface {
   title: string,
   avatar: AvatarInterface,
   card: RowCardInterface,
+  balanceDetails?: string
 }
 
-const HeaderAvatarDesktop = ({ title, text, avatar, card }: HeaderAvatarDesktopInterface) => {
+const HeaderAvatarDesktop = ({ title, text, avatar, card, balanceDetails }: HeaderAvatarDesktopInterface) => {
   return (
     <Header height={"undefined"} className="header">
       <Row.Root rowStyle={{ flexDirection: "row", alignItems: "left" }}>
@@ -23,6 +24,7 @@ const HeaderAvatarDesktop = ({ title, text, avatar, card }: HeaderAvatarDesktopI
             <Row.Text> {card.text}: {card.title} </Row.Text>
             <Row.Icon color={theme.colors.main.font} width={getIconSize()} {...card.icon} />
           </Row.Section>
+          {balanceDetails && <Row.Text>{balanceDetails}</Row.Text>}
         </Row.Section>
         <Row.Section sectionStyle={{ flexGrow: "0" }}>
           <Row.Root onClick={avatar.onClick}>
