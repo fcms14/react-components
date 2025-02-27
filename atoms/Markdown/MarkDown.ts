@@ -11,7 +11,7 @@ const MarkDownStyle = styled.div`
   font-size: ${theme.fontsizes.title.smaller};
   line-height: 1.6;
   color: #333;
-  max-height: ${isMobile ? "550px" : "400px"};
+  max-height: 550px;
   overflow-y: auto;
 
   h1, h2, h3 {
