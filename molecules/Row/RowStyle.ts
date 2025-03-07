@@ -17,10 +17,16 @@ export interface RowProps {
   overflowWrap?: string,
   flexwrap?: string
   flexGrow?: string,
+  padding?: string,
 }
 
 const RowStyle = styled.div<RowProps>`
   display: flex;
+
+  ${({ theme, gap, notPadding }) => css`
+    gap: ${gap ?? theme.gap};
+    padding: ${notPadding ? undefined : `${theme.gap} ${theme.padding.main}`};
+  `}
 
   ${props => css`
     align-items: ${props?.alignItems ?? "center"};
@@ -38,14 +44,9 @@ const RowStyle = styled.div<RowProps>`
     top: ${props?.top};
     margin-bottom: ${props?.marginBottom};
     overflow-wrap: ${props?.overflowWrap};
-  `}
-
-  ${({ theme, gap, notPadding }) => css`
-    gap: ${gap ?? theme.gap};
-    padding: ${notPadding ? undefined : `${theme.gap} ${theme.padding.main}`};
+    padding: ${props?.padding};
   `}
 `
-
 export const RowHeaderStyle = styled.div<RowProps>`
   display: flex;
 
