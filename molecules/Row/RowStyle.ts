@@ -18,6 +18,7 @@ export interface RowProps {
   flexwrap?: string
   flexGrow?: string,
   padding?: string,
+  width?: string,
 }
 
 const RowStyle = styled.div<RowProps>`
@@ -45,6 +46,7 @@ const RowStyle = styled.div<RowProps>`
     margin-bottom: ${props?.marginBottom};
     overflow-wrap: ${props?.overflowWrap};
     padding: ${props?.padding};
+    width: ${props?.width};
   `}
 `
 export const RowHeaderStyle = styled.div<RowProps>`
