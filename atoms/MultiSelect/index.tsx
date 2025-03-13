@@ -32,7 +32,12 @@ const MultiSelect = ({ name, label, options, values, required, error }: MultiSel
     <MultiSelectStyle show={show}>
       <Input
         name={`search-${name}`}
-        label={`${values ? `${label}: ${values}` : label}`}
+        label={`${values.length > 0
+          ? `${label}: ${options
+              .filter(option => values.includes(option.value.toString()))
+              .map(option => option.label)
+              .join(", ")}`
+          : label}`}
         type="text"
         onFocus={() => setShow(!show)}
         onChange={(value: string) => {
