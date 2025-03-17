@@ -38,6 +38,13 @@ const DynamicTable = ({ data }: Interface) => {
         { valor: 0, quantidade: 0 }
     );
 
+     const formatDate = (value: any) => {
+        if (typeof value === "string" && !isNaN(Date.parse(value))) {
+            return new Intl.DateTimeFormat("pt-BR").format(new Date(value));
+        }
+        return value;
+    };
+
     return (
         <div style={{ width: "100%", overflowX: "auto" }}>
             {/* Cabeçalho */}
@@ -65,7 +72,7 @@ const DynamicTable = ({ data }: Interface) => {
                 >
                     {dynamicColumns.map((col) => (
                         <Row.Section sectionStyle={style} key={col} >
-                            {row[col]}
+                               {formatDate(row[col])}
                         </Row.Section>
                     ))}
                     <Row.Section sectionStyle={style}>
