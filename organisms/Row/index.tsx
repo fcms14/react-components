@@ -7,8 +7,10 @@ import RowTitleAndLink from "./RowTitleAndLink";
 import RowBox from "./RowBox";
 import RowCopy from "./RowCopy";
 import RowBigBox from "./RowBigBox";
+import DynamicTable from "./RowTable";
 
 export const Row = {
+    Table: DynamicTable,
     Card: RowCard,
     Box: RowBox,
     BigBox: RowBigBox,

@@ -10,6 +10,7 @@ export interface SectionProps {
   borderBotom?: boolean,
   flexGrow?: string,
   animation?: boolean,
+  width?: string,
 }
 
 const Section = styled.section<SectionProps>`
@@ -31,7 +32,7 @@ const Section = styled.section<SectionProps>`
     align-items: ${props.alignItems};
     gap: ${props.gap};
     text-align: ${props.textalign};
-
+    width: ${props.width};
     border-bottom: ${props.borderBotom ? `1px solid ${props.theme.colors.main.stroke}` : "undefined"};
   `}
 `
