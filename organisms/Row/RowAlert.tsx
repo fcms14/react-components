@@ -1,33 +1,28 @@
 import { Row } from "../../molecules/Row"
 import { theme } from "../../../providers/theme"
 import { RowAlertStyle } from "../../molecules/Row/RowStyle"
-import { FaInfoCircle } from "react-icons/fa"
+import { RiErrorWarningFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom"
-import Link from "../../atoms/Link"
 
-export interface RowCardInterface {
+export interface RowAlertInterface {
   text: string,
   path: string,
   title: string,
   rightLink: string
 }
 
-const RowAlert = ({ text, title, path, rightLink }: RowCardInterface) => {
+const RowAlert = ({ text, title, path, rightLink }: RowAlertInterface) => {
   const navigate = useNavigate()
 
   return (
-    <RowAlertStyle>
-      <Row.Icon width={32} icon={FaInfoCircle} applyPadding />
+    <RowAlertStyle onClick={() => navigate(path)} style={{ cursor: 'pointer' }}>
+      <Row.Icon width={32} icon={RiErrorWarningFill} applyPadding />
       <Row.Section sectionStyle={{ flexDirection: "column", justifyContent: "space-between", alignItems: "left" }} >
         <Row.Title size="small"> {title} </Row.Title>
-        <Row.Section sectionStyle={{ flexDirection: "row", justifyContent: "space-between", alignItems: "left" }} >
-          <Row.Text size="small">  {text} </Row.Text>
-          <div style={{ marginLeft: theme.radius }}>
-            <Link onClick={() => navigate(path)}>
-              <Row.Text size="small" color={theme.footer.active}>{rightLink}</Row.Text>
-            </Link>
-          </div>
-        </Row.Section>
+        <Row.Text size="small">
+          {text}
+          <span style={{ color: theme.footer.active, fontWeight: 700 }}> {rightLink} </span>
+        </Row.Text>
       </Row.Section>
     </RowAlertStyle>
   )
