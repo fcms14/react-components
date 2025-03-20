@@ -104,11 +104,12 @@ export const RowAlertStyle = styled.div<RowProps>`
   border:${theme.border}#DFCD90;
   margin: ${theme.radius};
   background-color: ${theme.colorByType['alert']};
-  gap: ${theme.colorByType['alert']};
+  gap: ${theme.gap};
+  margin: ${theme.gap} ${theme.padding.main};
   padding: ${theme.radius};
   
     > div {
-      margin-left: ${isMobile ?  theme.padding.header : theme.radius};
+      margin-left: ${isMobile ? theme.padding.header : theme.radius};
     }
   `}
 `
