@@ -12,10 +12,9 @@ import { useNavigate } from "react-router-dom";
 const AttentionPopup = ({ text, title, path, rightLink }: RowAlertInterface) => {
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(true);
+  const onClick = () => setIsOpen(false)
 
   if (!isOpen) return null;
-
-  const onClick = () => setIsOpen(false)
 
   return (
     <>
