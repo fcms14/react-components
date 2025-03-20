@@ -12,6 +12,7 @@ export interface ButtonProps {
   type?: "button" | "submit" | "reset" | undefined,
   whiteSpace?: string,
   flexGrow?: number,
+  isColumn?: boolean
 }
 
 const ButtonStyle = styled.button<ButtonProps>`
@@ -25,14 +26,14 @@ const ButtonStyle = styled.button<ButtonProps>`
   width: ${props => props.width};
   white-space: ${props => props.whiteSpace};
 
-  ${({ theme, small, flexGrow = 1 }) => css`
+  ${({ theme, small, isColumn, flexGrow = 1 }) => css`
     ${small
       ? `
         flex-grow: ${flexGrow};
         padding: ${getSize(theme.padding.header) / 4}px ${theme.padding.header};
       `
       : `
-        margin: ${theme.padding.main};
+        margin: ${isColumn ? Number(theme.padding.main) / 2 : Number(theme.padding.main)}; 
         padding: ${theme.padding.header} ${theme.padding.main};
       `}
   `}

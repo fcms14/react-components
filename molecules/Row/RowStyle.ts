@@ -1,3 +1,4 @@
+import { isMobile } from 'react-device-detect'
 import styled, { css } from 'styled-components'
 
 export interface RowProps {
@@ -94,6 +95,22 @@ export const RowCopyStyle = styled.div<RowProps>`
     font-family: monospace;
     white-space: pre-wrap;
   }
+`
+
+export const RowAlertStyle = styled.div<RowProps>`
+  display: flex;
+  align-items: center;
+  ${({ theme }) => css`
+  border:${theme.border}#DFCD90;
+  margin: ${theme.radius};
+  background-color: ${theme.colorByType['alert']};
+  gap: ${theme.colorByType['alert']};
+  padding: ${theme.radius};
+  
+    > div {
+      margin-left: ${isMobile ?  theme.padding.header : theme.radius};
+    }
+  `}
 `
 
 export default RowStyle

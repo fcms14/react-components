@@ -57,7 +57,7 @@ export const BodyDefaultStyle = styled.div<Props>`
   position: relative;
 
   > main {
-      padding: ${({ isGuest }) => (isGuest && isMobile) ? "10vw" : undefined};
+      padding: ${({ isGuest }) => (isGuest && isMobile) ? "10vw" : "1rem"};
   }
 
   > main,

@@ -7,6 +7,7 @@ export interface MenuRowInterface {
   title: string,
   text: string,
   icon: IconComponentInterface,
+  active?: boolean,
   onClick?: () => void,
 }
 
@@ -20,12 +21,12 @@ const MenuList = ({ items }: Interface) => {
   }
 
   return (
-    <>{items.map(({ icon, title, text, onClick }: MenuRowInterface, index: number) =>
+    <>{items.map(({ icon, title, text, onClick, active = true}: MenuRowInterface, index: number) =>
       <Row.Root rowStyle={rowStyle} key={index} onClick={onClick} >
         <Row.Icon {...icon} />
         <Row.Section>
-          <Row.Title size="small"> {title} </Row.Title>
-          <Row.Text size="big"> {text} </Row.Text>
+          <Row.Title active={active} size="small"> {title} </Row.Title>
+          <Row.Text active={active}  size="big"> {text} </Row.Text>
         </Row.Section>
       </Row.Root>
     )}</>
